@@ -1,27 +1,27 @@
 ---
-title: Actions overview
+Titel: Aktionenübersicht
 redirect_from:
-  - /docs/latest/actions
+  - /docs/letztes/Aktionen
 ---
 
-# Actions overview
+# Aktionen Übersicht
 
-![An action updating a plan on a dashboard](./images/dashboard-action.gif)
+![Eine Aktion, die einen Plan auf einem Dashboard aktualisiert](./images/dashboard-action.gif)
 
-Actions let you write parameterized SQL that can then be attached to buttons, clicks, or even added on the page as form elements.
+Mit Aktionen können Sie parametrisierte SQL schreiben, die dann an Schaltflächen, Klicks oder sogar auf der Seite als Formularelemente hinzugefügt werden können.
 
-## [Introduction to actions ](./introduction.md)
+## [Einführung in Aktionen ](./introduction.md)
 
-Use actions to update your data based on user input or values on the page.
+Verwenden Sie Aktionen, um Ihre Daten basierend auf Benutzereingaben oder Werten auf der Seite zu aktualisieren.
 
-## [Basic actions](./basic.md)
+## [Grundlegende Aktionen](./basic.md)
 
-Metabase will create basic actions that auto-track a model's schema.
+Metabase erzeugt grundlegende Aktionen, die das Schema eines Modells automatisch übertragen.
 
-## [Custom actions](./custom.md)
+## [Benutzerdefinierte Aktionen](./custom.md)
 
-Write SQL to create new actions.
+Schreiben Sie SQL, um neue Aktionen zu erstellen.
 
-## [Actions on dashboards](../dashboards/actions.md)
+## [Aktionen auf Dashboards](../dashboards/actions.md)
 
-Add actions on dashboards as buttons that you can pass filter values to.
+Fügen Sie Aktionen auf Dashboards als Tasten hinzu, an die Sie Filterwerte übergeben können.
