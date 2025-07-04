@@ -1,71 +1,71 @@
 ---
-title: Introduction to actions
+Titel: Einführung in Aktionen
 ---
 
-# Introduction to actions
+# Einführung in Aktionen
 
-> For now, actions are only available for PostgreSQL and MySQL.
+> Im Moment sind Aktionen nur für PostgreSQL und MySQL verfügbar.
 
-![Example action](./images/example-action.png)
+![Beispielaktion](./images/example-action.png)
 
-## What are actions?
+## Was sind Aktionen?
 
-**Actions** are entities in Metabase that let you build custom forms and business logic.
+**Aktionen** sind Entitäten in der Metabase, mit denen Sie benutzerdefinierte Formulare und Geschäftslogik erstellen können.
 
-Actions let you write parameterized SQL that writes back to your database. Actions can be attached to [buttons on dashboards](../dashboards/actions.md) to create custom workflows. You can even publicly share the parameterized forms that actions generate to collect data.
+Mit Aktionen können Sie parametrisierte SQL schreiben, die in Ihre Datenbank zurückgeschrieben werden. Aktionen können an beigefügt werden [Knöpfe auf Dashboards](../dashboards/actions.md) So erstellen Sie benutzerdefinierte Workflows. Sie können sogar die parametrisierten Formulare, die Aktionen generieren, um Daten zu erstellen, öffentlich weitergeben.
 
-Here are a few ideas for what you can do with actions:
+Hier sind ein paar Ideen für das, was Sie mit Handlungen tun können:
 
-- Mark the customer you’re viewing in a dashboard as a VIP.
-- Let team members remove redundant data.
-- Create a customer feedback form and embed it on your website.
+- Markieren Sie den Kunden, den Sie in einem Dashboard als VIP anzeigen.
+- Lassen Sie die Teammitglieder redundante Daten entfernen.
+- Erstellen Sie ein Kundenfeedback -Formular und setzen Sie es in Ihre Website ein.
 
-Actions must be added to a [model](../data-modeling/models.md), but actions only run on the raw tables that back those models (so actions will never edit your [model definition](../data-modeling/models.md#edit-a-models-query)).
+Aktionen müssen zu einem hinzugefügt werden [Modell](../data-modeling/models.md), aber Aktionen werden nur auf den Rohtabellen ausgeführt, die diese Modelle zurückerhalten (damit Aktionen niemals Ihre bearbeiten [Modelldefinition](../data-modeling/models.md#edit-a-models-query)).
 
-## Enabling actions for a database
+## Aktivitäten für eine Datenbank aktivieren
 
-For actions to work, you'll first need to do the following two things:
+Damit Aktionen arbeiten können, müssen Sie zunächst die folgenden zwei Dinge ausführen:
 
-1. **Enable model actions for the database connection**. To enable actions for a database connection, admins should click on the **gear** icon in the upper right and navigate to **Admin settings** > **Databases**, then click on the database you want to create actions for. On the right side of the connection settings form, toggle the **Model actions** option. For actions to work, the database user account (the account you're using to connect to the database) must have [write permissions](../databases/users-roles-privileges.md#privileges-to-enable-actions). And for now, actions are only supported on PostgreSQL and MySQL databases.
-2. **Create at least one model from that database.** Actions are associated with models, so you'll need to have created (or have access to) at least one model before you can start creating actions.
+1. **Aktivieren Sie Modellaktionen für die Datenbankverbindung**. Um Aktionen für eine Datenbankverbindung zu aktivieren, sollten Administratoren auf die klicken **Passage** Symbol im oberen rechten und navigieren Sie zu **Admin -Einstellungen** > **Datenbanken**Klicken Sie dann auf die Datenbank, für die Sie Aktionen erstellen möchten. Schalten Sie die rechte Seite des Anschlusseinstellungsformulars um **Modellaktionen** Option. Damit Aktionen arbeiten können, muss das Datenbank -Benutzerkonto (das Konto, mit dem Sie eine Verbindung zur Datenbank herstellen) haben müssen [Berechtigungen schreiben](../databases/users-roles-privileges.md#privileges-to-enable-actions). Und vorerst werden Aktionen nur in Postgresql- und MySQL -Datenbanken unterstützt.
+2. **Erstellen Sie mindestens ein Modell aus dieser Datenbank.** Aktionen sind Modellen zugeordnet, sodass Sie mindestens ein Modell erstellt (oder haben), bevor Sie Aktionen erstellen können.
 
-## Who can use actions
+## Wer kann Aktionen verwenden
 
-- **To create or edit an action**, a person must be in a group with [Native query editing](../permissions/data.md) privileges for the relevant database.
-- **To run an action**, all you need is view access to the action's model or dashboard (or a link to a public action).
+- **Eine Aktion erstellen oder bearbeiten**, eine Person muss in einer Gruppe mit sein [Einheimische Abfragebearbeitung](../permissions/data.md) Privilegien für die entsprechende Datenbank.
+- **Eine Aktion durchführen**Sie benötigen lediglich, dass Sie den Zugriff auf das Modell oder das Dashboard der Aktion (oder einen Link zu einer öffentlichen Aktion) anzeigen.
 
-## Types of actions
+## Arten von Aktionen
 
-There are two types of actions:
+Es gibt zwei Arten von Aktionen:
 
 - [Basic](./basic.md)
-- [Custom](./custom.md)
+- [Brauch](./custom.md)
 
-## Running actions
+## Ausführung von Aktionen
 
-There are multiple ways to run actions:
+Es gibt mehrere Möglichkeiten, Aktionen auszuführen:
 
-- [From the model details page](../data-modeling/models.md#model-details) by clicking the **run** button.
-- From a [public form](./custom.md#make-public) of an action.
-- From a [button on dashboard](../dashboards/actions.md).
+- [Auf der Seite Modelldetails](../data-modeling/models.md#model-details) durch Klicken auf die **laufen** Schmecken.
+- Von a [öffentliche Form](./custom.md#make-public) einer Handlung.
+- Von a [Taste auf dem Armaturenbrett](../dashboards/actions.md).
 
-## Actions change data in tables, which affect models
+## Aktionen ändern Daten in Tabellen, die die Modelle beeinflussen
 
-Just something to clarify here: actions, even though they are added to models, make their changes to the underlying table that a model queries. Which means that anyone who has access to the underlying table, or to questions or other models based on that table, will be able to see the effects of an action. Tools other than Metabase that are connected to that database will also pick up these changes.
+Nur etwas zu klären: Aktionen, obwohl sie zu Modellen hinzugefügt werden, nehmen Sie ihre Änderungen an der zugrunde liegenden Tabelle vor, die ein Modell abfragt. Dies bedeutet, dass jeder, der Zugang zur zugrunde liegenden Tabelle hat, oder auf Fragen oder andere Modelle, die auf dieser Tabelle basieren, die Auswirkungen einer Aktion erkennen können. Andere Tools als Metabase, die mit dieser Datenbank verbunden sind, werden diese Änderungen ebenfalls aufnehmen.
 
-In this sense, models are containers for actions; models are a way to organize actions. In fact, you could (in theory) add a [custom action](./custom.md) to a model that performs some update unrelated to its model's data. For example, you could write a custom action that updates the `Accounts` table, and add that action to a model that only queries an unrelated table (e.g., the `Orders` table). But, you know, maybe don't do that (unless you have a really good reason). [Basic actions](./basic.md), however, are only be available for models that wrap a single raw table.
+In diesem Sinne sind Modelle Container für Aktionen; Modelle sind eine Möglichkeit, Aktionen zu organisieren. In der Tat könnten Sie (theoretisch) a hinzufügen [benutzerdefinierte Aktion](./custom.md) zu einem Modell, das einige Aktualisierungen durchführt, die nicht mit den Daten seines Modells zu tun haben. Zum Beispiel können Sie eine benutzerdefinierte Aktion schreiben, die die aktualisiert `Konten` Tabelle und fügen Sie diese Aktion einem Modell hinzu, das nur eine nicht verwandte Tabelle abfragt (z. B. die `Bestellungen` Tisch). Aber wissen Sie, dass Sie das vielleicht nicht tun (es sei denn, Sie haben einen wirklich guten Grund). [Grundlegende Aktionen](./basic.md)jedoch aSeien Sie nur für Modelle verfügbar, die eine einzelne Rohtabelle einwickeln.
 
-Before using actions in production, consider playing around with actions on some sample data (like the Sample Database included with Metabase) to get a feel for how they work.
+Bevor Sie in der Produktion von Aktionen in der Produktion verwendet werden, sollten Sie mit Aktionen in einigen Beispieldaten (z.
 
-## Action gotchas
+## Action Gotchas
 
-- If caching is enabled for the relevant table or model, you may not see the effects of an action in Metabase until Metabase refreshes the data (though you can always manually refresh the data).
-- When creating records on a table that lacks an automatically generated primary key, you'll need to input an available ID (i.e., an ID not already in use by another record).
-- You can't "undo" actions. You can, however, create and run an action to recreate a deleted record, or change an updated record back to its original values (provided you know the original values).
-- Actions are unavailable for public dashboards, and dashboards in [static embeds](../embedding/static-embedding.md).
+- Wenn das zwischengegebene Tabelle oder Modell zwischengespeichert wird, sehen Sie möglicherweise erst die Auswirkungen einer Aktion in der Metabase, bis die Metabase die Daten aktualisiert (obwohl Sie die Daten jederzeit manuell aktualisieren können).
+- Beim Erstellen von Datensätzen in einer Tabelle, in der ein automatisch generierter Primärschlüssel fehlt, müssen Sie eine verfügbare ID eingeben (d. H. Eine ID, die nicht bereits von einem anderen Datensatz verwendet wird).
+- Sie können Aktionen nicht "rückgängig". Sie können jedoch eine Aktion erstellen und ausführen, um einen gelöschten Datensatz neu zu erstellen oder einen aktualisierten Datensatz wieder in die ursprünglichen Werte zu ändern (vorausgesetzt, Sie kennen die ursprünglichen Werte).
+- Aktionen sind für öffentliche Dashboards und Dashboards in nicht verfügbar [statische Einbettungen](../embedding/static-embedding.md).
 
-## Further reading
+## Weitere Lesen
 
-- [Basic actions](./basic.md)
-- [Custom actions](./custom.md)
-- [Actions in dashboards](../dashboards/actions.md)
+- [Grundlegende Aktionen](./basic.md)
+- [Benutzerdefinierte Aktionen](./custom.md)
+- [Aktionen in Dashboards](../dashboards/actions.md)
