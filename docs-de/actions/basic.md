@@ -1,73 +1,88 @@
 ---
-title: Basic actions
----
+Sobald die Aktionen aktiviert sind, können Sie grundlegende Aktionen für ein neues oder bestehendes [Modell](../data-modeling/models.md) erstellen, das nur eine einzige Datenbanktabelle umschließt.
 
-# Basic actions
 
-Basic actions are "implicit" [actions](./introduction.md) that do things that people typically want to do when interacting with a database: Create, Update, Delete. Basic actions auto-track the schema of the source table backing the model. By auto-track the schema, we mean that Metabase will create action forms for people to fill out that include all of the fields from the primary source table that underlies that model.
+1. Wählen Sie ein Modell aus und klicken Sie auf die Schaltfläche **Info** und dann auf **Modelldetails**.
+2. Klicken Sie auf der Modelldetailseite auf die Registerkarte **Aktionen**.
+3. Klicken Sie auf das Symbol **...** neben **Neue Aktion** und wählen Sie **Grundlegende Aktionen erstellen**.
 
-If you only want to give people the option to update a subset of columns, or update columns in multiple tables, you can write a [custom action](./custom.md).
 
-## Creating basic actions
+### Einschränkungen für Basis-Aktionen
 
-Once actions are enabled, you can create basic actions on a new or existing [model](../data-modeling/models.md) that only wraps a single database table.
 
-1. Select a model and click on the **info** button, then click on **Model detail**.
-2. On the model detail page, click on the **Actions** tab.
-3. Click on the **...** next to the **New Action** and select **Create basic actions**.
+Basisaktionen sind nur für "einfache" Modelle verfügbar:
 
-### Basic action limitations
 
-Basic actions are only available for "basic" models:
+- Modelle, die mit dem grafischen Query Builder erstellt wurden. Für Modelle, die mit nativen Abfragen (SQL) erstellt wurden, sind keine grundlegenden Aktionen verfügbar.
+- Das Modell muss eine einzelne Rohtabelle in einer Datenbank "verpacken". Die Abfrage sollte einfach diese Tabelle im Datenschritt des Notizbuch-Editors auswählen und nichts weiter: keine Verknüpfungen, keine benutzerdefinierten Spalten, keine Filter oder Zusammenfassungen, keine Sortierung.
+- Die zugrundeliegende Tabelle kann nur einen Primärschlüssel (Entitätsschlüssel) haben.
 
-- Models built using the graphical query builder. Basic actions are unavailable for models created with native queries (SQL).
-- The model must "wrap" a single raw table in a database. The query should simply select that table in the data step of the notebook editor, and nothing more: no joins, no custom columns, no filters or summarization, no sorting.
-- The underlying table can only have one primary (entity) key.
 
-## Basic action types
+## Grundlegende Aktionstypen
 
-![Basic actions](./images/basic-actions.png)
 
-Basic actions include:
+![Grundlegende Aktionen](./images/basic-actions.png)
 
-- [Update](#update)
-- [Delete](#delete)
-- [Create](#create)
 
-### Update
+Grundlegende Aktionen umfassen:
 
-The update action will present people with a form with editable fields for each column in the primary source table.
 
-When setting up an Update action on a dashboard, you must pass an entity key (like an ID) to the action from a dashboard filter. For other values, you can either prompt the person to fill in a value for each field, or have a field automatically filled in via parameters (such as values set in dashboard filters).
+- [Aktualisieren](#update)
+- [Löschen](#delete)
+- [Erstellen](#create)
 
-### Delete
 
-The Delete action will create a form that prompts people for an entity key, and will delete the record (row) corresponding to that ID in the underlying table that backs the model.
+### Aktualisieren
 
-### Create
 
-The Create action is the `INSERT INTO` action. The Create action will present a form with editable fields for each column in the primary source table backing the model. Once filled out, the action will insert the record into the primary table that underlies the model.
+Die Aktualisierungsaktion zeigt den Personen ein Formular mit bearbeitbaren Feldern für jede Spalte in der Primärquellentabelle an.
 
-## Basic actions on dashboards
 
-When setting up actions on a dashboard, you can either prompt the person to fill in a value for each field, or have a field automatically filled in via parameters (such as values set in dashboard filters).
+Wenn Sie eine Aktualisierungsaktion auf einem Dashboard einrichten, müssen Sie einen Entitätsschlüssel (z. B. eine ID) aus einem Dashboardfilter an die Aktion übergeben. Für andere Werte können Sie entweder die Person auffordern, einen Wert für jedes Feld einzugeben, oder ein Feld automatisch über Parameter ausfüllen lassen (z. B. über Werte, die in Dashboard-Filtern festgelegt wurden).
 
-The Update basic action requires you to pass a value for the entity key.
 
-See [Actions in dashboards](../dashboards/actions.md).
+### Löschen
 
-## Archiving basic actions
 
-Because basic actions are made of magic, you cannot archive them. You can just toggle them on or off. From the model detail page, next to the **New action** button, click on the **...** menu and click **Disable basic actions**.
+Die Aktion "Löschen" erstellt ein Formular, das zur Eingabe eines Entitätsschlüssels auffordert, und löscht den Datensatz (die Zeile), der dieser ID in der zugrunde liegenden Tabelle entspricht, die dem Modell zugrunde liegt.
 
-## Basic actions from object detail view
 
-If you have basic actions enabled for a model, you can click on an individual record to view its object detail. From that object detail model, you can click on the ellipses (**...**) and select update or delete to modify that specific record.
+### Erstellen
 
-![Update record from object detail view](./images/update-record.png)
 
-## Further reading
+Die Aktion "Erstellen" ist die Aktion "INSERT INTO". Mit der Aktion "Erstellen" wird ein Formular mit bearbeitbaren Feldern für jede Spalte in der primären Quelltabelle, die dem Modell zugrunde liegt, angezeigt. Nach dem Ausfüllen fügt die Aktion den Datensatz in die primäre Tabelle ein, die dem Modell zugrunde liegt.
 
-- [Introduction to actions](./introduction.md)
-- [Custom actions](./custom.md)
-- [Actions in dashboards](../dashboards/actions.md)
+
+## Grundlegende Aktionen auf Dashboards
+
+
+Beim Einrichten von Aktionen auf einer Eigenschaftenleiste können Sie entweder die Person auffordern, einen Wert für jedes Feld einzugeben, oder Sie können ein Feld automatisch über Parameter ausfüllen lassen (z. B. über Werte, die in Dashboard-Filtern festgelegt wurden).
+
+
+Bei der Basisaktion Aktualisieren müssen Sie einen Wert für den Entitätsschlüssel übergeben.
+
+
+Siehe [Aktionen in Dashboards](../dashboards/actions.md).
+
+
+## Archivierung von Basisaktionen
+
+
+Da die Basisaktionen aus Magie bestehen, können Sie sie nicht archivieren. Sie können sie nur ein- oder ausschalten. Klicken Sie auf der Modell-Detailseite neben der Schaltfläche **Neue Aktion** auf das Menü **...** und dann auf **Grundlegende Aktionen deaktivieren**.
+
+
+## Grundlegende Aktionen aus der Objekt-Detailansicht
+
+
+Wenn Sie grundlegende Aktionen für ein Modell aktiviert haben, können Sie auf einen einzelnen Datensatz klicken, um dessen Objektdetails anzuzeigen. In diesem Objektdetailmodell können Sie auf die Ellipsen(**...**) klicken und "Aktualisieren" oder "Löschen" wählen, um den betreffenden Datensatz zu ändern.
+
+
+![Datensatz aus der Objektdetailansicht aktualisieren](./images/update-record.png)
+
+
+## Weitere Lektüre
+
+
+- [Einführung in Aktionen](./introduction.md)
+- [Benutzerdefinierte Aktionen](./custom.md)
+- [Aktionen in Dashboards](../dashboards/actions.md)
