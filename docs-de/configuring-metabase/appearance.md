@@ -1,172 +1,172 @@
 ---
-title: Appearance
+title: Darstellung
 redirect_from:
-  - /docs/latest/administration-guide/whitelabeling
-  - /docs/latest/enterprise-guide/whitelabeling
-  - /docs/latest/enterprise-guide/customize-embeds
-  - /docs/latest/embedding/whitelabeling
-  - /docs/latest/embedding/fonts
-  - /docs/latest/embedding/customize-embeds
+- /docs/latest/administration-guide/whitelabeling
+- /docs/latest/enterprise-guide/whitelabeling
+- /docs/latest/enterprise-guide/customize-embeds
+- /docs/latest/embedding/whitelabeling
+- /docs/latest/embedding/fonts
+- /docs/latest/embedding/customize-embeds
 ---
 
-# Appearance
+# Erscheinungsbild
 
-{% include plans-blockquote.html feature="Custom appearance" %}
+{% include plans-blockquote.html feature=„Custom appearance“ %}
 
-Appearance settings give admins the option to whitelabel Metabase to match your company’s branding.
+Mit den Einstellungen für das Erscheinungsbild können Administratoren Metabase an das Branding Ihres Unternehmens anpassen.
 
-If you're looking for date, time, number, or currency formatting, see [Formatting defaults](../data-modeling/formatting.md).
+Wenn Sie nach Formatierungen für Datum, Uhrzeit, Zahlen oder Währungen suchen, lesen Sie [Formatierungsstandards](../data-modeling/formatting.md).
 
-## Changing Metabase's appearance
+## Ändern des Erscheinungsbilds von Metabase
 
-Hit cmd/ctrl + k to bring up the command palette and search for "Appearance" and click on Settings -> Appearance.
+Drücken Sie cmd/ctrl + k, um die Befehlspalette aufzurufen, suchen Sie nach „Erscheinungsbild“ und klicken Sie auf „Einstellungen“ -> „Erscheinungsbild“.
 
-You can also click on the **gear** icon at the bottom of the navigation sidebar and click through **Admin settings** > **Settings** > **Appearance**.
+Sie können auch auf das Zahnradsymbol unten in der Navigationsleiste klicken und dann auf „Admin-Einstellungen“ > „Einstellungen“ > „Darstellung“ klicken.
 
-Appearance settings are split across different tabs:
+Die Darstellungseinstellungen sind auf verschiedene Registerkarten verteilt:
 
 - [Branding](#branding)
-- [Conceal Metabase](#conceal-metabase)
+- [Metabase ausblenden](#conceal-metabase)
 
 ## Branding
 
-In the Branding tab, you can configure your Metabase to match your brand visuals and voice.
+Auf der Registerkarte „Branding“ können Sie Metabase an das Erscheinungsbild und den Tonfall Ihrer Marke anpassen.
 
-- [Color palette](#color-palette)
-- [User interface colors](#user-interface-colors)
-- [Chart colors](#chart-colors)
+- [Farbpalette](#color-palette)
+- [Farben der Benutzeroberfläche](#user-interface-colors)
+- [Diagrammfarben](#chart-colors)
 - [Logo](#logo)
-- [Font](#font)
-- [Loading message](#loading-message)
+- [Schriftart](#font)
+- [Lademeldung](#loading-message)
 - [Favicon](#favicon)
 
-## Color palette
+## Farbpalette
 
-You can customize colors in both the application UI and in the Metabase charts.
+Sie können die Farben sowohl in der Benutzeroberfläche der Anwendung als auch in den Metabase-Diagrammen anpassen.
 
-### User interface colors
+### Farben der Benutzeroberfläche
 
-![User interface colors](./images/user-interface-colors.png)
+![Farben der Benutzeroberfläche](./images/user-interface-colors.png)
 
-You can customize the colors that Metabase uses throughout the app:
+Sie können die Farben anpassen, die Metabase in der gesamten App verwendet:
 
-- **First color:** The main color used throughout the app for buttons, links, and the default chart color.
-- **Second color:** The color of aggregations and breakouts in the graphical query builder.
-- **Third color:** Color of filters in the query builder, buttons and links in filter widgets.
+- **Erste Farbe:** Die Hauptfarbe, die in der gesamten App für Schaltflächen, Links und die Standardfarbe der Diagramme verwendet wird.
+- **Zweite Farbe:** Die Farbe der Aggregationen und Aufschlüsselungen im grafischen Abfrage-Builder.
+- **Dritte Farbe:** Farbe der Filter im Abfrage-Generator, der Schaltflächen und Links in Filter-Widgets.
 
-### Chart colors
+### Diagrammfarben
 
-![Chart colors](./images/chart-colors.png)
+![Diagrammfarben](./images/chart-colors.png)
 
-You can choose up to 24 hex values. If you choose fewer than 24 colors, Metabase will auto-generate colors to fill in the rest of the values. And don't bother ordering the colors here, as their order doesn't apply to the order of colors for series on charts. When building a chart, Metabase will select colors to make each series easy to distinguish.
+Sie können bis zu 24 Hex-Werte auswählen. Wenn Sie weniger als 24 Farben auswählen, generiert Metabase automatisch Farben, um die restlichen Werte zu füllen. Sie müssen die Farben hier nicht in einer bestimmten Reihenfolge anordnen, da diese Reihenfolge nicht für die Reihenfolge der Farben in den Diagrammen gilt. Beim Erstellen eines Diagramms wählt Metabase Farben aus, damit die einzelnen Serien leicht zu unterscheiden sind.
 
-Custom colors are unavailable for:
+Benutzerdefinierte Farben sind nicht verfügbar für:
 
-- [Number charts](../questions/visualizations/numbers.md)
-- [Trend charts](../questions/visualizations/trend.md)
-- [Funnel charts](../questions/visualizations/funnel.md)
-- Conditional formatting ([tables](../questions/visualizations/table.md) and [pivot tables](../questions/visualizations/pivot-table.md))
-- [Maps](../questions/visualizations/map.md)
+- [Zahldiagramme](../questions/visualizations/numbers.md)
+- [Trenddiagramme](../questions/visualizations/trend.md)
+- [Trichterdiagramme](../questions/visualizations/funnel.md)
+- Bedingte Formatierung ([Tabellen](../questions/visualizations/table.md) und [Pivot-Tabellen](../questions/visualizations/pivot-table.md))
+- [Karten](../questions/visualizations/map.md)
 
 ## Logo
 
-You can replace Metabase’s familiar, tasteful, inspired-yet-not-threateningly-avant-garde dotted M logo with your very own logo. For things to work best, the logo you upload should be an SVG file that looks good when it’s around 60px tall. (In other words, ask the nearest designer for help.)
+Sie können das bekannte, geschmackvolle, inspirierte und dennoch nicht bedrohlich avantgardistische gepunktete M-Logo von Metabase durch Ihr eigenes Logo ersetzen. Damit alles optimal funktioniert, sollte das von Ihnen hochgeladene Logo eine SVG-Datei sein, die bei einer Höhe von etwa 60 px gut aussieht. (Mit anderen Worten: Bitten Sie den nächsten Designer um Hilfe.)
 
-## Font
+## Schrift
 
-This is the primary font used in charts and throughout the Metabase application (your "instance font"). See [Fonts](./fonts.md).
+Dies ist die primäre Schriftart, die in Diagrammen und in der gesamten Metabase-Anwendung verwendet wird (Ihre „Instanzschriftart“). Siehe [Schriftarten](./fonts.md).
 
-## Loading message
+## Lademeldung
 
-This message is the text Metabase presents when it's loading a query. Options include:
+Diese Meldung wird von Metabase angezeigt, wenn eine Abfrage geladen wird. Folgende Optionen stehen zur Auswahl:
 
-- "Doing science..." (the default)
-- "Running query..."
-- "Loading results..."
+- „Doing science...“ (Standard)
+- „Abfrage wird ausgeführt ...“
+- „Ergebnisse werden geladen ...“
 
 ## Favicon
 
-The URL or image that you want to use as the favicon (the logo visible in browser tabs, address bars, bookmark lists, and other places).
+Die URL oder das Bild, das Sie als Favicon verwenden möchten (das Logo, das in Browser-Registerkarten, Adressleisten, Lesezeichenlisten und an anderen Stellen angezeigt wird).
 
-If you use a relative path, that path isn't relative to the Metabase JAR, but to the webserver. So unless you're using a reverse-proxy, the path will be relative to the frontend resources available to the JAR.
+Wenn Sie einen relativen Pfad verwenden, bezieht sich dieser Pfad nicht auf die Metabase-JAR-Datei, sondern auf den Webserver. Sofern Sie keinen Reverse-Proxy verwenden, ist der Pfad relativ zu den Frontend-Ressourcen, die für die JAR verfügbar sind.
 
-## Conceal Metabase
+## Metabase ausblenden
 
-Hide or customize pieces of the Metabase product to tailor the experience to your brand and needs.
+Blenden Sie Teile des Metabase-Produkts aus oder passen Sie sie an, um die Benutzererfahrung an Ihre Marke und Ihre Anforderungen anzupassen.
 
-- [Application name](#application-name)
-- [Documentation and references](#documentation-and-references)
-- [Help link in the settings menu](#help-link-in-the-settings-menu)
-- [Metabase illustrations](#metabase-illustrations)
+- [Anwendungsname](#application-name)
+- [Dokumentation und Referenzen](#documentation-and-references)
+- [Hilfe-Link im Einstellungsmenü](#help-link-in-the-settings-menu)
+- [Metabase-Illustrationen](#metabase-illustrations)
 
-## Application name
+## Anwendungsname
 
-You can change every place in the app that says “Metabase” to something like “Acme Analytics,” or whatever you want to call your Metabase app.
+Sie können alle Stellen in der App, an denen „Metabase“ steht, in „Acme Analytics“ oder einen anderen Namen Ihrer Metabase-App ändern.
 
-## Documentation and references
+## Dokumentation und Referenzen
 
-Control the visibility of links to official Metabase documentation and other references to Metabase in your instance.
+Steuern Sie die Sichtbarkeit von Links zur offiziellen Metabase-Dokumentation und anderen Verweisen auf Metabase in Ihrer Instanz.
 
-This setting affects all links in the product experience that point to Metabase.com URLs (with the exception of links and references in the Admin settings).
+Diese Einstellung wirkt sich auf alle Links in der Produktumgebung aus, die auf URLs von Metabase.com verweisen (mit Ausnahme von Links und Verweisen in den Admin-Einstellungen).
 
-## Help link in the settings menu
+## Hilfe-Link im Einstellungsmenü
 
-The Settings menu (the "gear" menu in the upper right of your Metabase) includes a **Help** option that links to a [Metabase help page](https://www.metabase.com/help/) by default. You can change this menu Help item by selecting one of the following options:
+Das Menü „Einstellungen“ (das Zahnrad-Menü oben rechts in Ihrer Metabase) enthält eine Option „Hilfe“, die standardmäßig zu einer [Metabase-Hilfeseite](https://www.metabase.com/help/) führt. Sie können diesen Menüpunkt „Hilfe“ ändern, indem Sie eine der folgenden Optionen auswählen:
 
-- Link to [Metabase help](https://www.metabase.com/help/) (default)
-- Hide it (the Settings menu won't display the Help option at all).
-- Go to a custom destination. Enter a URL that the Settings menu's Help option should link to. Valid URLs include http, https, and mailto URLs.
+- Link zur [Metabase-Hilfe](https://www.metabase.com/help/) (Standard)
+- Ausblenden (die Option „Hilfe“ wird im Menü „Einstellungen“ nicht angezeigt).
+- Zu einem benutzerdefinierten Ziel wechseln. Geben Sie eine URL ein, zu der die Option „Hilfe“ im Menü „Einstellungen“ verlinken soll. Gültige URLs sind http-, https- und mailto-URLs.
 
-## Metabase illustrations
+## Metabase-Illustrationen
 
-![Lighthouse illustration](./images/lighthouse-illustration.png)
+![Lighthouse-Illustration](./images/lighthouse-illustration.png)
 
-Customize each of the illustrations in Metabase.
+Passen Sie jede der Abbildungen in Metabase an.
 
-### Metabot greeting
+### Metabot-Begrüßung
 
-Turn this guy on or off:
+Aktivieren oder deaktivieren Sie diesen Begrüßungstext:
 
-![Metabot greeting](./images/metabot-greeting.png)
+![Metabot-Begrüßung](./images/metabot-greeting.png)
 
-### Login and unsubscribe pages
+### Anmelde- und Abmeldeseiten
 
-![Login page](./images/login-page.png)
+![Anmeldeseite](./images/login-page.png)
 
-What people see when Metabase prompts them to log in.
+Was Benutzer sehen, wenn Metabase sie zur Anmeldung auffordert.
 
-- Lighthouse
-- No illustration
-- Custom
+- Leuchtturm
+- Keine Illustration
+- Benutzerdefiniert
 
-### Landing page
+### Startseite
 
-The landing page is what people will see whenever they login. You can set the URL to a collection, question, dashboard or whatever, just make sure that everyone has access to that URL.
+Die Startseite wird angezeigt, wenn sich Benutzer anmelden. Sie können die URL auf eine Sammlung, eine Frage, ein Dashboard oder etwas anderes setzen. Stellen Sie nur sicher, dass alle Benutzer Zugriff auf diese URL haben.
 
-- Lighthouse
-- No illustration
-- Custom
+- Leuchtturm
+- Keine Illustration
+- Benutzerdefiniert
 
-### When calculations return no results
+### Wenn Berechnungen keine Ergebnisse liefern
 
-![Sailboat](./images/sailboat.png)
+![Segelboot](./images/sailboat.png)
 
-Metabase will display this illustration when questions or dashboard cards contain no results.
+Metabase zeigt diese Illustration an, wenn Fragen oder Dashboard-Karten keine Ergebnisse enthalten.
 
-- Sailboat
-- No illustration
-- Custom
+- Segelboot
+- Keine Illustration
+- Benutzerdefiniert
 
-### When no objects can be found
+### Wenn keine Objekte gefunden werden können
 
-Metabase will display this illustration when searches don't return any results.
+Metabase zeigt diese Illustration an, wenn die Suche keine Ergebnisse liefert.
 
-- Sailboat
-- No illustration
-- Custom
+- Segelboot
+- Keine Illustration
+- Benutzerdefiniert
 
-## Further reading
+## Weiterführende Informationen
 
-- [Customer-facing analytics](https://www.metabase.com/learn/metabase-basics/embedding).
-- [Embedding introduction](../embedding/start.md).
-- [Brand your Metabase](https://www.metabase.com/learn/metabase-basics/embedding/brand).
+- [Kundenorientierte Analysen](https://www.metabase.com/learn/metabase-basics/embedding).
+- [Einführung in die Einbettung](../embedding/start.md).
+- [Branding Ihrer Metabase](https://www.metabase.com/learn/metabase-basics/embedding/brand).
