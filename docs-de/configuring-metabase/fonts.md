@@ -1,21 +1,27 @@
 ---
-title: Fonts
+Titel: Schriftarten
 redirect_from:
-  - /docs/latest/enterprise-guide/fonts
-  - /docs/latest/embedding/fonts
+- /docs/latest/enterprise-guide/fonts
+- /docs/latest/einbettung/schriftarten
 ---
 
-# Fonts
 
-{% include plans-blockquote.html feature="Customizable font" %}
+# Schriftarten
 
-On Pro and Enterprise plans, you can customize the font Metabase uses (the default is [Lato](https://fonts.google.com/specimen/Lato)). You can choose from a curated set of Google Fonts that accommodate the regular, bold, and heavy font weights that Metabase relies on for its various UI elements.
 
-## Included fonts
+{% include plans-blockquote.html feature="Anpassbare Schriftart" %}
 
-To change your Metabase font, click on the **gear** icon in the upper right of the screen and select **Admin settings** > **Settings** > **Appearance**. Under **Font**, select from a list of included fonts.
 
-- [Custom font](#custom-fonts)
+Bei Pro- und Enterprise-Paketen können Sie die von Metabase verwendete Schriftart anpassen (die Standardeinstellung ist [Lato](https://fonts.google.com/specimen/Lato)). Sie können aus einer Reihe von Google-Schriftarten wählen, die die normalen, fetten und schweren Schriftarten enthalten, die Metabase für die verschiedenen Elemente der Benutzeroberfläche verwendet.
+
+
+## Enthaltene Schriftarten
+
+
+Um die Schriftart der Metabase zu ändern, klicken Sie auf das**Zahnradsymbol** oben rechts auf dem Bildschirm und wählen Sie**Admin-Einstellungen** >**Einstellungen** >**Erscheinungsbild**. Wählen Sie unter**Schriftart** aus einer Liste der enthaltenen Schriftarten aus.
+
+
+- [Benutzerdefinierte Schriftart](#custom-fonts)
 - [Lato](https://fonts.google.com/specimen/Lato)
 - [Lora](https://fonts.google.com/specimen/Lora)
 - [Merriweather](https://fonts.google.com/specimen/Merriweather)
@@ -36,95 +42,37 @@ To change your Metabase font, click on the **gear** icon in the upper right of t
 - Source Sans Pro
 - [Ubuntu](https://fonts.google.com/specimen/Ubuntu)
 
-Comic Sans is currently not included.
 
-## Custom fonts
+Comic Sans ist derzeit nicht enthalten.
 
-To set a custom font, click on the **gear** icon in the upper right of the screen and select **Admin settings** > **Settings** > **Appearance**.
 
-For **Font**, select **Custom...** and enter URLs to your font files.
+## Benutzerdefinierte Schriftarten
 
-## Font style options
 
-You can set three different font styles with three different URLs, one for each font style (size and weight) that Metabase will use in order to display its user interface properly. The font weights are:
+Um eine benutzerdefinierte Schriftart einzustellen, klicken Sie auf das**Zahnradsymbol** in der oberen rechten Ecke des Bildschirms und wählen Sie**Admin-Einstellungen** >**Einstellungen** >**Erscheinungsbild**.
 
-- Regular 400
+
+Wählen Sie unter**Schriftart** die Option**Benutzerdefiniert...** und geben Sie die URLs zu Ihren Schriftdateien ein.
+
+
+## Optionen für den Schriftstil
+
+
+Sie können drei verschiedene Schriftarten mit drei verschiedenen URLs einstellen, eine für jede Schriftart (Größe und Gewicht), die Metabase für die korrekte Darstellung der Benutzeroberfläche verwendet. Die Schriftstärken sind:
+
+
+- Normal 400
 - Bold 700
-- Heavy 900 (sometimes called Black 900)
+- Heavy 900 (manchmal auch Black 900 genannt)
 
-You only need to set the first style (Regular 400); the browser will fill in the other styles.
 
-For best results, set at least the 400 and 700 styles. If you have a single font file that contains multiple font styles within the same family, enter the URL in multiple fields to tell Metabase to prefer the weights in that font file. Metabase will use those styles to override the font styles set by the browser.
+Sie müssen nur die erste Formatvorlage (Regular 400) festlegen; die anderen Formatvorlagen werden vom Browser ausgefüllt.
 
-### Supported font file formats
 
-For custom fonts, Metabase supports woff, woff2, ttf files. If the URL you provide lacks a specific file extension, Metabase will assume it's a woff2 file.
+Die besten Ergebnisse erzielen Sie, wenn Sie mindestens die Stile 400 und 700 einstellen. Wenn Sie eine einzelne Schriftdatei haben, die mehrere Schriftstile innerhalb derselben Familie enthält, geben Sie die URL in mehrere Felder ein, um Metabase mitzuteilen, dass die Schnitte in dieser Schriftdatei bevorzugt werden sollen. Metabase verwendet diese Stile, um die vom Browser eingestellten Schriftstile zu überschreiben.
 
-## Google Font URLs
 
-To get a URL for a [Google Font](https://fonts.google.com/), visit the Google Font page and select the style you want to use. Then make an HTTP request to get the URL of the tff file. For example, say we want to use Roboto Mono: here's how we could get the font file URLs for both the 400 and 700 styles:
+### Unterstützte Schriftdateiformate
 
-We'd paste the URL [https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap](https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap) into our browser's address bar. This URL will return a response like:
 
-```css
-* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/robotomono/v21/L0xTDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vrtSM1J-gEPT5Ese6hmHSV0me8iUI0lkQ.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/robotomono/v21/L0xTDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vrtSM1J-gEPT5Ese6hmHSx0me8iUI0lkQ.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-...
-```
-
-For latin text, we'd copy the relevant src URLs for each style, in this case:
-
-- For 400: [https://fonts.gstatic.com/s/robotomono/v21/L0xTDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vrtSM1J-gEPT5Ese6hmHSh0me8iUI0.woff2](https://fonts.gstatic.com/s/robotomono/v21/L0xTDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vrtSM1J-gEPT5Ese6hmHSh0me8iUI0.woff2)
-- For 700: [https://fonts.gstatic.com/s/robotomono/v21/L0xTDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vrtSM1J-gEPT5Ese6hmHSh0me8iUI0.woff2](https://fonts.gstatic.com/s/robotomono/v21/L0xTDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vrtSM1J-gEPT5Ese6hmHSh0me8iUI0.woff2)
-
-And paste those URLS in the relevant input fields in **Admin settings** > **Settings** > **Appearance** > **Font** section where it says "Tell us where to find the file for each font weight. You don’t need to include all of them, but it’ll look better if you do."
-
-## Hosting fonts on GitHub
-
-If you host a font on GitHub, the font should be in a public repository, and you'll need to link to the raw font file(s) served from the raw.githubusercontent.com domain.
-
-For example, let's say you want to use the Inter typeface. The font is hosted at:
-
-[https://github.com/rsms/inter/blob/master/docs/font-files/Inter-Regular.woff2](https://github.com/rsms/inter/blob/master/docs/font-files/Inter-Regular.woff2)
-
-Then the link you'll need is:
-
-[https://raw.githubusercontent.com/rsms/inter/master/docs/font-files/Inter-Regular.woff2](https://raw.githubusercontent.com/rsms/inter/master/docs/font-files/Inter-Regular.woff2)
-
-Which follows the pattern:
-
-```txt
-raw.githubusercontent.com/${user}/${repo}/${branch}/${path}
-```
-
-Note that in the raw link, there is no `/blob/` directory in the URL.
-
-## Supporting multiple languages
-
-To support multiple character sets, for example both Latin and Cyrillic, you'll need to merge font files.
-
-## Customizing the font for individual embedded items
-
-In addition to the [included fonts](#included-fonts), if you set a custom font for your Metabase, that font will be selectable from "Use instance font" in [static embeds](../embedding/static-embedding.md).
-
-## Further reading
-
-- [Customizing Metabase's appearance](./appearance.md)
-- [Customer-facing analytics](https://www.metabase.com/learn/metabase-basics/embedding)
-- [Embedding documentation](../embedding/start.md)
+Für benutzerdefinierte Schriftarten unterstützt Metabase die Dateiformate woff, woff2 und ttf. Wenn die von Ihnen angegebene URL keine spezifische Dateierweiterung enthält, geht Metabase davon aus, dass es sich um eine woff2-Datei handelt.
