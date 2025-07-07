@@ -1,30 +1,21 @@
 ---
-title: Pivot tables
+Titel: Pivot-Tabellen
 redirect_from:
   - /docs/latest/questions/sharing/visualizations/pivot-table
 ---
 
-# Pivot tables
-
-> Pivot tables are currently only supported for questions built in the [query builder](../query-builder/editor.md). Pivot tables are not supported for NoSQL databases like MongoDB.
-
-Pivot tables allow you swap rows and columns, group data, and include subtotals in your table. You can group one or more metrics by one or more dimensions.
-
+# Pivot-Tabellen
+> Pivot-Tabellen werden derzeit nur für Fragen unterstützt, die mit dem [query builder] (../query-builder/editor.md) erstellt wurden. Pivot-Tabellen werden nicht für NoSQL-Datenbanken wie MongoDB unterstützt.
+Mit Pivot-Tabellen können Sie Zeilen und Spalten vertauschen, Daten gruppieren und Zwischensummen in Ihre Tabelle aufnehmen. Sie können eine oder mehrere Metriken nach einer oder mehreren Dimensionen gruppieren.
 {% include youtube.html id='yTRzCQeTmO8' %}
 
-## Pivot tables vs. regular tables
-
-Your typical, basic table is a grid of cells. Every dimension (also known as attribute, "group by") is represented by a column. Each record is represented as a row. For example, in the table below, `Source`, `Plan`, and `Created at` are dimensions/attributes for metric values `Sum of Seats` and `Count`:
-
-![Unpivoted table](../images/unpivoted-table.png)
-
-A pivot table is a table that has dimensions in both rows and columns, and metric values in the cells. Pivot tables can include summary rows with totals across for those dimensions:
-
-![Pivoted table](../images/pivoted-table.png)
-
-The reason they're called pivot tables is because you can rotate ("pivot") a column 90 degrees so that the values in that column become column headings themselves. Pivoting values into column headings is useful when analyzing data across multiple attributes, like time, location, and category. You can pivot multiple rows to columns and vice versa, or not pivot any at all.
-
-Pivot table is the only Metabase visualization type (besides the plain table, of course) can display several metrics simultaneously along several dimensions.
+## Pivot-Tabellen vs. normale Tabellen
+Die typische, einfache Tabelle ist ein Gitter aus Zellen. Jede Dimension (auch bekannt als Attribut, "gruppieren nach") wird durch eine Spalte dargestellt. Jeder Datensatz wird als eine Zeile dargestellt. In der folgenden Tabelle sind beispielsweise "Quelle", "Plan" und "Erstellt am" Dimensionen/Attribute für die metrischen Werte "Summe der Sitze" und "Anzahl":
+![Unpivot-Tabelle](../images/unpivot-table.png)
+Eine Pivot-Tabelle ist eine Tabelle, die sowohl in Zeilen als auch in Spalten Dimensionen und in den Zellen metrische Werte hat. Pivot-Tabellen können Zusammenfassungszeilen mit Gesamtwerten für diese Dimensionen enthalten:
+![Pivot-Tabelle](../images/pivoted-table.png)
+Pivot-Tabellen werden deshalb so genannt, weil Sie eine Spalte um 90 Grad drehen können, so dass die Werte in dieser Spalte selbst zu Spaltenüberschriften werden. Das Pivotieren von Werten in Spaltenüberschriften ist nützlich, wenn Sie Daten über mehrere Attribute hinweg analysieren, z. B. Zeit, Ort und Kategorie. Sie können mehrere Zeilen in Spalten umwandeln und umgekehrt, oder auch gar keine Umwandlung vornehmen.
+Die Pivot-Tabelle ist der einzige Metabase-Visualisierungstyp (neben der einfachen Tabelle natürlich), der mehrere Metriken gleichzeitig entlang mehrerer Dimensionen anzeigen kann.
 
 ## How to create a pivot table
 
