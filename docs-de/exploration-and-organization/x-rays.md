@@ -1,67 +1,90 @@
 ---
-title: X-rays
+Titel: Röntgenstrahlen
 redirect_from:
-  - /docs/latest/users-guide/14-x-rays
+- /docs/latest/user-guide/14-x-rays
 ---
+
 
 # X-rays
 
-X-rays are a way to get automatic insights and explorations of your data.
 
-## Get automatic insights when clicking on a chart
+X-rays sind eine Möglichkeit, automatische Einblicke und Erkundungen in Ihre Daten zu erhalten.
 
-One great way to explore your data in general in Metabase is to click on points of interest in charts and selecting **Automatic insights**.
 
-![Automatic insights in the drill-through menu](./images/automatic-insights.png)
+## Automatische Einblicke erhalten, wenn Sie auf ein Diagramm klicken
 
-Metabase will give you some options:
 
-- **X-ray**
-- **Compare to the rest**
+Eine gute Möglichkeit, Ihre Daten in der Metabase allgemein zu erkunden, besteht darin, auf interessante Punkte in Diagrammen zu klicken und **Automatische Einblicke** auszuwählen.
 
-In both cases, Metabase will take a look at the fields in that table or model, and automatically generate charts that summarize the data based on the data types it finds.
 
-Here's an example X-ray:
+Automatische Einblicke im Drill-Through-Menü(./images/automatic-insights.png)
 
-![Example X-ray of the products table](./images/x-ray-example.png)
 
-## X-raying models and tables
+Metabase bietet Ihnen einige Optionen:
 
-![Browse data X-ray](./images/browse-data-x-ray.png)
 
-Another great way to get to know your data is by X-raying your models and tables.
+-**Röntgen**
+- **Mit dem Rest vergleichen**
 
-- **Table X-rays**: From the left nav, click on **Browse Data**, pick a database, hover over a table card, and click the lightning bolt icon table to view an X-ray of the table.
-- **Model X-rays**: Click on the ellipses for a model and select **X-ray this**.
 
-## X-rays in the data reference
+In beiden Fällen untersucht Metabase die Felder in dieser Tabelle oder diesem Modell und erstellt automatisch Diagramme, die die Daten auf der Grundlage der gefundenen Datentypen zusammenfassen.
 
-You can also view an X-ray by browsing to a table and clicking on the lightning bolt icon. Click on the **Browse Data** button in the top navigation, select a database, and hover over a table to see the icon.
 
-From the Browse Data page, you can also click on `Learn about our data` to view the Data Reference section. From here you can navigate through databases, tables, columns, metrics, or segments, and you can click on the X-ray link in the left sidebar to see an X-ray of the item you're currently viewing.
+Hier ist ein Beispiel für ein Röntgenbild:
 
-![Data Reference X-ray](./images/data-reference.png)
 
-## Exploring newly added data sources
+![Beispiel-Röntgenbild der Produkttabelle](./images/x-ray-example.png)
 
-If you're an administrator, when you first connect a database to Metabase, Metabot will offer to show you some automatic explorations of your newly connected data.
 
-## Browsing through suggested X-rays
+## Röntgen von Modellen und Tabellen
 
-Depending on the X-ray you're currently viewing, you'll see suggestions that will let you:
 
-- **Zoom out**: view an X-ray of the table the current X-ray is based on.
-- **Zoom in**: see a more detailed X-ray about a field or dimension of the current X-ray.
-- **Related**: X-ray some related data, like a metric based on the current table, or a different table related to the current one.
+(./images/browse-data-x-ray.png)
 
-## Saving X-rays
 
-If you come across an X-ray that's particularly interesting, you can save its cards and filters as a dashboard by clicking the green **Save this** button. Metabase will create a new dashboard and save it to the Automatically generated dashboards collection (though you can move the dashboard to any collection you have curate access to).
+Eine weitere gute Möglichkeit, Ihre Daten kennen zu lernen, ist das Röntgen Ihrer Modelle und Tabellen.
 
-## Disabling X-rays
 
-If for some reason X-rays aren't a good fit for your team or your data, administrators can turn them off completely by clicking on the gear icon in the upper right and going to **Admin settings** > **Settings** > **General** and toggling the option to **Enable X-ray features**.
+-Tabellen-Röntgenstrahlen**: Klicken Sie in der linken Navigationsleiste auf**Daten durchsuchen**, wählen Sie eine Datenbank aus, fahren Sie mit dem Mauszeiger über eine Tabellenkarte, und klicken Sie auf das Blitzsymbol Tabelle, um ein Röntgenbild der Tabelle anzuzeigen.
+-**Modell-Röntgenbilder**: Klicken Sie auf die Ellipsen für ein Modell und wählen Sie**Röntgenstrahlen**.
 
-If you pin any dashboards in the "Our Analytics" collection, Metabase will hide the X-ray suggestions that appear on the homepage.
 
-Admins can also manually remove these suggestions by clicking on the **Customize** button in the upper right and selecting a dashboard as your homepage. [Changing the home page](../configuring-metabase/settings.md#custom-homepage) won't disable the X-ray features in the rest of Metabase.
+## Röntgenstrahlen in der Datenreferenz
+
+
+Sie können ein Röntgenbild auch anzeigen, indem Sie zu einer Tabelle navigieren und auf das Blitzsymbol klicken. Klicken Sie auf die Schaltfläche **Daten durchsuchen** in der oberen Navigation, wählen Sie eine Datenbank aus und bewegen Sie den Mauszeiger über eine Tabelle, um das Symbol zu sehen.
+
+
+Auf der Seite "Daten durchsuchen" können Sie auch auf "Erfahren Sie mehr über unsere Daten" klicken, um den Abschnitt "Datenreferenz" anzuzeigen. Von hier aus können Sie durch Datenbanken, Tabellen, Spalten, Metriken oder Segmente navigieren, und Sie können auf den Link "Röntgenbild" in der linken Seitenleiste klicken, um ein Röntgenbild des Elements zu sehen, das Sie gerade betrachten.
+
+
+![Datenreferenz-Röntgenbild](./images/data-reference.png)
+
+
+## Erkunden neu hinzugefügter Datenquellen
+
+
+Wenn Sie als Administrator zum ersten Mal eine Datenbank mit Metabase verbinden, bietet Ihnen Metabot einige automatische Erkundungen Ihrer neu verbundenen Daten an.
+
+
+## Durchsuchen der vorgeschlagenen Röntgenaufnahmen
+
+
+Je nach dem Röntgenbild, das Sie gerade betrachten, werden Ihnen Vorschläge angezeigt, die es Ihnen ermöglichen:
+
+
+- **Verkleinern**: eine Röntgenaufnahme der Tabelle anzeigen, auf der die aktuelle Röntgenaufnahme basiert.
+-**Vergrößern**: eine detailliertere Röntgenaufnahme eines Feldes oder einer Dimension der aktuellen Röntgenaufnahme anzeigen.
+-**Verwandt**: Röntgen Sie einige verwandte Daten, z. B. eine auf der aktuellen Tabelle basierende Metrik oder eine andere Tabelle, die mit der aktuellen Tabelle zusammenhängt.
+
+
+## Speichern von Röntgenbildern
+
+
+Wenn Sie auf ein besonders interessantes Röntgenbild stoßen, können Sie dessen Karten und Filter als Dashboard speichern, indem Sie auf die grüne Schaltfläche**Speichern** klicken. Metabase erstellt ein neues Dashboard und speichert es in der Sammlung Automatisch generierte Dashboards (Sie können das Dashboard aber auch in jede andere Sammlung verschieben, auf die Sie Zugriff haben).
+
+
+## Deaktivieren von Röntgenstrahlen
+
+
+Wenn Röntgenstrahlen aus irgendeinem Grund nicht zu Ihrem Team oder Ihren Daten passen, können Administratoren sie vollständig deaktivieren, indem sie auf das Zahnradsymbol oben rechts klicken und zu **Admin-Einstellungen** > **Einstellungen** > **Allgemein** gehen und die Option **Röntgenfunktionen aktivieren** umschalten.
