@@ -1,22 +1,29 @@
-# Doc tools
+# Doc-Tools
 
-Scripts for generating docs.
 
-## Generate docs for keyboard shortcuts 
+Skripte für die Erstellung von Dokumenten.
 
-From this directory, run:
 
-```bash
-yarn install
+## Dokumente für Tastaturkürzel generieren
+
+
+Führen Sie aus diesem Verzeichnis aus:
+
+
+````bash
+Garn installieren
 ```
 
-Then:
 
-```bash
+dann:
+
+
+````bash
 yarn generate-shortcuts
 ```
-Docs will be written to:
+Die Dokumente werden auf den Server geschrieben:
+
 
 ```
-docs/exploration-and-organization/keyboard-shortcuts.md
+docs/exploration-und-organisation/tastatur-kurzbefehle.md
 ```
