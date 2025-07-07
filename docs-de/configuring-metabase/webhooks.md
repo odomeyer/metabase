@@ -1,120 +1,54 @@
 ---
-title: Webhooks
+Titel: Webhooks
 ---
+
 
 # Webhooks
 
-Admins can set up webhooks so that people can send [alerts](../questions/alerts.md) to a particular URL. Which means you can set up an alert to send the results of a question to an endpoint of your choice: to your app, a third-party service, or wherever.
 
-For now, webhooks are only available for [alerts](../questions/alerts.md); you can't select a webhook as the recipient of a [dashboard subscription](../dashboards/subscriptions.md).
+Admins können Webhooks einrichten, so dass [Alerts](../questions/alerts.md) an eine bestimmte URL gesendet werden können. Das bedeutet, dass Sie eine Benachrichtigung einrichten können, um die Ergebnisse einer Frage an einen Endpunkt Ihrer Wahl zu senden: an Ihre App, einen Drittanbieterdienst oder wohin auch immer.
 
-## Creating a webhook
 
-Before you can send an alert to a webhook, an admin will need to create a webhook to target.
+Im Moment sind Webhooks nur für [Alerts](../questions/alerts.md) verfügbar; Sie können keinen Webhook als Empfänger eines [Dashboard-Abonnements](../dashboards/subscriptions.md) auswählen.
 
-Admins can create a webhook by clicking on the **gear icon** > **Admin settings** > **Notification channels**. In the **Webhooks for alerts**, click **+ Add another**. Metabase will hand you a short form to fill out:
 
-- **Webhook URL**. Where you want Metabase to send the results of an alert. Must be a valid URL.
-- **Give it a name**. You have to name the webhook so that people can pick the right hook when setting up an alert on a question.
-- **Description**. You should probably tell people what the hook is for.
-- **Authentication method**. See below.
+## Erstellen eines Webhooks
 
-## Webhook authentication method
 
-You can specify an auth method for the webhook.
+Bevor Sie eine Benachrichtigung an einen Webhook senden können, muss ein Administrator einen Webhook als Ziel erstellen.
 
-- **None**: Anything goes.
-- **Basic**: Set a username and password.
-- **Bearer**: Include a [secret token](https://datatracker.ietf.org/doc/html/rfc6750).
-- **API key**: You can add the API key to the Header or as a Query param. Both approaches require a key and value (the API key itself).
 
-## Webhook payload
+Admins können einen Webhook erstellen, indem sie auf das**Zahnradsymbol** >**Admin-Einstellungen** >**Benachrichtigungskanäle** klicken. Im Bereich**Webhooks für Benachrichtigungen** klicken Sie auf **+ Einen weiteren hinzufügen**. Metabase gibt Ihnen ein kurzes Formular zum Ausfüllen:
 
-Metabase will send the results of an alert in JSON. The JSON will include some metadata about the question, like the alert's creator and its ID (`null` in the case of test alerts).
 
-Metabase will send the "attached" visualization as a base64-encoded PNG in the `data` key, under `visualization`.
+- **Webhook-URL**. Wohin die Metabase die Ergebnisse einer Meldung senden soll. Muss eine gültige URL sein.
+-Geben Sie ihm einen Namen**. Sie müssen dem Webhook einen Namen geben, damit die Leute den richtigen Haken auswählen können, wenn sie einen Alarm zu einer Frage einrichten.
+- **Beschreibung**. Sie sollten den Leuten wahrscheinlich sagen, wofür der Haken ist.
+- **Authentifizierungsmethode**. Siehe unten.
 
-![The encoded PNG chart](./images/payload-chart.png)
 
-And the data as seen in the table view, which Metabase will send as a `raw_data`.
+## Webhook-Authentifizierungsmethode
 
-![Results as table view](./images/table-view.png)
 
-Here's an example payload for an alert (we truncated the PNG encoding because it's long and extremely boring):
+Sie können eine Authentifizierungsmethode für den Webhook angeben.
 
-```JSON
-{
-  "type": "alert",
-  "alert_id": null,
-  "alert_creator_id": 2666,
-  "alert_creator_name": "Roberto Bolaño",
-  "data": {
-    "type": "question",
-    "question_id": 108,
-    "question_name": "Sales",
-    "question_url": "http://example.com/question/108",
-    "visualization": "data:image/png;base64,=...LONG_ENCODED_PNG_HERE...",
-    "raw_data": {
-      "cols": [
-        "CREATED_AT",
-        "count"
-      ],
-      "rows": [
-        [
-          "2023-09-01T00:00:00Z",
-          346
-        ],
-        [
-          "2023-10-01T00:00:00Z",
-          354
-        ],
-        [
-          "2023-11-01T00:00:00Z",
-          394
-        ],
-        [
-          "2023-12-01T00:00:00Z",
-          418
-        ],
-        [
-          "2024-01-01T00:00:00Z",
-          457
-        ],
-        [
-          "2024-02-01T00:00:00Z",
-          404
-        ],
-        [
-          "2024-03-01T00:00:00Z",
-          445
-        ],
-        [
-          "2024-04-01T00:00:00Z",
-          439
-        ],
-        [
-          "2024-05-01T00:00:00Z",
-          520
-        ],
-        [
-          "2024-06-01T00:00:00Z",
-          455
-        ],
-        [
-          "2024-07-01T00:00:00Z",
-          523
-        ],
-        [
-          "2024-08-01T00:00:00Z",
-          501
-        ]
-      ]
-    }
-  },
-  "sent_at": "2024-09-30T20:16:15.76582Z"
-}
-```
 
-## Further reading
+- **Keine**: Alles ist möglich.
+- **Grundlegend**: Legen Sie einen Benutzernamen und ein Passwort fest.
+- **Träger**: Fügen Sie ein [geheimes Token](https://datatracker.ietf.org/doc/html/rfc6750) ein.
+- **API-Schlüssel**: Sie können den API-Schlüssel in die Kopfzeile oder als Abfrageparameter einfügen. Beide Ansätze erfordern einen Schlüssel und einen Wert (den API-Schlüssel selbst).
 
-- [Alerts](../questions/alerts.md)
+
+## Webhook-Nutzdaten
+
+
+Die Metabase sendet die Ergebnisse eines Alerts in JSON. Das JSON enthält einige Metadaten über die Frage, wie z. B. den Ersteller des Alarms und seine ID(null bei Testalarmen).
+
+
+Die Metabase sendet die "angehängte" Visualisierung als base64-kodiertes PNG im Schlüssel "data" unter "visualization".
+
+
+Das kodierte PNG-Diagramm(./images/payload-chart.png)
+
+
+Und die Daten, wie sie in der Tabellenansicht zu sehen sind, die Metabase als "raw_data" sendet.
