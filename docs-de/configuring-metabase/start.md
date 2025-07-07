@@ -1,67 +1,92 @@
 ---
-title: "Configuration overview"
+Titel: "Konfigurationsübersicht"
 redirect_from:
-  - /docs/latest/configuring-metabase
+- /docs/latest/configuring-metabase
 ---
 
-# Configuration overview
 
-## [Setting up Metabase](./setting-up-metabase.md)
+# Konfigurationsübersicht
 
-A walkthrough of when you first boot up your Metabase.
 
-## [General settings](./settings.md)
+## [Einrichten der Metabase](./setting-up-metabase.md)
 
-Site name, report timezone, and more settings.
 
-## [Email](./email.md)
+Ein Überblick über das erste Hochfahren der Metabase.
 
-Set up email for [Alerts](../questions/alerts.md) and [Dashboard subscriptions](../dashboards/subscriptions.md).
+
+## [Allgemeine Einstellungen](./settings.md)
+
+
+Name der Website, Berichtszeitzone und weitere Einstellungen.
+
+
+## [E-Mail](./email.md)
+
+
+E-Mail für [Alerts](../questions/alerts.md) und [Dashboard subscriptions](../dashboards/subscriptions.md) einrichten.
+
 
 ## [Slack](./slack.md)
 
-Set up Slack for Alerts and Dashboard subscriptions.
+
+Slack für Alerts und Dashboard-Abonnements einrichten.
+
 
 ### [Webhooks](./webhooks.md)
 
-Set up webhooks as notification channels for alerts.
 
-## [Environment variables](./environment-variables.md)
+Richten Sie Webhooks als Benachrichtigungskanäle für Alarme ein.
 
-Configure Metabase on launch via environment variables.
 
-## [Configuration file](./config-file.md)
+## [Umgebungsvariablen](./environment-variables.md)
 
-On self-hosted Pro and Enterprise plans, you can configure Metabase via a configuration file.
+
+Konfigurieren Sie die Metabase beim Start über Umgebungsvariablen.
+
+
+## [Konfigurationsdatei](./config-file.md)
+
+
+Bei selbst gehosteten Pro- und Enterprise-Tarifen können Sie Metabase über eine Konfigurationsdatei konfigurieren.
+
 
 ## [Metabase logs configuration](./log-configuration.md)
 
-Tell Metabase what to log.
 
-## [Timezones](./timezones.md)
+Teilen Sie der Metabase mit, was protokolliert werden soll.
 
-Guidance on timezone settings.
 
-## [Languages and localization](./localization.md)
+## [Zeitzonen](./timezones.md)
 
-Set language, datetime, and currency settings.
+
+Anleitung zu den Zeitzoneneinstellungen.
+
+
+## [Sprachen und Lokalisierung](./localization.md)
+
+
+Legen Sie die Einstellungen für Sprache, Datumszeit und Währung fest.
+
 
 ## [Uploads](../databases/uploads.md)
 
-Allow people to upload data to collections.
 
-## [Appearance](./appearance.md)
+Erlaubt das Hochladen von Daten in Sammlungen.
 
-Customize colors, fonts, and other visual elements.
 
-## [Caching query results](./caching.md)
+## [Erscheinungsbild](./appearance.md)
 
-Cache query results for faster loading times.
 
-## [Custom maps](./custom-maps.md)
+Anpassen von Farben, Schriftarten und anderen visuellen Elementen.
 
-Upload custom maps to your Metabase.
 
-## [Customizing the Metabase Jetty webserver](./customizing-jetty-webserver.md)
+## [Caching von Abfrageergebnissen](./caching.md)
 
-Set SSL and port settings for the Jetty webserver.
+
+Zwischenspeichern von Abfrageergebnissen für schnellere Ladezeiten.
+
+
+## [Benutzerdefinierte Maps](./custom-maps.md)
+
+
+Laden Sie benutzerdefinierte Maps in Ihre Metabase hoch.
