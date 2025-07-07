@@ -1,96 +1,86 @@
 ---
-title: SSL certificate
+Titel: SSL-Zertifikat
 redirect_from:
-  - /docs/latest/administration-guide/secure-database-connections-with-ssl-certificates
+- /docs/latest/administration-guide/secure-database-connections-with-ssl-certificates
 ---
 
-# SSL certificate
 
-If you'd like to connect your Metabase Cloud or self-hosted instance to a database, you can secure the connection using Secure Socket Layer (SSL) encryption with a certificate.
+# SSL-Zertifikat
 
-Why you'd want to do this:
 
-- You're using Metabase Cloud and want to ensure the identity of the data warehouse you're connecting to (e.g., PostgreSQL, MySQL).
-- You're self-hosting Metabase and want to ensure the identity of a data warehouse hosted by an external provider. You can also use this method to ensure you're using the strictest connection parameters when connecting to your application database.
+Wenn Sie Ihre Metabase Cloud oder eine selbst gehostete Instanz mit einer Datenbank verbinden möchten, können Sie die Verbindung mit Hilfe der Secure Socket Layer (SSL)-Verschlüsselung mit einem Zertifikat sichern.
 
-If you're using Metabase Cloud, the application database is handled for you, so you'd only need to secure connections to data warehouses that you add to your Metabase.
 
-## Prerequisites
+Warum Sie das tun sollten:
 
-A database that allows a JDBC connection, as you'll need to use a connection string to specify the certificate you want to use.
 
-## Step 1: Download the root certificate from your provider
+- Sie verwenden Metabase Cloud und möchten die Identität des Data Warehouse sicherstellen, mit dem Sie sich verbinden (z. B. PostgreSQL, MySQL).
+- Sie hosten Metabase selbst und möchten die Identität eines Data Warehouse sicherstellen, das von einem externen Anbieter gehostet wird. Sie können diese Methode auch verwenden, um sicherzustellen, dass Sie bei der Verbindung mit Ihrer Anwendungsdatenbank die strengsten Verbindungsparameter verwenden.
 
-If you're running Metabase via a Docker container, you should already have the certificates for AWS and Azure.
 
-You'll find the certificates in the `/app/certs/` directory in Metabase's Docker image:
+Wenn Sie Metabase Cloud verwenden, wird die Anwendungsdatenbank für Sie verwaltet, sodass Sie nur die Verbindungen zu Data Warehouses sichern müssen, die Sie Ihrer Metabase hinzufügen.
 
-- AWS RDS: `/app/certs/rds-combined-ca-bundle.pem`
-- Azure certificate: `/app/certs/DigiCertGlobalRootG2.crt.pem`
 
-If you need a different certificate, you can build your own Docker image. Visit your external provider's page for your database and find a link to download the root certificate for connecting to your database.
+## Voraussetzungen
 
-## Step 2: Save the certificate
 
-**Self-hosted**
+Eine Datenbank, die eine JDBC-Verbindung zulässt, da Sie einen Verbindungsstring verwenden müssen, um das zu verwendende Zertifikat anzugeben.
 
-Save the downloaded certificate in the same directory where you keep your metabase.jar file. Technically you can store the certificate wherever, but keeping it in the same directory as your metabase.jar file is a best practice. You'll specify the certificate's path in your connection string.
+
+## Schritt 1: Laden Sie das Stammzertifikat von Ihrem Anbieter herunter.
+
+
+Wenn Sie Metabase über einen Docker-Container ausführen, sollten Sie bereits über die Zertifikate für AWS und Azure verfügen.
+
+
+Sie finden die Zertifikate im Verzeichnis "/app/certs/" im Docker-Image von Metabase:
+
+
+- AWS RDS: "/app/certs/rds-combined-ca-bundle.pem".
+- Azure Zertifikat: `/app/certs/DigiCertGlobalRootG2.crt.pem`
+
+
+Wenn Sie ein anderes Zertifikat benötigen, können Sie Ihr eigenes Docker-Image erstellen. Besuchen Sie die Seite Ihres externen Anbieters für Ihre Datenbank und finden Sie einen Link zum Herunterladen des Stammzertifikats für die Verbindung mit Ihrer Datenbank.
+
+
+## Schritt 2: Speichern Sie das Zertifikat
+
+
+**Selbst gehostet**
+
+
+Speichern Sie das heruntergeladene Zertifikat in demselben Verzeichnis, in dem Sie auch die Datei metabase.jar aufbewahren. Technisch gesehen können Sie das Zertifikat an einem beliebigen Ort speichern, aber es empfiehlt sich, es im gleichen Verzeichnis wie die Datei metabase.jar zu speichern. Sie geben den Pfad des Zertifikats in Ihrer Verbindungszeichenfolge an.
+
 
 **Metabase Cloud**
 
-You'll need to complete [Step 3: Add your database](#step-3-add-your-database) first.
 
-Once you've done that, you can go to **Admin** > **Databases** and select your database. Find the section named **SSL Client Certificate** and click **Select a file** to upload your downloaded certificate.
+Sie müssen zuerst [Schritt 3: Fügen Sie Ihre Datenbank hinzu](#step-3-add-your-database) ausführen.
 
-## Step 3: Add your database
 
-For example, let's say you want to secure a connection to a PostgreSQL database. Follow the instructions in the app to add the database. For more on setting up a database connection, check out our docs for [adding a database](./connecting.md).
+Danach können Sie zu**Admin** >**Datenbanken** gehen und Ihre Datenbank auswählen. Suchen Sie den Abschnitt**SSL-Client-Zertifikat** und klicken Sie auf**Datei auswählen**, um Ihr heruntergeladenes Zertifikat hochzuladen.
 
-## Step 4: Toggle on the "Use a secure connection (SSL)" option
 
-If your database supports a JDBC connection, Metabase will provide you with a field to input additional parameters to your connection string. Metabase will use parameters in the connection string to establish a secure connection.
+## Schritt 3: Fügen Sie Ihre Datenbank hinzu
 
-## Step 5: Add additional connection string options
 
-You'll need to specify the location of the certificate on the server that's running Metabase.
+Nehmen wir an, Sie möchten eine Verbindung zu einer PostgreSQL-Datenbank sichern. Folgen Sie den Anweisungen in der App, um die Datenbank hinzuzufügen. Weitere Informationen zum Einrichten einer Datenbankverbindung finden Sie in unseren Dokumenten für [Hinzufügen einer Datenbank](./connecting.md).
 
-For example, when connecting to a PostgreSQL database, you'll need to add two parameters:
 
-- `sslmode`. You can see the full list of options in [PostgreSQL's documentation](https://jdbc.postgresql.org/documentation/ssl/#configuring-the-client). We recommend you use `verify-full`; it's the most secure, and overhead is minimal.
-- `sslrootcert`. Here you'll specify the file path for the certificate.
+## Schritt 4: Aktivieren Sie die Option "Sichere Verbindung (SSL) verwenden".
 
-You'll add an ampersand (`&`) to separate each parameter. For example, In the **Add additional connection string options** field, you'd add something like:
 
-```
-sslmode=verify-full&sslrootcert=/path/to/certificate.pem
-```
+Wenn Ihre Datenbank eine JDBC-Verbindung unterstützt, stellt Ihnen Metabase ein Feld zur Verfügung, in das Sie zusätzliche Parameter für Ihre Verbindungszeichenfolge eingeben können. Metabase verwendet die Parameter im Verbindungsstring, um eine sichere Verbindung herzustellen.
 
-Replace `/path/to/certifcate.pem` with the full path for the certificate you downloaded from your provider.
 
-You can learn more about [SSL support for PostgreSQL](https://www.postgresql.org/docs/current/libpq-ssl.html).
+## Schritt 5: Hinzufügen zusätzlicher Optionen für die Verbindungszeichenfolge
 
-## Securing connection to application database using environment variables
 
-If you're self-hosting Metabase, you can secure the connection to your application database using [environment variables](../configuring-metabase/environment-variables.md).
+Sie müssen den Speicherort des Zertifikats auf dem Server angeben, auf dem die Metabase läuft.
 
-The environment variable to use is [`MB_DB_CONNECTION_URI`](../configuring-metabase/environment-variables.md#mb_db_connection_uri).
 
-You'll need to include the full connection string here, including the db host, port, db name and user info, as well as the additional connection parameters to include the certificate. For example,
+Wenn Sie sich zum Beispiel mit einer PostgreSQL-Datenbank verbinden, müssen Sie zwei Parameter hinzufügen:
 
-```
-jdbc:postgresql://db.example.com:port/mydb?user=dbuser&password=dbpassword&ssl=true&sslmode=verify-full&sslrootcert=/path/to/certificate.pem
-```
 
-Both can be provided to support mutual authentication scenarios.
-
-## Truststores and keystores
-
-With some databases, like PostgreSQL and Oracle, you can secure connections using truststores and keystores.
-
-### Truststores
-
-If a truststore is provided to verify credentials, the client (your Metabase) can authenticate the server (the database) and ensure its identity is what's expected.
-
-### Keystores
-
-If a keystore is used to provide credentials, then the server (the database server) can request the client (your Metabase) authenticate itself using that keystore. Keystores are used less frequently, and in some cases it's impossible to use a keystore (Amazon's RDS forbids keystores, for example). But you may want to use a keystore if you're hosting on prem.
+-sslmode". Sie können die vollständige Liste der Optionen in der [PostgreSQL-Dokumentation](https://jdbc.postgresql.org/documentation/ssl/#configuring-the-client) einsehen. Wir empfehlen Ihnen, ` verify-full` zu verwenden; es ist am sichersten und der Overhead ist minimal.
+-sslrootcert`. Hier geben Sie den Dateipfad für das Zertifikat an.
