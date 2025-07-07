@@ -10,6 +10,7 @@ Tabellen sind der natürliche Lebensraum von Daten.
 
 ## Spalten neu anordnen, hinzufügen und ausblenden
 Wenn Sie die Einstellungen für Ihre Tabellenvisualisierung öffnen, sehen Sie die Registerkarte Spalten, auf der alle Spalten angezeigt werden, die derzeit in der Tabelle zu sehen sind. Um eine Spalte auszublenden, klicken Sie auf das Augensymbol.
+
 Um diese Spalten zu verwalten, einschließlich Spalten aus verknüpften Tabellen, klicken Sie einfach auf **Spalten hinzufügen oder entfernen**. Markieren Sie die Kästchen neben den Spalten, die Sie im **sichtbaren Bereich** anzeigen möchten, oder deaktivieren Sie sie, um sie auszublenden.
 Wenn Sie Tabellen anzeigen, können Sie auf das Symbol **Zahnrad** unten links klicken, um die Spaltenauswahl aufzurufen. Klicken Sie auf **Spalten hinzufügen oder entfernen**, um nach Spalten zu suchen und diese auszuwählen, einschließlich Spalten aus Bezugstabellen.
 Hinzufügen oder Entfernen von Spalten](../images/column-selection.png)
@@ -49,248 +50,183 @@ Zahlen-Filter:
 - Gleich / Nicht gleich
 - Ist leer / Nicht leer
 
-### Distribution
+### Verteilung
+Wenn Sie auf Verteilung klicken, werden die Daten zusammengefasst, indem die Zeilen gezählt und die Zählungen nach den Werten in der Spalte gruppiert werden.
 
-Clicking on Distribution will summarize the data by counting the rows and grouping the counts by the values in the column.
+### Eindeutige Werte
+Ermittelt die Anzahl der eindeutigen Werte.
 
-### Distinct values
+### Spalten kombinieren
+Sie können eine oder mehrere Textspalten kombinieren. Zum Beispiel eine Spalte mit dem Vornamen und eine Spalte mit dem Nachnamen.
+Sie können Metabase mitteilen, wie die Spalten kombiniert werden sollen, indem Sie ein Trennzeichen angeben, z. B. ein Leerzeichen, ein Komma oder das Wort "Danger".
 
-Get a count of unique values.
+### Extrahiere Tag, Monat...
+Aus einer Datumsangabe können Sie Folgendes entnehmen:
+- **Stunde des Tages**: 0, 1, 2...
+- **Tag des Monats**: 0, 1, 2...
+- **Tag der Woche**: Montag, Dienstag...
+- **Monat des Jahres**: Jan, Feb...
+- **Quartal des Jahres**: Q1, Q2...
+- **Jahr**: 2024, 2025...
 
-### Combine columns
-
-You can combine one or more text columns. For example, a first name column with a last name column.
-
-You can tell Metabase how to combine the columns by specifying a separator, like a space, or comma, or the word "Danger".
-
-### Extract day, month...
-
-From a datetime, you can grab:
-
-- **Hour of day**: 0, 1, 2...
-- **Day of month**: 0, 1, 2...
-- **Day of week**: Monday, Tuesday...
-- **Month of year**: Jan, Feb...
-- **Quarter of year**: Q1, Q2...
-- **Year**: 2024, 2025...
-
-### Extract domain, subdomain, host, or path
-
-Grab the domain or host from a URL or email. So if you have `https://www.example.com/path/to/page#heading-on-page`:
-
+### Domain, Subdomain, Host oder Pfad extrahieren
+Erfassen Sie die Domain oder den Host aus einer URL oder E-Mail. Wenn Sie also `https://www.example.com/path/to/page#heading-on-page` haben:
 - Host: `example.com`
-- Domain: `example`
-- Subdomain: `www`
-- Path: `/path/to/page`
+- Domäne: `example`
+- Unterdomäne: `www`
+- Pfad: `/path/to/page`
+> Das Extrahieren von Teilen einer URL oder E-Mail ist für MongoDB, SQLite und SQL Server nicht verfügbar. Für Druid ist das Extrahieren von Domäne und Host nur für den Druid-JDBC-Treiber verfügbar.
 
-> Extracting parts of a URL or email is unavailable for MongoDB, SQLite, and SQL Server. For Druid, extracting domain and host is only available for the Druid-JDBC driver.
+### Summe über die Zeit
+Addieren Sie alle Werte und gruppieren Sie sie nach einem Zeitraum, in der Regel nach Monat.
 
-### Sum over time
+## Klick-Optionen für Tabellenzellen
+![Beim Klicken auf eine Tabellenzelle erhalten Sie je nach Datentyp der Spalte unterschiedliche Optionen](../images/cell-action-string.png)
+Wenn Sie auf eine Tabellenzelle klicken, erhalten Sie verschiedene Optionen, die vom Datentyp und seinen Werten abhängen.
 
-Add up all the values and group by a time period, generally by month.
+## Detailansichten
 
-## Table cell click options
 
-![Clicking on a table cell gives you different options depending on the column's data type](../images/cell-action-string.png)
+### Einheit der Währung
 
-Clicking on a table cell will give you different options based on the data type and its values.
 
-## Detail views
+Ermöglicht die Änderung der Währungseinheit von der Standardeinstellung des Systems.
 
-![Detail view](../images/detail-view.png)
 
-To make records easier to read, you can click on an entity key column (either a primary or foreign key) to bring up a detail view. For example, clicking on an order `ID` will bring up details from that order.
+### Stil des Währungsetiketts
 
-## Column formatting options
 
-To format the display of any column in a table, click on the column heading and choose the `Formatting` option (you can also get there by clicking on the gear on any column when in the `Columns` tab of the visualization settings).
+Ermöglicht es Ihnen, zwischen der Anzeige des Währungsetiketts als:
 
-![Column formatting](../images/column-header-formatting.png)
 
-The options you see will differ depending on the type of column you're viewing:
+- ein Symbol (wie $)
+- einen Code (wie USD)
+- der vollständige Name der Währung (z. B. "US Dollar")
 
-## Text formatting options
 
-### Title
+### Wo die Währungseinheit angezeigt werden soll
 
-You can rename the column.
 
-### Align text
+Ermöglicht es Ihnen, zwischen der Anzeige der Währungsbezeichnung in der Spaltenüberschrift oder in jeder Zelle der Spalte umzuschalten.
 
-You can display the text on the left, right, or in the middle (i.e., centered) of the column.
 
-### Wrap text
+## Bedingte Tabellenformatierung
 
-You can toggle text wrapping, which is useful for columns with long text values like comments.
 
-### Display as
+Manchmal ist es hilfreich, bestimmte Zeilen oder Spalten in Ihren Tabellen hervorzuheben, wenn sie eine bestimmte Bedingung erfüllen. Sie können Regeln für die bedingte Formatierung einrichten, indem Sie die Visualisierungseinstellungen aufrufen, während Sie eine beliebige Tabelle betrachten, und dann auf die Registerkarte **Bedingte Formatierung** klicken.
 
-You can display a column as:
 
-- Text
-- [Link](#display-text-as-a-link)
-- Email link
-- [Image](#display-url-as-an-image)
-- Automatic (Metabase guesses based on the values).
+[Bedingte Formatierung](../images/conditional-formatting.png)
 
-#### Display text as a link
 
-If you select link, you can also change the text displayed, and use parameters for both the link text and the link's URL.
+Wenn Sie eine neue Regel hinzufügen, müssen Sie zunächst auswählen, welche Spalte(n) betroffen sein sollen. Ihre Spalten können auf eine von zwei Arten formatiert werden:
 
-For example, you could create a dynamic URL using a parameter from another column in the results:
 
-```html
-{% raw %} https://www.example.com/{{category}} {% endraw %}
-```
+- **Einfarbig**. Wählen Sie eine Farbe, wenn Sie Zellen in der Spalte hervorheben möchten, die größer, kleiner oder gleich einer bestimmten Zahl sind, oder wenn sie ein bestimmtes Wort oder einen bestimmten Satz enthalten. Sie können optional die gesamte Zeile einer Zelle hervorheben, die die von Ihnen gewählte Bedingung erfüllt, damit sie beim Scrollen in der Tabelle leichter zu erkennen ist.
+- **Farbbereich**. Wählen Sie Farbbereich, wenn Sie alle Zellen in der Spalte von der kleinsten zur größten oder umgekehrt einfärben möchten. Diese Option ist nur für numerische Spalten verfügbar.
 
-In the above example, Metabase would take the value for the `category` column for that row (in this case `widget`), and insert it into the URL:
 
-```html
-https://www.example.com/widget
-```
+Sie können beliebig viele Regeln für eine Tabelle festlegen und die Reihenfolge, in der diese Regeln angewendet werden, ändern. Wenn zwei oder mehr Regeln nicht miteinander übereinstimmen, gewinnt die Regel, die in der Liste der Regeln ganz oben steht. Sie können Ihre Regeln anklicken und ziehen, um sie neu anzuordnen, und auf eine Regel klicken, um sie zu bearbeiten.
 
-#### Display URL as an image
 
-If you select image, and the text is a link to an image asset, Metabase will display the image in the table cell.
+## Hinzufügen von Tabellen zu Dashboards
 
-## Date formatting options
 
-Date formatting options include the same options as [Text formatting](#text-formatting-options), as well as:
+Wenn Sie eine Tabelle zu einem Dashboard hinzufügen, können Sie [benutzerdefinierte Ziele](../../dashboards/interactive.md#custom-destinations) zu einzelnen Spalten hinzufügen, Filter-Widgets verkabeln und vieles mehr. Ein Beispiel für eine Tabelle, die in einem Dashboard verwendet wird, finden Sie in unserem Artikel [Erstellen eines Datensatznachschlagetools mit Metabase](/learn/metabase-basics/querying-and-dashboards/dashboards/build-a-record-lookup-tool).
 
-### Align date
 
-You can display the date on the left, right, or in the middle (i.e., centered) of the column.
+## Tabellenpaginierung auf Dashboard-Karten
 
-### Date style
 
-Styles include:
+Wenn Sie eine Tabelle zum Dashboard hinzufügen, ist die Tabelle standardmäßig blätterbar. Sie können die Zeilen paginieren, indem Sie:
 
-- April 1, 2024
-- 1 April 2024
-- Monday, April 1, 2024
-- 4/1/2024
-- 1/4/2024
-- 2024/4/1
 
-### Abbreviate days and months
+1. Klicken Sie auf das Symbol **Bleistift**, um das Dashboard zu bearbeiten.
+2. Bewegen Sie den Mauszeiger über die Dashcard, die die Tabelle enthält, und klicken Sie auf das Symbol **Visualisierung**.
+3. Schalten Sie auf der Registerkarte **Spalten** die Option **Ergebnisse paginieren** ein.
 
-If you select a date style that includes words, this toggle will abbreviate them. For example:
 
-- Unabbreviated: Monday, April 1, 2024
-- Abbreviated: Mon, Apr 1, 2024
+![Tabellenergebnisse auf Dashboard-Karte paginieren](../images/paginate-table-on-dashboard-card.png)
 
-### Show the time
 
-This option determines whether Metabase includes the time along with the date.
+## Fremdschlüssel-Zuordnung
 
-- Off
-- HH:MM
-- HH:MM:SS
-- HH:MM:SS:MS
 
-### Time style
+Hier noch eine letzte coole Funktion, für die allerdings ein Administrator einige Einstellungen im Abschnitt Datenmodell ändern muss. Fremdschlüssel sind nützlich, aber im Allgemeinen nicht aussagekräftig für (menschliche) Leser. Anstatt einen Fremdschlüssel als Zahl, z. B. eine Produkt-ID, anzuzeigen, wäre es schön, die Werte als "Titel" des Produkts anzuzeigen. Metabase kann Fremdschlüssel durch Werte aus der Fremdtabelle ersetzen, die mit diesem Entitätsschlüssel verbunden sind. Das bedeutet, dass anstelle des Wertes "Product_ID" derProdukttitel angezeigt werden kann, z. B. "Lightweight Wool Computer". Ihre Metabase-Administratoren können dies im **Admin Panel** auf derRegisterkarte ** Datenmodell** einrichten. In diesem Fall wählen wir die Tabelle "Bestellungen" aus und ändern den Fremdschlüssel aus der Tabelle "Produkte" so, dass er stattdessen in der Tabelle "Bestellung" als "Produkt → Titel" angezeigt wird.
 
-You can choose either 12-hour clock style, or 24-hour clock style.
 
-- 5:24 PM (12-hour clock)
-- 17:24 (24-hour clock)
+### Pivotierte Tabellen
 
-## Number formatting options
 
-### Show a mini bar chart
+> Diese automatische Pivotierung unterscheidet sich von der Visualisierung der [Pivot-Tabelle](./pivot-table.md).
 
-This option displays a small horizontal bar next to each number in this column to show its size relative to the other values in the column.
 
-### Style
+Wenn es sich bei Ihrer Tabelle um ein Ergebnis handelt, das eine numerische Spalte und zwei Gruppierungsspalten enthält, kann Metabase Ihre Tabelle "pivotieren", wie im folgenden Beispiel, in dem Zeilenwerte für die Spalte "Kategorie"("Doohickey", "Gadget", "Gizmo" und "Widget") zu Spaltenüberschriften werden. Wenn Sie die Visualisierungseinstellungen öffnen, indem Sie auf das Zahnradsymbol klicken, können Sie auswählen, welche Spalte gedreht werden soll, falls Metabase einen Fehler macht. Sie können das Pivot-Verhalten auch ganz abschalten.
 
-Number styles include:
 
-- Number
-- Percent
-- Scientific
-- Currency
+![Pivot-Tabelle](../images/pivot.png)
 
-### Separator style
 
-Gives you various options for how commas and periods are used to separate the number.
+## Optionen für den Tabellenexport
 
-- 100,000.00
-- 100 000,00
-- 100.000,00
-- 100000.00
-- 100'000.00
 
-### Number of decimal places
+Siehe [Ergebnisse exportieren](../exporting-results.md).## Detailansichten
 
-Forces the number to be displayed with exactly this many decimal places.
+### Einheit der Währung
 
-### Multiply by a number
+Ermöglicht die Änderung der Währungseinheit von der Standardeinstellung des Systems.
 
-Multiplies each number in this column by whatever you type here. Just don't type an emoji here; there is a nontrivial chance that it will manifest a temporal vortex.
+### Stil des Währungsetiketts
 
-### Add a prefix/suffix
+Ermöglicht es Ihnen, zwischen der Anzeige des Währungsetiketts als:
 
-Lets you put a symbol, word, or whatever before or after each cell's value.
+-  ein Symbol (wie $)
+-  einen Code (wie USD)
+-  der vollständige Name der Währung (z. B. "US Dollar")
 
-## Currency formatting options
+### Wo die Währungseinheit angezeigt werden soll
 
-Currency columns have all the same options as [numbers](#number-formatting-options), plus the following:
+Ermöglicht es Ihnen, zwischen der Anzeige der Währungsbezeichnung in der Spaltenüberschrift oder in jeder Zelle der Spalte umzuschalten.
 
-### Unit of Currency
+## Bedingte Tabellenformatierung
 
-Lets you change the unit of currency from whatever the system default is.
+Manchmal ist es hilfreich, bestimmte Zeilen oder Spalten in Ihren Tabellen hervorzuheben, wenn sie eine bestimmte Bedingung erfüllen. Sie können Regeln für die bedingte Formatierung einrichten, indem Sie die Visualisierungseinstellungen aufrufen, während Sie eine beliebige Tabelle betrachten, und dann auf die Registerkarte **Bedingte Formatierung** klicken.
 
-### Currency label style
+[Bedingte Formatierung](../images/conditional-formatting.png)
 
-Allows you to switch between displaying the currency label as:
+Wenn Sie eine neue Regel hinzufügen, müssen Sie zunächst auswählen, welche Spalte(n) betroffen sein sollen. Ihre Spalten können auf eine von zwei Arten formatiert werden:
 
-- a symbol (like $)
-- a code (like USD)
-- the full name of the currency (like "US dollars")
+- **Einfarbig**. Wählen Sie eine Farbe, wenn Sie Zellen in der Spalte hervorheben möchten, die größer, kleiner oder gleich einer bestimmten Zahl sind, oder wenn sie ein bestimmtes Wort oder einen bestimmten Satz enthalten. Sie können optional die gesamte Zeile einer Zelle hervorheben, die die von Ihnen gewählte Bedingung erfüllt, damit sie beim Scrollen in der Tabelle leichter zu erkennen ist.
+- **Farbbereich**. Wählen Sie Farbbereich, wenn Sie alle Zellen in der Spalte von der kleinsten zur größten oder umgekehrt einfärben möchten. Diese Option ist nur für numerische Spalten verfügbar.
 
-### Where to display the unit of currency
+Sie können beliebig viele Regeln für eine Tabelle festlegen und die Reihenfolge, in der diese Regeln angewendet werden, ändern. Wenn zwei oder mehr Regeln nicht miteinander übereinstimmen, gewinnt die Regel, die in der Liste der Regeln ganz oben steht. Sie können Ihre Regeln anklicken und ziehen, um sie neu anzuordnen, und auf eine Regel klicken, um sie zu bearbeiten.
 
-Lets you toggle between showing the currency label in the column heading or in every cell in the column.
+## Hinzufügen von Tabellen zu Dashboards
 
-## Conditional table formatting
+Wenn Sie eine Tabelle zu einem Dashboard hinzufügen, können Sie [benutzerdefinierte Ziele](../../dashboards/interactive.md#custom-destinations) zu einzelnen Spalten hinzufügen, Filter-Widgets verkabeln und vieles mehr. Ein Beispiel für eine Tabelle, die in einem Dashboard verwendet wird, finden Sie in unserem Artikel [Erstellen eines Datensatznachschlagetools mit Metabase](/learn/metabase-basics/querying-and-dashboards/dashboards/build-a-record-lookup-tool).
 
-Sometimes it's helpful to highlight certain rows or columns in your tables when they meet a specific condition. You can set up conditional formatting rules by going to the visualization settings while looking at any table, then clicking on the **Conditional Formatting** tab.
+## Tabellenpaginierung auf Dashboard-Karten
 
-![Conditional formatting](../images/conditional-formatting.png)
+Wenn Sie eine Tabelle zum Dashboard hinzufügen, ist die Tabelle standardmäßig blätterbar. Sie können die Zeilen paginieren, indem Sie:
 
-When you add a new rule, you'll first need to pick which column(s) should be affected. Your columns can be formatted in one of two ways:
+1. Klicken Sie auf das Symbol **Bleistift**, um das Dashboard zu bearbeiten.
+2. Bewegen Sie den Mauszeiger über die Dashcard, die die Tabelle enthält, und klicken Sie auf das Symbol **Visualisierung**.
+3. Schalten Sie auf der Registerkarte **Spalten** die Option **Ergebnisse paginieren** ein.
 
-- **Single color**. Pick single color if you want to highlight cells in the column if they're greater, less than, or equal to a specific number, or if they match or contain a certain word or phrase. You can optionally highlight the whole row of a cell that matches the condition you pick so that it's easier to spot as you scroll down your table.
-- **Color range**. Choose color range if you want to tint all the cells in the column from smallest to largest or vice versa. This option is only available for numeric columns.
+![Tabellenergebnisse auf Dashboard-Karte paginieren](../images/paginate-table-on-dashboard-card.png)
 
-You can set as many rules on a table as you want, and change the order in which those rules are applied. If two or more rules disagree with each other, the rule that's on the top of your list of rules will win. You can click and drag your rules to reorder them, and click on a rule to edit it.
+## Fremdschlüssel-Zuordnung
 
-## Adding tables to dashboards
+Hier noch eine letzte coole Funktion, für die allerdings ein Administrator einige Einstellungen im Abschnitt Datenmodell ändern muss. Fremdschlüssel sind nützlich, aber im Allgemeinen nicht aussagekräftig für (menschliche) Leser. Anstatt einen Fremdschlüssel als Zahl, z. B. eine Produkt-ID, anzuzeigen, wäre es schön, die Werte als "Titel" des Produkts anzuzeigen. Metabase kann Fremdschlüssel durch Werte aus der Fremdtabelle ersetzen, die mit diesem Entitätsschlüssel verbunden sind. Das bedeutet, dass anstelle des Wertes "Product_ID" derProdukttitel angezeigt werden kann, z. B. "Lightweight Wool Computer". Ihre Metabase-Administratoren können dies im **Admin Panel** auf derRegisterkarte ** Datenmodell** einrichten. In diesem Fall wählen wir die Tabelle "Bestellungen" aus und ändern den Fremdschlüssel aus der Tabelle "Produkte" so, dass er stattdessen in der Tabelle "Bestellung" als "Produkt → Titel" angezeigt wird.
 
-When you add a table to a dashboard, you can add [custom destinations](../../dashboards/interactive.md#custom-destinations) to individual columns, wire up filter widgets, and more. To see an example of a table used in a dashboard, check out our article on [building a record lookup tool with Metabase](/learn/metabase-basics/querying-and-dashboards/dashboards/build-a-record-lookup-tool).
+### Pivotierte Tabellen
 
-## Table pagination on dashboard cards
+>  Diese automatische Pivotierung unterscheidet sich von der Visualisierung der [Pivot-Tabelle](./pivot-table.md).
 
-When you add a table to dashboard, the table will be scrollable by default. You can paginate the rows by:
+Wenn es sich bei Ihrer Tabelle um ein Ergebnis handelt, das eine numerische Spalte und zwei Gruppierungsspalten enthält, kann Metabase Ihre Tabelle "pivotieren", wie im folgenden Beispiel, in dem Zeilenwerte für die Spalte "Kategorie"("Doohickey", "Gadget", "Gizmo" und "Widget") zu Spaltenüberschriften werden. Wenn Sie die Visualisierungseinstellungen öffnen, indem Sie auf das Zahnradsymbol klicken, können Sie auswählen, welche Spalte gedreht werden soll, falls Metabase einen Fehler macht. Sie können das Pivot-Verhalten auch ganz abschalten.
 
-1. Clicking on the **Pencil** icon to edit the dashboard.
-2. Hovering over the dashcard containing the table, and clicking the **Visualization** icon.
-3. In the **Columns** tab, toggle on **Paginate results**.
+![Pivot-Tabelle](../images/pivot.png)
 
-![Paginate table results on dashboard card](../images/paginate-table-on-dashboard-card.png)
+## Optionen für den Tabellenexport
 
-## Foreign key remapping
-
-Here's one last cool feature, though it requires an admin to change some settings in the Data Model section. Foreign keys are useful, but they're generally not meaningful for (human) readers. Instead of displaying a foreign key as a number, say a product ID, it'd be nice to display the values as the product's `Title`. Metabase can substitute foreign keys with values from the foreign table that are associated with that entity key. What this means is that instead of showing the `Product_ID` value, you can set it up so that people will instead see the product `Title`, like "Lightweight Wool Computer." Your Metabase admins can set this up in the **Admin Panel** in the **Data Model tab**. In this case, we'll select the `Orders` table, and change the foreign key from the `Products` table to instead display in the Order table as the `Product → Title`.
-
-### Pivoted tables
-
-> This auto-pivoting is distinct from the [pivot table](./pivot-table.md) visualization.
-
-If your table is a result that contains one numeric column and two grouping columns, Metabase can "pivot" your table, like in the example below, where row values for the `Category` column (`Doohickey`, `Gadget`, `Gizmo` and `Widget`) become column headings. If you open up the visualization settings by clicking the gear icon, you can choose which column to pivot in case Metabase got it wrong. You can also turn off the pivoting behavior entirely.
-
-![Pivot table](../images/pivot.png)
-
-## Table export options
-
-See [Exporting results](../exporting-results.md).
+Siehe [Ergebnisse exportieren](../exporting-results.md).
