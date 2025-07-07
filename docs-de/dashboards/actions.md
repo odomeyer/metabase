@@ -1,61 +1,87 @@
 ---
-title: Actions on dashboards
+Titel: Aktionen auf Dashboards
 ---
 
-# Actions on dashboards
 
-![Dashboard with filter, action button, and detail card view](./images/dashboard-filter-action.png)
+# Aktionen auf Dashboards
 
-To put [actions](../actions/start.md) in action, you can combine them with a [model](../data-modeling/models.md) and a [filter](./filters.md) on a dashboard.
 
-## Adding an action to a dashboard
+(./images/dashboard-filter-action.png)[Dashboard mit Filter, Aktionsschaltfläche und Detailkartenansicht]
 
-Visit a dashboard page and click on the **pencil** icon, then click on the **box with a mouse pointer** to add an action.
 
-Metabase will add an action button to the dashboard grid, and open a sidebar with the buttons settings.
+Um [Aktionen](../actions/start.md) in Aktion zu setzen, können Sie sie mit einem [Modell](../data-modeling/models.md) und einem [Filter](./filters.md) auf einem Dashboard kombinieren.
 
-### Button text
 
-A label explaining what the button does, e.g., "Ignition".
+## Hinzufügen einer Aktion zu einem Dashboard
 
-### Button variant
 
-You can select from a variety of handsome buttons:
+Rufen Sie eine Dashboard-Seite auf und klicken Sie auf das Symbol**Bleistift** und dannmit dem Mauszeiger auf die**Box**, um eine Aktion hinzuzufügen.
 
-- Primary
-- Outline
-- Danger
-- Success
-- Borderless
 
-![Button types](./images/buttons.png)
+Metabase fügt dem Dashboard-Raster eine Aktionsschaltfläche hinzu und öffnet eine Seitenleiste mit den Einstellungen der Schaltfläche.
 
-## Connecting an action to a dashboard filter
 
-For most actions, when people click on a button, they'll be prompted to input values in the fields defined by that action.
+### Schaltflächentext
 
-Many types of actions rely on knowing the Entity ID for the model to determine which records to update or delete. To have people select the ID for the action, you'll need to:
 
-1. Click on the pencil icon to edit the dashboard.
-2. Add an action to the dashboard (if you haven't already).
-3. [Add a filter](./filters.md) to a dashboard, wire it up to any cards that you want to, and click **Done** in the bottom of the sidebar.
-4. Hover over the action button and click on the **gear** icon, and select **Change action**.
-5. Click on the field's dropdown to select where the action should get it's value. Here you can select "Ask the user" or have it automatically populated by a dashboard filter. In this case, we'll select our "ID" filter.
+Eine Beschriftung, die erklärt, was die Schaltfläche bewirkt, z. B. "Zündung".
 
-![Wiring up an action button to a dashboard filter](./images/id-value.png)
 
-If you also wire that filter up to a card with a model on the dashboard, you can filter for individual records in that model, view them in the model's card, and have the action buttons auto-populate the id.
+### Schaltflächenvariante
 
-![Button form](./images/button-form.png)
 
-You can add as many buttons as you want, and wire them up to one or more filters.
+Sie können aus einer Vielzahl von hübschen Schaltflächen wählen:
 
-## Actions are unavailable for public dashboards and dashboards in static embeds
 
-While you can add actions to dashboards and use them in your Metabase, actions won't work on dashboards accessed via [public links](./introduction.md#sharing-dashboards-with-public-links), or dashboards in static embeds.
+- Primär
+- Gliederung
+- Die Gefahr
+- Erfolg
+- Randlos
 
-If you want people outside of your Metabase to use an action, you can create a [public form for an action](../actions/custom.md#make-public), or expose actions via [interactive embedding](../embedding/interactive-embedding.md).
 
-## Further reading
+![Schaltflächentypen](./images/buttons.png)
 
-- [Actions](../actions/start.md)
+
+## Verbinden einer Aktion mit einem Dashboard-Filter
+
+
+Bei den meisten Aktionen werden die Benutzer, wenn sie auf eine Schaltfläche klicken, aufgefordert, Werte in die von dieser Aktion definierten Felder einzugeben.
+
+
+Bei vielen Arten von Aktionen muss die Entitäts-ID des Modells bekannt sein, um zu bestimmen, welche Datensätze aktualisiert oder gelöscht werden sollen. Damit die Benutzer die ID für die Aktion auswählen können, müssen Sie:
+
+
+1. Klicken Sie auf das Bleistiftsymbol, um das Dashboard zu bearbeiten.
+2. Fügen Sie dem Dashboard eine Aktion hinzu (falls Sie das noch nicht getan haben).
+3. [Fügen Sie einen Filter(./filters.md) zu einem Dashboardhinzu, verbinden Sie ihn mit den gewünschten Karten und klicken Sie unten in der Seitenleiste auf **Fertig**.
+4. Bewegen Sie den Mauszeiger über die Aktionsschaltfläche, klicken Sie auf das Symbol **Zahnrad** und wählen Sie **Aktion ändern**.
+5. Klicken Sie auf das Dropdown-Feld des Feldes, um auszuwählen, woher die Aktion ihren Wert erhalten soll. Hier können Sie "Den Benutzer fragen" auswählen oder das Feld automatisch durch einen Dashboard-Filter füllen lassen. In diesem Fall wählen wir unseren "ID"-Filter.
+
+
+(./images/id-value.png)[Verknüpfung einer Aktionsschaltfläche mit einem Dashboard-Filter].
+
+
+Wenn Sie diesen Filter auch mit einer Karte mit einem Modell auf dem Dashboard verknüpfen, können Sie nach einzelnen Datensätzen in diesem Modell filtern, sie in der Karte des Modells anzeigen und die Aktionsschaltflächen automatisch die ID ausfüllen lassen.
+
+
+![Schaltflächenformular](./images/button-form.png)
+
+
+Sie können beliebig viele Schaltflächen hinzufügen und sie mit einem oder mehreren Filtern verknüpfen.
+
+
+## Aktionen sind für öffentliche Dashboards und Dashboards in statischen Einbettungen nicht verfügbar.
+
+
+Sie können zwar Aktionen zu Dashboards hinzufügen und sie in Ihrer Metabase verwenden, aber Aktionen funktionieren nicht auf Dashboards, auf die über [öffentliche Links](./introduction.md#sharing-dashboards-with-public-links) zugegriffen wird, oder auf Dashboards in statischen Einbettungen.
+
+
+Wenn Sie möchten, dass Personen außerhalb Ihrer Metabase eine Aktion verwenden können, können Sie ein [öffentliches Formular für eine Aktion](../actions/custom.md#make-public) erstellen oder Aktionen über [interaktive Einbettung](../embedding/interactive-embedding.md) zur Verfügung stellen.
+
+
+## Weitere Lektüre
+
+
+- [Aktionen](../actions/start.md)
+
