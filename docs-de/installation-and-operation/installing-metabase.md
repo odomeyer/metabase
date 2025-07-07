@@ -1,60 +1,85 @@
 ---
-title: Installing Metabase
+Titel: Installation der Metabase
 redirect_from:
-  - /docs/latest/operations-guide/installing-metabase
+- /docs/latest/operations-guide/installing-metabase
 ---
 
-# Installing Metabase
 
-Metabase is built and packaged as a Java JAR file and can be run anywhere that Java is available.
+# Installieren von Metabase
 
-## Metabase Cloud (Recommended)
 
-[Metabase Cloud](https://www.metabase.com/cloud/) is the easiest way to run Metabase. All you need to do is [sign up for a free trial](https://store.metabase.com/checkout), and you're off to the races.
+Metabase wird als Java JAR-Datei erstellt und verpackt und kann überall ausgeführt werden, wo Java verfügbar ist.
 
-## Self-hosting Metabase
 
-For an overview on how to self-host Metabase, check out [how to run Metabase in production](https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-in-production).
+## Metabase Cloud (empfohlen)
 
-### Running on Docker (Recommended for self-hosting)
 
-Run Metabase in a [Docker container](./running-metabase-on-docker.md).
+[Metabase Cloud](https://www.metabase.com/cloud/) ist der einfachste Weg, Metabase auszuführen. Alles, was Sie tun müssen, ist [sich für eine kostenlose Testversion anzumelden](https://store.metabase.com/checkout), und schon können Sie loslegen.
 
-### Running the Jar file
 
-If you're self-hosting but don’t use Docker, the JAR is the easiest way to get started, but it might make it more challenging to move to production. See [running the Metabase Jar](./running-the-metabase-jar-file.md).
+## Selbstgehostete Metabase
+
+
+Einen Überblick über das Selbsthosten der Metabase finden Sie unter [how to run Metabase in production](https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-in-production).
+
+
+### Ausführen auf Docker (empfohlen für Selbst-Hosting)
+
+
+Metabase in einem [Docker-Container] ausführen(./running-metabase-on-docker.md).
+
+
+### Ausführen der Jar-Datei
+
+
+Wenn Sie sich selbst hosten, aber kein Docker verwenden, ist die JAR-Datei der einfachste Weg, um loszulegen, aber es könnte den Übergang zur Produktion erschweren. Siehe [running the Metabase Jar](./running-the-metabase-jar-file.md).
+
 
 ## Air-gapped Metabase
 
-If you're self-hosting because you need an air-gapped environment, check out the [air-gapped edition of Metabase](https://www.metabase.com/product/air-gapping).
 
-## Professional services from the Metabase team
+Wenn Sie sich selbst hosten, weil Sie eine Air-Gapped-Umgebung benötigen, sollten Sie sich die [Air-Gapped Edition von Metabase](https://www.metabase.com/product/air-gapping) ansehen.
 
-If you want help with:
 
-- Set up
-- Training
-- Data stack
-- Embedding
-- Data modeling
+## Professionelle Dienstleistungen des Metabase-Teams
 
-Check out our [professional services](https://www.metabase.com/product/professional-services).
 
-## Upgrading Metabase
+Wenn Sie Hilfe benötigen bei:
 
-See [Upgrading Metabase](upgrading-metabase.md).
 
-## Other installation options
+- Einrichten
+- Ausbildung
+- Datenstapel
+- Einbettung
+- Modellierung von Daten
 
-- [Running on Podman](running-metabase-on-podman.md)
-- [Building Metabase from source](../developers-guide/start.md)
-- [Running on Azure Web Apps](running-metabase-on-azure.md)
-- [Running on Debian as a service](running-metabase-on-debian.md)
 
-We currently do not distribute Metabase on AWS Marketplace or Azure Marketplace. 
+Informieren Sie sich über unsere [professionellen Dienstleistungen](https://www.metabase.com/product/professional-services).
 
-Metabase doesn't have an officially supported helm chart.
 
-## Connect with a Metabase Expert
+## Upgrading der Metabase
 
-If you’d like more technical resources to set up your data stack with Metabase, connect with a [Metabase Expert](https://www.metabase.com/partners/).
+
+Siehe [Upgrading Metabase](upgrading-metabase.md).
+
+
+## Andere Installationsoptionen
+
+
+- [Ausführen auf Podman](running-metabase-on-podman.md)
+- [Erstellen der Metabasis aus dem Quellcode](../developers-guide/start.md)
+- [Ausführenauf Azure Web Apps](running-metabase-on-azure.md)
+- [Ausführen unter Debian als Service](running-metabase-on-debian.md)
+
+
+Wir vertreiben Metabase derzeit nicht über AWS Marketplace oder Azure Marketplace.
+
+
+Metabase verfügt nicht über ein offiziell unterstütztes Helmdiagramm.
+
+
+## Verbindung mit einem Metabase-Experten
+
+
+Wenn Sie weitere technische Ressourcen für die Einrichtung Ihres Datenstapels mit Metabase benötigen, wenden Sie sich an einen [Metabase Expert](https://www.metabase.com/partners/).
+
