@@ -1,96 +1,182 @@
 ---
-title: Starburst
-description: Learn how to connect Metabase to your Starburst or Trino database, including connection settings, SSL configuration, and database sync options.
+Titel: Starburst
+Beschreibung: Erfahren Sie, wie Sie Metabase mit Ihrer Starburst- oder Trino-Datenbank verbinden, einschließlich Verbindungseinstellungen, SSL-Konfiguration und Datenbank-Synchronisationsoptionen.
 ---
+
 
 # Starburst
 
-> This driver also works for connections to a Trino database.
 
-To add a database connection, click on the **gear** icon in the top right, and navigate to **Admin settings** > **Databases** > **Add a database**.
+> Dieser Treiber funktioniert auch für Verbindungen zu einer Trino-Datenbank.
 
-You can edit these settings at any time. Just remember to save your changes.
 
-## Connection and Sync
+Um eine Datenbankverbindung hinzuzufügen, klicken Sie auf das **Zahnradsymbol** oben rechts und navigieren Sie zu **Verwaltungseinstellungen** > **Datenbanken** > **Datenbank hinzufügen**.
 
-After connecting to a database, you'll see the "Connection and sync" section that displays the current connection status and options to manage your database connection.
 
-Here you can [sync the database schema and rescan field values](../sync-scan.md), and edit connection details.
+Sie können diese Einstellungen jederzeit bearbeiten. Denken Sie nur daran, Ihre Änderungen zu speichern.
 
-## Edit connection details
 
-To access or modify your database connection settings, click the **Edit connection details** button.
+## Verbindung und Synchronisierung
 
-### Display name
 
-The display name for the database in the Metabase interface.
+Nachdem Sie eine Verbindung zu einer Datenbank hergestellt haben, sehen Sie den Abschnitt "Verbindung und Synchronisierung", der den aktuellen Verbindungsstatus und Optionen zur Verwaltung Ihrer Datenbankverbindung anzeigt.
+
+
+Hier können Sie [das Datenbankschema synchronisieren und Feldwerte neu scannen](../sync-scan.md) und Verbindungsdetails bearbeiten.
+
+
+## Verbindungsdetails bearbeiten
+
+
+Um auf Ihre Datenbankverbindungseinstellungen zuzugreifen oder sie zu ändern, klicken Sie auf die Schaltfläche **Verbindungsdetails bearbeiten**.
+
+
+### Anzeigename
+
+
+Der Anzeigename für die Datenbank in der Metabase-Schnittstelle.
+
 
 ### Host
 
-Your database's IP address (e.g., `98.137.149.56`) or its domain name (e.g., `name.database.com`).
 
-### Port
+Die IP-Adresse Ihrer Datenbank (z. B. `98.137.149.56`) oder ihr Domänenname (z. B. `name.datenbank.com`).
 
-The database port (e.g., `8080`).
 
-### Catalog
+### Anschluss
 
-Starburt catalogs contain schemas and reference data sources via a connector.
+
+Der Datenbank-Port (z.B. `8080`).
+
+
+### Katalog
+
+
+Starburt-Kataloge enthalten Schemata und referenzieren Datenquellen über einen Konnektor.
+
 
 ### Schema (optional)
 
-Only add tables that come from a specific schema.
 
-### Username
+Fügen Sie nur Tabellen hinzu, die aus einem bestimmten Schema stammen.
 
-The database username for the account that you want to use to connect to your database. You can set up multiple connections to the same database using different user accounts to connect to the same database, each with different sets of [privileges](../users-roles-privileges.md).
 
-### Password
+### Benutzername
 
-The password for the username that you use to connect to the database.
 
-### Use a secure connection (SSL)
+Der Datenbank-Benutzername für das Konto, das Sie für die Verbindung zu Ihrer Datenbank verwenden möchten. Sie können mehrere Verbindungen zu derselben Datenbank einrichten, indem Sie verschiedene Benutzerkonten mit unterschiedlichen [Privilegien] verwenden(../users-roles-privileges.md).
 
-See [SSL certificates](../ssl-certificates.md).
 
-### Role (optional)
+### Passwort
 
-Specify a role to override the database user's default role.
 
-### Optimize prepared statements
+Das Passwort für den Benutzernamen, den Sie für die Verbindung zur Datenbank verwenden.
 
-Requires Starburst Galaxy, Starburst Enterprise (version 420-e or higher), or Trino (version 418 or higher).
 
-### Additional JDBC connection string options
+### Verwenden Sie eine sichere Verbindung (SSL)
 
-You can append options to the JDBC connection string. Separate options with `&`, like so:
+
+Siehe [SSL-Zertifikate](../ssl-certificates.md).
+
+
+### Rolle (optional)
+
+
+Geben Sie eine Rolle an, um die Standardrolle des Datenbankbenutzers zu überschreiben.
+
+
+### Optimieren Sie vorbereitete Anweisungen
+
+
+Erfordert Starburst Galaxy, Starburst Enterprise (Version 420-e oder höher), oder Trino (Version 418 oder höher).
+
+
+### Zusätzliche JDBC-Verbindungsstring-Optionen
+
+
+Sie können Optionen an die JDBC-Verbindungszeichenfolge anhängen. Trennen Sie die Optionen mit `&`, etwa so:
+
 
 ```
 connection_timeout=1000&socket_timeout=300000
 ```
 
-### Re-run queries for simple explorations
 
-Turn this option **OFF** if people want to click **Run** (the play button) before applying any [Summarize](../../questions/query-builder/summarizing-and-grouping.md) or filter selections.
+### Abfragen für einfache Erkundungen wiederholen
 
-By default, Metabase will execute a query as soon as you choose an grouping option from the **Summarize** menu or a filter condition from the [drill-through menu](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through). If your database is slow, you may want to disable re-running to avoid loading data on each click.
 
-### Choose when syncs and scans happen
+Schalten Sie diese Option **AUS**, wenn Sie auf **Ausführen** (die Abspieltaste) klicken möchten, bevor Sie eine [Zusammenfassen](../../questions/query-builder/summarizing-and-grouping.md) oder eine Filterauswahl anwenden.---
+Titel: Starburst
+Beschreibung: Erfahren Sie, wie Sie Metabase mit Ihrer Starburst- oder Trino-Datenbank verbinden, einschließlich Verbindungseinstellungen, SSL-Konfiguration und Datenbank-Synchronisationsoptionen.
+---
 
-See [syncs and scans](../sync-scan.md#choose-when-syncs-and-scans-happen).
+# Starburst
 
-### Periodically refingerprint tables
+> Dieser Treiber funktioniert auch für Verbindungen zu einer Trino-Datenbank.
 
-> Periodic refingerprinting will increase the load on your database.
+Um eine Datenbankverbindung hinzuzufügen, klicken Sie auf das **Zahnradsymbol** oben rechts und navigieren Sie zu **Verwaltungseinstellungen** > **Datenbanken** > **Datenbank hinzufügen**.
 
-Turn this option **ON** to scan a sample of values every time Metabase runs a [sync](../sync-scan.md#how-database-syncs-work).
+Sie können diese Einstellungen jederzeit bearbeiten. Denken Sie nur daran, Ihre Änderungen zu speichern.
 
-A fingerprinting query examines the first 10,000 rows from each column and uses that data to guesstimate how many unique values each column has, what the minimum and maximum values are for numeric and timestamp columns, and so on. If you leave this option **OFF**, Metabase will only fingerprint your columns once during setup.
+## Verbindung und Synchronisierung
 
-## Model features
+Nachdem Sie eine Verbindung zu einer Datenbank hergestellt haben, sehen Sie den Abschnitt "Verbindung und Synchronisierung", der den aktuellen Verbindungsstatus und Optionen zur Verwaltung Ihrer Datenbankverbindung anzeigt.
 
-There aren't (yet) any model features for Starburst.
+Hier können Sie [das Datenbankschema synchronisieren und Feldwerte neu scannen](../sync-scan.md) und Verbindungsdetails bearbeiten.
 
-## Danger zone
+## Verbindungsdetails bearbeiten
 
-See [Danger zone](../danger-zone.md).
+Um auf Ihre Datenbankverbindungseinstellungen zuzugreifen oder sie zu ändern, klicken Sie auf die Schaltfläche **Verbindungsdetails bearbeiten**.
+
+### Anzeigename
+
+Der Anzeigename für die Datenbank in der Metabase-Schnittstelle.
+
+### Host
+
+Die IP-Adresse Ihrer Datenbank (z. B. `98.137.149.56`) oder ihr Domänenname (z. B. `name.datenbank.com`).
+
+### Anschluss
+
+Der Datenbank-Port (z.B. `8080`).
+
+### Katalog
+
+Starburt-Kataloge enthalten Schemata und referenzieren Datenquellen über einen Konnektor.
+
+### Schema (optional)
+
+Fügen Sie nur Tabellen hinzu, die aus einem bestimmten Schema stammen.
+
+### Benutzername
+
+Der Datenbank-Benutzername für das Konto, das Sie für die Verbindung zu Ihrer Datenbank verwenden möchten. Sie können mehrere Verbindungen zu derselben Datenbank einrichten, indem Sie verschiedene Benutzerkonten mit unterschiedlichen [Privilegien] verwenden(../users-roles-privileges.md).
+
+### Passwort
+
+Das Passwort für den Benutzernamen, den Sie für die Verbindung zur Datenbank verwenden.
+
+### Verwenden Sie eine sichere Verbindung (SSL)
+
+Siehe [SSL-Zertifikate](../ssl-certificates.md).
+
+### Rolle (optional)
+
+Geben Sie eine Rolle an, um die Standardrolle des Datenbankbenutzers zu überschreiben.
+
+### Optimieren Sie vorbereitete Anweisungen
+
+Erfordert Starburst Galaxy, Starburst Enterprise (Version 420-e oder höher), oder Trino (Version 418 oder höher).
+
+### Zusätzliche JDBC-Verbindungsstring-Optionen
+
+Sie können Optionen an die JDBC-Verbindungszeichenfolge anhängen. Trennen Sie die Optionen mit `&`, etwa so:
+
+```
+connection_timeout=1000&socket_timeout=300000
+```
+
+### Abfragen für einfache Erkundungen wiederholen
+
+Schalten Sie diese Option **AUS**, wenn Sie auf **Ausführen** (die Abspieltaste) klicken möchten, bevor Sie eine [Zusammenfassen](../../questions/query-builder/summarizing-and-grouping.md) oder eine Filterauswahl anwenden.
+
