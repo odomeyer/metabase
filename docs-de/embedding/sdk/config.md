@@ -1,59 +1,84 @@
 ---
-title: Embedded analytics SDK - config
+Titel: Eingebettete Analytik SDK - Konfiguration
 ---
 
-# Embedded analytics SDK - config
+
+# Eingebettetes Analyse-SDK - Konfiguration
+
 
 {% include plans-blockquote.html feature="Embedded analytics SDK" sdk=true %}
 
-## Passing a configuration object to `MetabaseProvider`
 
-To use the SDK in your app, you need to import the `MetabaseProvider` component and provide it with an `authConfig` object.
+## Übergabe eines Konfigurationsobjekts an `MetabaseProvider`
+
+
+Um das SDK in Ihrer Anwendung zu verwenden, müssen Sie die Komponente "MetabaseProvider" importieren und ihr ein "authConfig"-Objekt übergeben.
+
 
 ### `MetabaseProvider`
 
-A component that configures the SDK and provides the Metabase SDK's context and theme.
 
-#### API Reference
+Eine Komponente, die das SDK konfiguriert und den Kontext und das Thema des Metabase SDK bereitstellt.
 
-- [Component](./api/MetabaseProvider.html)
-- [Props](./api/MetabaseProviderProps.html)
 
-#### Example
+#### API-Referenz
 
-```typescript
+
+- [Komponente](./api/MetabaseProvider.html)
+- [Requisiten](./api/MetabaseProviderProps.html)
+
+
+#### Beispiel
+
+
+````Typescript
 {% include_file "{{ dirname }}/snippets/config/config-base.tsx" %}
 ```
 
-#### Props
+
+#### Requisiten
+
 
 {% include_file "{{ dirname }}/api/snippets/MetabaseProviderProps.md" snippet="properties" %}
 
-## Global event handlers
 
-You can listen for events by defining the `eventHandlers` prop for `MetabaseProvider`.
+## Globale Ereignishandler
+
+
+Sie können auf Ereignisse hören, indem Sie die Eigenschaft ` eventHandlers` für ` MetabaseProvider` definieren.
+
 
 ### `SdkEventHandlersConfig`
 
-Accepts an object where each key is an event type and the corresponding value is the event handler function.
 
-#### API Reference
+Akzeptiert ein Objekt, bei dem jeder Schlüssel ein Ereignistyp und der entsprechende Wert die Ereignisbehandlungsfunktion ist.
 
-- [Type](./api/SdkEventHandlersConfig.html)
 
-#### Example
-```typescript
+#### API-Referenz
+
+
+- [Typ](./api/SdkEventHandlersConfig.html)
+
+
+#### Beispiel
+````Typescript
 {% include_file "{{ dirname }}/snippets/config/config-with-event-handlers.tsx" snippet="example" %}
 ```
 
-#### Props
+
+#### Requisiten
+
 
 {% include_file "{{ dirname }}/api/snippets/SdkEventHandlersConfig.md" snippet="properties" %}
 
-## Reloading Metabase components
 
-In case you need to reload a Metabase component, for example, your users modify your application data and that data is used to render a question in Metabase. If you embed this question and want to force Metabase to reload the question to show the latest data, you can do so by using the `key` prop to force a component to reload.
+## Metabase-Komponenten neu laden
 
-```typescript
+
+Wenn Sie eine Metabase-Komponente neu laden müssen, z. B. weil Ihre Benutzer Ihre Anwendungsdaten ändern und diese Daten zum Rendern einer Frage in der Metabase verwendet werden. Wenn Sie diese Frage einbetten und die Metabase zwingen wollen, die Frage neu zu laden, um die neuesten Daten anzuzeigen, können Sie dies tun, indem Sie die Eigenschaft"key" verwenden, um das Neuladen einer Komponente zu erzwingen.
+
+
+````Typescript
 {% include_file "{{ dirname }}/snippets/config/reload-metabase-provider.tsx" snippet="example" %}
 ```
+
