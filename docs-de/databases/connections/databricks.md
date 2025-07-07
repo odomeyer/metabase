@@ -1,113 +1,97 @@
 ---
-title: Databricks
+Titel: Databricks
 ---
 
-# Databricks
 
-To add a database connection, click on the **gear** icon in the top right, and navigate to **Admin settings** > **Databases** > **Add a database**. Then select **Databricks**.
+**Datenbankverbindungen**
 
-You can edit these settings at any time. Just remember to save your changes.
 
-## Edit connection details
+Um eine Datenbankverbindung hinzuzufügen, klicken Sie auf das**Zahnradsymbol** oben rechts, und navigieren Sie zu**Admin-Einstellungen** >**Datenbanken** >**Datenbank hinzufügen**. Wählen Sie dann**Databricks**.
 
-### Display name
 
-The display name for the database in the Metabase interface.
+Sie können diese Einstellungen jederzeit ändern. Denken Sie nur daran, Ihre Änderungen zu speichern.
+
+
+## Verbindungsdetails bearbeiten
+
+
+### Anzeigename
+
+
+Der Anzeigename für die Datenbank in der Metabase-Schnittstelle.
+
 
 ### Host
 
-Your database's IP address, or its domain name (e.g., `xxxxxxxxxx.cloud.databricks.com` or `adb-xxxxx.azuredatabricks.net`). This is the value of your Databrick's compute resource's Server Hostname.
 
-See [Compute settings for the Databricks JDBC Driver](https://docs.databricks.com/en/integrations/jdbc/compute.html).
+Die IP-Adresse Ihrer Datenbank oder ihr Domänenname (z. B. "xxxxxxxxxx.cloud.databricks.com" oder "adb-xxxxx.azuredatabricks.net"). Dies ist der Wert des Server-Hostnamens der Rechenressource Ihres Databricks.
 
-### HTTP path
 
-This is the Databrick's compute resources HTTP Path value. This value is often a SQL warehouse endpoint in the format `/sql/1.0/endpoints/abcdef1234567890`. See [Connect to a SQL warehouse](https://docs.databricks.com/en/compute/sql-warehouse/index.html).
+Siehe [Compute settings for the Databricks JDBC Driver](https://docs.databricks.com/en/integrations/jdbc/compute.html).
 
-Additionally, see [Compute settings for the Databricks JDBC Driver](https://docs.databricks.com/en/integrations/jdbc/compute.html).
 
-### Authentication
+### HTTP Pfad
 
-There are two ways to authenticate with Databricks. You can use a personal access token (PAT) or a service principal using OAuth (OAuth M2M).
 
-The Databricks driver supports both options. Use the toggle to select the authentication method you want to use.
+Dies ist der Wert für den HTTP-Pfad der Rechenressourcen des Databricks. Dieser Wert ist oft ein SQL-Warehouse-Endpunkt im Format "/sql/1.0/endpoints/abcdef1234567890". Siehe [Verbindung zu einem SQL-Warehouse](https://docs.databricks.com/en/compute/sql-warehouse/index.html).
 
-#### Personal access token authentication
 
-See [Personal Access Token (PAT)](https://docs.databricks.com/en/dev-tools/auth/pat.html).
+Siehe auch [Compute settings for the Databricks JDBC Driver](https://docs.databricks.com/en/integrations/jdbc/compute.html).
 
-#### Authenticate access with a service principal using OAuth (OAuth M2M)
 
-See [Authenticate access with a service principal using OAuth](https://docs.databricks.com/en/dev-tools/auth/oauth-m2m.html).
+### Authentifizierung
 
-### Enable multiple catalogs
 
-Toggle on to sync multiple catalogs. If you enable this, you'll be able to [specify which catalogs to sync](#catalogs-and-schemas).
+Es gibt zwei Möglichkeiten, sich bei Databricks zu authentifizieren. Sie können ein persönliches Zugriffstoken (PAT) oder einen Dienstprinzipal mit OAuth (OAuth M2M) verwenden.
 
-### Default catalog
 
-Required. You must specify a default catalog (so you don't have to deal with catalog qualification in native queries).
+Der Databricks-Treiber unterstützt beide Optionen. Verwenden Sie die Umschalttaste, um die gewünschte Authentifizierungsmethode auszuwählen.
 
-You can't sync Databricks's legacy catalogs, however, including the `samples` or `hive_metastore` catalogs.
 
-### Catalogs and schemas
+#### Persönliche Zugangstoken-Authentifizierung
 
-You can specify which catalogs and schemas you want to sync and scan. Options are:
 
-- All
-- Only these...
-- All except...
+Siehe [Personal Access Token (PAT)](https://docs.databricks.com/en/dev-tools/auth/pat.html).
 
-For the **Only these** and **All except** options, you can input a comma-separated list of values to tell Metabase which catalogs and schemas you want to include (or exclude). For example:
+
+#### Authentifizierung des Zugriffs mit einem Dienstprinzipal unter Verwendung von OAuth (OAuth M2M)
+
+
+Siehe [Authentifizierung des Zugriffs mit einem Dienstprinzipal über OAuth](https://docs.databricks.com/en/dev-tools/auth/oauth-m2m.html).
+
+
+### Mehrere Kataloge aktivieren
+
+
+Schalten Sie diese Option ein, um mehrere Kataloge zu synchronisieren. Wenn Sie dies aktivieren, können Sie [angeben, welche Kataloge synchronisiert werden sollen](#catalogs-and-schemas).
+
+
+### Standardkatalog
+
+
+Erforderlich. Sie müssen einen Standardkatalog angeben (damit Sie sich nicht mit Katalogqualifikationen in nativen Abfragen befassen müssen).
+
+
+Sie können jedoch nicht die Legacy-Kataloge von Databricks synchronisieren, einschließlich der Kataloge "samples" oder "hive_metastore".
+
+
+### Kataloge und Schemata
+
+
+Sie können angeben, welche Kataloge und Schemata Sie synchronisieren und scannen möchten. Die Optionen sind:
+
+
+- Alle
+- Nur diese...
+- Alle außer...
+
+
+Bei den Optionen**Nur diese** und**Alle außer** können Sie eine durch Kommata getrennte Liste von Werten eingeben, um der Metabase mitzuteilen, welche Kataloge und Schemata Sie einschließen (oder ausschließen) möchten. Ein Beispiel:
+
 
 ```
 foo,bar,baz
 ```
 
-You can use the `*` wildcard to match multiple schemas.
 
-Let's say you have three schemas: foo, bar, and baz.
-
-- If you have **Only these...** set, and enter the string `b*`, you'll sync with bar and baz.
-- If you have **All except...** set, and enter the string `b*`, you'll just sync foo.
-
-Note that only the `*` wildcard is supported; you can't use other special characters or regexes.
-
-### Additional JDBC connection string options
-
-You can append options to the connection string that Metabase uses to connect to your database. E.g., `IgnoreTransactions=0`.
-
-See [Compute settings for the Databricks JDBC Driver](https://docs.databricks.com/en/integrations/jdbc/compute.html).
-
-### Re-run queries for simple explorations
-
-Turn this option **OFF** if people want to click **Run** (the play button) before applying any summarizations or filters in the query builder.
-
-By default, Metabase will execute a query as soon as you choose an grouping option from the **Summarize** menu or a filter condition from the [drill-through menu](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through). If your database is slow, you may want to disable re-running to avoid loading data on each click.
-
-### Choose when syncs and scans happen
-
-See [syncs and scans](../sync-scan.md#choose-when-syncs-and-scans-happen).
-
-### Periodically refingerprint tables
-
-> Periodic refingerprinting will increase the load on your database.
-
-Turn this option **ON** to scan a sample of values every time Metabase runs a [sync](../sync-scan.md#how-database-syncs-work).
-
-A fingerprinting query examines the first 10,000 rows from each column and uses that data to guesstimate how many unique values each column has, what the minimum and maximum values are for numeric and timestamp columns, and so on. If you leave this option **OFF**, Metabase will only fingerprint your columns once during setup.
-
-## Model features
-
-There aren't (yet) any model features available for Databricks.
-
-## Danger zone
-
-See [Danger zone](../danger-zone.md).
-
-## Further reading
-
-- [Managing databases](../../databases/connecting.md)
-- [Metadata editing](../../data-modeling/metadata-editing.md)
-- [Models](../../data-modeling/models.md)
-- [Setting data access permissions](../../permissions/data.md)
+Sie können den Platzhalter "*" verwenden, um mehrere Schemata abzugleichen.
