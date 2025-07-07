@@ -1,96 +1,92 @@
 ---
-title: Metrics
+Titel: Metriken
 redirect_from:
-  - /docs/latest/administration-guide/07-segments-and-metrics
-  - /docs/latest/data-modeling/segments-and-metrics
+- /docs/latest/administration-guide/07-segments-and-metrics
+- /docs/aktuell/datenmodellierung/segmente-und-metriken
 ---
 
-# Metrics
 
-Create metrics to define the official way to calculate important numbers for your team.
+# Metriken
 
-Metrics are like pre-defined calculations: create your aggregations once, save them as metrics, and use them whenever you need to analyze your data.
 
-For example, you may want to create a metric that calculates revenue, so people can refer to revenue in their own questions. That way you standardize how revenue is calculated (so you don't end up with five different calculations for the revenue).
+Erstellen Sie Metriken, um den offiziellen Weg zur Berechnung wichtiger Zahlen für Ihr Team zu definieren.
 
-## Using metrics
 
-You can:
+Metriken sind wie vordefinierte Berechnungen: Erstellen Sie Ihre Aggregationen einmal, speichern Sie sie als Metriken und verwenden Sie sie immer dann, wenn Sie Ihre Daten analysieren müssen.
 
-- Save metrics to [collections](../exploration-and-organization/collections.md).
-- Add metrics to [dashboards](../dashboards/introduction.md).
-- View metrics in the [database browser](../exploration-and-organization/exploration.md#browse-your-databases).
-- Pick metrics as aggregation columns in the Summarize block when creating questions, modify them or combine.
-- [Pro](https://www.metabase.com/product/pro) and [Enterprise](https://www.metabase.com/product/enterprise) plans include the ability to [mark metrics as verified](../exploration-and-organization/content-verification.md).
 
-### Metrics in the query builder
+Sie können zum Beispiel eine Metrik zur Berechnung des Umsatzes erstellen, damit sich die Mitarbeiter in ihren Fragen auf den Umsatz beziehen können. Auf diese Weise können Sie standardisieren, wie der Umsatz berechnet wird (so dass Sie nicht fünf verschiedene Berechnungen für den Umsatz haben).
 
-When asking questions in the query builder, you can find metrics that your team created in the summarization section under **Common metrics**. You can pick multiple metrics and they will be calculated independently and joined automatically along the chosen dimensions.
 
-![Common metrics](./images/common-metrics.png)
+## Verwendung von Metriken
 
-You can also pick a metric as a data source when creating a new question. If the metric has a time dimension, Metabase will include the time dimension as a grouping. You can change the groupings to break out the metric by other dimensions.
 
-![Metrics tab in the entity picker](./images/entity-picker-metrics-tab.png)
+Sie können:
 
-You can use custom expressions to combine multiple metrics, or perform calculations on top of metrics.
 
-## Creating a metric
+- Metriken in [Sammlungen] speichern(../exploration-and-organization/collections.md).
+- Hinzufügen von Metriken zu [Dashboards](../dashboards/introduction.md).
+- Betrachten Sie Metriken im [Datenbankbrowser](../exploration-and-organization/exploration.md#browse-your-databases).
+- Wählen Sie beim Erstellen von Fragen Metriken als Aggregationsspalten im Summarize-Block aus, ändern Sie sie oder kombinieren Sie sie.
+- Die Pläne [Pro](https://www.metabase.com/product/pro) und [Enterprise](https://www.metabase.com/product/enterprise) bieten die Möglichkeit, [Metriken als verifiziert zu markieren](../exploration-and-organization/content-verification.md).
 
-To create a metric, bring up the command palette with cmd/ctrl + k. That’s cmd + k for Macs, or ctrl + k for Windows PCs. Search for New metric.
 
-You can also create a new metric by going to **Browse > Metrics** in the navigation side bar and clicking on **+**.
+### Metriken im Abfragegenerator
 
-Select your starting data. You can start from a model, metric, table, or saved question.
 
-The metric editor is similar to the regular query builder, with two key differences:
+Wenn Sie im Query Builder Fragen stellen, finden Sie die von Ihrem Team erstellten Metriken im Abschnitt "Zusammenfassung" unter **Gemeinsame Metriken**. Sie können mehrere Metriken auswählen, die dann unabhängig voneinander berechnet und automatisch entlang der gewählten Dimensionen verknüpft werden.
 
-- The aggregation section is called [**Formula**](#metric-formula)
-- The group by section is called the [**Default time dimension**](#metric-default-time-dimension). You can only group by a single time dimension.
 
-![Formula](./images/formula.png)
+![Allgemeine Metriken](./images/common-metrics.png)
 
-Only the data and formula steps are required to define a metric. You can join and filter data before the formula step, and set a default time dimension to group by.
 
-## Metric formula
+Sie können auch eine Metrik als Datenquelle auswählen, wenn Sie eine neue Frage erstellen. Wenn die Metrik eine Zeitdimension hat, wird die Metabase die Zeitdimension als Gruppierung einschließen. Sie können die Gruppierungen ändern, um die Metrik nach anderen Dimensionen aufzuschlüsseln.
 
-The formula is the core of the metric. It's the thing you are aggregating, and it's required when defining a metric.
 
-You can build metrics on top of existing metrics.
+(/images/entity-picker-metrics-tab.png)[Metrik-Registerkarte in der Entitätsauswahl)
 
-![Metric built on top of other metrics](./images/metrics-built-on-other-metrics.png)
 
-## Metric default time dimension
+Sie können benutzerdefinierte Ausdrücke verwenden, um mehrere Metriken zu kombinieren oder Berechnungen auf den Metriken durchzuführen.
 
-You can optionally set a default time dimension for the metric. Metabase will use this default time dimension when the metric is opened or displayed on a card in a collection or dashboard. In the image below that shows two pinned metrics at the top of a collection, the left metric lacks a default time dimension, so Metabase displays the metric as a number chart. The right metric has a default time dimension, so Metabase displays it as a line chart.
 
-![Pinned metrics](./images/pinned-metrics.png)
+## Erstellen einer Metrik
 
-Setting a time dimension doesn't lock the metric to that specific dimension. If someone uses the metric in a question or dashboard, they'll be able to group by other time dimensions and granularities as well.
 
-For example, you could calculate revenue and set a default time dimension of `Created At` by month, but if someone added that metric to a dashboard, they could group revenue by a different time granularity (e.g., by quarter). This is just an FYI so that you don't name a metric "Monthly Revenue" and think that by setting a default time dimension to "month", Metabase will prevent people from slicing revenue by other time granularities.
+Um eine Metrik zu erstellen, rufen Sie die Befehlspalette mit cmd/ctrl + k auf. Das ist cmd + k für Macs oder ctrl + k für Windows PCs. Suchen Sie nach Neue Metrik.
 
-## Editing a metric
 
-To edit a metric, click on the three dot menu (**...**) and select **Edit metric definition**. Editing a metric requires curate access to the metric's collection.
+Sie können auch eine neue Metrik erstellen, indem Sie in der seitlichen Navigationsleiste auf **Durchsuchen > Metriken** gehen und auf **+** klicken.
 
-Do your thing, and save your changes.
 
-When you click on a metric, Metabase will assume that you're using that metric as the starting point for a new question. You can save any changes you make as a new question, but these changes won't affect the metric's definition.
+Wählen Sie Ihre Ausgangsdaten. Sie können von einem Modell, einer Metrik, einer Tabelle oder einer gespeicherten Frage ausgehen.
 
-## Metric permissions
 
-Like questions, models, and dashboards, whether a group can view or edit a metric depends on [collection permissions](../permissions/collections.md). By "view" we mean the ability to see the metric in a collection, or see the metric as an option when building a query with the metric's data source. If a metric is used in another question, whether a group can view the question depends on the question's collection, not the metric's collection.
+Der Metrik-Editor ist dem regulären Abfrage-Editor ähnlich, mit zwei wesentlichen Unterschieden:
 
-By "editing" a metric, we mean [editing the metric's query definition](#editing-a-metric).
 
-These collection permissions also interact with the group's [data permissions](../permissions/data.md), which define whether the group can view or query the metric's source data.
+- Der Aggregationsabschnitt heißt [**Formel**](#metric-formula)
+- Der Abschnitt "Gruppieren nach" heißt [**Standard-Zeitdimension**](#metric-default-time-dimension). Sie können nur nach einer einzigen Zeitdimension gruppieren.
 
-## Verifying a metric
 
-See [content verification](../exploration-and-organization/content-verification.md).
+![Formel](./images/formula.png)
 
-## Further reading
 
-- [Models](./models.md)
-- [Segments](./segments.md)
+Zur Definition einer Metrik sind nur die Schritte Daten und Formel erforderlich. Sie können Daten vor dem Formelschritt verknüpfen und filtern und eine Standard-Zeitdimension für die Gruppierung nach festlegen.
+
+
+## Metrische Formel
+
+
+Die Formel ist der Kern der Metrik. Sie ist das, was Sie aggregieren, und sie ist erforderlich, wenn Sie eine Metrik definieren.
+
+
+Sie können Metriken auf bestehenden Metriken aufbauen.
+
+
+(./images/metrics-built-on-other-metrics.png)
+
+
+## Standard-Zeitdimension der Metrik
+
+
+Sie können optional eine Standard-Zeitdimension für die Metrik festlegen. Metabase verwendet diese Standardzeitdimension, wenn die Metrik geöffnet oder auf einer Karte in einer Sammlung oder einem Dashboard angezeigt wird. In der folgenden Abbildung, die zwei angeheftete Metriken am oberen Rand einer Sammlung zeigt, hat die linke Metrik keine Standard-Zeitdimension, sodass Metabase die Metrik als Zahlendiagramm anzeigt. Die rechte Metrik hat eine standardmäßige Zeitdimension und wird daher in der Metabase als Liniendiagramm angezeigt.
