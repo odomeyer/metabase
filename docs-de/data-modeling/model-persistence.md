@@ -1,73 +1,89 @@
 ---
-title: Model persistence
+Titel: Modellpersistenz
 ---
 
-# Model persistence
 
-> Currently available for PostgreSQL, MySQL, and Redshift.
+# Modellpersistenz
 
-Metabase can persist the results of your models so that your models (and the questions based on those models) load faster.
 
-Metabase will store model results in tables in a bespoke schema in your data warehouse (not the Metabase application database). When people ask questions based on your models, Metabase will use the tables with the stored results instead of re-running the model's query.
+> Derzeit verfügbar für PostgreSQL, MySQL und Redshift.
 
-> Model persistence doesn't work with [data sandboxing](../permissions/data-sandboxes.md) or [impersonation](../permissions/impersonation.md).
 
-## Turn on model persistence in Metabase
+Metabase kann die Ergebnisse Ihrer Modelle persistieren, sodass Ihre Modelle (und die auf diesen Modellen basierenden Fragen) schneller geladen werden.
 
-To persist models for faster loading, you'll need to turn on model persistence for:
 
-1. [Your Metabase](#turn-on-model-persistence-for-your-metabase)
-2. [Individual databases](#turn-on-model-persistence-for-each-database)
-3. [(Optional) individual models](#turn-on-model-persistence-for-individual-models)
+Metabase speichert die Modellergebnisse in Tabellen in einem benutzerdefinierten Schema in Ihrem Data Warehouse (nicht in der Metabase-Anwendungsdatenbank). Wenn Personen Fragen stellen, die auf Ihren Modellen basieren, verwendet Metabase die Tabellen mit den gespeicherten Ergebnissen, anstatt die Abfrage des Modells erneut auszuführen.
 
-### Turn on model persistence for your Metabase
 
-To turn on model persistence for your Metabase, go to **Admin settings** > **Performance** > **Model persistence**.
+> Die Modellpersistenz funktioniert nicht mit [data sandboxing](../permissions/data-sandboxes.md) oder [impersonation](../permissions/impersonation.md).
 
-You can set models to refresh based on one of the default frequencies (every 1 hour, 2 hours, etc.), or select the **Custom** option to use [cron syntax](https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html) to specify your own update frequency.
 
-The cron scheduler uses the [Report Timezone](../configuring-metabase/localization.md#report-timezone) if selected. Otherwise the scheduler will use the System Timezone (which defaults to GMT in [Metabase Cloud](https://www.metabase.com/cloud/)).
+## Modellpersistenz in der Metabase einschalten
 
-We recommend scheduling your models to refresh on a frequency that makes sense with how often your source tables update with new data.
 
-If someone [changes the query definition of a model](./models.md#edit-a-models-query), any question based on that model will re-run the model's query until the next scheduled model refresh.
+Um Modelle für ein schnelleres Laden aufrechtzuerhalten, müssen Sie die Modellpersistenz für Folgendes aktivieren:
 
-## Turn on model persistence for each database
 
-Once you've turned on model persistence for your Metabase, you'll need to set it up for each specific database, as Metabase will need to create a schema in your data warehouse to store the persisted models.
+1. [Ihre Metabasis](#turn-on-model-persistence-for-your-metabase)
+2. [Einzelne Datenbanken](#turn-on-model-persistence-for-each-database)
+3. [(Optional) individuelle Modelle](#turn-on-model-persistence-for-individual-models)
 
-1. Go to **Admin settings** > **Databases** > [your database] > **Turn model persistence on**. If the credentials you've given Metabase to connect to your database are permissive, Metabase should do all the work for you: Metabase will check if the schema already exists, or otherwise attempt to create it. If the connection's credentials _lack_ the necessary permissions to create the schema in your database, you'll need to create the schema in the database yourself.
 
-2. To manually create the schema in your data warehouse, click on the **info icon** to get the schema name.
+### Aktivieren Sie die Modellpersistenz für Ihre Metabase
 
-3. Create the schema in your database---make sure you use the exact schema name from step 1. For example, if you're running PostgreSQL as your data warehouse, you'd create the schema by running `CREATE SCHEMA IF NOT EXISTS schema_name`, with `schema_name` being whatever Metabase showed you in the info icon.
 
-4. Ensure that the credentials Metabase uses to connect to your data warehouse can manage and write to that schema.
+Um die Modellpersistenz für Ihre Metabasis zu aktivieren, gehen Sie zu**Admin-Einstellungen** >**Leistung** >**Modellpersistenz**.
 
-## Turn on model persistence for individual models
+
+Sie können die Modelle so einstellen, dass sie in einem der Standardintervalle (alle 1 Stunde, 2 Stunden usw.) aktualisiert werden, oder Sie wählen die Option**Benutzerdefiniert**, um mithilfe der [cron-Syntax](https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html) Ihre eigene Aktualisierungsfrequenz festzulegen.
+
+
+Der Cron-Scheduler verwendet die [Report Timezone](../configuring-metabase/localization.md#report-timezone), wenn sie ausgewählt ist. Andernfalls verwendet der Scheduler die Systemzeitzone (die in der [Metabase Cloud](https://www.metabase.com/cloud/) standardmäßig auf GMT eingestellt ist).
+
+
+Wir empfehlen, die Aktualisierung Ihrer Modelle so zu planen, dass die Häufigkeit der Aktualisierung Ihrer Quelltabellen mit neuen Daten berücksichtigt wird.
+
+
+Wenn jemand [die Abfragedefinition eines Modells ändert](./models.md#edit-a-models-query), wird jede Frage, die auf diesem Modell basiert, die Abfrage des Modells bis zur nächsten geplanten Modellaktualisierung erneut ausführen.
+
+
+## Aktivieren Sie die Modellpersistenz für jede Datenbank.
+
+
+Nachdem Sie die Modellpersistenz für Ihre Metabase aktiviert haben, müssen Sie sie für jede einzelne Datenbank einrichten, da die Metabase ein Schema in Ihrem Data Warehouse erstellen muss, um die persistierten Modelle zu speichern.
+
+
+1. Gehen Sie zu **Admin-Einstellungen** > **Datenbanken** > [Ihre Datenbank] > **Modellpersistenz einschalten**. Wenn die Anmeldeinformationen, die Sie Metabase für die Verbindung mit Ihrer Datenbank gegeben haben, zulässig sind, sollte Metabase die ganze Arbeit für Sie erledigen: Metabase prüft, ob das Schema bereits vorhanden ist, oder versucht andernfalls, es zu erstellen. Wenn die Anmeldeinformationen der Verbindung_nicht über die erforderlichen Berechtigungen zum Erstellen des Schemas in Ihrer Datenbankverfügen, müssen Sie das Schema selbst in der Datenbank erstellen.
+
+
+2. Um das Schema manuell in Ihrem Data Warehouse zu erstellen, klicken Sie auf das **Infosymbol**, um den Schemanamen zu erhalten.
+
+
+3. Erstellen Sie das Schema in Ihrer Datenbank - stellen Sie sicher, dass Sie den exakten Schemanamen aus Schritt 1 verwenden. Wenn Sie beispielsweise PostgreSQL als Data Warehouse verwenden, erstellen Sie das Schema, indem Sie "CREATE SCHEMA IF NOT EXISTS schema_name" ausführen, wobei "schema_name" der Name ist, den Ihnen Metabase im Infosymbol angezeigt hat.
+
+
+4. Stellen Sie sicher, dass die Anmeldeinformationen, die Metabase für die Verbindung zu Ihrem Data Warehouse verwendet, dieses Schema verwalten und beschreiben können.
+
+
+## Aktivieren Sie die Modellpersistenz für einzelne Modelle
+
 
 {% include plans-blockquote.html feature="Individual model persistence" %}
 
-You can also toggle persistence on or off for individual models. When viewing a model, click on the **...** in the upper right and select **Edit settings**. Toggle **Persist model data** on (you'll need [Curate access](../permissions/collections.md#curate-access) to the model's collection to do this).
 
-Toggling persistence for individual models is useful for models with data that updates at different frequencies than the schedule you set for other models in that database, or for models that are used more or less than other models in that database.
+Sie können die Persistenz auch für einzelne Modelle ein- oder ausschalten. Klicken Sie bei der Anzeige eines Modells auf das Symbol **...** oben rechts und wählen Sie **Einstellungen bearbeiten**. Schalten Sie**Modelldaten beibehalten** ein (dazu benötigen Sie [Curate access](../permissions/collections.md#curate-access) für die Sammlung des Modells).
 
-## Refreshing a model's persisted results
 
-To refresh a model's results, go to the model and click on the three-dot menu (**...**) and select **Edit settings**. In the info sidebar that opens, you'll see a note about when Metabase last refreshed the model's results, and an icon to refresh the results.
+Das Umschalten der Persistenz für einzelne Modelle ist nützlich für Modelle mit Daten, die in einer anderen Häufigkeit aktualisiert werden als der Zeitplan, den Sie für andere Modelle in dieser Datenbank festgelegt haben, oder für Modelle, die mehr oder weniger als andere Modelle in dieser Datenbank verwendet werden.
 
-## View model persistence logs
 
-You can view the logs for model persistence by clicking on the **gear** icon in the upper right and selecting **Admin settings** > **Tools** > **Model caching logs**. See [Admin tools](../usage-and-performance-tools/tools.md).
+## Aktualisieren der gespeicherten Ergebnisse eines Modells
 
-## Difference between persisted models and caching
 
-Persisted models differ from [cached results](../configuring-metabase/caching.md):
+Um die Ergebnisse eines Modells zu aktualisieren, gehen Sie zu dem Modell, klicken Sie auf das Menü mit den drei Punkten(**...**) und wählen Sie **Einstellungen bearbeiten**. In der Info-Seitenleiste, die sich öffnet, sehen Sie einen Hinweis darauf, wann Metabase die Ergebnisse des Modells zuletzt aktualisiert hat, sowie ein Symbol zum Aktualisieren der Ergebnisse.
 
-- **Models are persisted in your data warehouse; cached results are stored in the application database**. Metabase stores cached results in its application database. Metabase persists models in your connected data warehouse as tables.
-- **Metabase refreshes model results and invalidates cached results**. Metabase will refresh results of models according to the schedule you set. That is, Metabase will re-run the model's query and store the results in your data warehouse. For cached results of saved questions and dashboards, Metabase won't run the queries automatically; it will cache results when people view the question or dashboard, and invalidate the cached results according to the caching policy you set.
 
-## Further reading
+## Protokolle der Modellpersistenz anzeigen
 
-- [Models](./models.md)
-- [Caching policies](../configuring-metabase/caching.md)
+
+Sie können die Protokolle für die Modellpersistenz anzeigen, indem Sie auf das **Zahnradsymbol** oben rechts klicken und **Admin-Einstellungen** > **Tools** > **Modell-Caching-Protokolle** auswählen. Siehe [Admin-Tools](../usage-and-performance-tools/tools.md).
