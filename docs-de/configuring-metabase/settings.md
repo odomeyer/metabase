@@ -1,75 +1,83 @@
 ---
-title: General settings
+Titel: Allgemeine Einstellungen
 redirect_from:
-  - /docs/latest/administration-guide/08-configuration-settings
+- /docs/latest/administration-guide/08-konfiguration-settings
 ---
 
-# General settings
 
-This section contains settings for your whole instance, like its URL, the reporting timezone, and toggles for disabling or enabling some of Metabase's optional features.
+# Allgemeine Einstellungen
 
-You can configure these settings from **Settings** > **Admin Settings** > **General**.
 
-## Site name
+Dieser Abschnitt enthält Einstellungen für Ihre gesamte Instanz, wie z. B. die URL, die Berichtszeitzone und Umschaltmöglichkeiten zum Deaktivieren oder Aktivieren einiger optionaler Funktionen der Metabase.
 
-How you’d like to refer to this instance of Metabase.
 
-## Site URL
+Sie können diese Einstellungen unter **Einstellungen** > **Admin-Einstellungen** > **Allgemein** konfigurieren.
 
-The site URL is the web address that people use to access your Metabase instance. Make sure to include `http://` or `https://` to make sure it’s reachable. This feature is only available for self-hosted Metabases. For customers on Metabase Cloud, check out [Custom domains](../cloud/custom-domain.md).
 
-## Custom homepage
+## Standortname
 
-Admins can pick a dashboard to serve as the homepage. If people lack permissions to view the selected dashboard, Metabase will redirect them to the default homepage.
 
-If you've set a dashboard as your homepage, and want to revert to the default Metabase homepage, simply turn off the **Enabled** toggle to disable the Custom Homepage feature.
+Wie möchten Sie diese Instanz der Metabase bezeichnen?
 
-## Redirect to HTTPS
 
-By default, Metabase is served over HTTP.
+## Website-URL
 
-To force all traffic to use HTTPS via redirect, click `http://` (under the **Site URL** section) and select `https://` from the dropdown menu.
 
-For example, say you enable HTTPS redirect for a Metabase instance at the site URL "example.com". When someone enters an address like `example.com/data` in their browser's address bar, they'll get automatically redirected to a secure connection at `https://example.com/data`.
+Die Site-URL ist die Webadresse, über die auf Ihre Metabase-Instanz zugegriffen wird. Geben Sie unbedingt "http://" oder "https://" an, um sicherzustellen, dass sie erreichbar ist. Diese Funktion ist nur für selbst gehostete Metabases verfügbar. Für Kunden der Metabase Cloud finden Sie unter [Custom domains](../cloud/custom-domain.md).
 
-> Note: if you haven't set up HTTPS on your server, Metabase will not let you enable HTTPS redirect. Instead, you'll get a warning saying "It looks like HTTPS is not properly configured."
 
-## Email address for help requests
+## Benutzerdefinierte Homepage
 
-This email address will be displayed in various messages throughout Metabase when users encounter a scenario where they need assistance from an admin, such as a password reset request.
 
-## Anonymous tracking
+Administratoren können ein Dashboard auswählen, das als Startseite dienen soll. Wenn Personen keine Berechtigung zum Anzeigen des ausgewählten Dashboards haben, leitet Metabase sie auf die Standard-Homepage um.
 
-This option turns determines whether or not you allow [anonymous data about your usage of Metabase](../installation-and-operation/information-collection.md) to be sent back to us to help us improve the product. [Your database’s data is never tracked or sent](https://www.metabase.com/security).
 
-## Friendly table and field names
+Wenn Sie ein Dashboard als Startseite festgelegt haben und zur Standard-Homepage von Metabase zurückkehren möchten, deaktivieren Sie einfach den Schalter **Aktiviert**, um die Funktion "Benutzerdefinierte Homepage" zu deaktivieren.
 
-By default, Metabase attempts to make field and table names more readable by changing things like `somehorriblename` to `Some Horrible Name`. This does not work well for languages other than English, or for fields that have lots of abbreviations or codes in them. If you'd like to turn this setting off, you can do so from the Admin Panel under **Settings** > **Admin settings** > **General**.
 
-If you re-enable this setting, Metabase will run a [scan](../databases/sync-scan.md#how-database-scans-work) against your database to review your table and column names again.
+## Umleitung zu HTTPS
 
-To manually label field or table names in Metabase, check out the [Table Metadata](../data-modeling/metadata-editing.md) section in your admin settings. Metadata in the Table Metadata can be further curated in [models](../data-modeling/models.md).
 
-## Enable X-rays
+Die Metabase wird standardmäßig über HTTP bereitgestellt.
 
-[X-rays](../exploration-and-organization/x-rays.md) are a great way for people to get quick summary stats on your data. If these X-ray queries get too slow or expensive, you can turn them off here.
 
-## Allowed domains for iframes in dashboards
+Um die Verwendung von HTTPS für den gesamten Datenverkehr über eine Umleitung zu erzwingen, klicken Sie auf "http://" (unter dem Abschnitt "Site URL" ) und wählen Sie "https://" aus dem Dropdown-Menü.
 
-Make sure you trust the sources that you allow people to embed in dashboards.
 
-You can include multiple domains separated by a comma. Including a subdomain is more restrictive than including the domain.
+Beispiel: Sie aktivieren die HTTPS-Weiterleitung für eine Metabase-Instanz mit der Site-URL "example.com". Wenn jemand eine Adresse wie "example.com/data" in die Adressleiste seines Browsers eingibt, wird er automatisch zu einer sicheren Verbindung unter "https://example.com/data" umgeleitet.
 
-- For **Domains**, (e.g., `example.com`), Metabase will allow any iframe from the domain (`example.com`) _and_ its subdomains (e.g., `data.example.com`, `docs.example.com`, etc.).
-- For **Subdomains** (e.g., `data.example.com`) Metabase will restrict iframes to those subdomains. In this case, iframes _must_ be from `data.example.com` (or any of the other allowed domains). Metabase will block iframes from all other subdomains, including `example.com`.
 
-So if you included the following:
+> Hinweis: Wenn Sie auf Ihrem Server kein HTTPS eingerichtet haben, können Sie in der Metabase keine HTTPS-Weiterleitung aktivieren. Stattdessen erhalten Sie eine Warnung, die besagt: "Es sieht so aus, als sei HTTPS nicht richtig konfiguriert."
 
-```
-data.example.com,
-docs.example.com
-```
 
-Metabase would only allow iframes from `data.example.com` and `docs.example.com`. Metabase would block iframes from all other domains, including iframes from `example.com` and its other subdomains.
+## E-Mail-Adresse für Hilfeanfragen
 
-See [iframes in dashboards](../dashboards/introduction.md#iframe-cards).
+
+Diese E-Mail-Adresse wird in verschiedenen Meldungen in der Metabase angezeigt, wenn Benutzer Hilfe von einem Administrator benötigen, z. B. beim Zurücksetzen eines Passworts.
+
+
+## Anonyme Verfolgung
+
+
+Mit dieser Option legen Sie fest, ob Sie zulassen, dass [anonyme Daten über Ihre Nutzung von Metabase](../installation-and-operation/information-collection.md) an uns zurückgeschickt werden, um das Produkt zu verbessern. [Die Daten Ihrer Datenbank werden niemals nachverfolgt oder gesendet](https://www.metabase.com/security).
+
+
+## Freundliche Tabellen- und Feldnamen
+
+
+Standardmäßig versucht die Metabase, Feld- und Tabellennamen besser lesbar zu machen, indem sie Dinge wie `somehorriblename` in `Some Horrible Name` ändert. Dies funktioniert nicht gut bei anderen Sprachen als Englisch oder bei Feldern, die viele Abkürzungen oder Codes enthalten. Wenn Sie diese Einstellung deaktivieren möchten, können Sie dies über das Admin-Panel unter **Einstellungen** > **Admin-Einstellungen** > **Allgemein** tun.
+
+
+Wenn Sie diese Einstellung wieder aktivieren, führt Metabase einen [scan](../databases/sync-scan.md#how-database-scans-work) gegen Ihre Datenbank durch, um Ihre Tabellen- und Spaltennamen erneut zu überprüfen.
+
+
+Um Feld- oder Tabellennamen in Metabase manuell zu beschriften, sehen Sie sich den Abschnitt [Table Metadata](../data-modeling/metadata-editing.md) in Ihren Admin-Einstellungen an. Die Metadaten in den Tabellen-Metadaten können in [models](../data-modeling/models.md) weiter kuratiert werden.
+
+
+## Röntgenstrahlen einschalten
+
+
+[X-rays(../exploration-and-organization/x-rays.md) sind eine gute Möglichkeit, um schnell eine Übersicht über Ihre Daten zu erhalten. Wenn diese Röntgenabfragen zu langsam oder zu teuer werden, können Sie sie hier abschalten.
+
+
+## Erlaubte Domänen für iframes in Dashboards
