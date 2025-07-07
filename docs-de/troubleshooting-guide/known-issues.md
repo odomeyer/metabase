@@ -1,45 +1,67 @@
 ---
-title: How to find a known bug or limitation
+Titel: Wie man einen bekannten Fehler oder eine Einschränkung findet
 ---
 
-# How to find a known bug or limitation
 
-If you can't find or solve your problem using the [troubleshooting guides](./index.md), you may be running into an issue that we're still working on.
+# Wie man einen bekannten Fehler oder eine Einschränkung findet
 
-## How to find a known bug
 
-If your work in Metabase is crashing, missing, or not being saved, you might have found a bug.
+Wenn Sie Ihr Problem mit Hilfe der [troubleshooting guides](./index.md) nicht finden oder lösen können, könnte es sein, dass Sie auf ein Problem stoßen, an dem wir noch arbeiten.
 
-1. Go to the [Metabase Github issues page](https://github.com/metabase/metabase/issues).
 
-2. Click on the **Label** dropdown and select `Type: Bug`.
+## So finden Sie einen bekannten Fehler
 
-   > If you're encountering problems after your Metabase version was recently upgraded, you can add the label `.Regression`.
 
-3. Choose least one value in the **Label** dropdown that matches the feature you're having trouble with.
+Wenn Ihre Arbeit in Metabase abstürzt, fehlt oder nicht gespeichert wird, haben Sie möglicherweise einen Fehler gefunden.
 
-   > Add additional keywords to the search bar above the list of results. Hit Enter/Return to run the search.
 
-   > Click **Sort** and select the thumbs up emoji (👍) to view the most commonly encountered bugs.
+1. Gehen Sie auf die [Metabase Github issues page](https://github.com/metabase/metabase/issues).
 
-4. If you find an existing bug that matches your problem, add a thumbs up emoji to help the team prioritize it.
 
-5. If you can't find your problem, and you're sure that it's not a [product limitation](#how-to-find-a-known-product-limitation), you can [create a new bug report](./bugs.md).
+2. Klicken Sie auf das Dropdown-Menü **Bezeichnung** und wählen Sie "Typ: Fehler" aus.
 
-## How to find a known product limitation
 
-If the functionality you're looking for simply doesn't exist (i.e., it hasn't suddenly gone missing), you might be running into a product limitation.
+> Wenn Sie Probleme haben, nachdem Ihre Metabase-Version kürzlich aktualisiert wurde, können Sie die Bezeichnung "Regression" hinzufügen.
 
-1. Go to the [Metabase Github issues page](https://github.com/metabase/metabase/issues).
 
-2. Click on the **Label** dropdown and select `Type: New Feature`.
+3. Wählen Sie in der Dropdown-Liste **Bezeichnung** mindestens einen Wert aus, der dem Merkmal entspricht, mit dem Sie Probleme haben.
 
-3. Choose at least one value in the **Label** dropdown that matches the feature you're looking for.
 
-   > Add additional keywords to the search bar above the list of results. Hit Enter/Return to run the search.
+> Fügen Sie der Suchleiste oberhalb der Ergebnisliste weitere Schlüsselwörter hinzu. Drücken Sie Enter/Return, um die Suche auszuführen.
 
-   > Click **Sort** and select the thumbs up emoji (👍) to view the most highly requested features.
 
-4. If you find a feature request that matches what you want to do, add a thumbs up emoji to help the team prioritize it.
+> Klicken Sie auf **Sortieren** und wählen Sie das Daumen-hoch-Emoji (👍), um die am häufigsten auftretenden Fehler anzuzeigen.
 
-5. If a feature request doesn't exist, and your issue isn't [caused by a known bug](#how-to-find-a-known-bug), you can [submit a new feature request](./requesting-new-features.md).
+
+4. Wenn Sie einen bestehenden Fehler finden, der Ihrem Problem entspricht, fügen Sie ein Daumen-hoch-Emoji hinzu, um dem Team zu helfen, ihn zu priorisieren.
+
+
+5. Wenn Sie Ihr Problem nicht finden können und sicher sind, dass es sich nicht um eine [Produktbeschränkung] handelt(## Wie finde ich eine bekannte Produktbeschränkung), können Sie [einen neuen Fehlerbericht](./bugs.md)erstellen.
+
+
+## Wie man eine bekannte Produktbeschränkung findet
+
+
+Wenn die von Ihnen gesuchte Funktion einfach nicht vorhanden ist (d.h. sie ist nicht plötzlich verschwunden), stoßen Sie möglicherweise auf eine Produktbeschränkung.
+
+
+1. Gehen Sie auf die [Metabase Github issues page](https://github.com/metabase/metabase/issues).
+
+
+2. Klicken Sie auf das Dropdown-Menü **Bezeichnung** und wählen Sie "Typ: Neues Merkmal".
+
+
+3. Wählen Sie in der Dropdown-Liste **Bezeichnung** mindestens einen Wert aus, der dem gesuchten Merkmal entspricht.
+
+
+> Fügen Sie in der Suchleiste oberhalb der Ergebnisliste weitere Schlüsselwörter hinzu. Drücken Sie Enter/Return, um die Suche auszuführen.
+
+
+> Klicken Sie auf **Sortieren** und wählen Sie das Daumen-hoch-Emoji (👍), um die am häufigsten gewünschten Funktionen anzuzeigen.
+
+
+4. Wenn Sie eine Funktionsanfrage finden, die Ihren Wünschen entspricht, fügen Sie ein Daumen-hoch-Emoji hinzu, um dem Team zu helfen, die Anfrage zu priorisieren.
+
+
+5. Wenn ein Feature Request nicht existiert und Ihr Problem nicht [durch einen bekannten Fehler verursacht wird](#how-to-find-a-known-bug), können Sie [einen neuen Feature Request einreichen](./requesting-new-features.md).
+
