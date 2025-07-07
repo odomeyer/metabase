@@ -1,77 +1,184 @@
 ---
-title: My dashboard is slow
+Titel: Mein Armaturenbrett ist langsam
 ---
 
-# My dashboard is slow
 
-First, you'll want to make sure your browser is on friendly terms with Metabase:
+# Mein Dashboard ist langsam
 
-- Clear your browser cache and disable all extensions before refreshing the page, or
-- Try loading the dashboard in a private/incognito session.
 
-## Dashboard has over 10 cards
+Vergewissern Sie sich zunächst, dass Ihr Browser mit der Metabase kompatibel ist:
 
-1. Create a new dashboard for each group of cards that are related to the same time period or segment.
-   - For example, create new dashboards for weekly vs. monthly metrics, or new vs. returning customers.
-2. Move your cards to the new dashboard(s) until each dashboard has 10 or fewer cards.
-3. Use [custom destinations](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/dashboards/custom-destinations) to link related cards on different dashboards.
 
-**Explanation**
+- Löschen Sie Ihren Browser-Cache und deaktivieren Sie alle Erweiterungen, bevor Sie die Seite aktualisieren, oder
+- Versuchen Sie, das Dashboard in einer privaten/Incognito-Sitzung zu laden.
 
-A dashboard with 50 cards is almost always going to be slower than 5 dashboards with 10 cards. Metabase displays a dashboard by refreshing all of the questions on it (that is, re-executing all of the queries against your database). Your data warehouse may try to run these queries at the same time to return the results faster, however, these queries can actually compete with each other and slow things down (like having too many programs open on your computer at once).
 
-Aside from running faster, a small and focused dashboard is also easier for people to understand without getting overwhelmed. For more tips, check out our article on [BI dashboard best practices](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/dashboards/bi-dashboard-best-practices).
+## Das Dashboard hat über 10 Karten
 
-## Dashboard used by many people at the same time
 
-1. Optional: use Metabase's [Usage analytics](../usage-and-performance-tools/usage-analytics.md) to look at your Metabase usage stats\*.
-2. Set up [caching](../configuring-metabase/caching.md) for the questions on your popular dashboard.
-3. Run the dashboard during off-hours so that people can load the cached results in seconds instead of executing a fresh query to your database.
+1. Erstellen Sie ein neues Dashboard für jede Gruppe von Karten, die sich auf denselben Zeitraum oder dasselbe Segment beziehen.
+- Erstellen Sie z. B. neue Dashboards für wöchentliche vs. monatliche Metriken oder für neue vs. wiederkehrende Kunden.
+2. Verschieben Sie Ihre Karten auf die neue(n) Übersichtstafel(n), bis jede Übersichtstafel 10 oder weniger Karten hat.
+3. Verwenden Sie [benutzerdefinierte Ziele](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/dashboards/custom-destinations), um verwandte Karten auf verschiedenen Dashboards zu verknüpfen.
 
-\* Available on Pro and Enterprise plans.
 
-**Explanation**
+**Erläuterung**
 
-If you have a dashboard that many people check around the same time (e.g., at the start of the work day), you may end up with queued queries or saturated database connections. Caching allows you to prepare for peak traffic by running those slow queries once, ahead of time, so that the results are ready to go.
 
-Caching takes less effort because it doesn't involve any changes to your schemas or databases. If you're ready to invest more resources into the root cause of dashboard performance issues, check out this list of common [schema and database optimizations](https://metabase.com/learn/metabase-basics/administration/administration-and-operation/making-dashboards-faster#organize-data-to-anticipate-common-questions).
+Ein Dashboard mit 50 Karten wird fast immer langsamer sein als 5 Dashboards mit 10 Karten. Metabase zeigt ein Dashboard an, indem es alle darin enthaltenen Fragen aktualisiert (d. h. alle Abfragen an Ihre Datenbank erneut ausführt). Ihr Data Warehouse kann versuchen, diese Abfragen gleichzeitig auszuführen, um die Ergebnisse schneller zu erhalten. Allerdings können diese Abfragen miteinander konkurrieren und die Abläufe verlangsamen (wie wenn Sie zu viele Programme gleichzeitig auf Ihrem Computer geöffnet haben).
 
-## Embedded dashboard is slow compared to original dashboard
 
-1. To speed up the embedded dashboard, set up a [locked parameter to pre-filter your data](../embedding/static-embedding-parameters.md#restricting-data-in-a-static-embed-with-locked-parameters).
+Ein kleines und übersichtliches Dashboard ist nicht nur schneller, sondern auch leichter zu verstehen, ohne dass die Benutzer überfordert werden. Weitere Tipps finden Sie in unserem Artikel über [BI-Dashboard Best Practices](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/dashboards/bi-dashboard-best-practices).
 
-**Explanation**
 
-One of the easiest ways to make a question or dashboard run faster is to work with a smaller dataset. Your Metabase admin can apply automatic data limitations using things like [SSO](../people-and-groups/start.md#authentication), [data permissions](../permissions/data.md), and [data sandboxing](../permissions/data-sandboxes.md).
+## Dashboard wird von vielen Personen gleichzeitig genutzt
 
-When someone loads a question or a dashboard in a static embed, however, that question or dashboard will query the full dataset (rather than a smaller dataset limited by permissions). Static, [signed embeds](../embedding/static-embedding.md) don't require people to be logged in, and unauthenticated people viewing the signed embed won't be subject to the permissions and data restrictions set up by your admin.
 
-## Dashboard is slow compared to similar dashboards
+1. Optional: Verwenden Sie die Metabase [Usage analytics](../usage-and-performance-tools/usage-analytics.md), um Ihre Metabase-Nutzungsstatistiken einzusehen\*.
+2. Richten Sie [caching](../configuring-metabase/caching.md) für die Fragen in Ihrem beliebten Dashboard ein.
+3. Führen Sie das Dashboard außerhalb der Geschäftszeiten aus, damit die Benutzer die zwischengespeicherten Ergebnisse in Sekundenschnelle laden können, anstatt eine neue Abfrage an Ihre Datenbank zu stellen.
 
-1. Remove fields (columns) that you don't need in the final result.
-2. Add a [filter](../questions/query-builder/filters.md) to reduce the amount of data being queried. For example:
-   - Narrow down the time frame to the reporting period that you care about.
-   - Exclude invalid records, such as: blanks, nulls, or rows with values like "cancelled", "expired", "invalid", and so on.
-3. Remove [joins](../questions/query-builder/join.md) to tables that aren't being used.
-4. If you're aggregating data from the query builder, ask your database admin if there's a pre-aggregated [view](https://www.metabase.com/glossary/view) that you can use instead.
 
-**Explanation**
+\* Verfügbar für Pro- und Enterprise-Tarife.
 
-When you update your question to use a minimal number of rows or columns (or switch your question to use a smaller table, such as a summary table) your database can spend less time scanning those records in order to return your results. Narrowing the scope of your question is especially important to think about if you're starting from someone else's saved question or model, because you might not need all of the data that the original creator decided to include.
 
-If all of your dashboards are slow, you might be limited by the performance of a particular data source. In that case, we recommend teaming up with your database admin to [Troubleshoot database performance](./db-performance.md).
+**Erläuterung**
 
-## Related problems
 
-- [Error message: your question took too long](./timeout.md).
-- [Questions that use numbers, dates, or times are slower than other questions](./db-performance.md#questions-that-use-number-date-or-timestamp-columns).
-- [I can't save my question or dashboard](./proxies.md).
-- [I can't view or edit a question or dashboard](./cant-view-or-edit.md).
-- [My visualizations are wrong](./visualization.md).
+Wenn Sie ein Dashboard haben, das viele Personen zur gleichen Zeit abfragen (z. B. zu Beginn des Arbeitstages), kann es vorkommen, dass sich Abfragen in der Warteschlange befinden oder Datenbankverbindungen überlastet sind. Mit Caching können Sie sich auf Spitzenbelastungen vorbereiten, indem Sie diese langsamen Abfragen einmal im Voraus ausführen, so dass die Ergebnisse sofort zur Verfügung stehen.
 
-## Are you still stuck?
 
-If you can’t solve your problem using the troubleshooting guides:
+Caching ist mit weniger Aufwand verbunden, da keine Änderungen an Ihren Schemata oder Datenbanken vorgenommen werden müssen. Wenn Sie bereit sind, mehr Ressourcen in die Ursache von Dashboard-Performance-Problemen zu investieren, sehen Sie sich diese Liste von gemeinsamen [Schema- und Datenbank-Optimierungen](https://metabase.com/learn/metabase-basics/administration/administration-and-operation/making-dashboards-faster#organize-data-to-anticipate-common-questions) an.
 
-- Search or ask the [Metabase community](https://discourse.metabase.com/).
-- Search for [known bugs or limitations](./known-issues.md).
+
+## Eingebettetes Dashboard ist langsam im Vergleich zum ursprünglichen Dashboard
+
+
+1. Um das eingebettete Dashboard zu beschleunigen, richten Sie einen [gesperrten Parameter zur Vorfilterung Ihrer Daten ein](../embedding/static-embedding-parameters.md#restricting-data-in-a-static-embed-with-locked-parameters).
+
+
+**Erläuterung**
+
+
+Eine der einfachsten Möglichkeiten, eine Frage oder ein Dashboard schneller laufen zu lassen, besteht darin, mit einem kleineren Datensatz zu arbeiten. Ihr Metabase-Administrator kann automatische Datenbeschränkungen mit Hilfe von Funktionen wie [SSO](../people-and-groups/start.md#authentication), [data permissions](../permissions/data.md) und [data sandboxing](../permissions/data-sandboxes.md) anwenden.
+
+
+Wenn jemand eine Frage oder ein Dashboard in einer statischen Einbettung lädt, wird diese Frage oder dieses Dashboard jedoch den vollständigen Datensatz abfragen (und nicht einen kleineren, durch Berechtigungen eingeschränkten Datensatz). Statische, [signierte Einbettungen](../embedding/static-embedding.md) erfordern keine Anmeldung, und nicht authentifizierte Personen, die die signierte Einbettung ansehen, unterliegen nicht den von Ihrem Administrator eingerichteten Berechtigungen und Datenbeschränkungen.
+
+
+## Das Dashboard ist im Vergleich zu ähnlichen Dashboards langsam
+
+
+1. Entfernen Sie Felder (Spalten), die Sie im Endergebnis nicht benötigen.
+2. Fügen Sie einen [Filter](../questions/query-builder/filters.md) hinzu, um die Menge der abgefragten Daten zu reduzieren. Ein Beispiel:
+- Schränken Sie den Zeitrahmen auf den für Sie relevanten Berichtszeitraum ein.
+- Schließen Sie ungültige Datensätze aus, z. B. Leerzeichen, Nullen oder Zeilen mit Werten wie "storniert", "abgelaufen", "ungültig" usw.
+3. Entfernen Sie [joins](../questions/query-builder/join.md) zu Tabellen, die nicht verwendet werden.
+4. Wenn Sie Daten aus dem Query Builder aggregieren, fragen Sie Ihren Datenbankadministrator, ob es eine voraggregierte [Ansicht](https://www.metabase.com/glossary/view) gibt, die Sie stattdessen verwenden können.
+
+
+**Erläuterung**
+
+
+Wenn Sie Ihre Frage aktualisieren, um eine minimale Anzahl von Zeilen oder Spalten zu verwenden (oder Ihre Frage so umstellen, dass sie eine kleinere Tabelle verwendet, wie z. B. eine Zusammenfassungstabelle), kann Ihre Datenbank weniger Zeit damit verbringen, diese Datensätze zu durchsuchen, um Ihre Ergebnisse zurückzugeben. Den Umfang Ihrer Frage einzuschränken ist besonders wichtig, wenn Sie von einer gespeicherten Frage oder einem Modell eines anderen Nutzers ausgehen, da Sie möglicherweise nicht alle Daten benötigen, die der ursprüngliche Ersteller aufgenommen hat.
+
+
+Wenn alle Ihre Dashboards langsam sind, sind Sie möglicherweise durch die Leistung einer bestimmten Datenquelle eingeschränkt. In diesem Fall empfehlen wir Ihnen, gemeinsam mit Ihrem Datenbankadministrator [Troubleshoot database performance](./db-performance.md).
+
+
+## Verwandte Probleme
+
+
+- [Fehlermeldung: Ihre Frage hat zu lange gedauert](./timeout.md).
+- [Fragen, die Zahlen, Daten oder Zeiten verwenden, sind langsamer als andere Fragen](./db-performance.md#questions-that-use-number-date-or-timestamp-columns).
+- [Ich kann meine Frage oder mein Dashboard nicht speichern](./proxies.md).
+- [Ich kann eine Frage oder ein Dashboard nicht anzeigen oder bearbeiten](./cant-view-or-edit.md).
+- [Meine Visualisierungen sind falsch](./visualization.md).
+
+
+## Stecken Sie immer noch fest?
+
+
+Wenn Sie Ihr Problem nicht mit Hilfe der Anleitungen zur Fehlerbehebung lösen können:
+
+
+- Suchen oder fragen Sie die [Metabase-Community](https://discourse.metabase.com/).
+- Suchen Sie nach [bekannten Fehlern oder Einschränkungen](./known-issues.md).
+
+---
+Titel: Mein Armaturenbrett ist langsam
+---
+
+# Mein Dashboard ist langsam
+
+Vergewissern Sie sich zunächst, dass Ihr Browser mit der Metabase kompatibel ist:
+
+-  Löschen Sie Ihren Browser-Cache und deaktivieren Sie alle Erweiterungen, bevor Sie die Seite aktualisieren, oder
+-  Versuchen Sie, das Dashboard in einer privaten/Incognito-Sitzung zu laden.
+
+## Das Dashboard hat über 10 Karten
+
+1. Erstellen Sie ein neues Dashboard für jede Gruppe von Karten, die sich auf denselben Zeitraum oder dasselbe Segment beziehen.
+- Erstellen Sie z. B. neue Dashboards für wöchentliche vs. monatliche Metriken oder für neue vs. wiederkehrende Kunden.
+2. Verschieben Sie Ihre Karten auf die neue(n) Übersichtstafel(n), bis jede Übersichtstafel 10 oder weniger Karten hat.
+3. Verwenden Sie [benutzerdefinierte Ziele](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/dashboards/custom-destinations), um verwandte Karten auf verschiedenen Dashboards zu verknüpfen.
+
+**Erläuterung**
+
+Ein Dashboard mit 50 Karten wird fast immer langsamer sein als 5 Dashboards mit 10 Karten. Metabase zeigt ein Dashboard an, indem es alle darin enthaltenen Fragen aktualisiert (d. h. alle Abfragen an Ihre Datenbank erneut ausführt). Ihr Data Warehouse kann versuchen, diese Abfragen gleichzeitig auszuführen, um die Ergebnisse schneller zu erhalten. Allerdings können diese Abfragen miteinander konkurrieren und die Abläufe verlangsamen (wie wenn Sie zu viele Programme gleichzeitig auf Ihrem Computer geöffnet haben).
+
+Ein kleines und übersichtliches Dashboard ist nicht nur schneller, sondern auch leichter zu verstehen, ohne dass die Benutzer überfordert werden. Weitere Tipps finden Sie in unserem Artikel über [BI-Dashboard Best Practices](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/dashboards/bi-dashboard-best-practices).
+
+## Dashboard wird von vielen Personen gleichzeitig genutzt
+
+1. Optional: Verwenden Sie die Metabase [Usage analytics](../usage-and-performance-tools/usage-analytics.md), um Ihre Metabase-Nutzungsstatistiken einzusehen\*.
+2. Richten Sie [caching](../configuring-metabase/caching.md) für die Fragen in Ihrem beliebten Dashboard ein.
+3. Führen Sie das Dashboard außerhalb der Geschäftszeiten aus, damit die Benutzer die zwischengespeicherten Ergebnisse in Sekundenschnelle laden können, anstatt eine neue Abfrage an Ihre Datenbank zu stellen.
+
+\* Verfügbar für Pro- und Enterprise-Tarife.
+
+**Erläuterung**
+
+Wenn Sie ein Dashboard haben, das viele Personen zur gleichen Zeit abfragen (z. B. zu Beginn des Arbeitstages), kann es vorkommen, dass sich Abfragen in der Warteschlange befinden oder Datenbankverbindungen überlastet sind. Mit Caching können Sie sich auf Spitzenbelastungen vorbereiten, indem Sie diese langsamen Abfragen einmal im Voraus ausführen, so dass die Ergebnisse sofort zur Verfügung stehen.
+
+Caching ist mit weniger Aufwand verbunden, da keine Änderungen an Ihren Schemata oder Datenbanken vorgenommen werden müssen. Wenn Sie bereit sind, mehr Ressourcen in die Ursache von Dashboard-Performance-Problemen zu investieren, sehen Sie sich diese Liste von gemeinsamen [Schema- und Datenbank-Optimierungen](https://metabase.com/learn/metabase-basics/administration/administration-and-operation/making-dashboards-faster#organize-data-to-anticipate-common-questions) an.
+
+## Eingebettetes Dashboard ist langsam im Vergleich zum ursprünglichen Dashboard
+
+1. Um das eingebettete Dashboard zu beschleunigen, richten Sie einen [gesperrten Parameter zur Vorfilterung Ihrer Daten ein](../embedding/static-embedding-parameters.md#restricting-data-in-a-static-embed-with-locked-parameters).
+
+**Erläuterung**
+
+Eine der einfachsten Möglichkeiten, eine Frage oder ein Dashboard schneller laufen zu lassen, besteht darin, mit einem kleineren Datensatz zu arbeiten. Ihr Metabase-Administrator kann automatische Datenbeschränkungen mit Hilfe von Funktionen wie [SSO](../people-and-groups/start.md#authentication), [data permissions](../permissions/data.md) und [data sandboxing](../permissions/data-sandboxes.md) anwenden.
+
+Wenn jemand eine Frage oder ein Dashboard in einer statischen Einbettung lädt, wird diese Frage oder dieses Dashboard jedoch den vollständigen Datensatz abfragen (und nicht einen kleineren, durch Berechtigungen eingeschränkten Datensatz). Statische, [signierte Einbettungen](../embedding/static-embedding.md) erfordern keine Anmeldung, und nicht authentifizierte Personen, die die signierte Einbettung ansehen, unterliegen nicht den von Ihrem Administrator eingerichteten Berechtigungen und Datenbeschränkungen.
+
+## Das Dashboard ist im Vergleich zu ähnlichen Dashboards langsam
+
+1. Entfernen Sie Felder (Spalten), die Sie im Endergebnis nicht benötigen.
+2. Fügen Sie einen [Filter](../questions/query-builder/filters.md) hinzu, um die Menge der abgefragten Daten zu reduzieren. Ein Beispiel:
+-  Schränken Sie den Zeitrahmen auf den für Sie relevanten Berichtszeitraum ein.
+-  Schließen Sie ungültige Datensätze  aus, z. B. Leerzeichen, Nullen oder Zeilen mit Werten wie "storniert", "abgelaufen", "ungültig" usw.
+3. Entfernen Sie [joins](../questions/query-builder/join.md) zu Tabellen, die nicht verwendet werden.
+4. Wenn Sie Daten aus dem Query Builder aggregieren, fragen Sie Ihren Datenbankadministrator, ob es eine voraggregierte [Ansicht](https://www.metabase.com/glossary/view) gibt, die Sie stattdessen verwenden können.
+
+**Erläuterung**
+
+Wenn Sie Ihre Frage aktualisieren, um eine minimale Anzahl von Zeilen oder Spalten zu verwenden (oder Ihre Frage so umstellen, dass sie eine kleinere Tabelle verwendet, wie z. B. eine Zusammenfassungstabelle), kann Ihre Datenbank weniger Zeit damit verbringen, diese Datensätze zu durchsuchen, um Ihre Ergebnisse zurückzugeben. Den Umfang Ihrer Frage einzuschränken ist besonders wichtig, wenn Sie von einer gespeicherten Frage oder einem Modell eines anderen Nutzers ausgehen, da Sie möglicherweise nicht alle Daten benötigen, die der ursprüngliche Ersteller aufgenommen hat.
+
+Wenn alle Ihre Dashboards langsam sind, sind Sie möglicherweise durch die Leistung einer bestimmten Datenquelle eingeschränkt. In diesem Fall empfehlen wir Ihnen, gemeinsam mit Ihrem Datenbankadministrator [Troubleshoot database performance](./db-performance.md).
+
+## Verwandte Probleme
+
+- [Fehlermeldung: Ihre Frage hat zu lange gedauert](./timeout.md).
+- [Fragen, die Zahlen, Daten oder Zeiten verwenden, sind langsamer als andere Fragen](./db-performance.md#questions-that-use-number-date-or-timestamp-columns).
+- [Ich kann meine Frage oder mein Dashboard nicht speichern](./proxies.md).
+- [Ich kann eine Frage oder ein Dashboard nicht anzeigen oder bearbeiten](./cant-view-or-edit.md).
+- [Meine Visualisierungen sind falsch](./visualization.md).
+
+## Stecken Sie immer noch fest?
+
+Wenn Sie Ihr Problem nicht mit Hilfe der Anleitungen zur Fehlerbehebung lösen können:
+
+-  Suchen oder fragen Sie die [Metabase-Community](https://discourse.metabase.com/).
+-  Suchen Sie nach [bekannten Fehlern oder Einschränkungen](./known-issues.md).
