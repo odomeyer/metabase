@@ -1,30 +1,42 @@
 ---
-title: Embedded analytics SDK - plugins
+Titel: Eingebettete Analytik SDK - Plugins
 ---
 
-# Embedded analytics SDK - plugins
+
+# Eingebettetes Analyse-SDK - Plugins
+
 
 {% include plans-blockquote.html feature="Embedded analytics SDK" sdk=true %}
 
-The Metabase Embedded analytics SDK supports plugins to customize the behavior of components. These plugins can be used in a global context or on a per-component basis.
 
-## Global plugins
+Das Metabase Embedded analytics SDK unterstützt Plugins zur Anpassung des Verhaltens von Komponenten. Diese Plugins können in einem globalen Kontext oder auf Basis einzelner Komponenten verwendet werden.
 
-To use a plugin globally, add the plugin to the `MetabaseProvider`'s `pluginsConfig` prop:
 
-```typescript
+## Globale Plugins
+
+
+Um ein Plugin global zu verwenden, fügen Sie das Plugin in die "pluginsConfig" -Eigenschaft des "MetabaseProvider" ein:
+
+
+``typescript
 {% include_file "{{ dirname }}/snippets/plugins/global-plugins.tsx" snippet="example" %}
 ```
 
-## Component plugins
 
-To use a plugin on a per-component basis, pass the plugin as a prop to the component:
+## Komponenten-Plugins
 
-```typescript
+
+Um ein Plugin für eine einzelne Komponente zu verwenden, übergeben Sie das Plugin als Prop an die Komponente:
+
+
+````typescript
 {% include_file "{{ dirname }}/snippets/plugins/component-plugins.tsx" snippet="example" %}
 ```
 
-## Further reading
 
-- [Interactive question plugins](./questions.md#interactive-question-plugins)
-- [Dashboard plugins](./dashboards.md#dashboard-plugins)
+## Weitere Lektüre
+
+
+- [Interaktive Frage-Plugins](./questions.md#interactive-question-plugins)
+- [Dashboard-Plugins](./dashboards.md#dashboard-plugins)
+
