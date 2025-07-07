@@ -1,103 +1,70 @@
 ---
-title: Pie and sunburst charts
+Titel: Tortendiagramme und Sunburst-Diagramme
 redirect_from:
   - /docs/latest/questions/sharing/visualizations/pie-or-donut-chart
 ---
 
-# Pie and sunburst charts
+# Tortendiagramm und Sunburst-Diagramm
+Ein **Kuchendiagramm** kann verwendet werden, um eine Metrik nach einer einzelnen Dimension aufzuschlüsseln. In Metabase sind Torten Donuts. Ein **Sunburst-Diagramm** ist ein mehrdimensionales Kreisdiagramm mit mehreren Unterteilungen.
+Torten- und Sunburst-Diagramme](../images/pie-sunburst-demo.png)
 
-A **pie chart** can be used when breaking out a metric by a single dimension. In Metabase, pies are donuts. A **sunburst chart** is a multi-dimensional pie chart with multiple breakouts.
+## Wann wird ein Torten- oder Sunburst-Diagramm verwendet?
+Kreisdiagramme können verwendet werden, um eine Metrik als Teil eines Ganzen zu visualisieren. Sunburst-Diagramme können verwendet werden, um hierarchische oder verschachtelte Daten zu visualisieren oder um mehrere Ebenen der Kategorisierung anzuzeigen.
+Tortendiagramme und Sunburst-Diagramme eignen sich am besten, wenn die Anzahl der möglichen Untergliederungswerte gering ist, wie z. B. Konten nach Plan. Diese Diagramme sollten nur zur Darstellung von Metriken verwendet werden, die sich zu 100 % addieren (z. B. Anzahl oder Gesamtsumme).
+Kreisdiagramme sollten verwendet werden, um ein allgemeines Gefühl für die relative Größe von Ausbrüchen zu vermitteln. Wenn ein präziser Vergleich wichtig ist, um die genauen Unterschiede zwischen den Werten zu erkennen, oder wenn Sie mehr als ein paar Unterteilungen haben (z. B. Kunden pro Land), ist es normalerweise besser, ein Balken- oder Zeilendiagramm zu verwenden.
 
-![Pie and sunburst charts](../images/pie-sunburst-demo.png)
-
-## When to use a pie or sunburst chart
-
-Pie charts can be used to visualize a metric as part of a whole. Sunburst charts can be used to visualize hierarchical or nested data, or display multiple levels of categorization.
-
-Pie and sunburst charts work best when when the number of possible breakout values is small, like accounts by plan. These charts should only be used to visualize metrics that add up to 100% (like count or sum of total).
-
-Pie charts should be used to communicate a general sense of the relative sizes of breakouts. If precise comparison is important so people can see the exact differences between values, or you have more than a few breakouts (like customers per country), it's usually better to use a bar or row chart.
-
-## How to create a pie or sunburst chart
-
-Pie and sunburst charts display a single metric across one or more breakouts. Both pie/donut charts and sunburst charts are available in the "Pie chart" option in the visualization sidebar.
-
-For a simple pie chart, you'll need a query with a single breakout and metric, for example:
-
-| Type | Sum of Quantity |
+## Wie erstellt man ein Torten- oder Sunburst-Diagramm?
+Torten- und Sunburst-Diagramme zeigen eine einzelne Kennzahl in einer oder mehreren Unterteilungen an. Sowohl Torten-/Donut-Diagramme als auch Sunburst-Diagramme sind in der Option "Tortendiagramm" in der Seitenleiste der Visualisierung verfügbar.
+Für ein einfaches Kreisdiagramm benötigen Sie eine Abfrage mit einer einzelnen Untergliederung und einer Metrik, z. B.:
+| Typ | Summe der Menge |
 | ---- | --------------- |
-| Cat  | 23              |
-| Bird | 14              |
-| Dog  | 35              |
-
-If your query has multiple metrics, you'll be able to choose the metric for the chart in [chart settings](#pie-and-sunburst-chart-settings).
-
-![Plain pie](../images/plain-pie.png)
-
-For a sunburst (multi-dimensional pie) chart, you'll need a query with up to three breakouts and a numerical metric. Here's an example of a query result with two breakouts, `Type` and `Subtype`:
-
-| Type | Subtype | Sum of Quantity |
+| Katze | 23 |
+| Vogel | 14 |
+| Hund | 35 |
+Wenn Ihre Abfrage mehrere Metriken hat, können Sie die Metrik für das Diagramm in [Diagrammeinstellungen](#pie-and-sunburst-chart-settings) auswählen.
+![Einfacher Kuchen](../images/plain-pie.png)
+Für ein Sunburst-Diagramm (mehrdimensionales Kreisdiagramm) benötigen Sie eine Abfrage mit bis zu drei Unterteilungen und einer numerischen Metrik. Hier ist ein Beispiel für ein Abfrageergebnis mit zwei Untergliederungen, "Typ" und "Untertyp":
+| Typ | Untertyp | Summe der Menge |
 | ---- | ------- | --------------- |
-| Cat  | Siamese | 4               |
-| Cat  | Persian | 12              |
-| Cat  | Bengal  | 7               |
-| Bird | Crow    | 5               |
-| Bird | Parrot  | 9               |
-| Dog  | Corgi   | 10              |
-| Dog  | Poodle  | 13              |
-| Dog  | Bulldog | 7               |
-| Dog  | Husky   | 5               |
+| Katze | Siamesisch | 4 |
+| Katze | Perser | 12 |
+| Katze | Bengalisch | 7 |
+| Vogel | Krähe | 5 |
+| Vogel | Papagei | 9 |
+| Hund | Corgi | 10 |
+| Hund | Pudel | 13 |
+| Hund | Bulldogge | 7 |
+| Hund | Husky | 5 |
+Sie können in den [Diagramm-"Daten"-Einstellungen](#data-settings) auswählen, welche Ausbrüche den inneren, mittleren oder äußeren Ringen des Sunburst-Diagramms zugewiesen werden sollen. Wenn Ihre Abfrage mehrere Metriken enthält, können Sie auch auswählen, welche Metrik angezeigt werden soll. Hier ist das Sunburst-Diagramm für die obige Beispieltabelle:
+![Sunburst mit zwei Ebenen](../images/sunburst-two-levels.png)
+Sie müssen die Prozentsätze nicht in Ihre Abfrage aufnehmen. Metabase berechnet automatisch den prozentualen Anteil an der Gesamtzahl für jeden Wert der Metrik (z. B. errechnet Metabase, dass 23 Katzen 31,9 % aller Haustiere ausmachen).
 
-You can choose which breakouts to assign to the inner, middle, or outer rings of the sunburst chart in [chart "Data" settings](#data-settings). If your query has multiple metrics, you'll also be able to choose which metric to display. Here's the sunburst chart for the example table above:
+## Einstellungen für Torten- und Sunburst-Diagramme
+Um die Diagrammoptionen zu öffnen, klicken Sie auf das Zahnradsymbol unten links auf dem Bildschirm. Daraufhin öffnet sich eine Einstellungs-Seitenleiste mit den Registerkarten **Daten** und **Anzeige**.
 
-![Sunburst with two levels](../images/sunburst-two-levels.png)
-
-You don't need to include the percentages in your query. Metabase will automatically compute the percentage of the total for each value of the metric (for example, Metabase will compute that 23 Cats make up 31.9% of all pets).
-
-## Pie and sunburst chart settings
-
-To open the chart options, click on the gear icon at the bottom left of the screen. This will open a settings sidebar with **Data** and **Display** tabs.
-
-### Data settings
-
-You can rename, reorder, or remove slices from the inner ring of a sunburst or pie chart. To reorder the pie slices, drag the cards with the slice names. To rename the slices, click on three dots next to the series name and enter a new name.
-
-To change the color of the pie slices, click on the color circle next to the slice's name. In sunburst charts, you can only change the color of the slices in the _inner_ ring (the slices in the outer rings inherit the colors of their parent slices).
-
-If your query has multiple metrics (columns), you can pick the column that should be depicted on the chart in the **Measure** dropdown.
-
-To format the total displayed in the middle of the chart, click on the three dots next to the metric name in the **Measure** setting. The measure format options — including the "number of decimal places" option — will only apply to the total, and not to the percentage values or labels. To configure the display of the percentage values and labels, go to the [display settings](#display-settings) tab.
-
+### Dateneinstellungen
+Sie können Scheiben aus dem inneren Ring eines Sunburst- oder Kreisdiagramms umbenennen, neu anordnen oder entfernen. Um die Tortenscheiben neu anzuordnen, ziehen Sie die Karten mit den Scheibennamen. Um die Slices umzubenennen, klicken Sie auf die drei Punkte neben dem Namen der Serie und geben Sie einen neuen Namen ein.
+Um die Farbe der Tortenstücke zu ändern, klicken Sie auf den Farbkreis neben dem Namen des Stücks. In Sunburst-Diagrammen können Sie nur die Farbe der Slices im _inneren_ Ring ändern (die Slices in den äußeren Ringen erben die Farben ihrer übergeordneten Slices).
+Wenn Ihre Abfrage mehrere Metriken (Spalten) hat, können Sie die Spalte, die im Diagramm dargestellt werden soll, im Dropdown-Menü **Maßnahme** auswählen.
+Um die in der Mitte des Diagramms angezeigte Gesamtsumme zu formatieren, klicken Sie auf die drei Punkte neben dem Namen der Metrik in der Einstellung **Maßnahme**. Die Optionen für das Messgrößenformat - einschließlich der Option "Anzahl der Dezimalstellen" - gelten nur für die Gesamtsumme und nicht für die Prozentwerte oder Beschriftungen. Um die Anzeige der Prozentwerte und Beschriftungen zu konfigurieren, gehen Sie auf die Registerkarte [Anzeigeeinstellungen](#display-settings).
 ![format sunburst](../images/sunburst-metric-options.png)
 
-### Display settings
+### Anzeigeeinstellungen
+Sie können einstellen, ob angezeigt werden soll:
+- Die Legende neben dem Diagramm.
+- Die Gesamtsumme in der Mitte des Diagramms. Das Format der Gesamtsumme kann in den [Dateneinstellungen](#data-settings) geändert werden.
+- Die Beschriftungen für die Tortenscheiben. Die Beschriftung der inneren Ringscheiben kann in den [Dateneinstellungen](#data-settings) geändert werden.
+  Bei Sunburst-Diagrammen mit mehreren Ausbrüchen wird nur der innere Ringausbruch in der Legende angezeigt. Standardmäßig ist die Funktion "Beschriftungen anzeigen" aktiviert. Wenn Sie "Beschriftungen anzeigen" deaktivieren, können Sie die Slices in einem Sunburst-Diagramm nur unterscheiden, indem Sie mit dem Mauszeiger über sie fahren.
+- Die Prozentwerte für die Slices. Wenn Sie sich für die Anzeige von Prozentwerten **in der Legende** entscheiden, dann aber die Option **Legende anzeigen** deaktivieren, werden die Prozentwerte nicht im Diagramm angezeigt.
+  Sie können die Prozentwerte für jeden Slice immer sehen, indem Sie den Mauszeiger über den Slice bewegen.
+Um die Anzahl der Dezimalstellen in den Prozentwerten zu ändern, verwenden Sie die Einstellung **Anzahl der Dezimalstellen** auf der Registerkarte **Anzeige**. Wenn Sie die Anzahl der Dezimalstellen für die Gesamtsumme in der Mitte des Diagramms ändern möchten, gehen Sie zu [Dateneinstellungen](#data-settings).
+![Einstellungen-Showcase](../images/sunburst-settings-showcase.png)
+Um das Diagramm besser lesbar zu machen, können Sie Slices, die kleiner als ein bestimmter Prozentsatz sind, zu einem Slice zusammenfassen, indem Sie **Minimum slice percentage** einstellen. Sie können die Kategorien und Werte im **Sonstigen** Slice sehen, wenn Sie den Mauszeiger über dieses Slice bewegen:
+![Andere Scheibe](../images/pie-other-slice.png)
+Derzeit können Sie weder die Farbe noch die Bezeichnung der **Anderen** Scheibe ändern.
 
-You can configure whether to show:
-
-- The legend next to the chart.
-- The total in the center of the chart. The format of the total can be changed in the [data settings](#data-settings).
-- The labels for the pie slices. The labels for the inner ring slices can be changed in the [data settings](#data-settings).
-
-  For sunburst charts with multiple breakouts, only the inner ring breakout will be displayed in the legend. By default, "Show labels" will be turned on. If you turn off "Show labels", the only way to distinguish slices on a sunburst chart will be to hover over them.
-
-- The percentage values for the slices. If you choose to display percentages **In the legend**, but then toggle off **Show legend**, the percentage values won't show up on the chart.
-
-  You can always see percentage values for any slice by hovering over the slice.
-
-To change the number of decimal places in the percentage values, use the **Number of decimal places** setting in the **Display** tab. If you want to change the number of decimal places for the total in the center of the chart, go to [data settings](#data-settings).
-
-![Settings showcase](../images/sunburst-settings-showcase.png)
-
-To make the chart more legible, you can group slices smaller than a certain percentage into one slice by adjusting **Minimum slice percentage**. You'll be able to see the categories and values in the **Other** slice by hovering over it:
-
-![Other slice](../images/pie-other-slice.png)
-
-Currently, you can't change the color or label of the **Other** slice.
-
-## Limitations and alternatives
-
-Consider using a bar or row chart (or a [stacked bar chart](line-bar-and-area-charts.md#stacked-bar-chart)) or a [pivot table](pivot-table.md) instead of a pie or sunburst chart in the following cases:
-
-- Your data has more than three breakouts
-- Your metrics don't add up to 100% (for example, average rating - prefer a gauge chart in that case)
-- You have a lot of categories in each breakout
+## Beschränkungen und Alternativen
+Ziehen Sie in den folgenden Fällen die Verwendung eines Balken- oder Zeilendiagramms (oder eines [gestapelten Balkendiagramms](line-bar-and-area-charts.md#stacked-bar-chart)) oder einer [Pivot-Tabelle](pivot-table.md) anstelle eines Torten- oder Sunburst-Diagramms in Betracht:
+- Ihre Daten haben mehr als drei Unterteilungen
+- Ihre Metriken ergeben nicht 100 % (z. B. durchschnittliche Bewertung - in diesem Fall ist ein Balkendiagramm vorzuziehen)
+- Sie haben viele Kategorien in jeder Untergliederung
