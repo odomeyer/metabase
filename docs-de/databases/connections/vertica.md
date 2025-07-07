@@ -1,50 +1,68 @@
 ---
-title: Working with Vertica in Metabase
+Titel: Arbeiten mit Vertica in Metabase
 redirect_from:
-  - /docs/latest/administration-guide/databases/vertica
+- /docs/latest/administration-guide/databases/vertica
 ---
 
-# Working with Vertica in Metabase
 
-Starting in v0.20.0, Metabase provides a driver for connecting to Vertica databases. Under the hood, Metabase uses Vertica's JDBC driver;
-due to licensing restrictions, we can't include it as part of Metabase. Luckily, downloading it yourself and making it available to Metabase
-is straightforward and only takes a few minutes.
+# Arbeiten mit Vertica in Metabase
 
-## Downloading the Vertica JDBC Driver JAR
 
-You can download the JDBC driver from [Vertica's JDBC driver downloads page](https://my.vertica.com/download/vertica/client-drivers/).
-Head to this page, log in to your account, accept the license agreement, and download `vertica-jdbc-8.0.0-0.jar` (for Vertica DB version 8.0)
-or whatever driver version most closely matches the version of Vertica you're running.
+Ab Version 0.20.0 bietet Metabase einen Treiber für die Verbindung zu Vertica-Datenbanken. Unter der Haube verwendet Metabase den JDBC-Treiber von Vertica;
+Aufgrund von Lizenzbeschränkungen können wir ihn nicht als Teil von Metabase integrieren. Zum Glück können Sie es selbst herunterladen und der Metabase zur Verfügung stellen
+in nur wenigen Minuten zur Verfügung stellen.
 
-It's very important to make sure you use the correct version of the JDBC driver; version
-8.0 of the driver won't work with Vertica version 7.2; version 7.2 of the driver won't work with Vertica version 7.1, and so forth. If in doubt,
-consult Vertica's documentation to find the correct version of the JDBC driver for your version of Vertica.
 
-## Adding the Vertica JDBC Driver JAR to the Metabase Plugins Directory
+## Herunterladen des Vertica JDBC-Treibers JAR
 
-Metabase will automatically make the Vertica driver available if it finds the Vertica JDBC driver JAR in the Metabase plugins directory when it starts up.
-All you need to do is create the directory, move the JAR you just downloaded into it, and restart Metabase.
 
-### When running from a JAR
+Sie können den JDBC-Treiber von [Vertica's JDBC driver downloads page](https://my.vertica.com/download/vertica/client-drivers/) herunterladen.
+Rufen Sie diese Seite auf, melden Sie sich bei Ihrem Konto an, akzeptieren Sie die Lizenzvereinbarung und laden Sie `vertica-jdbc-8.0.0-0.jar` (für Vertica DB Version 8.0)
+oder die Treiberversion, die der von Ihnen verwendeten Vertica-Version am nächsten kommt.
 
-By default, the plugins directory is called `plugins`, and lives in the same directory as the Metabase JAR.
 
-For example, if you're running Metabase from a directory called `/app/`, you should move the Vertica JDBC driver JAR to `/app/plugins/`:
+Es ist sehr wichtig, dass Sie die richtige Version des JDBC-Treibers verwenden; Version
+8.0 des Treibers wird nicht mit Vertica Version 7.2 funktionieren; Version 7.2 des Treibers wird nicht mit Vertica Version 7.1 funktionieren usw. Wenn Sie Zweifel haben,
+konsultieren Sie die Dokumentation von Vertica, um die richtige Version des JDBC-Treibers für Ihre Vertica-Version zu finden.
 
-```txt
-# example directory structure for running Metabase with Vertica support
+
+## Hinzufügen des Vertica JDBC-Treibers JAR zum Metabase Plugins-Verzeichnis
+
+
+Die Metabase stellt den Vertica-Treiber automatisch zur Verfügung, wenn sie beim Start das Vertica JDBC-Treiber-JAR im Metabase-Plugins-Verzeichnis findet.
+Sie müssen lediglich das Verzeichnis erstellen, das soeben heruntergeladene JAR in dieses Verzeichnis verschieben und Metabase neu starten.
+
+
+### Bei Ausführung aus einem JAR
+
+
+Standardmäßig heißt das Plugins-Verzeichnis "plugins" und befindet sich im selben Verzeichnis wie das Metabase-JAR.
+
+
+Wenn Sie Metabase beispielsweise in einem Verzeichnis namens `/app/` ausführen, sollten Sie das Vertica JDBC-Treiber-JAR nach `/app/plugins/` verschieben:
+
+
+``txt
+# Beispielhafte Verzeichnisstruktur für die Ausführung von Metabase mit Vertica-Unterstützung
 /app/metabase.jar
 /app/plugins/vertica-jdbc-8.0.0-0.jar
 ```
 
-### When running from Docker
 
-The process for adding plugins when running via Docker is similar, but you'll need to mount the `plugins` directory. Refer to instructions [here](../../installation-and-operation/running-metabase-on-docker.md#adding-external-dependencies-or-plugins) for more details.
+### Bei Ausführung über Docker
 
-## Model features
 
-There aren't (yet) any model features for Vertica.
+Der Prozess zum Hinzufügen von Plugins bei der Ausführung über Docker ist ähnlich, aber Sie müssen das Verzeichnis "plugins" einbinden. Weitere Einzelheiten finden Sie in der Anleitung [hier](../../installation-and-operation/running-metabase-on-docker.md#adding-external-dependencies-or-plugins).
 
-## Danger zone
 
-See [Danger zone](../danger-zone.md).
+## Modellfunktionen
+
+
+Es gibt (noch) keine Modellfunktionen für Vertica.
+
+
+## Gefahrenzone
+
+
+Siehe [Gefahrenzone](../danger-zone.md).
+
