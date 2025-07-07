@@ -1,33 +1,48 @@
 ---
-title: Dashboards overview
+Titel: Übersicht Dashboards
 redirect_from:
-  - /docs/latest/dashboards
+- /docs/latest/dashboards
 ---
 
-# Dashboards overview
 
-![Example dashboard](./images/dashboard.png)
+# Übersicht Dashboards
 
-## [Introduction to dashboards](./introduction.md)
 
-Learn how to arrange tables, charts, and text cards on a dashboard.
+(./images/dashboard.png)[Beispiel Dashboard]
 
-## [Dashboard filters](./filters.md)
 
-Add filters to dashboards to update tables and charts.
+## [Einführung in Dashboards](./introduction.md)
 
-## [Interactive dashboards](./interactive.md)
 
-Customize what happens when people click on a chart in your dashboard.
+Lernen Sie, wie man Tabellen, Diagramme und Textkarten in einem Dashboard anordnet.
 
-## [Charts with multiple series](./multiple-series.md)
 
-Combine multiple questions on a single chart.
+## [Dashboard-Filter](./filters.md)
 
-## [Dashboard subscriptions](./subscriptions.md)
 
-Set up a dashboard to email or Slack its results on a schedule.
+Hinzufügen von Filtern zu Dashboards, um Tabellen und Diagramme zu aktualisieren.
 
-## [Actions on dashboards](./actions.md)
 
-Add action buttons to dashboards.
+## [Interaktive Dashboards](./interactive.md)
+
+
+Passen Sie an, was passiert, wenn man auf ein Diagramm in Ihrem Dashboard klickt.
+
+
+## [Diagramme mit mehreren Serien](./multiple-series.md)
+
+
+Kombinieren Sie mehrere Fragen in einem einzigen Diagramm.
+
+
+## [Dashboard-Abonnements](./subscriptions.md)
+
+
+Richten Sie ein Dashboard so ein, dass seine Ergebnisse nach einem bestimmten Zeitplan per E-Mail oder Slack verschickt werden.
+
+
+## [Aktionen auf Dashboards](./actions.md)
+
+
+Hinzufügen von Aktionsschaltflächen zu Dashboards.
+
