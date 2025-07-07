@@ -1,34 +1,48 @@
 ---
-title: Can't save questions or dashboards, or getting a blank page
+Titel: Fragen oder Dashboards können nicht gespeichert werden, oder es wird eine leere Seite angezeigt
 ---
 
-# Can't save questions or dashboards, or getting a blank page
 
-If attempting to save a question or dashboard sometimes fails, or Metabase only loads a blank page, the problem might be the use of a proxy. A proxy could include other functions like a web application firewall (WAF), content optimization, or cache. Examples of proxies that are known to cause issues with Metabase include:
+# Fragen oder Dashboards können nicht gespeichert werden, oder es wird eine leere Seite angezeigt
 
-- Cloudflare's Rocket Loader and WAF
-- Azure's WAF
-- PageSpeed module for Apache
-- Some anti-virus browser extensions or add-ons
 
-## Saving questions or dashboards fails
+Wenn der Versuch, eine Frage oder ein Dashboard zu speichern, manchmal fehlschlägt oder Metabase nur eine leere Seite lädt, liegt das Problem möglicherweise an der Verwendung eines Proxys. Ein Proxy kann auch andere Funktionen wie eine Web Application Firewall (WAF), eine Inhaltsoptimierung oder einen Cache enthalten. Beispiele für Proxys, von denen bekannt ist, dass sie Probleme mit Metabase verursachen, sind:
 
-If saving questions or dashboards fails and the save button displays "Save Failed," or if you get the error, "Sorry you do not have permission to see that," the problem might be with a WAF like Cloudflare or Azure.
 
-- When the save fails, check the Console tab of your browser's Developer Tools for any errors.
-- You should also check the Network tab in the Developer Tools in your browser to view the network request. It will usually fail with error code 403, indicating the error is coming from the WAF and not Metabase.
+- Rocket Loader und WAF von Cloudflare
+- WAF von Azure
+- PageSpeed-Modul für Apache
+- Einige Antiviren-Browsererweiterungen oder Add-ons
 
-Clicking on the request will show more information, and looking at the headers will usually indicate where it originated from.
 
-Some WAFs have dynamic protection, which means that the problem might only occur after an upgrade of Metabase, and might go away after a few days.
+## Speichern von Fragen oder Dashboards schlägt fehl
 
-The solution is to disable the WAF for Metabase. Some services will show which rules were triggered, so it might be enough to disable those rules.
 
-## Seeing a blank page instead of the Metabase interface
+Wenn das Speichern von Fragen oder Dashboards fehlschlägt und auf der Schaltfläche Speichern die Meldung "Speichern fehlgeschlagen" angezeigt wird oder Sie die Fehlermeldung "Sie haben leider keine Berechtigung, das zu sehen" erhalten, liegt das Problem möglicherweise bei einer WAF wie Cloudflare oder Azure.
 
-If Metabase displays a blank page instead of its interface, the problem is usually with content optimization like PageSpeed or Cloudflare's Rocket Loader.
 
-- Check the Console tab of your browser's Developer Tools for any errors involving Content Security Policy (CSP).
-- See if Metabase has been able to deliver the HTML code by right clicking on the blank page and selecting "View page source." It might look like gibberish, but it should say `<title>Metabase</title>` near line 25.
+- Wenn das Speichern fehlschlägt, überprüfen Sie die Registerkarte "Konsole" in den Entwicklertools Ihres Browsers auf etwaige Fehler.
+- Sie sollten auch die Registerkarte "Netzwerk" in den Entwicklertools Ihres Browsers überprüfen, um die Netzwerkanforderung anzuzeigen. Normalerweise schlägt sie mit dem Fehlercode 403 fehl, was bedeutet, dass der Fehler von der WAF und nicht von der Metabase stammt.
 
-The solution is to disable content optimization for Metabase.
+
+Wenn Sie auf die Anfrage klicken, werden weitere Informationen angezeigt, und ein Blick auf die Kopfzeilen gibt in der Regel Aufschluss darüber, woher die Anfrage stammt.
+
+
+Einige WAFs verfügen über einen dynamischen Schutz, was bedeutet, dass das Problem möglicherweise erst nach einem Upgrade der Metabase auftritt und nach ein paar Tagen verschwindet.
+
+
+Die Lösung besteht darin, die WAF für Metabase zu deaktivieren. Einige Dienste zeigen an, welche Regeln ausgelöst wurden, so dass es möglicherweise ausreicht, diese Regeln zu deaktivieren.
+
+
+## Anzeige einer leeren Seite anstelle der Metabase-Oberfläche
+
+
+Wenn die Metabase eine leere Seite anstelle der Benutzeroberfläche anzeigt, liegt das Problem in der Regel an der Inhaltsoptimierung wie PageSpeed oder dem Rocket Loader von Cloudflare.
+
+
+- Überprüfen Sie die Registerkarte "Konsole" in den Entwicklertools Ihres Browsers auf Fehler, die die Content Security Policy (CSP) betreffen.
+- Prüfen Sie, ob Metabase den HTML-Code liefern konnte, indem Sie mit der rechten Maustaste auf die leere Seite klicken und "Seitenquelle anzeigen" wählen. Es sieht vielleicht wie Kauderwelsch aus, aber in der Nähe von Zeile 25 sollte "<title>Metabase</title>" stehen.
+
+
+Die Lösung besteht darin, die Inhaltsoptimierung für die Metabase zu deaktivieren.
+
