@@ -1,18 +1,24 @@
 ---
-title: Supported browsers
+Titel: Unterstützte Browser
 redirect_from:
-  - /docs/latest/administration-guide/supported-browsers
+- /docs/latest/administration-guide/supported-browsers
 ---
 
-# Supported browsers
 
-We try our best to make sure Metabase works in as many browsers as possible, but as this is the Internet, there may be little quirks from time to time in different settings. We believe Metabase works on these versions of these browsers and will attempt to fix specific bugs if any are found:
+# Unterstützte Browser
+
+
+Wir tun unser Bestes, um sicherzustellen, dass Metabase in so vielen Browsern wie möglich funktioniert, aber da dies das Internet ist, kann es von Zeit zu Zeit zu kleinen Macken in verschiedenen Einstellungen kommen. Wir gehen davon aus, dass Metabase auf diesen Versionen dieser Browser funktioniert, und werden versuchen, bestimmte Fehler zu beheben, falls welche gefunden werden:
+
 
 - Chrome (v70+)
-- Firefox (v68+)
-- Microsoft Edge (v17+)
-- Safari (v11+)
+- Firefox (ab Version 68)
+- Microsoft Edge (ab Version 17)
+- Safari (ab Version 11)
 
-Metabase may run perfectly well on older versions of these browsers or on specific browsers not listed above, but your mileage may vary. In particular, we ended support for IE11 in Metabase 0.40: it mostly still works, but you may see some unexpected behavior.
 
-We recommend you use the most up-to-date browser you can.
+Metabase kann auch mit älteren Versionen dieser Browser oder mit bestimmten, oben nicht aufgeführten Browsern einwandfrei funktionieren, aber das kann sich ändern. Insbesondere haben wir die Unterstützung für den IE11 in Metabase 0.40 eingestellt: Er funktioniert größtenteils noch, aber es kann zu unerwartetem Verhalten kommen.
+
+
+Wir empfehlen die Verwendung des aktuellsten Browsers, den Sie verwenden können.
+
