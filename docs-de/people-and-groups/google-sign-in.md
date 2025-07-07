@@ -1,66 +1,82 @@
 ---
-title: Google Sign-In
+Titel: Google Anmeldung
 redirect_from:
-  - /docs/latest/administration-guide/10-single-sign-on
-  - /docs/latest/people-and-groups/google-and-ldap
+- /docs/latest/administration-guide/10-single-sign-on
+- /docs/latest/leute-und-gruppen/google-und-ldap
 ---
+
 
 # Google Sign-In
 
-Enabling [Google Sign-In](https://developers.google.com/identity/sign-in/web/sign-in) for single sign-on (SSO) lets your team log in with a click instead of using email and password. SSO can also be used to let people create Metabase accounts without asking an admin to add each person manually. You can find SSO options under **Settings** > **Admin settings** > **Authentication**.
 
-If you'd like to have people authenticate with [SAML][saml-docs] or [JWT][jwt-docs], Metabase's [Pro and Enterprise](https://www.metabase.com/pricing/) let you do just that.
+Wenn Sie [Google Sign-In](https://developers.google.com/identity/sign-in/web/sign-in) für Single Sign-On (SSO) aktivieren, kann sich Ihr Team mit einem Klick anmelden, anstatt E-Mail und Passwort zu verwenden. SSO kann auch verwendet werden, um Personen die Möglichkeit zu geben, Metabase-Konten zu erstellen, ohne dass ein Administrator jede Person manuell hinzufügen muss. SSO-Optionen finden Sie unter **Einstellungen** > **Admin-Einstellungen** > **Authentifizierung**.
 
-## Enabling Google Sign-In
 
-Google Sign-In is a good option for SSO if:
+Wenn Sie Personen mit [SAML][saml-docs] oder [JWT][jwt-docs] authentifizieren möchten, können Sie dies mit [Pro und Enterprise](https://www.metabase.com/pricing/) von Metabase tun.
 
-- Your team is already using Google Workspace, or
-- You'd like to use Google's 2-step or multi-factor authentication (2FA or MFA) to secure your Metabase.
 
-## Get your Client ID from the Google developer console
+## Aktivieren von Google Sign-In
 
-To let your team start signing in with Google, you’ll first need to create an application through Google’s [developer console](https://console.developers.google.com/projectselector2/apis/library).
 
-Next, you'll have to create authorization credentials and [get a Google API Client ID](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid):
+Google Sign-In ist eine gute Option für SSO, wenn:
 
-- In the `Authorized JavaScript origins` section, specify the URI of your Metabase instance.
-- Leave the `Authorized Redirect URIs` section blank.
-- Copy your Client ID, which you'll paste into Metabase when setting up Google Sign-in.
 
-## Setting up Google Sign-in in Metabase
+- Ihr Team verwendet bereits Google Workspace, oder
+- Sie möchten die 2-Schritt- oder Multi-Faktor-Authentifizierung (2FA oder MFA) von Google verwenden, um Ihre Metabase zu sichern.
 
-Once you have your Google API `Client ID` (ending in `.apps.googleusercontent.com`), visit your Metabase and:
 
-1. Click on the settings **Gear** icon in the upper right.
-2. Select **Admin settings**.
-3. In the **Settings** tab, click on **Authentication**.
-4. On the **Sign in with Google** card, click **Set up**.
-5. In the **Client ID** field, paste your Google API Client ID.
+## Holen Sie sich Ihre Client-ID von der Google-Entwicklerkonsole.
 
-## Creating Metabase accounts with Google Sign-in
 
-> On [paid plans](https://www.metabase.com/pricing/), you're [charged for each active account](../cloud/how-billing-works.md#what-counts-as-a-user-account).
+Damit sich Ihr Team bei Google anmelden kann, müssen Sie zunächst eine Anwendung über die [Entwicklerkonsole] von Google erstellen(https://console.developers.google.com/projectselector2/apis/library).
 
-If people's Google account email addresses are from a specific domain, and you want to allow them to sign up on their own, you can enter that domain in the **Domain** field.
 
-Once set up, existing Metabase users signed in to a Google account that matches the email they used to set up their Metabase account will be able to sign in with just a click.
+Als Nächstes müssen Sie Autorisierungsdaten erstellen und [eine Google API-Client-ID erhalten](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid):
 
-Note that Metabase accounts _created_ with Google Sign-In will not have passwords; they must use Google to sign in to Metabase.
 
-## Multiple domains for Google Sign-in
+- Geben Sie im Abschnitt "Authorized JavaScript origins" den URI Ihrer Metabase-Instanz an.
+- Lassen Sie den Abschnitt "Authorized Redirect URIs" leer.
+- Kopieren Sie Ihre Client-ID, die Sie bei der Einrichtung der Google-Anmeldung in die Metabase einfügen werden.
 
-{% include plans-blockquote.html feature="Multiple domains for Google Sign-in" %}
 
-If you're on a [pro](https://www.metabase.com/product/pro) or [Enterprise](https://www.metabase.com/product/enterprise) plan, you can specify multiple domains from the same Google Workspace in the **Domain** field, separated by a comma. For example, `mycompany.com,example.com.br,otherdomain.co.uk`.
+## Einrichten von Google Sign-in in Metabase
 
-## Syncing user attributes with Google
 
-User attributes can't be synced with regular Google Sign-In. To synchronize user attributes, you'll need to set up [Google SAML][google-saml-docs] or [JWT][jwt-docs] instead.
+Sobald Sie Ihre Google API `Client ID` (mit der Endung `.apps.googleusercontent.com`) haben, besuchen Sie Ihre Metabase und:
 
-[data-sandboxing-docs]: ../permissions/data-sandboxes.md
-[google-saml-docs]: ./saml-google.md
-[jwt-docs]: ./authenticating-with-jwt.md
-[saml-docs]: ./authenticating-with-saml.md
-[user-attributes-docs]: ../permissions/data-sandboxes.md#choosing-user-attributes-for-data-sandboxes
-[user-attributes-def]: https://www.metabase.com/glossary/attribute#user-attributes-in-metabase
+
+1. Klicken Sie auf das Symbol Einstellungen **Zahnrad** oben rechts.
+2. Wählen Sie **Admin-Einstellungen**.
+3. Klicken Sie auf der Registerkarte **Einstellungen** auf **Authentifizierung**.
+4. Klicken Sie auf der Karte **Mit Google anmelden** auf **Einrichten**.
+5. Fügen Sie in das Feld **Client ID** Ihre Google API Client ID ein.
+
+
+## Erstellen von Metabase-Konten mit Google Sign-in
+
+
+> Bei [bezahlten Tarifen](https://www.metabase.com/pricing/) werden Sie [für jedes aktive Konto](../cloud/how-billing-works.md#what-counts-as-a-user-account) belastet.
+
+
+Wenn die E-Mail-Adressen der Google-Kontoinhaber von einer bestimmten Domain stammen und Sie ihnen erlauben möchten, sich selbst anzumelden, können Sie diese Domain in das Feld **Domain** eingeben.
+
+
+Nach der Einrichtung können sich bestehende Metabase-Nutzer, die mit einem Google-Konto angemeldet sind, das mit der E-Mail-Adresse übereinstimmt, die sie zur Einrichtung ihres Metabase-Kontos verwendet haben, mit einem Klick anmelden.
+
+
+Beachten Sie, dass Metabase-Konten , die_ mit Google Sign-Inerstellt wurden, keine Passwörter haben; sie müssen Google verwenden, um sich bei Metabase anzumelden.
+
+
+## Mehrere Domains für Google Sign-in
+
+
+{% include plans-blockquote.html feature="Mehrere Domains für die Google-Anmeldung" %}
+
+
+Wenn Sie einen [pro](https://www.metabase.com/product/pro) oder [Enterprise](https://www.metabase.com/product/enterprise) Plan haben, können Sie mehrere Domains aus demselben Google-Arbeitsbereich im Feld **Domain** angeben, getrennt durch ein Komma. Beispiel:`meinunternehmen.com,beispiel.com.br,anderedomain.co.uk`.
+
+
+## Synchronisierung von Nutzerattributen mit Google
+
+
+Nutzerattribute können nicht mit dem normalen Google Sign-In synchronisiert werden. Um Nutzerattribute zu synchronisieren, müssen Sie stattdessen [Google SAML][google-saml-docs] oder [JWT][jwt-docs] einrichten.
