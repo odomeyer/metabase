@@ -1,74 +1,87 @@
 ---
-title: My linked filters don't work
+Titel: Meine verlinkten Filter funktionieren nicht
 ---
 
-# My linked filters don't work
 
-You have created a [linked filter][linked-filter-gloss] so that (for example) if a dashboard contains both a "State" and a "City" filter, the "City" filter only shows cities in the state selected by the "State" filter. However:
+# Meine verknüpften Filter funktionieren nicht
 
-- your cards are showing "No result" when you apply the linked filter,
-- your linked filter seems to have no effect, or
-- your linked filter widget does not display a dropdown of filtered values.
 
-If you are having problems with a regular [filter widget][filter-widget-gloss], please see [this guide](./filters.md). In order to fix problems with linked filters, you need a clear understanding of how they work:
+Sie haben einen [verknüpften Filter][linked-filter-gloss] erstellt, so dass (zum Beispiel), wenn ein Dashboard sowohl einen "Bundesland"- als auch einen "Stadt"-Filter enthält, der "Stadt"-Filter nur Städte in dem durch den "Bundesland"-Filter ausgewählten Bundesland anzeigt. Allerdings:
 
-## Does a connected dashboard card use a SQL variable?
 
-**Root cause**: Native/SQL questions must have a [field filter](../questions/native-editor/sql-parameters.md#the-field-filter-variable-type) variable in order to be linked. Regular SQL variables won't work.
+- Ihre Karten zeigen "Kein Ergebnis" an, wenn Sie den verlinkten Filter anwenden,
+- Ihr verknüpfter Filter scheint keine Wirkung zu haben, oder
+- Ihr verknüpftes Filter-Widget zeigt keine Dropdown-Liste mit gefilterten Werten an.
 
-**Steps to take**:
 
-1. Update the card's query to change the regular variable to a [field filter](../questions/native-editor/sql-parameters.md#the-field-filter-variable-type) variable.
+Wenn Sie Probleme mit einem regulären [Filter-Widget][filter-widget-gloss] haben, lesen Sie bitte [diese Anleitung](./filters.md). Um Probleme mit verknüpften Filtern zu beheben, müssen Sie genau wissen, wie sie funktionieren:
 
-See [Limitations of linking filters](../dashboards/linked-filters.md#limitations-of-linked-filters).
 
-## Do you understand the directionality of linked filters?
+## Verwendet eine verknüpfte Dashboardkarte eine SQL-Variable?
 
-**Root cause:** Linked filters are one of the more complex features of Metabase, and many problems stems from misunderstanding their operation.
 
-**Steps to take:** Check that you understand the points below, and that your linked filter is set up with them in mind.
+**Hauptursache**: Native/SQL-Fragen müssen eine [Feldfilter](../questions/native-editor/sql-parameters.md#the-field-filter-variable-type) Variable haben, um verknüpft werden zu können. Normale SQL-Variablen werden nicht funktionieren.
 
-1. A filter isn't part of a specific question. Instead, a filter is added to a dashboard and its value is used to fill in variables in questions.
 
-2. In order for Metabase to display a dropdown list of possible filter values, it must know that the column corresponds to a category. This happens automatically if the question is created from tables via the Notebook Editor, since Metabase has knowledge about the table and columns from synchronization.
+**Zu unternehmende Schritte**:
 
-3. If the question that contains the variable is written in SQL, on the other hand, the author of the question must have selected "Field Filter". Also, the field referenced must be set as a category in the Table Metadata in order for Metabase to show a dropdown list of values.
 
-## Are the filters linked in the correct direction?
+1. Aktualisieren Sie die Abfrage der Karte, um die reguläre Variable in eine [Feldfilter](../questions/native-editor/sql-parameters.md#the-field-filter-variable-type) Variable zu ändern.
 
-**Root cause:** The most common cause is that the filters have been linked in the wrong direction. If you want the values shown by Filter B to be restricted by the setting of Filter A, you have to change the settings for Filter B, not Filter A---i.e., the downstream filter has the setting, not the upstream filter.
 
-**Steps to take:**
+Siehe [Beschränkungen der Verknüpfung von Filtern](../dashboards/linked-filters.md#limitations-of-linked-filters).
 
-1. Remove the existing linkage and create a new one in the opposite direction.
 
-## Do some rows actually satisfy the full filter condition?
+## Verstehen Sie die Direktionalität von verknüpften Filtern?
 
-**Root cause:** There aren't any rows that satisfy all the conditions in a linked filter. Continuing with the city and state example, if you manually enter the name of a city that isn't in the selected state, no record will satisfy both conditions.
 
-**Steps to take:**
+**Ursache:** Verknüpfte Filter sind eine der komplexeren Funktionen der Metabase, und viele Probleme entstehen, weil ihre Funktionsweise nicht verstanden wird.
 
-1. Create a question that only uses the first filter and check that it produces some rows. (If it does not, adding a second filter isn't going to make any rows appear.)
-2. Create a question that you think should produce the same result as the combination of linked filter settings that isn't producing any data. If it produces the result you expect, check for typing mistakes and that you are using [the correct type of join][join-types].
 
-## Do all rows that pass the first test also pass the second?
+**Zu ergreifende Maßnahmen:** Vergewissern Sie sich, dass Sie die folgenden Punkte verstanden haben und dass Ihr verknüpfter Filter unter Berücksichtigung dieser Punkte eingerichtet wurde.
 
-**Root cause:** In some cases all of the rows that satisfy the first filter's condition also satisfy the second filter's condition, so the second filter has no effect.
 
-**Steps to take:**
+1. Ein Filter ist nicht Teil einer bestimmten Frage. Stattdessen wird ein Filter zu einem Dashboard hinzugefügt und sein Wert wird zum Ausfüllen von Variablen in Fragen verwendet.
 
-1. Create a question that includes the first filter condition directly (i.e., in the question rather than using a variable), then add the second filter's condition. If the result set does not change, the problem is in the logic rather than in the filters.
 
-## Does the linked filter widget display a dropdown of filtered values?
+2. Damit die Metabase eine Dropdown-Liste mit möglichen Filterwerten anzeigen kann, muss sie wissen, dass die Spalte einer Kategorie entspricht. Dies geschieht automatisch, wenn die Frage aus Tabellen über den Notebook-Editor erstellt wird, da die Metabase die Tabelle und die Spalten aus der Synchronisation kennt.
 
-**Root cause:** In order for a linked filter widget to display the correct subset of values as a dropdown, an explicit [foreign key][foreign-key-gloss] definition must be set up---linking the filters does not by itself tell Metabase about the relationship.
 
-**Steps to take:**
+3. Wenn die Frage, die die Variable enthält, in SQL geschrieben ist, muss der Autor der Frage hingegen "Feldfilter" ausgewählt haben. Außerdem muss das Feld, auf das verwiesen wird, in den Metadaten der Tabelle als Kategorie festgelegt sein, damit die Metabase eine Dropdown-Liste mit Werten anzeigt.
 
-1. Check that Metabase's table metadata for your database includes the foreign key relationship.
 
-[filter-widget-gloss]: https://www.metabase.com/glossary/filter-widget
-[foreign-key-gloss]: https://www.metabase.com/glossary/foreign-key
-[join-types]: https://www.metabase.com/learn/sql/working-with-sql/sql-join-types
-[learn-linking]: https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/dashboards/linking-filters.html
-[linked-filter-gloss]: https://www.metabase.com/glossary/linked-filter
+## Sind die Filter in der richtigen Richtung verknüpft?
+
+
+**Ursache:** Die häufigste Ursache ist, dass die Filter in der falschen Richtung verknüpft wurden. Wenn Sie möchten, dass die von Filter B angezeigten Werte durch die Einstellung von Filter A eingeschränkt werden, müssen Sie die Einstellungen für Filter B und nicht für Filter A ändern, d. h., der nachgeschaltete Filter hat die Einstellung, nicht der vorgeschaltete Filter.
+
+
+**Folgende Schritte sind zu unternehmen:**
+
+
+1. Entfernen Sie die bestehende Verknüpfung und erstellen Sie eine neue in umgekehrter Richtung.
+
+
+## Erfüllen einige Zeilen tatsächlich die vollständige Filterbedingung?
+
+
+**Ursache:** Es gibt keine Zeilen, die alle Bedingungen in einem verknüpften Filter erfüllen. Wenn Sie den Namen einer Stadt manuell eingeben, die sich nicht in dem ausgewählten Bundesland befindet, erfüllt kein Datensatz beide Bedingungen.
+
+
+**Folgende Schritte sind zu unternehmen:**
+
+
+1. Erstellen Sie eine Frage, die nur den ersten Filter verwendet, und prüfen Sie, ob sie einige Zeilen ergibt. (Wenn dies nicht der Fall ist, wird das Hinzufügen eines zweiten Filters nicht dazu führen, dass Zeilen erscheinen).
+2. Erstellen Sie eine Frage, von der Sie glauben, dass sie dasselbe Ergebnis liefert wie die Kombination der verknüpften Filtereinstellungen, die keine Daten liefert. Wenn sie das erwartete Ergebnis liefert, prüfen Sie, ob Sie Tippfehler gemacht haben und ob Sie [den richtigen Typ der Verknüpfung][join-types] verwenden.
+
+
+## Bestehen alle Zeilen, die den ersten Test bestehen, auch den zweiten?
+
+
+**Ursache:** In einigen Fällen erfüllen alle Zeilen, die die Bedingung des ersten Filters erfüllen, auch die Bedingung des zweiten Filters, so dass der zweite Filter keine Wirkung hat.
+
+
+**Zu unternehmende Schritte:**
+
+
+1. Erstellen Sie eine Frage, die die erste Filterbedingung direkt enthält (d. h. in der Frage und nicht über eine Variable), und fügen Sie dann die Bedingung des zweiten Filters hinzu. Wenn sich die Ergebnismenge nicht ändert, liegt das Problem in der Logik und nicht in den Filtern.
