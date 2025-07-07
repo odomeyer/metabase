@@ -1,111 +1,144 @@
 ---
-title: Troubleshooting filters
+Titel: Fehlersuche bei Filtern
 ---
 
-# Troubleshooting filters
 
-It's always a good idea to start with a quick sanity check:
+# Fehlerbehebung bei Filtern
 
-1. Clear your browser cache.
-2. Refresh the page.
-3. Open your question or dashboard in an incognito window.
 
-## Dashboard filters
+Es ist immer eine gute Idee, mit einer kurzen Überprüfung der Richtigkeit zu beginnen:
 
-If a dashboard filter is giving you no results or the wrong results:
 
-1. Click the **pencil** icon to go into edit mode.
-2. Click the **gear** icon beside your filter widget.
-3. Make sure you've selected a column for your filter under **Column to filter on**.
-4. If you can't find the right **Column to filter on**, or you're getting "No Results" when you apply the filter:
-   - Exit edit mode and click on a dashboard card to go to the _original question_.
-   - Follow the troubleshooting steps under [Question filters](#question-filters).
+1. Löschen Sie Ihren Browser-Cache.
+2. Aktualisieren Sie die Seite.
+3. Öffnen Sie Ihre Frage oder das Dashboard in einem Inkognito-Fenster.
 
-## Question filters
 
-If a question filter is giving you no results or the wrong results:
+## Dashboard-Filter
 
-1. Make sure the question includes the column you want to filter on.
-2. Check that the column actually contains the value(s) you're filtering on. You can do this by:
-   - sorting number or date columns,
-   - creating a "contains" filter for string columns, or
-   - asking your database admin.
-3. Ask your Metabase admin to help you check if:
-   - Metabase is [up to date](../databases/sync-scan.md) with your database,
-   - the column is [visible](../data-modeling/metadata-editing.md#column-visibility) in Metabase,
-   - you have the correct [data permissions](../permissions/data.md) to access the column.
 
-### Special cases
+Wenn ein Dashboard-Filter keine oder die falschen Ergebnisse liefert:
 
-If you're having trouble filtering on a:
 
-- [Custom column](../questions/query-builder/editor.md#custom-columns): check if the custom expression is working as expected. For example, your custom expression might be returning blank values when you expect numbers.
-- [SQL field filter](../questions/native-editor/sql-parameters.md#the-field-filter-variable-type): make sure you're using the correct [field filter syntax](../questions/native-editor/sql-parameters.md#field-filter-syntax), then see [Troubleshooting SQL variables](./sql.md#sql-variables-and-field-filters).
+1. Klicken Sie auf das Symbol **Bleistift**, um in den Bearbeitungsmodus zu wechseln.
+2. Klicken Sie auf das Symbol **Zahnrad** neben Ihrem Filter-Widget.
+3. Vergewissern Sie sich, dass Sie unter **Spalte zum Filtern nach** eine Spalte für Ihren Filter ausgewählt haben.
+4. Wenn Sie die richtige **Spalte zum Filtern nicht finden können**, oder wenn Sie "Keine Ergebnisse" erhalten, wenn Sie den Filter anwenden:
+- Verlassen Sie den Bearbeitungsmodus und klicken Sie auf eine Dashboard-Karte, um zur _ursprünglichen Frage_ zu gelangen.
+- Befolgen Sie die Schritte zur Fehlerbehebung unter [Fragenfilter](#question-filters).
 
-**Explanation**
 
-When we first set up a filter, we need to link the filter to a column. If we make the wrong assumptions about a column's values or data type, the filter won't work at all. If a column changes on the database side, the filter might suddenly stop working.
+## Frage-Filter
 
-For example, let's say we want to create a filter named "Select Product ID" linked to a column named **Product ID**. The filter won't work if any of these things happen:
 
-- Our question doesn't include the **Product ID** column.
-- We type the number 4 into the "Select Product ID" filter, when the **Product ID** column only contains the values 1, 2, and 3.
-- **Product ID** is renamed to something else in the database or Table Metadata page.
-- **Product ID** is deleted from the database, or hidden in the Table Metadata page.
-- **Product ID** is a custom column that's not working as expected.
-- We don't have data permissions to access the **Product ID** column.
-- We made "Select Product ID" a numerical filter, but **Product ID** is a string column (see the section below).
+Wenn ein Fragenfilter keine oder die falschen Ergebnisse liefert:
 
-## Time, ID, and number filters
 
-To debug dashboard and question filters that involve timestamps, UUIDs, or numeric data:
+1. Vergewissern Sie sich, dass die Frage die Spalte enthält, nach der Sie filtern möchten.
+2. Überprüfen Sie, ob die Spalte tatsächlich den/die Wert(e) enthält, nach denen Sie filtern wollen. Sie können dies tun durch:
+- Zahlen- oder Datumsspalten sortieren,
+- Erstellen eines "enthält"-Filters für Zeichenkettenspalten, oder
+- fragen Sie Ihren Datenbankadministrator.
+3. Bitten Sie Ihren Metabase-Administrator, Ihnen bei der Überprüfung zu helfen, ob:
+- Metabase mit Ihrer Datenbank auf demneuesten Stand ist(../databases/sync-scan.md),
+- die Spalte in der Metabase [sichtbar] ist(../data-modeling/metadata-editing.md#column-visibility),
+- Sie haben die richtigen [Datenberechtigungen](../permissions/data.md), um auf die Spalte zuzugreifen.
 
-1. Find the [data type](https://www.metabase.com/learn/grow-your-data-skills/data-fundamentals/data-types-overview) of the column that you want to filter on. You can find this info from:
-   - the [Data reference](../exploration-and-organization/data-model-reference.md),
-   - the [Table Metadata page](../data-modeling/metadata-editing.md) (admins only), or
-   - directly from the database.
-2. Cast the column to a data type that matches the desired [filter type](../questions/query-builder/filters.md#filter-types). You can:
-   - [cast strings or numbers to dates](../data-modeling/metadata-editing.md#casting-to-a-specific-data-type) from the Table Metadata page, or
-   - change the data type of the column in your database, and [re-sync](../databases/sync-scan.md#manually-syncing-tables-and-columns) the database schema.
 
-If you're not a Metabase admin, you might have to ask your admin to help you with some of these steps.
+### Sonderfälle
 
-**Explanation**
 
-Metabase needs to know the data type of a column in order to present you with a curated selection of filter types. Sometimes these columns are mistyped---if a column stores your numbers as strings, Metabase will only show you text or category filters (with options like "is", "is not") instead of number filters (with options like "greater than", "less than").
+Wenn Sie Probleme mit dem Filtern nach einer:
 
-Timestamps, in particular, are the root of all evil, so please be patient with your Metabase admin (or yourself!) when trying to get the data type right.
 
-## Field filters in BigQuery and Oracle
+- [Benutzerdefinierte Spalte](../questions/query-builder/editor.md#custom-columns): überprüfen Sie, ob der benutzerdefinierte Ausdruck wie erwartet funktioniert. Ihr benutzerdefinierter Ausdruck könnte zum Beispiel leere Werte zurückgeben, obwohl Sie Zahlen erwarten.
+- [SQL-Feldfilter](../questions/native-editor/sql-parameters.md#the-field-filter-variable-type): Vergewissern Sie sich, dass Sie die richtige [Feldfilter-Syntax](../questions/native-editor/sql-parameters.md#field-filter-syntax) verwenden, und lesen Sie dann [Troubleshooting SQL variables](./sql.md#sql-variables-and-field-filters).
 
-If you are getting an error when using field filters with BigQuery or Oracle, make sure you use the correct syntax for the `FROM` clause. See [Field filters in BigQuery and Oracle](../questions/native-editor/sql-parameters.md#field-filters-in-bigquery-and-oracle).
 
-## Missing or incorrect filter values
+**Erläuterung**
 
-If your filter dropdown menu displays the wrong values for a column:
 
-1. Go to **Admin settings** > **Table Metadata**.
-2. Find your database, table, and column.
-3. Click the **gear** icon at the right of a column's settings box.
-4. Scroll to **Cached field values**.
-5. Optional: click **Discard cached field values**.
-6. Click **Re-scan this field**.
+Wenn wir zum ersten Mal einen Filter einrichten, müssen wir den Filter mit einer Spalte verknüpfen. Wenn wir die falschen Annahmen über die Werte oder den Datentyp einer Spalte treffen, wird der Filter überhaupt nicht funktionieren. Wenn sich eine Spalte auf der Datenbankseite ändert, kann der Filter plötzlich nicht mehr funktionieren.
 
-**Explanation**
 
-Metabase [scans](../databases/sync-scan.md#how-database-scans-work) get the values for your filter dropdown menus by querying and caching the first 1,000 distinct records from a table. You might see outdated filter values if your tables are getting updated more frequently compared to your [scan schedule](../databases/sync-scan.md#scanning-for-filter-values).
+Nehmen wir zum Beispiel an, wir möchten einen Filter mit dem Namen "Select Product ID" erstellen, der mit einer Spalte mit dem Namen **Product ID** verknüpft ist. Der Filter funktioniert nicht, wenn eines der folgenden Dinge passiert:
 
-## Related topics
 
-- [Troubleshooting linked filters](./linked-filters.md)
-- [Troubleshooting SQL variables and field filters](./sql.md#sql-variables-and-field-filters)
-- [Troubleshooting dates and times](./timezones.md)
-- [Creating dropdown filters](../data-modeling/metadata-editing.md#changing-a-search-box-filter-to-a-dropdown-filter)
-- [Creating SQL filters](../questions/native-editor/sql-parameters.md)
+- Unsere Frage enthält nicht die Spalte**Produkt-ID**.
+- Wir geben die Zahl 4 in den Filter "Produkt-ID auswählen" ein, obwohl die Spalte**Produkt-ID** nur die Werte 1, 2 und 3 enthält.
+- Die**Produkt-ID** wird in der Datenbank oder auf der Seite "Tabellenmetadaten" in etwas anderes umbenannt.
+-**Produkt-ID** wird aus der Datenbank gelöscht oder auf der Seite "Tabellenmetadaten" ausgeblendet.
+-**Produkt-ID** ist eine benutzerdefinierte Spalte, die nicht wie erwartet funktioniert.
+- Wir haben keine Datenberechtigung für den Zugriff auf die Spalte**Produkt-ID**.
+- Wir haben "Produkt-ID auswählen" zu einem numerischen Filter gemacht, aber**Produkt-ID** ist eine Zeichenkettenspalte (siehe den folgenden Abschnitt).
 
-## Are you still stuck?
+## Zeit-, ID- und Zahlenfilter
 
-If you can't solve your problem using the troubleshooting guides:
+
+So debuggen Sie Dashboard- und Fragenfilter, die Zeitstempel, UUIDs oder numerische Daten enthalten:
+
+
+1. Suchen Sie den [Datentyp](https://www.metabase.com/learn/grow-your-data-skills/data-fundamentals/data-types-overview) der Spalte, nach der Sie filtern möchten. Sie finden diese Information in:
+- der [Datenreferenz](../exploration-and-organization/data-model-reference.md),
+- die [Tabellen-Metadaten-Seite](../data-modeling/metadata-editing.md) (nur für Administratoren), oder
+- direkt aus der Datenbank.
+2. Wandeln Sie die Spalte in einen Datentyp um, der dem gewünschten [Filtertyp] entspricht(../questions/query-builder/filters.md#filter-types). Sie können:
+- [Strings oder Zahlen in Daten umwandeln](../data-modeling/metadata-editing.md#casting-to-a-spezifical-data-type) auf der Seite Tabellenmetadaten, oder
+- den Datentyp der Spalte in Ihrer Datenbank ändern und das Datenbankschema [neu synchronisieren](../databases/sync-scan.md#manually-syncing-tables-and-columns).
+
+
+Wenn Sie kein Metabase-Administrator sind, müssen Sie möglicherweise Ihren Administrator bitten, Ihnen bei einigen dieser Schritte zu helfen.
+
+
+**Erläuterung**
+
+
+Metabase muss den Datentyp einer Spalte kennen, um Ihnen eine kuratierte Auswahl an Filtertypen präsentieren zu können. Manchmal werden diese Spalten falsch getippt - wenn eine Spalte Ihre Zahlen als Strings speichert, zeigt Ihnen Metabase nur Text- oder Kategoriefilter (mit Optionen wie "ist", "ist nicht") anstelle von Zahlenfiltern (mit Optionen wie "größer als", "kleiner als").
+
+
+Vor allem Zeitstempel sind die Wurzel allen Übels, also haben Sie bitte Geduld mit Ihrem Metabase-Administrator (oder mit sich selbst!), wenn Sie versuchen, den richtigen Datentyp zu finden.
+
+
+## Feldfilter in BigQuery und Oracle
+
+
+Wenn Sie bei der Verwendung von Feldfiltern in BigQuery oder Oracle einen Fehler erhalten, vergewissern Sie sich, dass Sie die richtige Syntax für die FROM-Klausel verwenden. Siehe [Feldfilter in BigQuery und Oracle](../questions/native-editor/sql-parameters.md#field-filters-in-bigquery-and-oracle).
+
+
+## Fehlende oder falsche Filterwerte
+
+
+Wenn Ihr Filter-Dropdown-Menü die falschen Werte für eine Spalte anzeigt:
+
+
+1. Gehen Sie zu **Admin-Einstellungen** > **Tabellen-Metadaten**.
+2. Suchen Sie Ihre Datenbank, Tabelle und Spalte.
+3. Klicken Sie auf das Symbol **Zahnrad** auf der rechten Seite des Einstellungsfeldes einer Spalte.
+4. Blättern Sie zu **Feldwerte im Cache**.
+5. Optional: Klicken Sie auf **Zwischengespeicherte Feldwerte verwerfen**.
+6. Klicken Sie auf **Dieses Feld erneut scannen**.
+
+
+**Erläuterung**
+
+
+Metabase [scans](../databases/sync-scan.md#how-database-scans-work) ermitteln die Werte für Ihre Filter-Dropdown-Menüs durch Abfrage und Zwischenspeicherung der ersten 1.000 eindeutigen Datensätze aus einer Tabelle. Sie können veraltete Filterwerte sehen, wenn Ihre Tabellen im Vergleich zu Ihrem [Scan-Zeitplan] häufiger aktualisiert werden(../databases/sync-scan.md#scanning-for-filter-values).
+
+
+## Verwandte Themen
+
+
+- [Fehlerbehebung bei verknüpften Filtern](./linked-filters.md)
+- [Fehlerbehebung bei SQL-Variablen und Feldfiltern](./sql.md#sql-variables-and-field-filters)
+- [Fehlerbehebung bei Datums- und Zeitangaben](./timezones.md)
+- [Erstellen von Dropdown-Filtern](../data-modeling/metadata-editing.md#changing-a-search-box-filter-to-a-dropdown-filter)
+- [SQL-Filter erstellen](../questions/native-editor/sql-parameters.md)
+
+
+## Stecken Sie immer noch fest?
+
+
+Wenn Sie Ihr Problem nicht mit Hilfe der Anleitungen zur Fehlerbehebung lösen können:
 
 - Search or ask the [Metabase community](https://discourse.metabase.com/).
 - Search for [known bugs or limitations](./known-issues.md).
