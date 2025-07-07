@@ -1,61 +1,43 @@
 ---
-title: Joining data
+Titel: Verknüpfung von Daten
 redirect_from:
-  - /docs/latest/users-guide/join
+- /docs/latest/user-guide/join
 ---
 
-# Joining data
+# Daten verknüpfen
+![Verknüpfung](../images/join-step.png)
+Sie können [Daten verbinden][verbinden], um Ihre aktuellen Daten mit einer anderen Tabelle oder sogar mit einer gespeicherten Frage zu kombinieren.
+Nachdem Sie auf die Schaltfläche Daten verknüpfen geklickt haben, um einen Verknüpfungsschritt hinzuzufügen, müssen Sie die Daten (aus derselben Datenbank) auswählen, die Sie verknüpfen möchten. Sie können nur Tabellen und gespeicherte Fragen auswählen, die aus derselben Datenbank stammen wie Ihre Ausgangsdaten.
+[Auswahl der zu verknüpfenden Daten](../images/join-pick-data.png)
+Als nächstes müssen Sie die Spalten auswählen, die Sie verknüpfen möchten. Das bedeutet, dass Sie eine Spalte aus der ersten Tabelle und eine Spalte aus der zweiten Tabelle auswählen, und die Verknüpfung wird Zeilen zusammenfügen, bei denen der Wert der ersten Spalte gleich dem Wert der zweiten Spalte ist. Ein sehr häufiges Beispiel ist der Join über eine ID-Spalte in jeder Tabelle. Wenn Sie also eine Tabelle für den Join auswählen, in der eine Fremdschlüsselbeziehung zwischen den Tabellen besteht, wählt Metabase automatisch die entsprechenden ID-Spalten für Sie aus. Am Ende des Verknüpfungsschritts gibt es eine Schaltfläche "Spalten", über die Sie auswählen können, welche Spalten Sie in die verknüpften Daten aufnehmen möchten.
+Standardmäßig führt Metabase einen Left Outer Join durch, aber Sie können auf das Venn-Diagramm-Symbol klicken, um eine andere Art von Join auszuwählen. Nicht alle Datenbanken unterstützen alle Arten von Verknüpfungen, daher zeigt Metabase nur die Optionen an, die von der verwendeten Datenbank unterstützt werden.
+Hier sind die grundlegenden Arten von Verknüpfungen:
+- **Linke äußere Verknüpfung:** Wählen Sie alle Datensätze aus Tabelle A zusammen mit den Datensätzen aus Tabelle B aus, die die Verknüpfungsbedingung erfüllen, falls vorhanden.
+- **Rechte äußere Verknüpfung:** Wählen Sie alle Datensätze aus Tabelle B zusammen mit Datensätzen aus Tabelle A aus, die die Verknüpfungsbedingung erfüllen, sofern vorhanden.
+- Innere Verknüpfung:** Wählt nur die Datensätze aus Tabelle A und B aus, bei denen die Verknüpfungsbedingung erfüllt ist.
+- Vollständige äußere Verknüpfung:** Wählen Sie alle Datensätze aus beiden Tabellen aus, unabhängig davon, ob die Verknüpfungsbedingung erfüllt ist oder nicht.
+**Beispiel für eine linke äußere Verknüpfung:** Wenn Tabelle A "Bestellungen" und Tabelle B "Kunden" ist und Sie eine Verknüpfung durchführen, bei der die Spalte "customer_id" in "Bestellungen" gleich der Spalte "ID" in "Kunden" ist, ist Ihr Ergebnis bei einer linken äußeren Verknüpfung eine vollständige Liste aller Bestellungen, und in jeder Bestellungszeile werden auch die Spalten des Kunden angezeigt, der diese Bestellung aufgegeben hat. Da ein einziger Kunde viele Bestellungen aufgeben kann, können die Informationen eines bestimmten Kunden in verschiedenen Bestellungszeilen viele Male wiederholt werden. Wenn es für eine bestimmte Bestellung keinen entsprechenden Kunden gibt, werden die Informationen zu dieser Bestellung angezeigt, aber die Kundenspalten sind für diese Zeile leer.
 
-![Joining](../images/join-step.png)
+## Mehrere Stufen von Joins
+In vielen Fällen kann es vorkommen, dass Sie Tabellen A, B und C haben, wobei A und B eine Verbindung haben und B und C eine Verbindung haben, aber A und C nicht. Wenn Sie A mit B mit C verbinden möchten, müssen Sie nur mehrere Verbindungsschritte hinzufügen. Klicken Sie auf Daten verknüpfen, verknüpfen Sie Tabelle A mit Tabelle B, klicken Sie dann auf den Schritt Daten verknüpfen unter diesem abgeschlossenen Verknüpfungsblock, um einen zweiten Verknüpfungsschritt hinzuzufügen, und verknüpfen Sie die Ergebnisse Ihrer letzten Verknüpfung mit Tabelle C.
+Eine Verknüpfung von A nach B nach C](../images/join-a-b-c.png)
 
-You can [join data][join] to combine your current data with another table, or even with a saved question.
+## Verknüpfung über mehrere Bedingungen
+Ihre Verknüpfungen können auch mehrere Bedingungen enthalten, um Ihre Ergebnisse zu verfeinern. Die Metabase kombiniert mehrere Bedingungen mit dem Operator "AND".
+Tabellen über mehrere Spalten verknüpfen](../images/joining-on-multiple-columns.png)
 
-After you click on the Join Data button to add a join step, you'll need to pick the data (from the same database) that you want to join. You can only pick tables and saved questions that are from the same database as your starting data.
+## Verknüpfung mit verschiedenen Operatoren
+Sie können Tabellen anhand von Vergleichsbedingungen verknüpfen, wie z. B:
+- `=` (gleich)
+- `≠` (nicht gleich)
+- `>` (größer als)
+- `≥` (größer als oder gleich)
+- `<` (kleiner als)
+- `≤` (kleiner als oder gleich)
+![Verknüpfungsoperatoren](../images/join-operator.png)
 
-![Picking the data to join](../images/join-pick-data.png)
-
-Next, you'll need to pick the columns you want to join on. This means you pick a column from the first table, and a column from the second table, and the join will stitch rows together where the value from the first column is equal to the value in the second column. A very common example is to join on an ID column in each table, so if you happened to pick a table to join on where there is a foreign key relationship between the tables, Metabase will automatically pick those corresponding ID columns for you. At the end of your join step, there's a `Columns` button you can click to choose which columns you want to include from the joined data.
-
-By default, Metabase will do a left outer join, but you can click on the Venn diagram icon to select a different type of join. Not all databases support all types of joins, so Metabase will only display the options supported by the database you're using.
-
-Here are the basic types of joins:
-
-- **Left outer join:** select all records from Table A, along with records from Table B that meet the join condition, if any.
-- **Right outer join:** select all records from Table B, along with records from Table A that meet the join condition, if any.
-- **Inner join:** only select the records from Table A and B where the join condition is met.
-- **Full outer join:** select all records from both tables, whether or not the join condition is met.
-
-**A left outer join example:** If Table A is Orders and Table B is Customers, and assuming you do a join where the `customer_id` column in Orders is equal to the `ID` column in Customers, when you do a left outer join your results will be a full list of all your orders, and each order row will also display the columns of the customer who placed that order. Since a single customer can place many orders, a given customer's information might be repeated many times for different order rows. If there isn't a corresponding customer for a given order, the order's information will be shown, but the customer columns will just be blank for that row.
-
-## Multiple stages of joins
-
-In many cases you might have tables A, B, and C, where A and B have a connection, and B and C have a connection, but A and C don't. If you want to join A to B to C, all you have to do is add multiple join steps. Click on Join Data, join table A to table B, then click the Join Data step below that completed join block to add a second join step, and join the results of your last join to table C.
-
-![An A to B to C join](../images/join-a-b-c.png)
-
-## Joining on multiple conditions
-
-Your joins can also include multiple conditions to refine your results. Metabase will combine multiple conditions using the `AND` operator.
-
-![Joining tables on multiple columns](../images/joining-on-multiple-columns.png)
-
-## Joining with different operators
-
-You can join tables on comparison conditions like:
-
-- `=` (equals)
-- `≠` (not equals) 
-- `>` (greater than)
-- `≥` (greater than or equal to)
-- `<` (less than)
-- `≤` (less than or equal to)
-
-![Join operators](../images/join-operator.png)
-
-## Further reading
-
-- [Joins in Metabase][join]
-- [Type of joins][join-types]
-
+## Weitere Lektüre
+- [Joins in der Metabase][join]
+- [Typ von Joins][join-types]
 [join]: https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/joins-in-metabase
 [join-types]: https://www.metabase.com/learn/sql/working-with-sql/sql-join-types
