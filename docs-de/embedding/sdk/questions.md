@@ -1,145 +1,177 @@
 ---
-title: "Embedded analytics SDK - questions"
-description: How to embed charts in your app with the Embedded analytics SDK.
+Titel: "Eingebettete Analytik SDK - Fragen"
+Beschreibung: Wie Sie mit dem Embedded Analytics SDK Diagramme in Ihre App einbetten.
 ---
 
-# Embedded analytics SDK - questions
+
+# Embedded analytics SDK - Fragen
+
 
 {% include plans-blockquote.html feature="Embedded analytics SDK" sdk=true %}
 
-There are different ways you can embed questions:
 
-- [Static question](#staticquestion). Embeds a chart. Clicking on the chart doesn't do anything.
-- [Interactive question](#interactivequestion). Clicking on the chart gives you the drill-through menu.
-- [Query builder](#embedding-the-query-builder-for-creating-new-questions). Embeds the graphical query builder without a pre-defined query.
+Es gibt verschiedene Möglichkeiten, wie Sie Fragen einbetten können:
 
-## Embedding a question
 
-You can embed a question using the one of the question components:
+- [Statische Frage](#staticquestion). Bettet ein Diagramm ein. Ein Klick auf das Diagramm führt zu nichts.
+- [Interaktive Frage](#interactivequestion). Wenn Sie auf das Diagramm klicken, erhalten Sie das Drill-Through-Menü.
+- [Query builder](#embedding-the-query-builder-for-creating-new-questions). Bindet den grafischen Abfragegenerator ohne vordefinierte Abfrage ein.
+
+
+## Einbetten einer Frage
+
+
+Sie können eine Frage einbetten, indem Sie eine der Fragekomponenten verwenden:
+
 
 ### `StaticQuestion`
 
-A lightweight question component. Use this component when you want to display results without letting people interact with the data.
 
-![Static question](../images/static-question.png)
+Eine leichtgewichtige Fragekomponente. Verwenden Sie diese Komponente, wenn Sie Ergebnisse anzeigen möchten, ohne dass die Benutzer mit den Daten interagieren können.
 
-The component has a default height, which can be customized by using the `height` prop. To inherit the height from the parent container, you can pass `100%` to the height prop.
 
-#### API Reference
-- [Component](./api/StaticQuestion.html)
-- [Props](./api/StaticQuestionProps.html)
+![Statische Frage](../images/static-question.png)
 
-#### Example
 
-```typescript
+Die Komponente hat eine voreingestellte Höhe, die mit dem Parameter ` height` angepasst werden kann. Um die Höhe vom übergeordneten Container zu erben, können Sie`100%` an die Höhenangabe übergeben.
+
+
+#### API-Referenz
+- [Komponente](./api/StaticQuestion.html)
+- [Requisiten](./api/StaticQuestionProps.html)
+
+
+#### Beispiel
+
+
+````Typescript
 {% include_file "{{ dirname }}/snippets/questions/static-question.tsx" %}
 ```
 
-#### Props
+
+#### Requisiten
+
 
 {% include_file "{{ dirname }}/api/snippets/StaticQuestionProps.md" snippet="properties" %}
 
+
 ### `InteractiveQuestion`
 
-Use this component when you want to allow people to explore their data and customize question layout.
 
-![Interactive question](../images/interactive-question.png)
+Verwenden Sie diese Komponente, wenn Sie den Teilnehmern die Möglichkeit geben wollen, ihre Daten zu erkunden und das Layout der Fragen anzupassen.
 
-#### API Reference
-- [Component](./api/InteractiveQuestion.html)
-- [Props](./api/InteractiveQuestionProps.html)
 
-#### Example
+![Interaktive Frage](../images/interactive-question.png)
 
-```typescript
+
+#### API-Referenz
+- [Komponente](./api/InteraktiveFrage.html)
+- [Requisiten](./api/InteraktiveFrageProps.html)
+
+
+#### Beispiel
+
+
+````Typescript
 {% include_file "{{ dirname }}/snippets/questions/interactive-question.tsx" %}
 ```
 
-#### Props
+
+#### Requisiten
+
 
 {% include_file "{{ dirname }}/api/snippets/InteractiveQuestionProps.md" snippet="properties" %}
 
-## Pass SQL parameters to SQL questions with `initialSqlParameters`
 
-You can pass parameter values to questions defined with SQL via the `initialSqlParameters` prop, in the format of `{parameter_name: parameter_value}`. Learn more about [SQL parameters](../../questions/native-editor/sql-parameters.md).
+## Übergabe von SQL-Parametern an SQL-Fragen mit `initialSqlParameters`
 
-```typescript
+
+Mit dem Parameter`initialSqlParameters` können Sie Parameterwerte an Fragen übergeben, die mit SQL definiert wurden, und zwar im Format `{parameter_name: parameter_value}`. Erfahren Sie mehr über [SQL-Parameter](../../questions/native-editor/sql-parameters.md).
+
+
+````Typescript
 {% include_file "{{ dirname }}/snippets/questions/initial-sql-parameters.tsx" snippet="example" %}
 ```
 
-`initialSqlParameters` can't be used with questions built using the query builder.
 
-## Customizing interactive questions
+initialSqlParameters` kann nicht mit Fragen verwendet werden, die mit dem Query Builder erstellt wurden.
 
-By default, the Embedded analytics SDK provides a default layout for interactive questions that allows you to view your questions, apply filters and aggregations, and access functionality within the query builder.
 
-Here's an example of using the `InteractiveQuestion` component with its default layout:
+## Anpassen interaktiver Fragen
 
-```typescript
-{% include_file "{{ dirname }}/snippets/questions/customize-interactive-question.tsx" snippet="example-default-interactive-question" %}
+
+Standardmäßig bietet das Embedded Analytics SDK ein Standardlayout für interaktive Fragen, mit dem Sie Ihre Fragen anzeigen, Filter und Aggregationen anwenden und auf Funktionen innerhalb des Query Builders zugreifen können.---
+Titel: "Eingebettete Analytik SDK - Fragen"
+Beschreibung: Wie Sie mit dem Embedded Analytics SDK Diagramme in Ihre App einbetten.
+---
+
+# Embedded analytics SDK - Fragen
+
+{% include plans-blockquote.html feature="Embedded analytics SDK" sdk=true %}
+
+Es gibt verschiedene Möglichkeiten, wie Sie Fragen einbetten können:
+
+- [Statische Frage](#staticquestion). Bettet ein Diagramm ein. Ein Klick auf das Diagramm führt zu nichts.
+- [Interaktive Frage](#interactivequestion). Wenn Sie auf das Diagramm klicken, erhalten Sie das Drill-Through-Menü.
+- [Query builder](#embedding-the-query-builder-for-creating-new-questions). Bindet den grafischen Abfragegenerator ohne vordefinierte Abfrage ein.
+
+## Einbetten einer Frage
+
+Sie können eine Frage einbetten, indem Sie eine der Fragekomponenten verwenden:
+
+###  `StaticQuestion`
+
+Eine leichtgewichtige Fragekomponente. Verwenden Sie diese Komponente, wenn Sie Ergebnisse anzeigen möchten, ohne dass die Benutzer mit den Daten interagieren können.
+
+![Statische Frage](../images/static-question.png)
+
+Die Komponente hat eine voreingestellte Höhe, die mit dem Parameter ` height` angepasst werden kann. Um die Höhe vom übergeordneten Container zu erben, können Sie`100%` an die Höhenangabe übergeben.
+
+#### API-Referenz
+- [Komponente](./api/StaticQuestion.html)
+- [Requisiten](./api/StaticQuestionProps.html)
+
+#### Beispiel
+
+````Typescript
+{% include_file "{{ dirname }}/snippets/questions/static-question.tsx" %}
 ```
 
-To customize the layout, use namespaced components within the `InteractiveQuestion` component. For example:
+#### Requisiten
 
-```typescript
-{% include_file "{{ dirname }}/snippets/questions/customize-interactive-question.tsx" snippet="example-customized-interactive-question" %}
+{% include_file "{{ dirname }}/api/snippets/StaticQuestionProps.md" snippet="properties" %}
+
+###  `InteractiveQuestion`
+
+Verwenden Sie diese Komponente, wenn Sie den Teilnehmern die Möglichkeit geben wollen, ihre Daten zu erkunden und das Layout der Fragen anzupassen.
+
+![Interaktive Frage](../images/interactive-question.png)
+
+#### API-Referenz
+- [Komponente](./api/InteraktiveFrage.html)
+- [Requisiten](./api/InteraktiveFrageProps.html)
+
+#### Beispiel
+
+````Typescript
+{% include_file "{{ dirname }}/snippets/questions/interactive-question.tsx" %}
 ```
 
-### Interactive question components
+#### Requisiten
 
-These components are available via the `InteractiveQuestion` namespace (e.g., `<InteractiveQuestion.Filter />`).
+{% include_file "{{ dirname }}/api/snippets/InteractiveQuestionProps.md" snippet="properties" %}
 
-#### API Reference:
-- [InteractiveQuestion.BackButton](./api/InteractiveQuestion.html#backbutton)
-- [InteractiveQuestion.Breakout](./api/InteractiveQuestion.html#breakout)
-- [InteractiveQuestion.BreakoutDropdown](./api/InteractiveQuestion.html#breakoutdropdown)
-- [InteractiveQuestion.ChartTypeDropdown](./api/InteractiveQuestion.html#charttypedropdown)
-- [InteractiveQuestion.ChartTypeSelector](./api/InteractiveQuestion.html#charttypeselector)
-- [InteractiveQuestion.Editor](./api/InteractiveQuestion.html#editor)
-- [InteractiveQuestion.EditorButton](./api/InteractiveQuestion.html#editorbutton)
-- [InteractiveQuestion.Filter](./api/InteractiveQuestion.html#filter)
-- [InteractiveQuestion.FilterDropdown](./api/InteractiveQuestion.html#filterdropdown)
-- [InteractiveQuestion.QuestionSettings](./api/InteractiveQuestion.html#questionsettings)
-- [InteractiveQuestion.QuestionSettingsDropdown](./api/InteractiveQuestion.html#questionsettingsdropdown)
-- [InteractiveQuestion.QuestionVisualization](./api/InteractiveQuestion.html#questionvisualization)
-- [InteractiveQuestion.ResetButton](./api/InteractiveQuestion.html#resetbutton)
-- [InteractiveQuestion.SaveButton](./api/InteractiveQuestion.html#savebutton)
-- [InteractiveQuestion.SaveQuestionForm](./api/InteractiveQuestion.html#savequestionform)
-- [InteractiveQuestion.Summarize](./api/InteractiveQuestion.html#summarize)
-- [InteractiveQuestion.SummarizeDropdown](./api/InteractiveQuestion.html#summarizedropdown)
-- [InteractiveQuestion.DownloadWidget](./api/InteractiveQuestion.html#downloadwidget)
-- [InteractiveQuestion.DownloadWidgetDropdown](./api/InteractiveQuestion.html#downloadwidgetdropdown)
-- [InteractiveQuestion.Title](./api/InteractiveQuestion.html#title)
+## Übergabe von SQL-Parametern an SQL-Fragen mit `initialSqlParameters`
 
-## Interactive question plugins
+Mit dem Parameter`initialSqlParameters` können Sie Parameterwerte an Fragen übergeben, die mit SQL definiert wurden, und zwar im Format `{parameter_name: parameter_value}`. Erfahren Sie mehr über [SQL-Parameter](../../questions/native-editor/sql-parameters.md).
 
-You can use [plugins](./plugins.md) to add custom functionality to your questions.
-
-### `mapQuestionClickActions`
-
-This plugin allows you to add custom actions to the click-through menu of an interactive question. You can add and
-customize the appearance and behavior of the custom actions.
-
-```typescript
-{% include_file "{{ dirname }}/snippets/questions/interactive-question-plugins.tsx" snippet="example" %}
+````Typescript
+{% include_file "{{ dirname }}/snippets/questions/initial-sql-parameters.tsx" snippet="example" %}
 ```
 
-## Prevent people from saving changes to an `InteractiveQuestion`
+initialSqlParameters` kann nicht mit Fragen verwendet werden, die mit dem Query Builder erstellt wurden.
 
-To prevent people from saving changes to an interactive question, or from saving changes as a new question, you can set `isSaveEnabled={false}`:
+## Anpassen interaktiver Fragen
 
-```tsx
-{% include_file "{{ dirname }}/snippets/questions/disable-question-save.tsx" %}
-```
+Standardmäßig bietet das Embedded Analytics SDK ein Standardlayout für interaktive Fragen, mit dem Sie Ihre Fragen anzeigen, Filter und Aggregationen anwenden und auf Funktionen innerhalb des Query Builders zugreifen können.
 
-## Embedding the query builder for creating new questions
-
-![Query builder](../images/query-builder.png)
-
-You can embed the query builder for creating new questions by passing the `questionId="new"` prop to the `InteractiveQuestion` component. You can use the [`children` prop](#customizing-interactive-questions) to customize the layout for creating new questions.
-
-```tsx
-{% include_file "{{ dirname }}/snippets/questions/new-question.tsx" %}
-```
-
-To customize the question editor's layout, use the `InteractiveQuestion` component [directly with a custom `children` prop](#customizing-interactive-questions).
