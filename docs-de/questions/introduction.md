@@ -1,114 +1,106 @@
 ---
-title: Questions
+Titel: Fragen
 redirect_from:
   - /docs/latest/users-guide/04-asking-questions
   - /docs/latest/users-guide/06-sharing-answers
 ---
 
-# Questions
+# Fragen
 
-![Metabase question](./images/question.png)
 
-Questions in Metabase are queries, their results, and their visualization. Questions are the basic analytical unit in Metabase. You can think about questions as saved queries that you can display as tables or charts. You can organize questions into collections and dashboards. You can [embed questions](../embedding/start.md), share links to them, export their results, and have them alert you when results are interesting.
+Fragen, die in einem Dashboard enthalten sind, sind nur in diesem Dashboard sichtbar. Diese Fragen können nicht in anderen Dashboards verwendet werden. Wenn Sie eine Frage in einem Dashboard speichern, müssen Sie die Karte auf einer der Registerkarten des Dashboards anordnen und dann das Dashboard speichern.
 
-## Creating a new question
 
-You can create a new question from scratch, or build off of an existing question. To create a question from scratch, you can click on **+ New** and select how you want to query your data: either with the graphical query builder, or the SQL/native editor:
+### Fragen in Sammlungen speichern
 
-### Query builder
 
-![Query builder editor](./images/editor.png)
+Fragen, die in einer Sammlung gespeichert sind, können zu mehreren Dashboards hinzugefügt werden. Das Verschieben einer Frage aus einer Sammlung in eine andere Sammlung hat keine Auswirkungen auf die Dashboards, denen die Frage hinzugefügt wurde. Um eine Frage in einer Sammlung zu speichern, müssen Sie sich in einer Gruppe mit [curate access](../permissions/collections.md#curate-access) für diese Sammlung befinden.
 
-Selecting **Question** will take you to the [editor in the graphical query builder](./query-builder/editor.md).
 
-### Native editor
+## Verschieben von Fragen aus Sammlungen in Dashboards (und umgekehrt)
 
-![Native editor](./images/native-editor.png)
 
-Selecting **SQL/native code** will open the [native code editor](./native-editor/writing-sql.md).
+Ob Sie eine Frage aus einer Sammlung in ein Dashboard verschieben können, hängt davon ab, wie viele andere Dashboards diese Frage verwenden.
 
-Even if you know SQL, you should still check out the [graphical query builder](./query-builder/editor.md), as you can use it to build [interactive charts](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through).
 
-### From an existing question
+Sie können die Frage aus einer Sammlung in ein Dashboard verschieben, wenn entweder:
 
-You can also build a new question from an existing question. You won't overwrite the existing question, so feel free to play around. You can use either the [query builder](./query-builder/editor.md) or the [native code editor](./native-editor/referencing-saved-questions-in-queries.md).
 
-Some kinds of saved questions, however, can't be used as source data:
+- Keine anderen Dashboards verwenden diese Frage.
+- Die anderen Dashboards, die diese Frage verwenden, befinden sich in Sammlungen, auf die Sie [curate access](../permissions/collections.md#curate-access) haben. In diesem Fall teilt Ihnen die Metabase mit, welche anderen Dashboards diese Frage verwenden, und Sie müssen entscheiden, ob Sie die Frage aus diesen Dashboards entfernen möchten.
 
-- Druid questions
-- Mongo questions
-- Questions that use `Cumulative Sum` or `Cumulative Count` aggregations
-- Questions that have columns that are named the same or similar thing, like `Count` and `Count 2`
 
-## Saving questions
+## Informationen zu Ihrer Frage
 
-Once you've built your query and [visualized its results](./visualizations/visualizing-results.md), you can save a question to a [dashboard](../dashboards/introduction.md) (the default), or to a [collection](../exploration-and-organization/collections.md). You'll need to name the question, include an optional description, and save it to a dashboard or a collection.
 
-### Saving questions to dashboards
+Sobald Sie eine Frage gespeichert haben, können Sie auf das Symbol **info** oben rechts klicken, um einige Metadaten zu Ihrer Frage anzuzeigen:
 
-Questions that live in a dashboard are only visible in that dashboard. These questions can't be used in other dashboards. When you save a question to a dashboard, you'll need to arrange the card on one of the dashboard's tab, then save the dashboard.
 
-### Saving questions to collections
+![Info-Seitenblatt](./images/info-sidesheet.png)
 
-Questions saved to a collection can be added to multiple dashboards. Moving a question from one collection to another collection won't have any effect on the dashboards the question has been added to. In order to save a question to a collection, you'll need to be in a group with [curate access](../permissions/collections.md#curate-access) to that collection.
 
-## Moving questions from collections to dashboards (and vice versa)
+### Registerkarte Übersicht
 
-Whether you can move a question in a collection into a dashboard depends on how many other dashboards use that question.
 
-You can move the question from a collection into a dashboard if either:
+- Beschreibung, die Sie hinzufügen können - Beschreibungen unterstützen sogar Markdown!
+- Wer hat die Frage erstellt und wer hat sie zuletzt bearbeitet?
+- Die Sammlung oder das Dashboard, in dem die Frage gespeichert ist
+- Die Daten, auf denen die Frage basiert.
+- Die Entitäts-ID der Frage (die Sie mit [Serialisierung](../installation-and-operation/serialization.md) verwenden können, um IDs über mehrere Datenbanken hinweg konsistent zu halten).
 
-- No other dashboards use that question.
-- The other dashboards that use that question live in collections you have [curate access](../permissions/collections.md#curate-access) to. In this case, Metabase will tell you which other dashboards use that question, and you'll have to decide whether you're okay with removing the question from those dashboards.
 
-## Info about your question
+Registerkarte### Historie
 
-Once you save a question, you can click on the **info** icon in the upper right to see some metadata about your question:
 
-![Info sidesheet](./images/info-sidesheet.png)
+Siehe [history](../exploration-and-organization/history.md).
 
-### Overview tab
 
-- Description, which you can add–descriptions even support Markdown!
-- Who created the question, and who edited it last
-- The collection or dashboard the question is saved in
-- The data the question is based on.
-- The question's Entity ID (which you can use with [Serialization](../installation-and-operation/serialization.md) to keep IDs consistent across multiple Metabases).
+## Herunterladen der Ergebnisse Ihrer Frage
 
-### History tab
 
-See [history](../exploration-and-organization/history.md).
+Siehe [Ergebnisse exportieren](./exporting-results.md).
 
-## Downloading your question's results
 
-See [exporting results](./exporting-results.md).
+## Überprüfen einer Frage
 
-## Verifying a question
 
-See [content verification](../exploration-and-organization/content-verification.md).
+Siehe [Inhaltsüberprüfung](../exploration-and-organization/content-verification.md).
 
-## Bookmark a question
 
-Click the **bookmark** icon to pin a question to your Metabase sidebar. See [Bookmarks](../exploration-and-organization/exploration.md#bookmarks).
+## Lesezeichen für eine Frage
 
-## Turning a question into a model
 
-You can turn a question saved to a collection into a model to let others know that the results make a good starting point for new questions. (You can't turn a question saved to a _dashboard_ into a model; you'll first need to move the question to a collection). See [models](../data-modeling/models.md).
+Klicken Sie auf das Symbol **Lesezeichen**, um eine Frage in der Seitenleiste der Metabase zu speichern. Siehe [Lesezeichen](../exploration-and-organization/exploration.md#bookmarks).
 
-## Caching question results
+
+## Eine Frage in ein Modell verwandeln
+
+
+Sie können eine in einer Sammlung gespeicherte Frage in ein Modell umwandeln, um anderen mitzuteilen, dass die Ergebnisse einen guten Ausgangspunkt für neue Fragen darstellen. (Sie können eine Frage, die in einem _Dashboard_ gespeichert ist, nicht in ein Modell umwandeln; Sie müssen die Frage zunächst in eine Sammlung verschieben). Siehe [models](../data-modeling/models.md).
+
+
+## Zwischenspeichern von Frageergebnissen
+
 
 {% include plans-blockquote.html feature="Caching question results" %}
 
-See [caching per question](../configuring-metabase/caching.md#question-caching-policy).
 
-## Setting up alerts
+Siehe [Caching pro Frage](../configuring-metabase/caching.md#question-caching-policy).
 
-You can set up questions to run periodically and notify you if the results are interesting. Check out [alerts](./alerts.md).
 
-## Viewing events on your chart
+## Einrichten von Warnmeldungen
 
-If your results are a time series, you can display events on along the x-axis. See [events and timelines](../exploration-and-organization/events-and-timelines.md).
 
-## Deleting a question
+Sie können Fragen einrichten, die in regelmäßigen Abständen ausgeführt werden und Sie benachrichtigen, wenn die Ergebnisse interessant sind. Sehen Sie sich [alerts](./alerts.md) an.
 
-See [delete and restore](../exploration-and-organization/delete-and-restore.md).
+
+## Anzeige von Ereignissen in Ihrem Diagramm
+
+
+Wenn es sich bei Ihren Ergebnissen um eine Zeitreihe handelt, können Sie Ereignisse auf der x-Achse anzeigen. Siehe [events and timelines](../exploration-and-organization/events-and-timelines.md).
+
+
+## Löschen einer Frage
+
+
+Siehe [Löschen und Wiederherstellen](../exploration-and-organization/delete-and-restore.md).
