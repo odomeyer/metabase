@@ -1,21 +1,30 @@
 ---
-title: Combo charts
+Titel: Kombi-Tabellen
 redirect_from:
-  - /docs/latest/questions/sharing/visualizations/combo-chart
+- /docs/latest/questions/sharing/visualizations/combo-chart
 ---
 
-# Combo charts
 
-Combo charts let you combine bars and lines (or areas) on the same chart.
+# Combo-Charts
 
-![Line + bar](../images/combo-chart.png)
 
-Metabase will pick one of your series to display as a line, and another to display as a bar by default. Open up the visualization settings to change which series are lines, bars, or areas, as well as to change per-series settings like colors.
+Mit Kombi-Diagrammen können Sie Balken und Linien (oder Flächen) in einem Diagramm kombinieren.
 
-To use a Combo chart you'll either need to have two or more metrics selected in the Summarize By section of your question, with one or two grouping columns, like this:
 
-![Data for Line + Bar chart](../images/combo-chart-data-1.png)
+![Linie + Balken](../images/combo-chart.png)
 
-Or you'll need a question with a single metric and two grouping columns, like this:
 
-![Data for Line + Bar chart](../images/combo-chart-data-2.png)
+Metabase wählt eine Ihrer Reihen aus, die als Linie angezeigt wird, und eine andere, die als Balken dargestellt wird. Öffnen Sie die Visualisierungseinstellungen, um zu ändern, welche Serien als Linien, Balken oder Flächen dargestellt werden sollen, und um die Einstellungen für die einzelnen Serien, z. B. die Farben, zu ändern.
+
+
+Um ein Kombidiagramm zu verwenden, müssen Sie entweder zwei oder mehr Kennzahlen im Abschnitt "Zusammenfassen nach" Ihrer Frage ausgewählt haben, mit einer oder zwei Gruppierungsspalten, etwa so:
+
+
+![Daten für Linien- und Balkendiagramm](../images/combo-chart-data-1.png)
+
+
+Oder Sie benötigen eine Frage mit einer einzigen Kennzahl und zwei Gruppierungsspalten, etwa so:
+
+
+![Daten für Linien- und Balkendiagramm](../images/combo-chart-data-2.png)
+
