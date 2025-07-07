@@ -1,41 +1,60 @@
 ---
-title: "Data modeling overview"
+Titel: "Datenmodellierung im Überblick"
 redirect_from:
-  - /docs/latest/data-modeling
+- /docs/latest/data-modeling
 ---
 
-# Data modeling overview
 
-Metabase provides tools for organizing your data and making it easier for people to understand.
+# Überblick über die Datenmodellierung
 
-## [Models](./models.md)
 
-Models curate data from another table or tables from the same database to anticipate the kinds of questions people will ask of the data. You can think of them as derived tables, or a special kind of saved question meant to be used as the starting point for new questions.
+Metabase bietet Tools, mit denen Sie Ihre Daten organisieren und für andere leichter verständlich machen können.
 
-## [Model persistence](./model-persistence.md)
 
-Persist model results for faster loading times.
+## [Modelle](./models.md)
+
+
+Modelle kuratieren Daten aus einer anderen Tabelle oder aus Tabellen derselben Datenbank, um die Art von Fragen vorwegzunehmen, die Menschen an die Daten stellen werden. Man kann sie sich als abgeleitete Tabellen vorstellen oder als eine besondere Art von gespeicherten Fragen, die als Ausgangspunkt für neue Fragen verwendet werden können.
+
+
+## [Modellpersistenz](./model-persistence.md)
+
+
+Persistieren von Modellergebnissen für schnellere Ladezeiten.
+
 
 ## [Metrics](./metrics.md)
 
-Create metrics to define the official way to calculate important numbers for your team.
 
-## [Table metadata admin settings](./metadata-editing.md)
+Erstellen Sie Metriken, um die offizielle Methode zur Berechnung wichtiger Zahlen für Ihr Team festzulegen.
 
-Guide people to the right data by adding display names, hiding outdated tables, configuring filter types, and more.
 
-## [Field types](./field-types.md)
+## [Admin-Einstellungen für Tabellen-Metadaten](./metadata-editing.md)
 
-Field types dictate how Metabase displays its data, as well as the column’s special functionality, if any.
 
-## [Setting default formatting for your data](./field-types.md)
+Leiten Sie Besucher zu den richtigen Daten, indem Sie Anzeigenamen hinzufügen, veraltete Tabellen ausblenden, Filtertypen konfigurieren und vieles mehr.
 
-Define formatting and display defaults for numbers, currencies, datetimes, and more.
 
-## [Working with JSON](./json-unfolding.md)
+## [Feldtypen](./field-types.md)
 
-Metabase can unfold JSON columns into their component fields, which you can then filter on using the query builder.
 
-## [Segments](./segments.md)
+Die Feldtypen legen fest, wie Metabase die Daten anzeigt und welche speziellen Funktionen die Spalte ggf. hat.
 
-Admins can define segments to create official filters for your data.
+
+## [Einstellen der Standardformatierung für Ihre Daten](./field-types.md)
+
+
+Definieren Sie Formatierungs- und Anzeigevorgaben für Zahlen, Währungen, Datumsangaben und mehr.
+
+
+## [Arbeiten mit JSON](./json-unfolding.md)
+
+
+Metabase kann JSON-Spalten in ihre Komponentenfelder auffalten, nach denen Sie dann mit dem Query Builder filtern können.
+
+
+## [Segmente](./segments.md)
+
+
+Admins können Segmente definieren, um offizielle Filter für Ihre Daten zu erstellen.
+
