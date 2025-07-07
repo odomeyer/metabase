@@ -1,72 +1,95 @@
 ---
-title: Working with JSON
+Titel: Arbeiten mit JSON
 ---
 
-# Working with JSON
 
-## Filtering JSON
+# Arbeiten mit JSON
 
-In the [query builder](../questions/query-builder/editor.md), Metabase can't parse JSON in columns, so you can only filter by "Is empty" or "Not empty".
 
-## JSON unfolding
+## Filtern von JSON
 
-With [some databases](#databases-that-support-json-unfolding), Metabase can unfold JSON columns into their component fields, which you can then filter on using the query builder.
 
-Here is a table with a column that contains JSON.
+Im [query builder](../questions/query-builder/editor.md) kann die Metabase JSON in Spalten nicht parsen, so dass man nur nach "Is empty" oder "Not empty" filtern kann.
 
-![A table with a JSON column](./images/table-with-json-column.png)
 
-Metabase can unfold that JSON column so that each key in the JSON object gets its own column in the table. Here are the unfolded fields of the table with the JSON column pictured above:
+## JSON-Entfaltung
 
-![Unfolded fields](./images/unfolded-fields.png)
 
-And here are the values as seen in the table:
+Mit [einigen Datenbanken](#databases-that-support-json-unfolding) kann Metabase JSON-Spalten in ihre Komponentenfelder auffalten, nach denen Sie dann mit dem Query Builder filtern können.
 
-![Unfolded values](./images/unfolded-values.png)
 
-This unfolding allows you to filter for values found in the original JSON object.
+Hier ist eine Tabelle mit einer Spalte, die JSON enthält.
 
-Metabase will prefix the unfolded column names with the name of the original column that contained the JSON. You can change the column names in **Admin settings** > [Table metadata](metadata-editing.md), or by creating a [model](./models.md) and editing the column metadata.
 
-## Toggling JSON unfolding for a database
+Eine Tabelle mit einer JSON-Spalte(./images/table-with-json-column.png)
 
-If you notice a hit to performance from this JSON unfolding, we recommend turning it off.
 
-To turn off JSON unfolding for a database:
+Metabase kann diese JSON-Spalte entfalten, so dass jeder Schlüssel im JSON-Objekt eine eigene Spalte in der Tabelle erhält. Hier sind die entfalteten Felder der Tabelle mit der oben abgebildeten JSON-Spalte:
 
-1. Click on the **Gear** in the upper right.
-2. Select **Admin settings**
-3. Visit the **Databases** tab.
-4. Select the relevant database.
-5. Click **Show advanced options**.
-6. Toggle **Allow unfolding of JSON columns**.
-7. Scroll down and click the **Save changes** button.
-8. Click **Sync database schema**.
-9. Click **Re-scan field values**.
 
-## Toggling JSON unfolding for a specific column
+![Ungefaltete Felder](./images/unfolded-fields.png)
 
-If performance degrades, or you'd rather keep the JSON contained in the original column, you can turn off unfolding for individual fields in their settings.
 
-1. Click on the **Gear** in the upper right.
-2. Select **Admin settings**.
-3. Visit the **Table metadata** tab.
-4. Select the database that contains the field you want to update.
-5. Select the table that contains the field.
-6. Select the field containing the original JSON
-7. Scroll to the **Unfold JSON** option and select **Yes** or **No**. If the column was unfolded, Metabase will have hidden this JSON columnn from view, so if you want the JSON column to be visible again, you'll need to change the column's visibility to **Everywhere**.
-8. Scroll down and click on the **Re-scan this field**.
+Und hier sind die Werte, wie sie in der Tabelle zu sehen sind:
 
-![Unfolded JSON setting](./images/unfold-json-setting.png)
 
-## For JSON unfolding to work, the column's data type must be JSON
+![Ungefaltete Werte](./images/unfolded-values.png)
 
-For example, if you upload a CSV with JSON in it, you might need to update the data/type in the database. Note that you can't edit the data type via Metabase; you can only change its field type. So even if the field type in Metabase is `Field containing JSON`, if the data/type isn't `JSON`, Metabase won't give you the option to unfold the column. You'll need to change the column type in the database itself.
 
-## Databases that support JSON unfolding
+Diese Entfaltung ermöglicht es Ihnen, nach Werten zu filtern, die im ursprünglichen JSON-Objekt gefunden wurden.
+
+
+Die Metabase stellt den Namen der entfalteten Spalten den Namen der ursprünglichen Spalte, die das JSON enthält, voran. Sie können die Spaltennamen in **Admin settings** > [Table metadata](metadata-editing.md) ändern, oder indem Sie ein [model](./models.md) erstellen und die Spaltenmetadaten bearbeiten.
+
+
+## Umschalten der JSON-Entfaltung für eine Datenbank
+
+
+Wenn Sie eine Beeinträchtigung der Leistung durch die JSON-Abwicklung feststellen, empfehlen wir, diese zu deaktivieren.
+
+
+So deaktivieren Sie die JSON-Abwicklung für eine Datenbank:
+
+
+1. Klicken Sie auf das **Zahnrad** in der oberen rechten Ecke.
+2. Wählen Sie **Admin-Einstellungen**
+3. Besuchen Sie die Registerkarte **Datenbanken**.
+4. Wählen Sie die entsprechende Datenbank aus.
+5. Klicken Sie auf **Erweiterte Optionen anzeigen**.
+6. Toggle **Entfaltung von JSON-Spalten zulassen**.
+7. Blättern Sie nach unten und klicken Sie auf die Schaltfläche **Änderungen speichern**.
+8. Klicken Sie auf **Datenbankschema synchronisieren**.
+9. Klicken Sie auf **Feldwerte neu scannen**.
+
+
+## Umschalten der JSON-Aufklappung für eine bestimmte Spalte
+
+
+Wenn die Leistung nachlässt oder Sie das JSON lieber in der ursprünglichen Spalte behalten möchten, können Sie die Entfaltung für einzelne Felder in deren Einstellungen deaktivieren.
+
+
+1. Klicken Sie auf das **Zahnrad** in der oberen rechten Ecke.
+2. Wählen Sie **Admin-Einstellungen**.
+3. Besuchen Sie die Registerkarte **Metadaten der Tabelle**.
+4. Wählen Sie die Datenbank aus, die das Feld enthält, das Sie aktualisieren möchten.
+5. Wählen Sie die Tabelle aus, die das Feld enthält.
+6. Wählen Sie das Feld aus, das das ursprüngliche JSON enthält.
+7. Blättern Sie zur Option**JSON ausklappen** und wählen Sie**Ja** oder**Nein**. Wenn die Spalte ausgeklappt wurde, hat Metabase diese JSON-Spalte ausgeblendet. Wenn Sie die JSON-Spalte also wieder sichtbar machen möchten, müssen Sie die Sichtbarkeit der Spalte auf**Überall** ändern.
+8. Scrollen Sie nach unten und klicken Sie auf das Feld **Dieses Feld erneut scannen**.
+
+
+(./images/unfold-json-setting.png)
+
+
+## Damit die JSON-Entfaltung funktioniert, muss der Datentyp der Spalte JSON sein.
+
+
+Wenn Sie z. B. eine CSV-Datei mit JSON hochladen, müssen Sie möglicherweise die Daten/den Typ in der Datenbank aktualisieren. Beachten Sie, dass Sie den Datentyp über die Metabase nicht bearbeiten können; Sie können nur den Feldtyp ändern. Selbst wenn der Feldtyp in der Metabase also "Field containing JSON" lautet, bietet die Metabase keine Möglichkeit, die Spalte zu entfalten, wenn die Daten/der Typ nicht "JSON" sind. Sie müssen den Spaltentyp in der Datenbank selbst ändern.
+
+
+## Datenbanken, die JSON-Entfaltung unterstützen
+
 
 - [PostgreSQL](../databases/connections/postgresql.md)
-- [MySQL](../databases/connections/mysql.md)
+- [MySQL](../Datenbanken/Verbindungen/mysql.md)
 - [Druid (JDBC)](../databases/connections/druid.md)
-
-A note on [BigQuery](../databases/connections/bigquery.md): Metabase supports the [STRUCT data type](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#struct_type) in BigQuery, but it won't unfold JSON stored in BigQuery as the `JSON` type. If your data is stored in the `STRUCT` type in BigQuery, you can query the table's nested fields. Some background here: BigQuery differs from other databases in that nested fields are _part of the table definition itself_. So when Metabase syncs with your BigQuery database, it'll be able to get metadata about any of your tables, including tables with nested fields. Querying nested fields, however, doesn't extend to arrays (REPEATED (STRUCT)) in BigQuery.
