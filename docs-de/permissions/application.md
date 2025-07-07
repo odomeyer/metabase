@@ -1,44 +1,59 @@
 ---
-title: Application permissions
+Titel: Anwendungsberechtigungen
 redirect_from:
-  - /docs/latest/administration-guide/application-permissions
+- /docs/latest/administration-guide/application-permissions
 ---
 
-# Application permissions
+
+# Anwendungsberechtigungen
+
 
 {% include plans-blockquote.html feature="Application permissions" %}
 
-Application settings are useful for granting groups access to some, but not all, of Metabase's administrative features.
 
-To set application permissions, got to the top right of the screen and click on the **gear** icon > **Admin settings** > **Permissions** > **Application**.
+Die Anwendungseinstellungen sind nützlich, um Gruppen den Zugriff auf einige, aber nicht alle Verwaltungsfunktionen der Metabase zu gewähren.
 
-## Settings access
 
-Settings access defines which groups can view and edit the settings under the Admin > Settings tab. These settings include:
+Zum Festlegen der Anwendungsberechtigungen klicken Sie oben rechts auf dem Bildschirm auf das Symbol **Zahnrad** > **Verwaltungseinstellungen** > **Berechtigungen** > **Anwendung**.
 
-- [Settings](../configuring-metabase/settings.md)
-- [Email](../configuring-metabase/email.md)
-- [Slack](../configuring-metabase/slack.md)
-- [Authentication](../people-and-groups/start.md)
-- [Maps](../configuring-metabase/custom-maps.md)
-- [Localization](../configuring-metabase/localization.md)
-- [Appearance](../configuring-metabase/appearance.md)
-- [Public sharing](../embedding/public-links.md)
-- [Embedding in other applications](../embedding/start.md)
-- [Caching](../configuring-metabase/caching.md)
 
-## Monitoring access
+## Einstellungszugriff
 
-Monitoring access sets permissions for the following:
+
+Der Einstellungszugriff legt fest, welche Gruppen die Einstellungen auf der Registerkarte Verwaltung > Einstellungen anzeigen und bearbeiten können. Diese Einstellungen umfassen:
+
+
+- [Einstellungen](../configuring-metabase/settings.md)
+- [E-Mail](../konfigurierende-metabasis/email.md)
+- [Slack](../konfigurierende-metabasis/slack.md)
+- [Authentifizierung](../people-and-groups/start.md)
+-Karten](../configuring-metabase/custom-maps.md)
+- [Lokalisierung](../konfigurierende-metabasis/localization.md)
+- [Aussehen](../configuring-metabase/appearance.md)
+- [Öffentliche Freigabe](../embedding/public-links.md)
+- [Einbettung in andere Anwendungen](../embedding/start.md)
+- [Zwischenspeichern](../configuring-metabase/caching.md)
+
+
+## Überwachung des Zugriffs
+
+
+Die Zugriffsüberwachung legt die Berechtigungen für Folgendes fest:
+
 
 - [Tools](../usage-and-performance-tools/tools.md)
-- [Troubleshooting](../troubleshooting-guide/index.md)
+- [Fehlersuche](../troubleshooting-guide/index.md)
 
-## Subscriptions and alerts
 
-This setting determines who can set up:
+## Abonnements und Alarme
 
-- [Dashboard subscriptions](../dashboards/subscriptions.md)
-- [Alerts](../questions/alerts.md)
 
-People will need to be in groups with either view or edit access to the collection that contains the dashboard or question in order to set up alerts. See [Collection permissions](../permissions/collections.md).
+Diese Einstellung legt fest, wer ein Abonnement einrichten kann:
+
+
+- [Dashboard-Abonnements](../dashboards/subscriptions.md)
+- [Warnungen](../fragen/alerts.md)
+
+
+Um Alarme einzurichten, müssen die Personen in Gruppen sein, die entweder Ansichts- oder Bearbeitungsrechte für die Sammlung haben, die das Dashboard oder die Frage enthält. Siehe [Sammlungsberechtigungen](../permissions/collections.md).
+
