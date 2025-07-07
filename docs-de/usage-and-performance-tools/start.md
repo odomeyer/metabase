@@ -1,17 +1,17 @@
 ---
-title: "Tools overview"
+Titel: "Tools im Überblick"
 redirect_from:
   - /docs/latest/usage-and-performance-tools
 ---
 
-# Tools overview
+# Übersicht Tools
 
-Administration tools for managing your Metabase.
 
+Verwaltungstools für die Verwaltung Ihrer Metabase.
 ## [Usage analytics](./usage-analytics.md)
 
-See how people are using your Metabase.
+Sehen Sie, wie die Leute Ihre Metabase nutzen.
 
 ## [Admin tools](./tools.md)
 
-View question error and model caching logs.
+Ansicht der Fehler- und Modell-Caching-Protokolle für Fragen.
