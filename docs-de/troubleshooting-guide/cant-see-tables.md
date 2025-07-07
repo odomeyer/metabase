@@ -1,98 +1,86 @@
 ---
-title: I can't see my tables
+Titel: Ich kann meine Tabellen nicht sehen
 ---
 
-# I can't see my tables
 
-You've connected Metabase to a database, but:
+# Ich kann meine Tabellen nicht sehen
 
-- you don't see the tables in the [Table Metadata](../data-modeling/metadata-editing.md) section of the Admin Panel,
-- the tables don't appear in the [Data Browser](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/data-browser),
-- the tables don't show up as possible data sources when you create a query using the Query Builder, or
-- you can no longer see tables that you used to be able to see.
 
-## Check for browser issues
+Sie haben die Metabase mit einer Datenbank verbunden, aber:
 
-1. Clear your browser cache.
-2. Check if a browser extension or plugin is interfering with Metabase:
-   - Disable all extensions and plugins,
-   - Open Metabase in an incognito browser session, or
-   - Open Metabase in a different browser.
 
-**Explanation**
+- Sie sehen die Tabellen nicht im Abschnitt [Table Metadata](../data-modeling/metadata-editing.md) des Admin Panels,
+- die Tabellen erscheinen nicht im [Data Browser](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/data-browser),
+- die Tabellen werden nicht als mögliche Datenquellen angezeigt, wenn Sie eine Abfrage mit dem Query Builder erstellen, oder
+- Sie können die Tabellen nicht mehr sehen, die Sie früher sehen konnten.
 
-Sometimes your browser will show an old cached list of tables. Browser extensions can also prevent pages from loading correctly.
 
-## Test the database connection
+## Prüfen Sie auf Browser-Probleme
 
-1. Go to the Metabase [SQL editor](../questions/native-editor/writing-sql.md).
-2. Test the connection to your database by running:
-   ```sql
-   SELECT 1
-   ```
 
-If you get an error, see [Troubleshooting database connections](./db-connection.md).
+1. Löschen Sie Ihren Browser-Cache.
+2. Prüfen Sie, ob eine Browsererweiterung oder ein Plugin die Metabase beeinträchtigt:
+- Deaktivieren Sie alle Erweiterungen und Plugins,
+- Öffnen Sie Metabase in einer Inkognito-Browser-Sitzung, oder
+- Öffnen Sie Metabase in einem anderen Browser.
 
-**Explanation**
 
-Something may have changed on the database side (if you were previously connected). For example, you may have connected to a test database while doing an evaluation but are now in a production environment.
+**Erläuterung**
 
-## Check table access
 
-To make sure that your table is actually queryable by Metabase:
+Manchmal zeigt Ihr Browser eine alte, zwischengespeicherte Liste von Tabellen an. Auch Browser-Erweiterungen können das korrekte Laden von Seiten verhindern.
 
-1. Go to the Metabase [SQL editor](../questions/native-editor/writing-sql.md).
-2. Look for your table:
-   ```sql
-   SELECT *
-   FROM your_table
-   ```
 
-If there's a problem with your table name or database permissions, you'll get an error message like:
+## Testen Sie die Datenbankverbindung
 
-- [Table not found](https://www.metabase.com/learn/sql/debugging-sql/sql-syntax#column-or-table-name-is-not-found-or-not-recognized)
-- [Permission denied](./data-permissions.md#getting-a-permission-denied-error-message)
 
-For less common errors, try searching or asking the [Metabase community](https://discourse.metabase.com/).
+1. Gehen Sie zur Metabase [SQL editor](../questions/native-editor/writing-sql.md).
+2. Testen Sie die Verbindung zu Ihrer Datenbank, indem Sie den Befehl
+```sql
+SELECT 1
+```
 
-**Explanation**
 
-Something might have changed on database side: your table could've been renamed or dropped, or the permissions revoked.
+Wenn Sie einen Fehler erhalten, lesen Sie bitte [Troubleshooting database connections](./db-connection.md).
+
+
+**Erläuterung**
+
+
+Möglicherweise hat sich auf der Datenbankseite etwas geändert (wenn Sie zuvor verbunden waren). Es kann zum Beispiel sein, dass Sie während einer Evaluierung eine Verbindung zu einer Testdatenbank hergestellt haben, sich jetzt aber in einer Produktionsumgebung befinden.
+
+
+## Tabellenzugriff prüfen
+
+
+So stellen Sie sicher, dass Ihre Tabelle tatsächlich von der Metabase abgefragt werden kann:
+
+
+1. Gehen Sie zur Metabase [SQL editor](../questions/native-editor/writing-sql.md).
+2. Suchen Sie nach Ihrer Tabelle:
+```sql
+SELECT *
+FROM ihre_tabelle
+```
+
+
+Wenn es ein Problem mit dem Tabellennamen oder den Datenbankberechtigungen gibt, erhalten Sie eine Fehlermeldung wie:
+
+
+- [Tabelle nicht gefunden](https://www.metabase.com/learn/sql/debugging-sql/sql-syntax#column-or-table-name-is-not-found-or-not-recognized)
+- [Berechtigung verweigert](./data-permissions.md#getting-a-permission-denied-error-message)
+
+
+Bei weniger häufigen Fehlern versuchen Sie es mit einer Suche oder fragen Sie die [Metabase community](https://discourse.metabase.com/).
+
+
+**Erläuterung**
+
+
+Es könnte sich etwas auf der Datenbankseite geändert haben: Ihre Tabelle könnte umbenannt oder gelöscht worden sein, oder die Berechtigungen wurden widerrufen.
+
 
 ## Metabase permissions
 
-If there are only a few people who can't view tables, see [A user group has the wrong access to a table or schema](./data-permissions.md#a-user-group-has-the-wrong-access-to-a-table-or-schema).
 
-**Explanation**
-
-Metabase uses a group-based permission model: people belong to groups, and admins can set permissions to hide tables from groups.
-
-## Check if the table is hidden
-
-1. Go to **Admin > Table Metadata** and choose the database where your table is.
-2. Check that **Visibility** of your table is not set to **Hidden**.
-
-**Explanation**
-
-If an Admin sets the table visibility to **Hidden**, you will be able to use SQL to query the table but will not be able to see it in **Browse** > **Databases** or as a data source in the Query Builder.
-
-## MongoDB
-
-MongoDB lets you "successfully connect" to any collection name, even if the collection doesn't exist. If you don't see a MongoDB collection in Metabase, make sure that:
-
-- you have the correct collection name, and
-- the collection is non-empty.
-
-## Related topics
-
-- [Table visibility](../data-modeling/metadata-editing.md#table-visibility).
-- [My data sandboxes aren't working](./sandboxing.md).
-- [I can't view or edit a question or dashboard](./cant-view-or-edit.md).
-- [My visualizations are wrong](./visualization.md).
-
-## Are you still stuck?
-
-If you can’t solve your problem using the troubleshooting guides:
-
-- Search or ask the [Metabase community](https://discourse.metabase.com/).
-- Search for [known bugs or limitations](./known-issues.md).
+Wenn es nur wenige Personen gibt, die keine Tabellen einsehen können, siehe [Eine Benutzergruppe hat den falschen Zugriff auf eine Tabelle oder ein Schema](./data-permissions.md#a-user-group-has-the-wrong-access-to-a-table-or-schema).
