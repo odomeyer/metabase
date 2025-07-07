@@ -1,85 +1,92 @@
 ---
-title: Troubleshooting LDAP
----
+## LDAP-Beispielkonfiguration
 
-# Troubleshooting LDAP
 
-Metabase can use LDAP for authentication. [This article](../people-and-groups/ldap.md) explains how to set it up, and the guide below will help you troubleshoot if anything goes wrong. If your problem isn't specific to LDAP, go to [our troubleshooting guide for logging in](./cant-log-in.md).
+Sie können Metabase mit LDAP testen, indem Sie diese "docker-compose" Definition verwenden:
 
-## LDAP sample configuration
 
-You can test Metabase with LDAP by using this `docker-compose` definition:
-
-```yml
+`Yml`
 version: "3.7"
-services:
-  metabase-ldap:
-    image: metabase/metabase:latest
-    container_name: metabase-ldap
-    hostname: metabase-ldap
-    volumes:
-      - /dev/urandom:/dev/random:ro
-    ports:
-      - 3000:3000
-    networks:
-      - metanet1
-    environment:
-      - "MB_LDAP_BIND_DN=cn=admin,dc=example,dc=org"
-      - "MB_LDAP_ENABLED=true"
-      - "MB_LDAP_GROUP_BASE=cn=readers"
-      - "MB_LDAP_HOST=openldap"
-      - "MB_LDAP_PASSWORD=adminpassword"
-      - "MB_LDAP_PORT=1389"
-      - "MB_LDAP_USER_BASE=ou=users,dc=example,dc=org"
-      - "MB_LDAP_ATTRIBUTE_EMAIL=uid"
-      # We are using the same field for email and first name, just for this example to work without modifications to the LDAP objects
-      - "MB_LDAP_ATTRIBUTE_FIRSTNAME=uid"
-      - "MB_LDAP_ATTRIBUTE_LASTNAME=sn"
-  openldap:
-    image: bitnami/openldap:2.4.57
-    hostname: openldap
-    container_name: openldap
-    ports:
-      - 1389:1389
-    environment:
-      - LDAP_ADMIN_USERNAME=admin
-      - LDAP_ADMIN_PASSWORD=adminpassword
-      - LDAP_USERS=user01@metabase.com,user02@metabase.com
-      - LDAP_PASSWORDS=password1!,password2!
-      - LDAP_PORT_NUMBER=1389
-      - LDAP_ROOT=dc=example,dc=org
-      - LDAP_USER_DC=users
-      - LDAP_GROUP=readers
-    networks:
-      - metanet1
-networks:
-  metanet1:
-    driver: bridge
+Dienste:
+metabase-ldap:
+image: metabase/metabase:latest
+container_name: metabase-ldap
+Rechnername: metabase-ldap
+Volumes:
+- /dev/urandom:/dev/random:ro
+Ports:
+- 3000:3000
+Netzwerke:
+- metanet1
+Umgebung:
+- "MB_LDAP_BIND_DN=cn=admin,dc=example,dc=org"
+- "MB_LDAP_ENABLED=true"
+- "MB_LDAP_GROUP_BASE=cn=Leser"
+- "MB_LDAP_HOST=openldap"
+- "MB_LDAP_PASSWORD=adminpassword"
+- "MB_LDAP_PORT=1389"
+- MB_LDAP_USER_BASE=ou=users,dc=example,dc=org"
+- "MB_LDAP_ATTRIBUTE_EMAIL=uid"
+# Wir verwenden dasselbe Feld für E-Mail und Vorname, nur damit dieses Beispiel ohne Änderungen an den LDAP-Objekten funktioniert
+- "MB_LDAP_ATTRIBUTE_FIRSTNAME=uid"
+- "MB_LDAP_ATTRIBUTE_LASTNAME=sn"
+openldap:
+image: bitnami/openldap:2.4.57
+hostname: openldap
+container_name: openldap
+Ports:
+- 1389:1389
+Umgebung:
+- LDAP_ADMIN_USERNAME=admin
+- LDAP_ADMIN_PASSWORD=adminpassword
+- LDAP_USERS=user01@metabase.com,user02@metabase.com
+- LDAP_PASSWORDS=Passwort1!,Passwort2!
+- LDAP_PORT_NUMBER=1389
+- LDAP_ROOT=dc=example,dc=org
+- LDAP_USER_DC=benutzer
+- LDAP_GROUP=Leser
+Netzwerke:
+- metanet1
+Netzwerke:
+metanet1:
+Treiber: Brücke
 ```
 
-If you don't pass environment variables to Metabase and you want to configure the environment manually, you can go to the Admin Panel, selectin "Settings", select "Authentication", and then select "LDAP Configuration" and enter the following values:
 
-- `USERNAME OR DN`: `cn=admin,dc=example,dc=org`
-- `PASSWORD`: `adminpassword`
-- `USER SEARCH BASE`: `ou=users,dc=example,dc=org`
-- `USER FILTER`: `(&(objectClass=inetOrgPerson)(|(uid={login})))`
-- `GROUP SEARCH BASE`: `cn=readers`
+Wenn Sie der Metabase keine Umgebungsvariablen übergeben und die Umgebung manuell konfigurieren möchten, können Sie im Admin Panel unter "Einstellungen" die Option "Authentifizierung" und dann "LDAP-Konfiguration" auswählen und die folgenden Werte eingeben:
 
-For the `USER FILTER`, you can leave the default value, which will look for the user ID in both the `uid` or `email` field.
 
-## Related software for troubleshooting
+-USERNAME ODER DN:cn=admin,dc=example,dc=org
+-PASSWORT`: `adminpassword`
+-USER SEARCH BASE`: `ou=users,dc=example,dc=org`
+-BENUTZER-FILTER`: `(&(objectClass=inetOrgPerson)(|(uid={login})))`
+-GROUP SEARCH BASE`: `cn=readers`
 
-If you run into an issue, check that you can login to your LDAP directory and issue queries using software like [Apache Directory Studio][apache-directory-studio]. It will let you see the whole LDAP tree and view the logs of your LDAP application to see queries run.
 
-<h2 id="current-limitations">Current limitations</h2>
+Für den "USER FILTER" können Sie den Standardwert belassen, der nach der Benutzer-ID sowohl im Feld "uid" als auch im Feld "email" suchen wird.
 
-- When using Metabase Enterprise with a MySQL database and LDAP enabled, make sure that you disable synchronization of binary fields from your LDAP directory by using the `MB_LDAP_SYNC_USER_ATTRIBUTES_BLACKLIST` environment variable. If you do not, you may hit the 60K field size limitation of the text field in MySQL, which will prevent you from creating users or those users from logging in.
+
+## Verwandte Software zur Fehlerbehebung
+
+
+Wenn Sie auf ein Problem stoßen, überprüfen Sie, ob Sie sich bei Ihrem LDAP-Verzeichnis anmelden und Abfragen mit einer Software wie [Apache Directory Studio][apache-directory-studio] durchführen können. Damit können Sie den gesamten LDAP-Baum sehen und die Protokolle Ihrer LDAP-Anwendung einsehen, um die durchgeführten Abfragen zu sehen.
+
+
+<h2 id="current-limitations">Aktuelle Einschränkungen</ h2>
+
+
+- Wenn Sie Metabase Enterprise mit einer MySQL-Datenbank und aktiviertem LDAP verwenden, stellen Sie sicher, dass Sie die Synchronisierung von Binärfeldern aus Ihrem LDAP-Verzeichnis mithilfe der Umgebungsvariablen "MB_LDAP_SYNC_USER_ATTRIBUTES_BLACKLIST" deaktivieren. Wenn Sie dies nicht tun, stoßen Sie möglicherweise an die 60K-Feldgrößenbeschränkung des Textfeldes in MySQL, was Sie daran hindert, Benutzer anzulegen oder diese Benutzer anzumelden.
+
 
 [apache-directory-studio]: https://directory.apache.org/studio/
 
-## Are you still stuck?
 
-If you can’t solve your problem using the troubleshooting guides:
+## Stecken Sie immer noch fest?
 
-- Search or ask the [Metabase community](https://discourse.metabase.com/).
-- Search for [known bugs or limitations](./known-issues.md).
+
+Wenn Sie Ihr Problem nicht mit Hilfe der Anleitungen zur Fehlerbehebung lösen können:
+
+
+- Suchen oder fragen Sie die [Metabase-Community](https://discourse.metabase.com/).
+- Suchen Sie nach [bekannten Fehlern oder Einschränkungen](./known-issues.md).
+
