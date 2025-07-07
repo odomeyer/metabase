@@ -1,50 +1,68 @@
 ---
-title: Troubleshooting permissions
+Titel: Fehlersuche bei Berechtigungen
 ---
 
-# Troubleshooting permissions
 
-If someone has the wrong level of access to a dashboard or a question, the problem may be coming from group settings, collection permissions, or data permissions.
+# Fehlersuche bei Berechtigungen
 
-1. Go to **Admin** > **People** and check if the person is in [more than one group with different permissions][group-permissions].
-2. If a person **can't view or edit** questions or dashboards, see [Troubleshooting collection permissions](#troubleshooting-collection-permissions).
-3. If a person **can't access data**, such as schema, tables, rows, or columns, see [Troubleshooting data permissions](#troubleshooting-data-permissions).
 
-If you have a different issue, see [related problems](#do-you-have-a-different-problem).
+Wenn jemand die falsche Zugriffsebene für ein Dashboard oder eine Frage hat, kann das Problem von Gruppeneinstellungen, Sammlungsberechtigungen oder Datenberechtigungen herrühren.
 
-## Troubleshooting collection permissions
 
-- [A user group can't access a dashboard in a collection that they have permissions for][troubleshooting-viewing-editing].
-- [A user group can view collections that contain restricted data][collections-restricted-data].
+1. Gehen Sie zu **Admin** > **Personen** und prüfen Sie, ob die Person in [mehr als einer Gruppe mit unterschiedlichen Berechtigungen][Gruppenberechtigungen] ist.
+2. Wenn eine Person** Fragen oder Dashboardsnicht anzeigen oder bearbeiten kann, siehe [Fehlersuche bei Sammlungsberechtigungen](#troubleshooting-collection-permissions).
+3. Wenn eine Person **nicht auf Daten**zugreifen kann, wie z. B. Schema, Tabellen, Zeilen oder Spalten, siehe [Troubleshooting data-permissions](#troubleshooting-data-permissions).
 
-## [Troubleshooting data permissions][troubleshooting-data-permissions]
 
-### Row and column permissions
+Wenn Sie ein anderes Problem haben, siehe [verwandte Probleme](#do-you-have-a-different-problem).
 
-- [Troubleshooting data sandboxing][troubleshooting-data-sandboxing].
 
-### Native query (SQL) permissions
+## Fehlersuche bei Sammlungsberechtigungen
 
-- [A user group can't access the SQL editor][sql-access].
-- [A user group with SQL permissions isn't being restricted by their data sandbox][sql-sandboxing].
 
-### Table or schema permissions
+- [Eine Benutzergruppe kann nicht auf ein Dashboard in einer Sammlung zugreifen, für die sie Berechtigungen hat][troubleshooting-viewing-editing].
+- [Eine Benutzergruppe kann Sammlungen anzeigen, die eingeschränkte Daten enthalten][collections-restricted-data].
 
-- [A user group has the wrong access to a table or schema][table-schema-access].
-- [Getting a "permission denied" error message][permission-denied].
-- [Checking someone's access to a table or schema](./data-permissions.md#checking-someones-access-to-a-table-or-schema)
 
-## Do you have a different problem?
+## [Fehlerbehebung Datenberechtigungen][troubleshooting-data-permissions]
 
-- [I can't save my question or dashboard][proxies].
-- [I can't see my tables](./cant-see-tables.md).
 
-## Are you still stuck?
+### Zeilen- und Spaltenberechtigungen
 
-If you can’t solve your problem using the troubleshooting guides:
 
-- Search or ask the [Metabase community][discourse].
-- Search for [known bugs or limitations][known-issues].
+- [troubleshooting-data-sandboxing] [troubleshooting-data-sandboxing].
+
+
+### Native Abfrage (SQL) Berechtigungen
+
+
+- [Eine Benutzergruppe kann nicht auf den SQL-Editor zugreifen][sql-access].
+- [Eine Benutzergruppe mit SQL-Berechtigungen wird nicht durch ihre Daten-Sandbox eingeschränkt][sql-sandboxing].
+
+
+### Tabellen- oder Schema-Berechtigungen
+
+
+- [Eine Benutzergruppe hat den falschen Zugriff auf eine Tabelle oder ein Schema][table-schema-access].
+- [Fehlermeldung "Zugriff verweigert" erhalten][permission-denied].
+- [Überprüfen des Zugriffs von jemandem auf eine Tabelle oder ein Schema](./data-permissions.md#checking-someones-access-to-a-table-or-schema)
+
+
+## Haben Sie ein anderes Problem?
+
+
+- [Ich kann meine Frage oder das Dashboard nicht speichern][Proxies].
+- [Ich kann meine Tabellen nicht sehen](./cant-see-tables.md).
+
+
+## Stecken Sie immer noch fest?
+
+
+Wenn Sie Ihr Problem nicht mit Hilfe der Anleitungen zur Fehlerbehebung lösen können:
+
+
+- Suchen oder fragen Sie in der [Metabase-Community][Diskurs].
+- Suchen Sie nach [bekannten Fehlern oder Einschränkungen][known-issues].
 
 [admin-permissions]: ../permissions/start.md
 [collection-permissions]: ../permissions/collections.md
