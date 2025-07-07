@@ -1,48 +1,67 @@
 ---
-title: Troubleshooting question and dashboard visualizations
+Titel: Fragen zur Fehlerbehebung und Dashboard-Visualisierungen
 ---
 
-# Troubleshooting question and dashboard visualizations
 
-To start, check if your current browser settings are compatible with Metabase:
+# Frage zur Fehlerbehebung und Dashboard-Visualisierungen
 
-1. Clear your browser cache, and refresh your page.
-2. Disable all extensions and plugins. Load the page again.
-3. Give it one last shot---try opening your page in a private/incognito session, or a different browser.
 
-## Formatting dashboard cards
+Prüfen Sie zunächst, ob Ihre aktuellen Browsereinstellungen mit Metabase kompatibel sind:
 
-1. Make sure that you're making and saving changes from the [card's settings](../dashboards/introduction.md#changing-a-cards-visualization-settings) (_not_ the original question's settings).
-2. [Reset your card's visualization settings](../dashboards/introduction.md#resetting-a-cards-visualization-settings).
 
-**Explanation**
+1. Löschen Sie Ihren Browser-Cache und aktualisieren Sie die Seite.
+2. Deaktivieren Sie alle Erweiterungen und Plugins. Laden Sie die Seite erneut.
+3. Versuchen Sie es ein letztes Mal - öffnen Sie Ihre Seite in einer privaten/inkognitiven Sitzung oder in einem anderen Browser.
 
-The visualization settings on a card are independent of the settings on the original question. When you first create a question, your selected visualization type is saved along with the query. When you add that question to a dashboard, the dashboard will display the same visualization as the original question by default. You can override the original visualization type by using the [card's visualization settings](../dashboards/introduction.md#changing-a-cards-visualization-settings).
 
-## Visualizing SQL questions
+## Formatierung der Dashboard-Karten
 
-Go to your SQL question and [change the visualization type](../questions/visualizations/visualizing-results.md) to a table. Then, check if any of the following situations apply to the raw query results:
 
-- [Aggregations (counts, sums, etc.) are wrong](https://www.metabase.com/learn/sql/debugging-sql/sql-logic#aggregated-results-counts-sums-etc-are-wrong).
-- [Results have duplicated rows](https://www.metabase.com/learn/sql/debugging-sql/sql-logic-duplicated-data).
-- [Results are missing rows](https://www.metabase.com/learn/sql/debugging-sql/sql-logic-missing-data).
+1. Vergewissern Sie sich, dass Sie die Änderungen in denEinstellungen der [Karte](../dashboards/introduction.md#changing-a-cards-visualization-settings) vornehmen und speichern (_nicht_ die Einstellungen der ursprünglichen Frage).
+2. [Die Visualisierungseinstellungen Ihrer Karte zurücksetzen](../dashboards/introduction.md#resetting-a-cards-visualization-settings).
 
-**Explanation**
 
-If your question or dashboard card is powered by a handwritten [SQL query](../questions/native-editor/writing-sql.md) rather than the [query builder](../questions/query-builder/editor.md), your visualization is going to be more sensitive to changes in the underlying data (for example, renamed fields, or the sudden appearance of a wild null value). To learn more, read about [Common reasons for unexpected query results](https://www.metabase.com/learn/sql/debugging-sql/sql-logic#common-reasons-for-unexpected-query-results).
+**Erläuterung**
 
-If you're having problems with things like SQL syntax errors or [SQL variables](https://www.metabase.com/glossary/variable#example-variable-in-metabase), see [Troubleshooting SQL questions](./sql.md) for more help.
 
-## Related problems
+Die Visualisierungseinstellungen auf einer Karte sind unabhängig von den Einstellungen auf der ursprünglichen Frage. Wenn Sie zum ersten Mal eine Frage erstellen, wird der ausgewählte Visualisierungstyp zusammen mit der Abfrage gespeichert. Wenn Sie diese Frage zu einem Dashboard hinzufügen, zeigt das Dashboard standardmäßig dieselbe Visualisierung an wie die ursprüngliche Frage. Sie können den ursprünglichen Visualisierungstyp überschreiben, indem Sie die [Visualisierungseinstellungen der Karte](../dashboards/introduction.md#changing-a-cards-visualization-settings) verwenden.
 
-- [My dates and times are wrong](./timezones.md).
-- [My dashboard is slow or failing to load](./my-dashboard-is-slow.md).
-- [I can't view or edit my question or dashboard](./cant-view-or-edit.md).
-- [I can't see my tables](./cant-see-tables.md).
 
-## Are you still stuck?
+## Visualisierung von SQL-Fragen
 
-If you can’t solve your problem using the troubleshooting guides:
 
-- Search or ask the [Metabase community](https://discourse.metabase.com/).
-- Search for [known bugs or limitations](./known-issues.md).
+Gehen Sie zu Ihrer SQL-Frage und [ändern Sie den Visualisierungstyp](../questions/visualizations/visualizing-results.md) in eine Tabelle. Prüfen Sie dann, ob eine der folgenden Situationen auf die Rohabfrageergebnisse zutrifft:
+
+
+- [Aggregationen (Zählungen, Summen usw.) sind falsch](https://www.metabase.com/learn/sql/debugging-sql/sql-logic#aggregated-results-counts-sums-etc-are-wrong).
+- [Ergebnisse haben doppelte Zeilen](https://www.metabase.com/learn/sql/debugging-sql/sql-logic-duplicated-data).
+- [Ergebnisse haben fehlende Zeilen](https://www.metabase.com/learn/sql/debugging-sql/sql-logic-missing-data).
+
+
+**Erläuterung**
+
+
+Wenn Ihre Frage oder Dashboardkarte durch eine handgeschriebene [SQL-Abfrage](../questions/native-editor/writing-sql.md) und nicht durch den [query builder](../questions/query-builder/editor.md) gespeist wird, reagiert Ihre Visualisierung empfindlicher auf Änderungen in den zugrunde liegenden Daten (z. B. umbenannte Felder oder das plötzliche Auftreten eines wilden Nullwertes). Um mehr darüber zu erfahren, lesen Sie [Häufige Gründe für unerwartete Abfrageergebnisse](https://www.metabase.com/learn/sql/debugging-sql/sql-logic#common-reasons-for-unexpected-query-results).
+
+
+Wenn Sie Probleme mit Dingen wie SQL-Syntaxfehlern oder [SQL-Variablen](https://www.metabase.com/glossary/variable#example-variable-in-metabase) haben, finden Sie unter [Troubleshooting SQL questions](./sql.md) weitere Hilfe.
+
+
+## Verwandte Probleme
+
+
+- [Meine Daten und Zeiten sind falsch](./timezones.md).
+- [Mein Dashboard ist langsam oder wird nicht geladen](./my-dashboard-is-slow.md).
+- [Ich kann meine Frage oder mein Dashboard nicht anzeigen oder bearbeiten](./cant-view-or-edit.md).
+- [Ich kann meine Tabellen nicht sehen](./cant-see-tables.md).
+
+
+## Stecken Sie immer noch fest?
+
+
+Wenn Sie Ihr Problem nicht mit Hilfe der Anleitungen zur Fehlerbehebung lösen können:
+
+
+- Suchen oder fragen Sie die [Metabase-Community](https://discourse.metabase.com/).
+- Suchen Sie nach [bekannten Fehlern oder Einschränkungen](./known-issues.md).
+
