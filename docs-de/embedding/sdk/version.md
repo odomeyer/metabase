@@ -1,42 +1,61 @@
 ---
-title: Embedded analytics SDK - versions
+Titel: SDK für eingebettete Analytik - Versionen
 ---
 
-# Embedded analytics SDK - versions
+
+# Embedded analytics SDK - Versionen
+
 
 {% include plans-blockquote.html feature="Embedded analytics SDK" sdk=true %}
 
-The SDK stable version tracks with the Metabase version.
 
-So, for example, if you're on Metabase 53 (`0.53.x`, `1.53.x`), _any_ version 0.53.x of the @metabase/embedding-sdk-react npm package will be compatible.
+Die stabile Version des SDK ist an die Version der Metabase gebunden.
 
-To simplify things, we publish dist-tags for each stable Metabase version. For example, to install the latest version of the SDK compatible with Metabase 53, run:
 
-```sh
+Wenn Sie also zum Beispiel Metabase 53(`0.53.x`, `1.53.x`) verwenden, ist _jede_ Version 0.53.x des @metabase/embedding-sdk-react npm-Pakets kompatibel.
+
+
+Um die Dinge zu vereinfachen, veröffentlichen wir dist-tags für jede stabile Metabase-Version. Um zum Beispiel die neueste Version des SDK zu installieren, die mit Metabase 53 kompatibel ist, führen Sie aus:
+
+
+``sh
 npm install @metabase/embedding-sdk-react@53-stable
 ```
 
-To grab the latest version of the SDK that works with Metabase nightly builds, use the `canary` dist-tag.
 
-## Minimum SDK version
+Um die neueste Version des SDK zu erhalten, die mit nächtlichen Metabase-Builds funktioniert, verwenden Sie das Dist-Tag "canary".
 
-52 is the minimum version supported for the Embedded analytics SDK.
 
-## Version pinning when using the SDK with Metabase Cloud
+## Minimale SDK-Version
 
-To pin your version of Metabase, go to **Admin settings > Settings > Embedding**. Go to the Embedded analytics SDK card and scroll to **Version pinning** and click **Request version pinning**.
 
-## Version pinning requirements
+52 ist die Mindestversion, die für das Embedded Analytics SDK unterstützt wird.
 
-To pin a version of Metabase, you must:
 
-- Be on Metabase Cloud (obviously)
-- Be on the Pro or Enterprise plans
+## Pinning der Version bei Verwendung des SDK mit Metabase Cloud
 
-## Why you'd want to pin your Metabase Cloud version
 
-Normally, Metabase Cloud upgrades your Metabase as new versions roll out so that you don't have to deal with upgrades.
+Um Ihre Metabase-Version zu pinnen, gehen Sie zu**Admin-Einstellungen > Einstellungen > Einbettung**. Gehen Sie zur SDK-Karte "Eingebettete Analysen", blättern Sie zu**Versionsanbindung** und klicken Sie auf**Versionsanbindung anfordern**.
 
-But if you're using the SDK with Metabase Cloud, you'll want to upgrade manually to make sure your embeds don't break when you upgrade both your Metabase and your SDK version.
 
-To upgrade manually, you can pin your Metabase version so that it stays in sync with the SDK version you're using. That way you can choose when to upgrade your Metabase.
+## Anforderungen für die Versionsanbindung
+
+
+Um eine Version der Metabase zu pinnen, müssen Sie:
+
+
+- Sie müssen Metabase Cloud nutzen (natürlich)
+- Sie haben einen Pro- oder Enterprise-Plan
+
+
+## Warum Sie Ihre Metabase Cloud-Version anheften sollten
+
+
+Normalerweise aktualisiert Metabase Cloud Ihre Metabase, sobald neue Versionen auf den Markt kommen, damit Sie sich nicht mit Upgrades beschäftigen müssen.
+
+
+Wenn Sie jedoch das SDK mit Metabase Cloud verwenden, sollten Sie ein manuelles Upgrade durchführen, um sicherzustellen, dass Ihre Einbettungen nicht beschädigt werden, wenn Sie sowohl Ihre Metabase als auch Ihre SDK-Version aktualisieren.
+
+
+Für ein manuelles Upgrade können Sie Ihre Metabase-Version mit der SDK-Version synchronisieren, die Sie verwenden. Auf diese Weise können Sie selbst entscheiden, wann Sie Ihre Metabase aktualisieren möchten.
+
