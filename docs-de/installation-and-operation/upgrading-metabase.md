@@ -1,174 +1,183 @@
 ---
-title: Upgrading Metabase
+Titel: Aktualisierung der Metabase
 redirect_from:
-  - /docs/latest/operations-guide/upgrading-metabase
+- /docs/latest/operations-guide/upgrading-metabase
 ---
 
-# Upgrading Metabase
 
-This page covers how to upgrade to a new [Metabase release](https://github.com/metabase/metabase/releases).
+# Metabase upgraden
 
-## Upgrading Metabase Cloud
 
-If you're on a [Metabase Cloud](https://www.metabase.com/pricing/) plan, we'll upgrade your Metabase automatically with each new release; no action needed on your end. 
+Auf dieser Seite erfahren Sie, wie Sie ein Upgrade auf eine neue [Metabase-Version](https://github.com/metabase/metabase/releases) durchführen können.
 
-How soon we upgrade you depends on the type of release:
 
-- Minor releases (e.g., x.54.4 to x.54.5): Usually about a week.
-- Major releases (e.g., x.53.4 to x.54.1): Longer, usually months (just to make sure everything goes smoothly).
+## Upgrade der Metabase Cloud
 
-Cloud customers can request an early upgrade by emailing support at help@metabase.com. Include the URL of the Metabase you want us to upgrade.
 
-## Upgrading a self-hosted Metabase
+Wenn Sie einen [Metabase Cloud](https://www.metabase.com/pricing/) Plan haben, aktualisieren wir Ihre Metabase automatisch mit jeder neuen Version, ohne dass Sie etwas tun müssen.
 
-Here are the steps for upgrading to a new Metabase version (major or minor):
 
-### 1. Back up of your application database
+Wie schnell das Upgrade durchgeführt wird, hängt von der Art des Releases ab:
 
-The application database keeps track of every single thing (but the data of your connected database) of your Metabase instance. While it's unlikely you'll need to roll back to your current version, a backup will do wonders for your peace of mind in case something goes wrong.
 
-See [Backing up Metabase application data](backing-up-metabase-application-data.md).
+- Nebenversionen (z. B. x.54.4 auf x.54.5): Normalerweise etwa eine Woche.
+- Hauptversionen (z. B. x.53.4 bis x.54.1): Länger, in der Regel Monate (nur um sicherzustellen, dass alles reibungslos funktioniert).
 
-### 2. Swap in the new Metabase version
 
-Steps differ depending on whether you're running the container image or the JAR.
+Cloud-Kunden können ein frühzeitiges Upgrade anfordern, indem sie eine E-Mail an den Support unter help@metabase.com senden. Geben Sie dabei die URL der Metabase an, die wir aktualisieren sollen.
 
-**Upgrading the container image**
 
-1. Stop the current container.
+## Upgraden einer selbst gehosteten Metabase
 
-2. Pull the latest Metabase Docker image (though we recommend that you pull a specific tag instead of using `latest`).
 
-   Metabase Open Source:
+Im Folgenden werden die Schritte für ein Upgrade auf eine neue Metabase-Version (Major oder Minor) beschrieben:
 
-   ```
-   docker pull metabase/metabase:latest
-   ```
 
-   Metabase Pro or Enterprise:
+### 1. Sicherung Ihrer Anwendungsdatenbank
 
-   ```
-   docker pull metabase/metabase-enterprise:latest
-   ```
 
-3. Start the new container image. Depending on the ports and container name, the command will look something like:
+In der Anwendungsdatenbank werden alle Daten Ihrer Metabase-Instanz gespeichert (mit Ausnahme der Daten der verbundenen Datenbank). Es ist zwar unwahrscheinlich, dass Sie Ihre aktuelle Version zurücksetzen müssen, aber ein Backup ist für den Fall, dass etwas schief geht, sehr hilfreich.
 
-   Metabase Open Source:
 
-   ```
-   docker run -d -p 3000:3000 -e MB_DB_CONNECTION_URI="jdbc:postgresql://<host>:5432/metabase?user=<username>&password=<password>" --name metabase metabase/metabase:latest
-   ```
+Siehe [Sichern der Metabase-Anwendungsdaten](backing-up-metabase-application-data.md).
 
-   Metabase Pro or Enterprise:
 
-   ```
-   docker run -d -p 3000:3000 -e MB_DB_CONNECTION_URI="jdbc:postgresql://<host>:5432/metabase?user=<username>&password=<password>" --name metabase metabase/metabase-enterprise:latest
-   ```
+### 2. Tauschen Sie die neue Metabase-Version ein
 
-On startup, Metabase will perform the upgrade automatically. Once Metabase has completed the upgrade, you'll be running the new version.
 
-**Upgrading the JAR**
+Die Schritte unterscheiden sich je nachdem, ob Sie das Container-Image oder das JAR ausführen.
 
-To upgrade, you'll need to stop the service, replace the JAR with the newer version, and restart the service.
 
-E.g., if you're running Metabase on Debian as a service using Nginx.
+**Upgrade des Container-Images**
 
-1. Stop the Metabase service. Assuming you called your service `metabase.service`, you'll run:
 
-   ```
-   sudo systemctl stop metabase.service
-   ```
+1. Halten Sie den aktuellen Container an.
 
-2. Download the latest version of the JAR file:
 
-   - [Metabase Open Source JAR](https://www.metabase.com/start/oss/jar)
-   - [Metabase Pro or Enterprise JAR](https://downloads.metabase.com/enterprise/latest/metabase.jar)
+2. Ziehen Sie das neueste Metabase-Docker-Image (wir empfehlen jedoch, ein bestimmtes Tag zu ziehen, anstatt "latest" zu verwenden).
 
-And replace the current (older) Metabase JAR file with the newer JAR you downloaded.
 
-3. Restart the service:
+Metabase Open Source:
 
-   ```
-   sudo systemctl restart metabase.service
-   ```
-
-## Upgrading from older versions of Metabase
-
-If you're on a Metabase version older than Metabase 40, you'll need to upgrade release by release until you're on the latest version of Metabase 40. From the latest version of Metabase 40, you can then jump to the current version of Metabase.
-
-For example, if you're running Metabase 1.38, your upgrade path would look like:
-
-- 1.38.X
-- 1.39.X
-- 1.40.X
-- Latest
-
-With X being the latest version available for each release.
-
-Check out a list of [Metabase releases](https://github.com/metabase/metabase/releases).
-
-When upgrading between major versions (e.g. v53.x to v54.x), use the latest minor version available for that major version. E.g., if you want to upgrade from v50 to v51, use the latest point version available for 51.
-
-## Upgrading Metabase on other platforms
-
-- [Upgrading Azure Web Apps deployments](running-metabase-on-azure.md#additional-configurations)
-
-## What happens during an upgrade or downgrade?
-
-During a **major version** upgrade (e.g., 53.1 or 54.1), Metabase will:
-
-- Perform all the migrations needed to upgrade to the new version, such as any schema changes to the application database between the two versions.
-- Keep all the metadata it needs to work on the application database.
-
-Metabase will do all this automatically. 
-
-If you need to downgrade after a major version upgrade, you'll either need to restore from a backup, or manually migrate to a lower version, otherwise Metabase may refuse to start (see the next section).
-
-Durning a **minor version upgrade** (e.g., 54.1 to 54.2), the new Metabase container or Jar will just work. Only in rare cases will it have to perform a migration, but, like with major version upgrades, Metabase will perform the migration automatically. And of course, you're backing up your application database each time you upgrade, right?
-
-## Rolling back an upgrade or to an older version
-
-In general, regular backups (especially backups before upgrading), are the best policy, so we recommend reverting to a backup of your application database to roll back an upgrade.
-
-But if you've made any change (adding new questions/dashboards, etc) since upgrading that you want to keep, you may be able to use the `migrate down` command to roll back your Metabase application database to support the previous Metabase version you were running. When Metabase upgrades to a new version, it runs migrations that may change the application database schema. The `migrate down` command undoes those schema changes. In general, we recommend restoring from a backup (the backup that you definitely remembered to generate before upgrading), and only using the `migrate down` command if you really need to keep changes made after your upgrade.
-
-### Using the migrate down command
-
-Stop your Metabase and use the current, upgraded Metabase JAR (not the Metabase JAR you want to roll back to) to complete the rollback with the `migrate down` command. Make sure that the connection details for your application database are set in the environment variables, for example:
 
 ```
-export MB_DB_TYPE=postgres
-export MB_DB_DBNAME=metabaseappdb
-export MB_DB_PORT=5432
-export MB_DB_USER=username
-export MB_DB_PASS=password
-export MB_DB_HOST=localhost
-java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar migrate down
+docker pull metabase/metabase:latest
 ```
 
-If you're running Docker, use the command `"migrate down"` (with the quotes around `"migrate down"`), and include the connection details for your application database, for example:
+
+Metabase Pro oder Enterprise:
+
 
 ```
-docker run
-  -e "MB_DB_TYPE=postgres" \
-  -e "MB_DB_DBNAME=metabaseappdb" \
-  -e "MB_DB_PORT=5432" \
-  -e "MB_DB_USER=name" \
-  -e "MB_DB_PASS=password" \
-  -e "MB_DB_HOST=my-database-host" \
---rm metabase/metabase:<tag> "migrate down"
+docker pull metabase/metabase-enterprise:latest
 ```
 
-Note the quotes around `"migrate down"`. You can also just open a shell into the container and run the migrate command inside it.
 
-Once the migration process completes, start up Metabase using the JAR or container image for the version you want to run.
+3. Starten Sie das neue Container-Image. Abhängig von den Ports und dem Containernamen wird der Befehl etwa so aussehen:
 
-## Upgrading Metabase running in a cluster
 
-If you're running Metabase in a cluster:
+Metabase Open Source:
 
-1. Reduce the number of nodes to a single node. You can't upgrade all nodes at the same time because the ugprade process works by acquiring a migration lock on the application database from a single client, which performs the migration. If you keep more than one node active when you do a major version upgrade, the application won't behave correctly, as schema changes to the application database could cause problems for nodes that are still running the older version of Metabase.
-2. Perform the upgrade as normal (as outlined above).
-3. Raise the number of nodes to the same number you had before.
 
-Make sure you container orchestrator or cluster manager doesn't kill the Metabase process while it's performing the migrations, otherwise you'll may end up with a corrupted application database and you'll need to restore from a backup.
+```
+docker run -d -p 3000:3000 -e MB_DB_CONNECTION_URI="jdbc:postgresql://<host>:5432/metabase?user=<username>&password=<password>" --name metabase metabase/metabase:latest
+```
+
+
+Metabase Pro oder Enterprise:
+
+
+```
+docker run -d -p 3000:3000 -e MB_DB_CONNECTION_URI="jdbc:postgresql://<host>:5432/metabase?user=<username>&password=<password>" --name metabase metabase/metabase-enterprise:latest
+```
+
+
+Beim Starten führt Metabase das Upgrade automatisch durch. Sobald Metabase das Upgrade abgeschlossen hat, wird die neue Version ausgeführt.
+
+
+**Aktualisieren der JAR-Datei**
+
+
+Um ein Upgrade durchzuführen, müssen Sie den Dienst anhalten, das JAR durch die neuere Version ersetzen und den Dienst neu starten.
+
+
+Wenn Sie z. B. Metabase unter Debian als Dienst mit Nginx ausführen.
+
+
+1. Beenden Sie den Metabase-Dienst. Unter der Annahme, dass Sie Ihren Dienst "metabase.service" genannt haben, werden Sie ihn ausführen:---
+Titel: Aktualisierung der Metabase
+redirect_from:
+- /docs/latest/operations-guide/upgrading-metabase 
+---
+
+# Metabase upgraden
+
+Auf dieser Seite erfahren Sie, wie Sie ein Upgrade auf eine neue [Metabase-Version](https://github.com/metabase/metabase/releases) durchführen können.
+
+## Upgrade der Metabase Cloud
+
+Wenn Sie einen [Metabase Cloud](https://www.metabase.com/pricing/) Plan haben, aktualisieren wir Ihre Metabase automatisch mit jeder neuen Version, ohne dass Sie etwas tun müssen.
+
+Wie schnell das Upgrade durchgeführt wird, hängt von der Art des Releases ab:
+
+-  Nebenversionen (z. B. x.54.4 auf x.54.5): Normalerweise etwa eine Woche.
+-  Hauptversionen (z. B. x.53.4 bis x.54.1): Länger, in der Regel Monate (nur um sicherzustellen, dass alles reibungslos funktioniert).
+
+Cloud-Kunden können ein frühzeitiges Upgrade anfordern, indem sie eine E-Mail an den Support unter help@metabase.com senden. Geben Sie dabei die URL der Metabase an, die wir aktualisieren sollen.
+
+## Upgraden einer selbst gehosteten Metabase
+
+Im Folgenden werden die Schritte für ein Upgrade auf eine neue Metabase-Version (Major oder Minor) beschrieben:
+
+### 1. Sicherung Ihrer Anwendungsdatenbank
+
+In der Anwendungsdatenbank werden alle Daten Ihrer Metabase-Instanz gespeichert (mit Ausnahme der Daten der verbundenen Datenbank). Es ist zwar unwahrscheinlich, dass Sie Ihre aktuelle Version zurücksetzen müssen, aber ein Backup ist für den Fall, dass etwas schief geht, sehr hilfreich.
+
+Siehe [Sichern der Metabase-Anwendungsdaten](backing-up-metabase-application-data.md).
+
+### 2. Tauschen Sie die neue Metabase-Version ein
+
+Die Schritte unterscheiden sich je nachdem, ob Sie das Container-Image oder das JAR ausführen.
+
+**Upgrade des Container-Images**
+
+1. Halten Sie den aktuellen Container an.
+
+2. Ziehen Sie das neueste Metabase-Docker-Image (wir empfehlen jedoch, ein bestimmtes Tag zu ziehen, anstatt "latest" zu verwenden).
+
+Metabase Open Source:
+
+```
+docker pull metabase/metabase:latest
+```
+
+Metabase Pro oder Enterprise:
+
+```
+docker pull metabase/metabase-enterprise:latest
+```
+
+3. Starten Sie das neue Container-Image. Abhängig von den Ports und dem Containernamen wird der Befehl etwa so aussehen:
+
+Metabase Open Source:
+
+```
+docker run -d -p 3000:3000 -e MB_DB_CONNECTION_URI="jdbc:postgresql://<host>:5432/metabase?user=<username>&password=<password>" --name metabase metabase/metabase:latest
+```
+
+Metabase Pro oder Enterprise:
+
+```
+docker run -d -p 3000:3000 -e MB_DB_CONNECTION_URI="jdbc:postgresql://<host>:5432/metabase?user=<username>&password=<password>" --name metabase metabase/metabase-enterprise:latest
+```
+
+Beim Starten führt Metabase das Upgrade automatisch durch. Sobald Metabase das Upgrade abgeschlossen hat, wird die neue Version ausgeführt.
+
+**Aktualisieren der JAR-Datei**
+
+Um ein Upgrade durchzuführen, müssen Sie den Dienst anhalten, das JAR durch die neuere Version ersetzen und den Dienst neu starten.
+
+Wenn Sie z. B. Metabase unter Debian als Dienst mit Nginx ausführen.
+
+1. Beenden Sie den Metabase-Dienst. Unter der Annahme, dass Sie Ihren Dienst "metabase.service" genannt haben, werden Sie ihn ausführen:
+
