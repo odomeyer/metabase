@@ -17,146 +17,105 @@ Wenn Sie versuchen, eine Zahl nach einer Spalte zu gruppieren, die viele möglic
 [Zeilendiagramm](../images/row.png)
 Bei einem Balkendiagramm wie "Anzahl der Benutzer nach Alter", bei dem die x-Achse eine Zahl ist, erhalten Sie eine spezielle Art von Diagramm, das **[Histogramm](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/visualization/histograms)**, bei dem jeder Balken einen Wertebereich (eine so genannte "Bin") darstellt. Beachten Sie, dass Metabase Ihre Ergebnisse immer dann automatisch einordnet, wenn Sie eine Zahl als Gruppierung verwenden, auch wenn Sie kein Balkendiagramm anzeigen. Fragen, die Längen- und Breitengrade verwenden, werden ebenfalls automatisch eingeteilt.
 
-## Combo line and bar charts
+## Kombinierte Linien- und Balkendiagramme
+Siehe [Combo charts](./combo-chart.md).
 
-See [Combo charts](./combo-chart.md).
+## Histogramme
+![Histogramm](../images/histogram.png)
+Standardmäßig wählt Metabase automatisch ein geeignetes Verfahren zum Binning Ihrer Ergebnisse. Sie können jedoch die Anzahl der Bins für Ihr Ergebnis ändern oder das Binning ganz ausschalten, indem Sie auf den Bereich rechts neben der Spalte klicken, nach der Sie gruppieren möchten:
+![Binning-Optionen](../images/histogram-bins.png)
 
-## Histograms
+## Flächendiagramme
+**Flächendiagramme** sind nützlich, wenn man die Proportionen zweier Metriken über die Zeit vergleicht. Sowohl Balken- als auch Flächendiagramme können gestapelt werden.
+![Gestapeltes Flächendiagramm](../images/area.png)
 
-![Histogram](../images/histogram.png)
+## Einstellungen für Linien-, Balken- und Flächendiagramme
+Diese drei Diagrammtypen verfügen über sehr ähnliche Optionen, die auf die folgenden Registerkarten aufgeteilt sind. Sie können auf diese Diagrammeinstellungen zugreifen, indem Sie auf das Symbol **Zahnrad** unten links im Diagramm klicken.
+- Dateneinstellungen](#data-settings)
+- Anzeigeeinstellungen](#display-settings)
+- Achsen-Einstellungen](#axes-settings)
 
-By default, Metabase will automatically choose a good way to bin your results. But you can change how many bins your result has, or turn the binning off entirely, by clicking on the area to the right of the column you're grouping by:
+## Dateneinstellungen
+Hier können Sie Einstellungen für die Darstellung der Daten vornehmen.
+Für jede Serie im Diagramm können Sie:
+- Ob die Serie ein- oder ausgeblendet werden soll.
+- Bestimmen, wie die Serie angezeigt werden soll: als Linien-, Balken- oder Flächendiagramm.
+- Bestimmen Sie die Reihenfolge, in der Metabase die Serien in der Legende des Diagramms anzeigt.
 
-![Binning options](../images/histogram-bins.png)
+### Optionen für Liniendiagramm und Flächendiagramm
+Liniendiagramm-Optionen](../images/line-options.png)
+- Farbe der Linie
+- Form der Linie
+- Linienstil
+- Liniengröße: Klein, Mittel, oder Groß
+- Ob Dokumente auf den Linien angezeigt werden sollen (die Punkte stellen die tatsächlichen Datenpunkte dar, die im Diagramm dargestellt werden)
+- Ob Werte für die Serie angezeigt werden sollen. Diese Option ist nur verfügbar, wenn Sie die Option [Werte an Datenpunkten anzeigen](#values-on-data-points) aktiviert haben.
+- Wie fehlende Werte ersetzt werden sollen: Null, Nichts (nur ein Bruch in der Linie), oder Linear interpoliert
+Sie können auch Serien neu anordnen (was ihre Reihenfolge in der Legende des Diagramms bestimmt).
 
-## Area charts
+### Balkendiagramm-Optionen
+Für Balkendiagramme können Sie konfigurieren:
+- Balkenfarbe
+- Position der Y-Achse (auf welcher Seite des Diagramms die Beschriftung der Y-Achse angezeigt werden soll)
 
-**Area charts** are useful when comparing the proportions of two metrics over time. Both bar and area charts can be stacked.
+## Anzeigeeinstellungen
+Hier stellen Sie Dinge ein wie:
+- [Torlinie](#goal-lines)
+- [Balkendiagramm stapeln](#stacked-bar-chart)
+- Ob Werte an Datenpunkten angezeigt werden sollen](#values-on-data-points)
 
-![Stacked area chart](../images/area.png)
+### Torlinien
+![Torlinie auf der Karte](../images/goal-line.png)
+Ziellinien können in Verbindung mit [alerts](../alerts.md) verwendet werden, um eine E-Mail oder eine Slack-Nachricht zu senden, wenn Ihre Kennzahl diese Linie überschreitet.
 
-## Settings for line, bar, and area charts
+### Trendlinien
+**Trendlinien** sind eine weitere nützliche Option für Linien-, Flächen-, Balken- und Punktdiagramme. Wenn Sie eine Frage haben, bei der Sie nach einem Zeitfeld gruppieren, öffnen Sie die Visualisierungseinstellungen und schalten Sie den Schalter **Trendlinie anzeigen** ein, um eine Trendlinie anzuzeigen. Metabase wählt den besten Linientyp aus, der sich an den Trend Ihrer Reihe anpasst. Trendlinien funktionieren auch dann, wenn Sie in Ihrer Zusammenfassung mehrere Metriken ausgewählt haben. Trendlinien funktionieren jedoch nicht, wenn Sie Gruppierungen haben, die über das eine Zeitfeld hinausgehen.
+![Trendlinien](../images/trend-lines.png)
 
-These three charting types have very similar options, which are broken up into the following tabs. You can access these chart settings by clicking the **gear** icon in the lower left of the chart.
+### Gestapeltes Balkendiagramm
+Wenn Sie mehrere Serien haben, können Sie diese in einem Balkendiagramm stapeln.
+![Gestapeltes Balkendiagramm](../images/stacked-bar-chart.png)
+Sie können sie auch als Prozentsatz stapeln:
+![Gestapeltes Balkendiagramm 100%](../images/stacked-100.png)
 
-- [Data settings](#data-settings)
-- [Display settings](#display-settings)
-- [Axes settings](#axes-settings)
+### Werte auf Datenpunkten
+Sie können einige Werte anzeigen (Metabase wählt einige Werte aus, um das Diagramm besser lesbar zu machen), alle Werte oder keine Werte.
+Wenn Sie die Werte für Datenpunkte einschalten, können Sie die Werte für die einzelnen Serien auf der Registerkarte [Daten](#data-settings) in den Einstellungen des Diagramms umschalten. Beispiel: Sie haben vier Reihen und möchten nur die Werte für eine der Reihen anzeigen.
 
-## Data settings
+### Automatische Formatierung
+Bei der Anzeige von Zahlen im Diagramm kann Metabase die Zahlen abschneiden, um die Lesbarkeit des Diagramms zu verbessern. Metabase kürzt zum Beispiel 42.000 zu 42K ab.
 
-Here you can configure settings for the how the data is displayed.
+## Achseneinstellungen
+Hier finden Sie zusätzliche Einstellungen für die Konfiguration Ihrer x- und y-Achsen (wie in Achse, nicht Schlachtaxt).
 
-For each series on the chart, you can:
+### X-Achse
+- Label anzeigen (das Label für die Achse).
+- Umbenennen der Achse
+- Linie und Markierungen anzeigen
+- Skalieren: Zeitreihe oder Ordinal.
 
-- Whether to show or hide the series.
-- Determine how to display the series: as a line, bar, or area chart.
-- Determine the order Metabase displays the series in the chart's legend.
+### Y-Achse
+- Label anzeigen (das Label für die Achse).
+- Umbenennen der Achse
+- Y-Achse teilen, wenn nötig
+- Auto y-Achsenbereich. Wenn diese Option nicht aktiviert ist, können Sie den Bereich der y-Achse festlegen (Mindest- und Höchstwerte).
+- Skala: Linear, Potenz oder Log.
+- Linien und Markierungen anzeigen
+- Von Null aufheben. Ermöglicht das "Heranzoomen" in Diagrammen mit Werten weit über Null. Hier ein Beispiel (beachten Sie, dass die y-Achse bei 20.000 beginnt):
+![y-Achse vom Nullpunkt aus entkoppelt](../images/entkoppelt-vom-Nullpunkt-y-axis.png)
 
-### Line chart and Area chart options
+## Diagrammlegende
+Bei Diagrammen mit mehreren Serien oder Ausbrüchen zeigt die Diagrammlegende die Beschriftung und Farbe jeder Serie an.
+![Legende](../images/legend.png)
+Sie können die Farbe und Beschriftung für jede Serie ändern und sie in den [Dateneinstellungen](#data-settings) neu anordnen.
+Sie können die Legende verwenden, um:
+- eine Reihe hervorheben, indem Sie mit dem Mauszeiger über den Namen der Reihe in der Legende fahren.
+- die Serie ausblenden, indem Sie auf den Farbkreis für die Serie klicken.
+Um die Serie dauerhaft aus dem Diagramm auszublenden, verwenden Sie die [Dateneinstellungen](#data-settings).
+- Klicken Sie auf den Namen der Reihe, um die einzelnen Datensätze der aggregierten Reihe aufzuschlüsseln.
+Derzeit können Sie die Legende nicht ausblenden oder ihre Position im Diagramm ändern.
 
-![Line chart options](../images/line-options.png)
-
-- Line color
-- Line shape
-- Line style
-- Line size: Small, Medium, or Large
-- Whether to show docs on the lines (the dots represent the actual data points plotted on the chart)
-- Whether to show values for the series. This option is only available if you've toggled on [Show value on data points](#values-on-data-points).
-- How to replace missing values: Zero, Nothing (just a break in the line), or Linear interpolated
-
-You can also rearrange series (which determines their order in the chart's legend).
-
-### Bar chart options
-
-For bar charts, you can configure:
-
-- Bar color
-- Y-axis position (which side of the chart to display the y-axis labels)
-
-## Display settings
-
-Here you set things like:
-
-- [Goal line](#goal-lines)
-- [Stack a bar chart](#stacked-bar-chart)
-- [Whether to show values on data points](#values-on-data-points)
-
-### Goal lines
-
-![Goal line on chart](../images/goal-line.png)
-
-Goal lines can be used in conjunction with [alerts](../alerts.md) to send an email or a Slack message when your metric cross this line.
-
-### Trend lines
-
-**Trend lines** are another useful option for line, area, bar, and scatter charts. If you have a question where you're grouping by a time field, open up the visualization settings and turn the **Show trend line** toggle on to display a trend line. Metabase will choose the best type of line to fit to the trend of your series. Trend lines will even work if you have multiple metrics selected in your summary. But trend lines won't work if you have any groupings beyond the one time field.
-
-![Trend lines](../images/trend-lines.png)
-
-### Stacked bar chart
-
-If you have multiple series, you can stack them on bar chart.
-
-![Stacked bar chart](../images/stacked-bar-chart.png)
-
-As well as stack them as a percentage:
-
-![Stacked bar chart 100%](../images/stacked-100.png)
-
-### Values on data points
-
-You can show some values (Metabase will pick some values to make the chart more legible), all values, or no values.
-
-If you toggle on values on data points, you can toggle values for individual series on the [Data](#data-settings) tab of the chart's settings. For example, if you have four series, and only want to display values for one of the series.
-
-### Autoformatting
-
-For displaying numbers on the chart, Metabase can truncate the numbers to make the chart more legible. For example, Metabase will truncate 42,000 to 42K.
-
-## Axes settings
-
-Here you'll find additional settings for configuring your x and y axes (as in axis, not battle axe).
-
-### X-axis
-
-- Show label (the label for the axis).
-- Rename the axis
-- Show line and marks
-- Scale: Timeseries or Ordinal.
-
-### Y-axis
-
-- Show label (the label for the axis).
-- Rename the axis
-- Split y-axis when necessary
-- Auto y-axis range. When not toggled on, you can set the y-axis range (it's min and max values).
-- Scale: Linear, power, or log.
-- Show lines and marks
-- Unpin from zero. Allows you to "Zoom in" on charts with values well above zero. Here's an example (note the y-axis starts at 20,000):
-  ![y-axis unpinned from zero](../images/unpinned-from-zero-y-axis.png)
-
-## Chart legend
-
-For charts with multiple series or breakouts, chart legend displays the label and color of each series.
-
-![Legend](../images/legend.png)
-
-You can change the color and label for each series and reorder them in [data settings](#data-settings).
-
-You can use the legend to:
-
-- Highlight a series, by hovering over the name of the series in the legend.
-- Hide the series, by clicking on the color circle for the series.
-
-To permanently hide the series from the chart, use the [data settings](#data-settings).
-
-- Drill down to individual records for aggregated series, by clicking on the series name.
-
-Currently, you can't hide the legend or change its position on the chart.
-
-## Further reading
-
-- [Guide to line charts](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/visualization/line-charts)
-- [Master the bar chart](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/visualization/bar-charts)
-- [Visualize your data as a histogram](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/visualization/histograms)
+## Weitere Lektüre
+- [Leitfaden für Liniendiagramme](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/visualization/line-charts)
+- [Beherrschen Sie das Balkendiagramm](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/visualization/bar-charts)
+- Visualisieren Sie Ihre Daten als Histogramm](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/visualization/histograms)
