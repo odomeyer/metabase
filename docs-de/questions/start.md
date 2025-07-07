@@ -1,67 +1,97 @@
 ---
-title: Questions overview
+Titel: Übersicht der Fragen
 redirect_from:
   - /docs/latest/questions
 ---
 
-# Questions overview
+# Übersicht Fragen
 
-Questions are queries plus their visualization. You can ask questions using Metabase's graphical query builder, or create a native/SQL query.
 
-## [Question introduction](./introduction.md)
+Fragen sind Abfragen und ihre Visualisierung. Sie können Fragen mit dem grafischen Abfragegenerator der Metabase stellen oder eine native/SQL-Abfrage erstellen.
 
-Questions are the basic building blocks of Metabase.
 
-## Query builder
+## [Frageneinführung](./introduction.md)
 
-### [The query editor](./query-builder/editor.md)
 
-An introduction to Metabase's graphical query builder.
+Fragen sind die Grundbausteine der Metabase.
 
-### [Custom expressions](./query-builder/expressions.md)
 
-Custom expressions, like spreadsheet formulas, are tools you can use in the graphical query builder to ask more complicated questions.
+## Abfrage-Editor
 
-### [List of expressions](./query-builder/expressions-list.md)
 
-A list of the aggregations and functions available in the graphical query builder.
+### [Der Abfrage-Editor](./query-builder/editor.md)
 
-### [Joining data](./query-builder/join.md)
 
-You can join data to combine your current data with another table, or even with a saved question.
+Eine Einführung in den grafischen Abfrage-Editor der Metabase.
 
-## Native query editor
 
-Also known as the SQL editor (we say native because you can also query databases that don't use SQL, like MongoDB).
+### [Benutzerdefinierte Ausdrücke](./query-builder/expressions.md)
 
-### [Introduction to the native query editor](./native-editor/writing-sql.md)
 
-Write native code (like SQL) to query your data source.
+Benutzerdefinierte Ausdrücke sind, wie Tabellenkalkulationsformeln, Werkzeuge, die Sie im grafischen Abfragegenerator verwenden können, um kompliziertere Fragen zu stellen.
 
-### [SQL templates](./native-editor/sql-parameters.md)
 
-Pass parameters into variables in your SQL templates.
+### [Liste der Ausdrücke](./query-builder/expressions-list.md)
+
+
+Eine Liste der im grafischen Abfragegenerator verfügbaren Aggregationen und Funktionen.
+
+
+### [Daten verknüpfen](./query-builder/join.md)
+
+
+Sie können Daten verbinden, um Ihre aktuellen Daten mit einer anderen Tabelle oder sogar mit einer gespeicherten Frage zu kombinieren.
+
+
+## Nativer Abfrage-Editor
+
+
+Auch bekannt als SQL-Editor (wir sagen nativ, weil Sie auch Datenbanken abfragen können, die kein SQL verwenden, wie MongoDB).
+
+
+### [Einführung in den nativen Abfrage-Editor](./native-editor/writing-sql.md)
+
+
+Schreiben Sie nativen Code (wie SQL), um Ihre Datenquelle abzufragen.
+
+
+### [SQL-Vorlagen](./native-editor/sql-parameters.md)
+
+
+Übergeben Sie Parameter an Variablen in Ihren SQL-Vorlagen.
+
 
 ### [Snippets](./native-editor/snippets.md)
 
-Reuse and share bits of SQL.
 
-## Sharing results
+Wiederverwendung und gemeinsame Nutzung von SQL-Bits.
 
-There are many different ways to share the results of questions. To share the results of a dashboard, see [Dashboard subscriptions](../dashboards/subscriptions.md).
 
-### [Visualizing results](./visualizations/visualizing-results.md)
+## Gemeinsame Nutzung von Ergebnissen
 
-Choose from a variety of visualization types.
+
+Es gibt viele verschiedene Möglichkeiten, die Ergebnisse von Fragen weiterzugeben. Um die Ergebnisse eines Dashboards zu teilen, siehe [Dashboard-Abonnements](../dashboards/subscriptions.md).
+
+
+### [Visualisierung von Ergebnissen](./visualizations/visualizing-results.md)
+
+
+Wählen Sie aus einer Vielzahl von Visualisierungstypen.
+
 
 ### [Alerts](./alerts.md)
 
-Get results via email or Slack, either on a schedule, or only when something interesting happens.
 
-### [Exporting](./exporting-results.md)
+Erhalten Sie Ergebnisse per E-Mail oder Slack, entweder nach einem Zeitplan oder nur, wenn etwas Interessantes passiert.
 
-The different ways you can export the results of questions and dashboards.
+
+### [Exportieren](./exporting-results.md)
+
+
+Die verschiedenen Möglichkeiten, wie Sie die Ergebnisse von Fragen und Dashboards exportieren können.
+
 
 ### [Tooltips](./visualizations/tooltips.md)
 
-Customize tooltips on bar, line, and area charts.
+
+Anpassen von Tooltips für Balken-, Linien- und Flächendiagramme.
