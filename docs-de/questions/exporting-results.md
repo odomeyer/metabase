@@ -1,127 +1,116 @@
 ---
-title: Exporting results
-summary: Exporting your Metabase questions and dashboards as CSV, Excel, JSON, PDF, or PNG files.
+Titel: Exportieren von Ergebnissen
+Zusammenfassung: Exportieren Sie Ihre Metabase-Fragen und -Dashboards als CSV-, Excel-, JSON-, PDF- oder PNG-Dateien.
 redirect_from:
   - /docs/latest/questions/sharing/exporting-results
 ---
 
-# Exporting results
+# Ergebnisse exportieren
 
-You can export the results of a question or dashboard.
 
-## Exporting results of a question
+**Rohtabelle** (Tabelle "Bestellungen" einschließlich der Tabelle "verbundene Produkte"):
 
-To export the results of a question, click on the **Download** button in the lower right of a question.
 
-![Exporting results of a question](./images/exporting-the-results-of-a-question.png)
+(./images/raw-table.png)
 
-You can export the results of a question as:
 
-- .csv
-- .xlsx
-- .json
-- .png (if a chart)
+Der Grund, warum Metabase nicht versucht, die Ergebnisse als native Excel PivotTable zu exportieren, ist, dass Excel nicht alle Aggregationsfunktionen von Metabase unterstützt. Der Versuch, Metabase Pivot-Tabellen als Excel PivotTables ohne diese Funktionen zu rekonstruieren, kann zu Problemen mit der Korrektheit führen, was den Zweck der Datenbetrachtung zunichte macht.
 
-You can choose between downloading the results as:
 
-- **Formatted**: With any [formatting changes](../data-modeling/formatting.md) you've applied in Metabase.
-- **Unformatted**: Metabase will export the raw results of the question without applying any of the [formatting you applied](../data-modeling/formatting.md) to the columns in the question. For example, if you formatted a floating point number to display only the first two decimal digits in the table results, exporting the unformatted results would include additional decimal digits (if any) found in the raw results.
+## Exportgrenzen
 
-If you don't see the option to export results, you may not have [permissions to download results](../permissions/data.md#download-results-permissions).
 
-## Exporting pivot tables
+Sie können bis zu 1 Million Zeilen exportieren (herunterladen).
 
-By default, Metabase will export the pivoted results, but you'll have the option to export the unpivoted results.
 
-**Pivot table in Metabase**
+Sie können diese Grenze mit einer Umgebungsvariablen ändern: [`MB_DOWNLOAD_ROW_LIMIT`](../configuring-metabase/environment-variables.md).
 
-![Pivot table in Metabase](./images/pivot-table-in-metabase.png)
 
-**Exported unpivoted results**
+### Zellen-Zeichen-Limit in Excel-Exporten
 
-![Unpivoted results](./images/unpivoted-results.png)
 
-**Exported pivoted results**
+Beim Exportieren von Ergebnissen in ein Excel-Dokument (.xlsx) begrenzt Metabase die Anzahl der Zeichen pro Zelle auf 32.767, was der [von Excel erzwungenen Zeichengrenze] entspricht(https://support.microsoft.com/en-us/office/excel-specifications-and-limit-1672b34d-7043-467e-8e27-269d656771c3). Wenn eine einzelne Zelle zu viele Zeichen enthält, schneidet Metabase den Inhalt ab, damit er in diese Grenze passt.
 
-![Pivoted results](./images/pivoted-results.png)
 
-The pivoted results will display as a flat table in Excel, not a native [Excel PivotTable](https://support.microsoft.com/en-us/office/overview-of-pivottables-and-pivotcharts-527c8fa3-02c0-445a-a2db-7794676bce96).
+## Daten über einen öffentlichen Link exportieren
 
-If you want to use a native Excel PivotTable, you'll instead want to export the raw, unaggregated rows of data that you'll need. That is, you'll want to undo any of the summarizations and groupings in your question, _then_ export the results.
 
-One thing to watch out for: some summarizations in Metabase include implicit joins, so when you drop the summarizations, you may need to join tables to include all of the columns you'll need.
+Sie können einen [öffentlichen Link](../embedding/public-links.md#public-link-to-export-question-results-in-csv-xlsx-json) erstellen, über den Personen Daten in einem bestimmten Format sowie [rohe, unformatierte Frageergebnisse](../embedding/public-links.md#exporting-raw-unformatted-question-results) herunterladen können.
 
-**Raw table** (Orders table including joined Products table):
 
-![Raw table](./images/raw-table.png)
+## Exportieren von Fragedaten über Alerts
 
-The reason Metabase doesn't try to export results as a native Excel PivotTable is that Excel doesn't support all of Metabase's aggregation functions. Trying to reconstruct Metabase pivot tables as Excel PivotTables without these functions can lead to correctness issues, which defeats the purpose of looking at the data in the first place.
 
-## Export limits
+Sie können Daten auch exportieren, indem Sie einen [alert](./alerts.md) einrichten.
 
-You can export (download) up to 1 million rows.
 
-You can change this limit with an environment variable: [`MB_DOWNLOAD_ROW_LIMIT`](../configuring-metabase/environment-variables.md).
+## Exportieren der Ergebnisse eines Dashboards
 
-### Cell character limit in Excel exports
 
-When exporting results to an Excel document (.xlsx), Metabase will limit the number of characters per cell to 32,767, which is the [character limit enforced by Excel](https://support.microsoft.com/en-us/office/excel-specifications-and-limit-1672b34d-7043-467e-8e27-269d656771c3). If you have a bonkers number of characters in a single cell, Metabase will truncate the content to fit within that limit.
+Sie können die Ergebnisse eines Dashboards und seiner Karten auf verschiedene Weise exportieren:
 
-## Exporting data via a public link
 
-You can create a [public link](../embedding/public-links.md#public-link-to-export-question-results-in-csv-xlsx-json) that people can use to download data in a specific format, as well as [raw, unformatted question results](../embedding/public-links.md#exporting-raw-unformatted-question-results).
+- [Dashboard als PDF exportieren](#export-dashboard-as-pdf)
+- [Dashboard-Karte exportieren](#exporting-results-of-a-dashboard-card)
+- [Exportieren über Dashboard-Abonnements](#exporting-results-of-a-dashboard-via-dashboard-subscriptions)
 
-## Exporting question data via alerts
 
-You can also export data by setting up an [alert](./alerts.md).
+### Dashboard als PDF exportieren
 
-## Exporting results of a dashboard
 
-You can export the results of a dashboard and its cards in different ways:
+Sie können ein Dashboard als PDF exportieren. Klicken Sie auf die Schaltfläche **Freigabe**, und wählen Sie dann **Als PDF exportieren**.
 
-- [Export dashboard as PDF](#export-dashboard-as-pdf)
-- [Exporting dashboard card](#exporting-results-of-a-dashboard-card)
-- [Exporting via dashboard subscriptions](#exporting-results-of-a-dashboard-via-dashboard-subscriptions)
 
-### Export dashboard as PDF
+Dashboard als PDF exportieren(./images/export-dashboard-as-pdf.png)
 
-You can export a dashboard as a PDF. Click on the **Sharing** button, then select **Export as PDF**.
 
-![Exporting a dashboard as a PDF](./images/export-dashboard-as-pdf.png)
+Die PDF-Datei enthält nur Screenshots der Diagramme, wie sie auf dem Dashboard zu sehen sind.
 
-The PDF will only include screenshots of the charts as they are visible on the dashboard.
 
-### Exporting results of a dashboard card
+### Exportieren der Ergebnisse einer Dashboard-Karte
 
-To export the results of a particular card, hover over the dashboard card, click on the three dot menu (**...**), and select **Download results**.
 
-![Export results of a dashboard card](./images/download-card-results.png)
+Um die Ergebnisse einer bestimmten Karte zu exportieren, bewegen Sie den Mauszeiger über die Dashboard-Karte, klicken Sie auf das Drei-Punkte-Menü(**...**) und wählen Sie **Ergebnisse herunterladen**.
 
-From here you can select:
 
-- .csv
-- .xlsx
-- .json
-- .png (if a chart)
+[Ergebnisse einer Dashboard-Karte exportieren](./images/download-card-results.png)
 
-To export the raw, unformatted results, hold down the `Option` key for Macs, or `Alt` key for Windows, then click on the download file format.
 
-If you don't see this option, you may not have [permissions to download results](../permissions/data.md#download-results-permissions).
+Von hier aus können Sie wählen:
 
-### Exporting results of a dashboard via dashboard subscriptions
 
-You can use [dashboard subscriptions](../dashboards/subscriptions.md) to regularly export data from all questions on a dashboard, and include those results as an attachment.
+- . csv
+- . xlsx
+- . json
+- . png (falls ein Diagramm)
 
-## Remove Metabase branding from exports
 
-By default, data exports (PDFs, PNGs, alert and subscription emails, etc.) feature Metabase branding, like this "Made with Metabase" logo:
+Um die rohen, unformatierten Ergebnisse zu exportieren, halten Sie dieOptionstaste( Mac) bzw. dieAlt-Taste( Windows) gedrückt und klicken Sie dann auf das Dateiformat "Download".
 
-![Question with Metabase logo](./images/question-with-metabase-logo.png)
 
-To remove the Metabase logo and branding on exports, you'll need to subscribe to a [Pro or Enterprise plan](https://www.metabase.com/pricing/).
+Wenn Sie diese Option nicht sehen, haben Sie möglicherweise keine [Berechtigung zum Herunterladen von Ergebnissen](../permissions/data.md#download-results-permissions).
 
-## Further reading
 
-- [Alerts](./alerts.md)
-- [Dashboard subscriptions](../dashboards/subscriptions.md)
-- [Tables](./visualizations/table.md)
+### Exportieren von Ergebnissen eines Dashboards über Dashboard-Abonnements
+
+
+Sie können [Dashboard-Abonnements](../dashboards/subscriptions.md) verwenden, um regelmäßig Daten aus allen Fragen eines Dashboards zu exportieren und diese Ergebnisse als Anhang beizufügen.
+
+
+## Metabase Branding aus den Exporten entfernen
+
+
+Standardmäßig sind die Datenexporte (PDFs, PNGs, Benachrichtigungs- und Abonnement-E-Mails usw.) mit dem Metabase-Branding versehen, z. B. mit dem Logo "Made with Metabase":
+
+
+![Frage mit Metabase-Logo](./images/question-with-metabase-logo.png)
+
+
+Um das Metabase-Logo und das Branding bei Exporten zu entfernen, müssen Sie einen [Pro- oder Enterprise-Plan](https://www.metabase.com/pricing/) abonnieren.
+
+
+## Weitere Lektüre
+
+- [Warnungen](../alerts.md)
+- [Dashboard-Abonnements](../dashboards/subscriptions.md)
+- [Tabellen](../visualizations/table.md)
