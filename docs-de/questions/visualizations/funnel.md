@@ -1,84 +1,84 @@
 ---
-title: Funnel charts
+Titel: Trichterdiagramme
 redirect_from:
-  - /docs/latest/questions/sharing/visualizations/funnel
-description: Funnel charts visualize how a value is broken out by a series of steps, and the percent change between steps. To build a funnel chart in Metabase, you need a table with the name and value for each step.
+- /docs/latest/questions/sharing/visualizations/funnel
+Beschreibung: Trichterdiagramme veranschaulichen, wie sich ein Wert durch eine Reihe von Schritten und die prozentuale Veränderung zwischen den Schritten aufgliedert. Um ein Trichterdiagramm in Metabase zu erstellen, benötigen Sie eine Tabelle mit dem Namen und dem Wert für jeden Schritt.
 ---
 
-# Funnel charts
 
-Funnel charts visualize how a value is broken out by a series of steps, and the percent change between steps.
+# Trichterdiagramme
 
-![Funnel](../images/funnel.png)
 
-Funnels are commonly used in e-commerce or sales to visualize how many customers are present within each step of a checkout flow or sales cycle. Funnels only make sense if the steps are sequential, with the metric dropping from one step to the next.
+Trichterdiagramme veranschaulichen, wie sich ein Wert durch eine Reihe von Schritten und die prozentuale Veränderung zwischen den Schritten aufgliedert.
 
-## Data shape for a funnel chart
 
-To create a funnel in Metabase, you'll need to have a table with at least two columns: one column that contains the funnel's steps, and another column contains the metric you're interested in, like the number of customers at this step.
+[Trichter](../images/funnel.png)
 
-Here's the data shape used to create the chart above:
 
-| Stage         | Opportunities |
+Trichter werden häufig im E-Commerce oder im Vertrieb verwendet, um zu veranschaulichen, wie viele Kunden in jedem Schritt eines Kaufvorgangs oder Verkaufszyklus vorhanden sind. Trichter sind nur sinnvoll, wenn die Schritte sequentiell sind und die Kennzahl von einem Schritt zum nächsten abnimmt.
+
+
+## Datenform für ein Trichterdiagramm
+
+
+Um einen Trichter in der Metabase zu erstellen, benötigen Sie eine Tabelle mit mindestens zwei Spalten: Eine Spalte enthält die Schritte des Trichters und eine weitere Spalte die Metrik, an der Sie interessiert sind, z. B. die Anzahl der Kunden in diesem Schritt.
+
+
+Hier ist die Datenform, die zum Erstellen des obigen Diagramms verwendet wurde:
+
+
+| Stufe | Chancen |
 | ------------- | ------------- |
-| Leads         | 3901          |
-| Qualification | 3714          |
-| Prospecting   | 3231          |
-| Proposal      | 2972          |
-| Negotiation   | 1588          |
-| Closed        | 737           |
+| Leads | 3901 |
+| Qualifizierung | 3714 |
+| Prospecting | 3231 |
+| Vorschlag | 2972 |
+| Verhandlung | 1588 |
+| Geschlossen | 737 |
 
-If you have more columns in your query results, you can select which columns should be used for the funnel steps and the metric in the [data settings](#funnel-chart-settings).
 
-By default, Metabase will present steps in the same order as they appear in the query result, but you can reorder or hide the steps in the [data settings](#funnel-chart-settings).
+Wenn Sie mehrere Spalten in Ihren Abfrageergebnissen haben, können Sie in den [Dateneinstellungen](#funnel-chart-settings) auswählen, welche Spalten für die Trichterschritte und die Metrik verwendet werden sollen.
 
-## Build a query for a funnel chart
 
-To create a query with a result that has the shape required for a funnel chart, you'll probably need to summarize your data.
+Standardmäßig stellt Metabase die Schritte in der gleichen Reihenfolge dar, wie sie im Abfrageergebnis erscheinen, aber Sie können die Schritte in den [Dateneinstellungen](#funnel-chart-settings) neu anordnen oder ausblenden.
 
-If your (original, unaggregated) data already contains a field with the the step for every data point, you can build a simple query with a breakout by steps:
 
-![A query in the query builder used to build a funnel chart](../images/build-a-funnel-query.png)
+## Erstellen einer Abfrage für ein Trichterdiagramm
 
-If data for the different steps of the funnel comes from different tables, or if you need to use different filters or aggregation rules for each step, you can create separate questions for each step, and then combine them with a SQL query.
 
-For example: you could create three separate [query builder](../query-builder/editor.md) questions, each returning the counts for `Leads`, `Qualification`, and `Proposal` stage. Then you'd write a [SQL query](../native-editor/writing-sql.md) that [references those questions](../native-editor/referencing-saved-questions-in-queries.md) and uses `UNION` to return results in the right shape to build a funnel chart.
+Um eine Abfrage mit einem Ergebnis zu erstellen, das die für ein Trichterdiagramm erforderliche Form hat, müssen Sie Ihre Daten wahrscheinlich zusammenfassen.
 
-```sql
--- example of a query that retrieves results of questions and combines them with UNION
+
+Wenn Ihre (ursprünglichen, nicht aggregierten) Daten bereits ein Feld mit dem Schritt für jeden Datenpunkt enthalten, können Sie eine einfache Abfrage mit einer Aufschlüsselung nach Schritten erstellen:
+
+
+![Eine Abfrage im Query Builder zur Erstellung eines Trichterdiagramms](../images/build-a-funnel-query.png)
+
+
+Wenn die Daten für die verschiedenen Stufen des Trichters aus unterschiedlichen Tabellen stammen oder wenn Sie für jede Stufe unterschiedliche Filter oder Aggregationsregeln verwenden müssen, können Sie für jede Stufe separate Fragen erstellen und diese dann mit einer SQL-Abfrage kombinieren.
+
+
+Beispiel: Sie könnten drei separate [query builder](../query-builder/editor.md) Fragen erstellen, die jeweils die Zählungen für die Stufen "Leads", "Qualification" und "Proposal" zurückgeben. Dann schreiben Sie eine [SQL-Abfrage](../native-editor/writing-sql.md), die [auf diese Fragen verweist](../native-editor/referencing-saved-questions-in-queries.md) und ` UNION` verwendet, um Ergebnisse in der richtigen Form für die Erstellung eines Trichterdiagramms zu erhalten.
+
+
+``sql
+-- Beispiel für eine Abfrage, die Ergebnisse von Fragen abruft und mit UNION kombiniert
+
 
 SELECT 'Leads' as step, * from {% raw %}{{#120-leads}}{% endraw %}
 UNION
 SELECT 'Qualified' as step, * from {% raw %}{{#121-qualified}}{% endraw %}
 UNION
-SELECT 'Prospects' as step, * from {% raw %}{{#122-prospects}}{% endraw %}
+SELECT 'Interessenten' as step, * from {% raw %}{{#122-prospects}}{% endraw %}
+
 
 ```
 
-![Data for the funnel coming from a SQL union](../images/funnel-as-sql.png)
 
-## How to read a funnel chart
+![Daten für den Trichter kommen aus einer SQL-Union](../images/funnel-as-sql.png)
 
-Funnel charts show the value of the metric for each step, and how the metric compares to the value at the _first_ step. The first step's metric is displayed to the left of the chart.
 
-![Funnel chart with a tooltip](../images/read-a-funnel.png)
+## Wie man ein Trichterdiagramm liest
 
-So for example,"76.19%, 2,972" under a step means that the value of the metric at this step is 2,972, which is 76.19% of the value of the _first_ step (equal to 3,901).
 
-To see percentage comparison with the _previous_ step (instead of the first), hover over the step and read the tooltip.
-
-## Funnel chart settings
-
-To open chart settings, click on the **Gear** icon in the bottom left.
-
-![Funnel chart settings](../images/funnel-settings.png)
-
-If you have more than two columns in your query results, you can select which columns should be used for the funnel steps and the measure in the **Data** tab.
-
-You can reorder funnel steps by dragging and dropping, or hide a step by clicking on the **Eye** icon on the step card.
-
-To edit the formatting of the metric, click on **Three dots** next to the metric. The formatting will only apply to the _metric itself_, but _not_ to the percentage values that compare each step's metric to the first step (which currently you can't format).
-
-## Limitations and alternatives
-
-Currently, you can't change the color or orientation of the funnel, or add breakouts. Consider using a [bar or row chart](./line-bar-and-area-charts.md) for more flexible visualization options.
+Trichterdiagramme zeigen den Wert der Kennzahl für jeden Schritt und wie die Kennzahl mit dem Wert beim _ersten_ Schritt verglichen wird. Die Metrik des ersten Schritts wird auf der linken Seite des Diagramms angezeigt.
