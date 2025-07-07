@@ -1,80 +1,92 @@
 ---
-title: Internationalization
+Titel: Internationalisierung
 ---
 
-# Internationalization
 
-We are an application with lots of users all over the world. To help them use Metabase in their own language, we mark all of our strings as i18n.
+# Internationalisierung
 
-## Quick Guide
 
-If you need to add new strings (try to be judicious about adding copy) do the following:
+Wir sind eine Anwendung mit vielen Benutzern auf der ganzen Welt. Damit sie Metabase in ihrer eigenen Sprache verwenden können, markieren wir alle unsere Strings als i18n.
 
-1. Tag strings in the frontend using `t` and `jt` ES6 template literals (see more details in https://ttag.js.org/):
+
+## Kurzanleitung
+
+
+Wenn Sie neue Zeichenfolgen hinzufügen müssen (versuchen Sie, mit dem Hinzufügen von Kopien vorsichtig zu sein), gehen Sie wie folgt vor:
+
+
+1. Tag Strings im Frontend mit `t` und `jt` ES6 Template Literale (siehe mehr Details in https://ttag.js.org/):
+
 
 ```javascript
-const someString = t`Hello ${name}!`;
-const someJSX = <div>{jt`Hello ${name}`}</div>;
+const someString = t`Hallo ${Name}!`;
+const someJSX = <div>{jt`Hallo ${name}`}</div>;
 ```
 
-and in the backend using `trs` (to use the site language) or `tru` (to use the current User's language):
 
-```clojure
-(trs "Hello {0}!" name)
+und im Backend mit ` trs` (um die Sprache der Seite zu verwenden) oder ` tru` (um die Sprache des aktuellen Benutzers zu verwenden):
+
+
+``clojure
+(trs "Hallo {0}!" name)
 ```
 
-## Translation errors or missing strings
 
-If you see incorrect or missing strings for your language, please visit our [Crowdin project](https://crowdin.com/project/metabase-i18n) and submit your fixes there.
+## Übersetzungsfehler oder fehlende Zeichenfolgen
 
-## Backend Translation Guide
 
-Metabase allows for translations into many languages. An authoritative list can be found in `resources/locales.clj`.
+Wenn Sie fehlerhafte oder fehlende Zeichenfolgen für Ihre Sprache feststellen, besuchen Sie bitte unser [Crowdin-Projekt](https://crowdin.com/project/metabase-i18n) und reichen Sie Ihre Korrekturen dort ein.
 
-## The Metabase Side
 
-Metabase is concerned about localization into two distinct locales: translating into the server's locale and translating into the user's locale. The distinction is largely: will this be logged on the server or sent over the wire back to the user.
+## Backend-Übersetzungsleitfaden
 
-To translate a string for the server, use `metabase.util.i18n/trs` and for the user's locale, use the similar `metabase.util.i18n/tru`. Think `tr-server` and `tr-user`.
 
-### How it works
+Die Metabase ermöglicht Übersetzungen in viele Sprachen. Eine maßgebliche Liste ist in `resources/locales.clj` zu finden.
 
-At a high level, the string to be translated is treated as a lookup key into a map of source-string -> localized-string. This translated string is used like so:
 
-```clojure
+## Die Metabase-Seite
 
-;; from source of `translate` in `metabase.util.i18n`
+
+Metabase befasst sich mit der Lokalisierung in zwei verschiedene Gebietsschemata: die Übersetzung in das Gebietsschema des Servers und die Übersetzung in das Gebietsschema des Benutzers. Der Unterschied besteht im Wesentlichen darin, ob dies auf dem Server protokolliert oder über die Leitung an den Benutzer zurückgesendet wird.
+
+
+Um eine Zeichenkette für den Server zu übersetzen, verwenden Sie `metabase.util.i18n/trs` und für das Gebietsschema des Benutzers verwenden Sie das ähnliche `metabase.util.i18n/tru`. Denken Sie an ` tr-server` und ` tr-user`.
+
+
+### Wie es funktioniert
+
+
+Auf einer hohen Ebene wird die zu übersetzende Zeichenkette als Nachschlageschlüssel in einer Map von source-string -> localized-string behandelt. Diese übersetzte Zeichenkette wird wie folgt verwendet:
+
+
+,,clojure
+
+
+;; aus der Quelle von `translate` in `metabase.util.i18n`
+
 
 (.format (MessageFormat. looked-up-string) (to-array args))
 
+
 ```
 
-Everything else is largely bookkeeping. This uses the [java.text.MessageFormat](https://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html) class for splicing in format args.
 
-The functions `trs` and `tru` create instances of two records, `SiteLocalizedString` and `UserLocalizedString` respectively with overrides to the `toString` method. This method will do the lookup to the current locale (user or site as appropriate), lookup the string to be translated to the associated translated string, and then call the `.format` method on the `MessageFormat`.
+Alles andere ist weitgehend Buchhaltung. Dies verwendet die Klasse [java.text.MessageFormat](https://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html) zum Einfügen von Format-Args.
 
-### The maps from source to translated string
 
-One step in our build process creates an edn file of source to translated string for each locale we support. These are located in `resources/i18n`. If you do not have these files, you can run `bin/build-translation-resources` to generate them.
+Die Funktionen ` trs` und ` tru` erzeugen Instanzen von zwei Datensätzen, ` SiteLocalizedString` bzw. ` UserLocalizedString` mit Überschreibungen der Methode ` toString`. Diese Methode sucht nach dem aktuellen Gebietsschema (Benutzer oder Standort), sucht die zu übersetzende Zeichenkette nach der zugehörigen übersetzten Zeichenkette und ruft dann die Methode `.format` für das ` MessageFormat` auf.
 
-We have lots of contributors who help us keep a corpus of translated strings into many different languages. We use [Crowdin](https://crowdin.com/project/metabase-i18n) to keep an authoritative list. We export `.po` files from this, which is essentially a dictionary from source to translated string. As part of our build process we format these files as edn files, maps from the source to translated string, for each locale.
 
-### Format Args
+### Die Zuordnungen von der Quelle zur übersetzten Zeichenkette
 
-Besides string literals, we also want to translate strings that have arguments spliced into the middle. We use the syntax from the [java.text.MessageFormat](https://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html) class mentioned before. These are zero-indexed args of the form `{0}`, `{1}`.
 
-eg,
+In einem Schritt unseres Erstellungsprozesses wird für jede von uns unterstützte Sprachumgebung eine edn-Datei erstellt, die den Quelltext in eine übersetzte Zeichenfolge umwandelt. Diese befinden sich in ` resources/i18n`. Wenn Sie diese Dateien nicht haben, können Sie ` bin/build-translation-resources` ausführen, um sie zu erzeugen.
 
-```clojure
-(trs "{0} accepted their {1} invite" (:common_name new-user) (app-name-trs))
-(tru "{0}th percentile of {1}" p (aggregation-arg-display-name inner-query arg))
-(tru "{0} driver does not support foreign keys." driver/*driver*)
-```
 
-#### Escaping
+Wir haben viele Mitwirkende, die uns helfen, einen Korpus von übersetzten Zeichenketten in viele verschiedene Sprachen zu erhalten. Wir verwenden [Crowdin](https://crowdin.com/project/metabase-i18n), um eine maßgebliche Liste zu führen. Wir exportieren daraus "po" -Dateien, die im Wesentlichen ein Wörterbuch von der Quelle zur übersetzten Zeichenfolge darstellen. Als Teil unseres Build-Prozesses formatieren wir diese Dateien als edn-Dateien, also als Zuordnungen vom Quelltext zur übersetzten Zeichenkette, für jedes Gebietsschema.
 
-Every string language needs an escape character. Since `{0}` is an argument to be spliced in, how would you put a literal "{0}" in the string. The apostrophe serves this role and is described in the MessageFormat [javadocs](https://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html).
 
-These is an unfortunate side effect of this though. Since the apostrophe is such a commeon part of speech (especially in french), we often can end up with escape characters used as a regular part of a string rather than the escape character. Format strings need to use double apostrophes like `(deferred-tru "SAML attribute for the user''s email address")` to escape the apostrophe.
+### Args formatieren
 
-There are lots of translated strings in French that use a single apostrophe incorrectly. (eg "l'URL" instead of "l''URL"). We have a manual fix to this in `bin/i18n/src/i18n/create_artifacts/backend.clj` where we try to identify these apostrophes which are not escape characters and replace them with a double quote.
+
+Neben String-Literalen wollen wir auch Strings übersetzen, in deren Mitte Argumente eingefügt sind. Wir verwenden die Syntax der bereits erwähnten Klasse [java.text.MessageFormat](https://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html). Dies sind null-indizierte Args der Form `{0}`, `{1}`.
