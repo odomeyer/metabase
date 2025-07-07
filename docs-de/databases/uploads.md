@@ -1,74 +1,87 @@
 ---
-title: Setting up data uploads
+Titel: Einrichten von Daten-Uploads
 ---
 
-# Setting up data uploads
 
-This page covers how admins can set up data uploads so people can upload CSVs to your Metabase. For _how_ to upload data once this is set up, check out [Uploading data](../exploration-and-organization/uploads.md).
+# Einrichten von Daten-Uploads
 
-![Upload CSV data to a collection in Metabase](./images/upload-to-collection.png)
 
-Uploading CSV data is best suited for ad hoc analysis of spreadsheet data. If you have a lot of data, or will need to update or add to that data regularly, we recommend setting up a way to load that data into a database directly, then connecting Metabase to that database.
+Auf dieser Seite wird beschrieben, wie Administratoren Daten-Uploads einrichten können, damit andere Personen CSV-Dateien in Ihre Metabase hochladen können. Wie_man Daten hochlädt, sobald dies eingerichtet ist, finden Sie unter [Daten hochladen](../exploration-and-organization/uploads.md).
 
-## Managing upload settings
 
-To manage upload settings, admins can hit cmd/ctrl + K and search for "Settings - Uploads", or click on the **gear** icon in the upper right and click through **Admin settings** > **Settings** > **Uploads**.
+CSV-Daten in eine Metabase-Sammlung hochladen](../images/upload-to-collection.png)
 
-## Databases that support uploads
+
+Das Hochladen von CSV-Daten eignet sich am besten für die Ad-hoc-Analyse von Tabellenkalkulationsdaten. Wenn Sie viele Daten haben oder diese regelmäßig aktualisieren oder ergänzen müssen, empfehlen wir Ihnen, diese Daten direkt in eine Datenbank zu laden und dann Metabase mit dieser Datenbank zu verbinden.
+
+
+## Upload-Einstellungen verwalten
+
+
+Um die Upload-Einstellungen zu verwalten, können Admins die Tastenkombination cmd/ctrl + K drücken und nach "Einstellungen - Uploads" suchen, oder auf das **Zahnradsymbol oben rechts klicken und sich durch **Admin-Einstellungen** > **Einstellungen** > **Uploads** klicken.
+
+
+## Datenbanken, die Uploads unterstützen
+
 
 - [PostgreSQL](../databases/connections/postgresql.md)
-- [MySQL](../databases/connections/mysql.md)
-- [Redshift](../databases/connections/redshift.md)
+- [MySQL](../Datenbanken/Verbindungen/mysql.md)
+- [Redshift](../Datenbanken/Verbindungen/redshift.md)
 - [ClickHouse](../databases/connections/clickhouse.md)
 
-## Setting up uploads
 
-There are a few things admins need to do to support CSV uploads:
+## Uploads einrichten
 
-- [Connect to a database using a database user account with write access](#connect-to-a-database-using-a-database-user-account-with-write-access). This way Metabase will be able to store the uploaded data somewhere.
-- [Select the database and schema you want to store the uploaded data in](#select-the-database-and-schema-that-you-want-to-store-the-data-in).
-- [(Optional) Specify a prefix for Metabase to prepend to the uploaded tables](#specify-a-prefix-for-metabase-to-prepend-to-the-uploaded-tables).
-- [Add people to a group with view data and create query access to the upload schema database](#add-people-to-a-group-with-data-access-to-the-upload-schema).
 
-## Connect to a database using a database user account with write access
+Es gibt ein paar Dinge, die Administratoren tun müssen, um CSV-Uploads zu unterstützen:
 
-To upload data to Metabase, an admin will need to connect your Metabase to a database that supports uploads using a database user account that has write access to that database.
 
-You can also upload data to the Sample Database included with Metabase (an H2 database), though we don't recommend using the Sample Database for any data that you want to keep around.
+- [Verbinden Sie sich mit einer Datenbank unter Verwendung eines Datenbankbenutzerkontos mit Schreibzugriff](#connect-to-a-database-using-a-database-user-account-with-write-access). Auf diese Weise kann Metabase die hochgeladenen Daten irgendwo speichern.
+- [Wählen Sie die Datenbank und das Schema aus, in denen Sie die hochgeladenen Daten speichern möchten](#select-the-database-and-schema-that-you-want-to-store-the-data-in).
+- [(Optional) Geben Sie ein Präfix für die Metabase an, das den hochgeladenen Tabellen vorangestellt werden soll](#specify-a-prefix-for-metabase-to-prepend-to-the-uploaded-tables).
+- [Personen zu einer Gruppe mit Ansichtsdaten hinzufügen und Abfragezugriff auf die Upload-Schema-Datenbank erstellen](#add-people-to-a-group-with-data-access-to-the-upload-schema).
 
-For more, check out:
 
-- [Adding and managing databases](./connecting.md)
-- [Database users, roles, and privileges](./users-roles-privileges.md#privileges-to-enable-uploads)
+## Verbinden mit einer Datenbank unter Verwendung eines Datenbank-Benutzerkontos mit Schreibzugriff
 
-## Select the database and schema that you want to store the data in
 
-If Metabase is connected to a database using a database user account with write access, Admins can enable uploads by:
+Um Daten in die Metabase hochzuladen, muss ein Administrator die Metabase mit einer Datenbank verbinden, die Uploads unterstützt, und zwar mit einem Datenbankbenutzerkonto, das Schreibrechte für diese Datenbank besitzt.
 
-- Clicking on the **gear** icon in the upper right on the home page and navigating to **Admin settings** > **Settings** > **Uploads**.
-- Selecting the database Metabase should use to store the data.
 
-When people upload a CSV to a collection, Metabase will:
+Sie können auch Daten in die Beispieldatenbank hochladen, die in der Metabase enthalten ist (eine H2-Datenbank). Wir empfehlen jedoch nicht, die Beispieldatenbank für Daten zu verwenden, die Sie aufbewahren möchten.
 
-- Create a table to store that data in the database and schema that the Admin selected to store uploads.
-- Create a [model](../data-modeling/models.md) that wraps the uploaded table, and save that model to the collection the person uploaded the CSV data to.
 
-## Specify a prefix for Metabase to prepend to the uploaded tables
+Weitere Informationen finden Sie unter:
 
-Admins can optionally specify a string of text to add in front of the table that Metabase creates to store the uploaded data.
 
-## Add people to a group with data access to the upload schema
+- [Hinzufügen und Verwalten von Datenbanken](./connecting.md)
+- [Datenbankbenutzer, -rollen und -privilegien](./users-roles-privileges.md#privileges-to-enable-uploads)
 
-In order to upload CSVs, a person must be in a group with **View data** access of "Can view" and **Create queries** of Query builder access or higher to the schema you've selected to store your uploaded data. See [groups](../people-and-groups/managing.md) and [data permissions](../permissions/data.md).
 
-## Note on uploading data to a MySQL database
+## Wählen Sie die Datenbank und das Schema aus, in dem Sie die Daten speichern möchten.
 
-For speeding up uploads to a MySQL database, we recommend that you set a `local_infile` to `ON`. You'll need to set this `local_infile` in MySQL, not Metabase. The command-line format is `--local-infile=ON`.
 
-If `local_infile` is disabled (set to `OFF`), Metabase will automatically fall back to uploading CSVs in a much slower way.
+Wenn Metabase mit einer Datenbank über ein Datenbank-Benutzerkonto mit Schreibrechten verbunden ist, können Admins Uploads aktivieren, indem sie
 
-For more context, check out:
 
-- [Non-LOCAL Versus LOCAL Operation](https://dev.mysql.com/doc/refman/8.0/en/load-data.html#load-data-local)
-- [Reference docs for the local_infile variable](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_local_infile)
-- [Security Considerations for LOAD LOCAL DATA](https://dev.mysql.com/doc/refman/8.0/en/load-data-local-security.html)
+- Klicken Sie auf das Symbol **Zahnrad** oben rechts auf der Startseite und navigieren Sie zu **Admin-Einstellungen** > **Einstellungen** > **Uploads**.
+- Auswählen der Datenbank, die Metabase zum Speichern der Daten verwenden soll.
+
+
+Wenn Personen eine CSV-Datei in eine Sammlung hochladen, wird Metabase:
+
+
+- Eine Tabelle erstellen, um diese Daten in der Datenbank und dem Schema zu speichern, das der Administrator zum Speichern von Uploads ausgewählt hat.
+- Erstellen Sie ein [Modell](../data-modeling/models.md), das die hochgeladene Tabelle umschließt, und speichern Sie dieses Modell in der Sammlung, in die die Person die CSV-Daten hochgeladen hat.
+
+
+## Geben Sie ein Präfix für Metabase an, das den hochgeladenen Tabellen vorangestellt wird.
+
+
+Admins können optional eine Textzeichenfolge angeben, die der Tabelle vorangestellt wird, die Metabase zum Speichern der hochgeladenen Daten erstellt.
+
+
+## Personen zu einer Gruppe mit Datenzugriff auf das Upload-Schema hinzufügen
+
+
+Um CSV-Dateien hochladen zu können, muss eine Person einer Gruppe angehören, die über den Zugriff **Daten anzeigen** mit der Berechtigung "Kann anzeigen" und **Abfragen erstellen** mit der Berechtigung Query builder oder höher auf das Schema verfügt, das Sie zum Speichern der hochgeladenen Daten ausgewählt haben. Siehe [groups](../people-and-groups/managing.md) und [data permissions](../permissions/data.md).
