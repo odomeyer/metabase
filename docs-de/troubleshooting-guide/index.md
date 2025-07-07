@@ -1,115 +1,102 @@
 ---
-title: Troubleshooting guides
----
+- [Ich kann meine Tabellen nicht sehen][cant-see-tables].
+- [Die Daten in der Metabase stimmen nicht mit meiner Datenbank überein][sync-fingerprint-scan].
+- [Meine Datenbank ist langsam][db-performance].
+- [Meine Verbindung oder Abfrage hat eine Zeitüberschreitung][timeout].
 
-# Troubleshooting guides
 
-Problems, their causes, how to detect them, and how to fix them.
+## Fragen und Dashboards
 
-## Getting diagnostic info
 
-- [Download diagnostic info](./diagnostic-info.md)
-- [Create a HAR file](./create-har-file.md)
+- [Ich kann meine Frage oder Dashboard nicht speichern][Vollmachten].
+- [Ich kann meine Frage oder mein Dashboard nicht anzeigen oder bearbeiten][anzeigen-bearbeiten].
+- [Meine Visualisierungen sind falsch][visualization].
+- [Mein Dashboard ist langsam oder wird nicht geladen][slow-dashboard].
+- [Meine SQL-Frage funktioniert nicht][sql].
+- [Die Datums- und Zeitangaben in meinen Fragen und Diagrammen sind falsch][incorrect-times].
+- [Meine Filter funktionieren nicht][filter].
+- [Meine verlinkten Filter funktionieren nicht][linked-filters].
 
-## Installation
 
-- [Running the Metabase JAR][running].
-- [Running Metabase on Docker][docker].
-- [Using or migrating from an H2 application database][appdb].
+## Modelle
 
-## Authentication
 
-- [People can't log in to Metabase][login].
-- [LDAP][ldap].
-- [SAML][saml].
+- [Mein Modell funktioniert nicht][Modelle].
 
-## Permissions
 
-- [My permissions aren't working][permissions].
-- [My data sandboxes aren't working][sandbox].
+## E-Mail und Warnungen
 
-## Databases
-
-- [I can't connect to a database][db-connection].
-- [I can't see my tables][cant-see-tables].
-- [The data in Metabase doesn't match my database][sync-fingerprint-scan].
-- [My database is slow][db-performance].
-- [My connection or query is timing out][timeout].
-
-## Questions and dashboards
-
-- [I can't save my question or dashboard][proxies].
-- [I can't view or edit my question or dashboard][view-edit].
-- [My visualizations are wrong][visualization].
-- [My dashboard is slow or failing to load][slow-dashboard].
-- [My SQL question doesn't work][sql].
-- [The dates and times in my questions and charts are wrong][incorrect-times].
-- [My filters don't work][filters].
-- [My linked filters don't work][linked-filters].
-
-## Models
-
-- [My model doesn't work][models].
-
-## Email and alerts
 
 - [Metabase isn't sending email][not-sending-email].
-- [Troubleshooting notifications](./notifications.md).
+- [Fehlersuche bei Benachrichtigungen](./notifications.md).
 
-## Error messages
 
-- [I'm getting an error message][error-message].
+## Fehlermeldungen
 
-## Think you found a bug?
 
-- [How to find known bugs or limitations][known-issues].
-- [Filing a bug report][bugs].
+- [Ich erhalte eine Fehlermeldung][error-message].
 
-## Feature requests
 
-See [Requesting new features][feature-request].
+## Haben Sie einen Fehler gefunden?
 
-## Metabase tutorials
 
-For tutorials that walk you through how to use Metabase features, check out [Learn Metabase][learn].
+- [Wie man bekannte Bugs oder Einschränkungen findet][known-issues].
+- [Einen Fehlerbericht einreichen][bugs].
 
-## Metabase forum
 
-To see if someone else has run into a similar issue, check out [our forum on Discourse][forum].
+## Feature-Anfragen
 
-## Upgrading Metabase
 
-Metabase adds new features and squashes bugs with each release. [Upgrading to the latest and greatest][upgrade] may resolve your issue. If you're using [Metabase Cloud][cloud], we'll handle the upgrades for you. To see what's new, check out the [release notes][releases].
+Siehe [Neue Funktionen beantragen][feature-request].
 
-[appdb]: ./loading-from-h2.md
-[bugs]: ./bugs.md
-[cant-see-tables]: ./cant-see-tables.md
+
+## Metabase-Tutorials
+
+
+Tutorials, die Sie bei der Verwendung der Metabase-Funktionen unterstützen, finden Sie unter [Learn Metabase][learn].
+
+
+## Metabase-Forum
+
+
+Um zu sehen, ob jemand anderes ein ähnliches Problem hat, schauen Sie in [unser Forum auf Discourse][forum].
+
+
+## Metabase aktualisieren
+
+
+Mit jeder neuen Version von Metabase werden neue Funktionen hinzugefügt und Fehler beseitigt. Ein [Upgrade auf die neueste und beste Version][Upgrade] kann Ihr Problem lösen. Wenn Sie [Metabase Cloud][cloud] verwenden, übernehmen wir die Upgrades für Sie. Die Neuerungen finden Sie in den [Versionshinweisen][releases].
+
+
+[appdb]:. /loading-from-h2.md
+[bugs]:. /bugs.md
+[cant-see-tables]:. /cant-see-tables.md
 [cloud]: https://www.metabase.com/cloud/
-[db-connection]: ./db-connection.md
-[db-performance]: ./db-performance.md
-[docker]: ./docker.md
-[error-message]: error-message.md
-[feature-request]: requesting-new-features.md
-[filters]: ./filters.md
+[db-connection]:. /db-connection.md
+[db-leistung]:. /db-leistung.md
+[docker]:. /docker.md
+[Fehlermeldung]: error-message.md
+[Funktionsanforderung]: requesting-new-features.md
+[filter]:. /filters.md
 [forum]: https://discourse.metabase.com/
-[incorrect-times]: ./timezones.md
-[known-issues]: ./known-issues.md
-[ldap]: ./ldap.md
+[falsche Zeiten]:. /timezones.md
+[bekannte-probleme]:. /known-issues.md
+[ldap]:. /ldap.md
 [learn]: https://www.metabase.com/learn
-[linked-filters]: ./linked-filters.md
-[login]: ./cant-log-in.md
-[models]: ./models.md
-[not-sending-email]: ./cant-send-email.md
-[permissions]: ./permissions.md
-[proxies]: ./proxies.md
+[verlinkte-Filter]:. /linked-filters.md
+[anmelden]:. /cant-log-in.md
+[Modelle]:. /models.md
+[nicht-schicken-email]:. /cant-send-email.md
+[Berechtigungen]:. /permissions.md
+[Proxies]:. /proxies.md
 [releases]: https://github.com/metabase/metabase/releases
-[running]: ./running.md
-[saml]: ./saml.md
-[sandbox]: ./sandboxing.md
-[slow-dashboard]: ./my-dashboard-is-slow.md
-[sql]: ./sql.md
-[sync-fingerprint-scan]: ./sync-fingerprint-scan.md
-[timeout]: ./timeout.md
-[upgrade]: ../installation-and-operation/upgrading-metabase.md
-[view-edit]: ./cant-view-or-edit.md
-[visualization]: ./visualization.md
+[laufend]:. /laufend.md
+[saml]:. /saml.md
+[sandbox]:. /sandboxing.md
+[langsame Anzeigetafel]:. /meine-anzeigetafel-ist-langsam.md
+[sql]:. /sql.md
+[sync-fingerprint-scan]:. /sync-fingerprint-scan.md
+[timeout]:. /timeout.md
+[upgrade]:. ./installation-und-betrieb/upgrading-metabase.md
+[ansehen-bearbeiten]:. /cant-view-or-edit.md
+[Visualisierung]:. /visualization.md
