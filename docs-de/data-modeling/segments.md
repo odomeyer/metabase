@@ -1,41 +1,61 @@
 ---
-title: "Segments"
+Titel: "Segmente"
 ---
 
-# Segments
 
-Metabase allows admins to create segments so people can quickly and easily reference them in the query builder. Just head over to the **Admin Panel** and select **Table Metadata** from the top menu.
+# Segmente
 
-## Creating a Segment
 
-A segment is just a special named filter or set of filters. You can create these to make sure that there is an official definition of a subset of customers, users, or products that everyone on your team can refer to consistently. For example, you might create a segment called “Active Users” that contains all the filters that are needed to correctly select active users.
+In der Metabase können Administratoren Segmente erstellen, auf die sie im Query Builder schnell und einfach verweisen können. Gehen Sie einfach zum**Administrationsbereich** und wählen Sie**Tabellenmetadaten** aus dem oberen Menü.
 
-To start, select the **Segments** tab, followed by the **New segment** button on the right side of the screen. Choose the appropriate table and filters for your new segment and add a title and description. When you’re done, this segment will be accessible from the filter list in the query builder when viewing this table (the segment will not be automatically applied to the table).
 
-![Add a segment](images/AddSegment.png)
+## Erstellen eines Segments
 
-Now you’ll be looking at the segment builder, which is a limited version of the query builder, with only the option to add filters. Add your filter(s) as you would in the query builder, and then give your segment a name and a description (these will be visible in the query builder filter dropdown after you’ve saved). If you want to test out your segment in the query builder before you save it, just click the Preview button, which will open a new query builder window with your segment applied.
 
-![Creating a segment](images/CreateSegment.png)
+Ein Segment ist lediglich ein spezieller benannter Filter oder eine Gruppe von Filtern. Sie können diese erstellen, um sicherzustellen, dass es eine offizielle Definition einer Untergruppe von Kunden, Benutzern oder Produkten gibt, auf die sich alle in Ihrem Team einheitlich beziehen können. Sie könnten zum Beispiel ein Segment mit der Bezeichnung "Aktive Benutzer" erstellen, das alle Filter enthält, die für die korrekte Auswahl aktiver Benutzer erforderlich sind.
 
-Once you’re done, click **Save changes**. Now your new segment will appear in the segments list of your table.
 
-![Finished segment](images/FinishedSegment.png)
+Wählen Sie zunächst die Registerkarte **Segmente**, gefolgt von der Schaltfläche **Neues Segment** auf der rechten Seite des Bildschirms. Wählen Sie die entsprechende Tabelle und Filter für Ihr neues Segment und fügen Sie einen Titel und eine Beschreibung hinzu. Wenn Sie fertig sind, wird dieses Segment über die Filterliste im Query Builder zugänglich sein, wenn Sie diese Tabelle anzeigen (das Segment wird nicht automatisch auf die Tabelle angewendet).
 
-If you exit the Admin Panel and try asking a new question, then click on the button to add a filter, you’ll see your segment at the top of the list.
 
-![Segment in dropdown](images/Segment.png)
+[Segment hinzufügen](images/AddSegment.png)
 
-## Editing and retiring segments
 
-You can edit and retire segments from the Table Metadata screen in the Admin Panel. Select the table with the segment you’re looking for, and click the ellipsis (…) icon to the right of that segment.
+Nun sehen Sie sich den Segment Builder an, der eine eingeschränkte Version des Query Builders ist und nur die Möglichkeit bietet, Filter hinzuzufügen. Fügen Sie Ihre Filter wie im Query Builder hinzu und geben Sie Ihrem Segment einen Namen und eine Beschreibung (diese werden nach dem Speichern im Dropdown-Menü des Query Builders angezeigt). Wenn Sie Ihr Segment im Abfragegenerator testen möchten, bevor Sie es speichern, klicken Sie einfach auf die Schaltfläche Vorschau, die ein neues Fenster des Abfragegenerators mit Ihrem Segment öffnet.
 
-![Segment Actions](images/SegmentActions.png)
 
-When editing a segment, you’ll be required to leave a note about why you’re changing it, just so everyone can understand why things are different. If any user is the creator of a saved question or dashboard that utilized the segment you’ve edited, they’ll receive an email letting them know that things have changed, along with the explanation that you write in this box.
+![Erstellen eines Segments](images/CreateSegment.png)
 
-![Edit message](images/EditMessage.png)
 
-Retiring a segment will make it no longer selectable from the query builder. However, **it won’t break existing saved questions that depend on that segment**.
+Wenn Sie fertig sind, klicken Sie auf **Änderungen speichern**. Ihr neues Segment erscheint nun in der Liste der Segmente in Ihrer Tabelle.
 
-Lastly, you can also view the revision history for each segment from the actions list.
+
+![Fertiges Segment](images/FinishedSegment.png)
+
+
+Wenn Sie die Verwaltungskonsole verlassen und versuchen, eine neue Frage zu stellen, und dann auf die Schaltfläche zum Hinzufügen eines Filters klicken, sehen Sie Ihr Segment am Anfang der Liste.
+
+
+![Segment in der Auswahlliste](images/Segment.png)
+
+
+## Segmente bearbeiten und löschen
+
+
+Sie können Segmente auf dem Bildschirm Tabellenmetadaten im Admin Panel bearbeiten und löschen. Wählen Sie die Tabelle mit dem gesuchten Segment aus, und klicken Sie auf das Ellipsen-Symbol (...) rechts neben dem Segment.
+
+
+[Segmentaktionen](images/SegmentActions.png)
+
+
+Wenn Sie ein Segment bearbeiten, müssen Sie eine Notiz hinterlassen, warum Sie es ändern, damit alle verstehen können, warum sich etwas geändert hat. Wenn ein Benutzer eine gespeicherte Frage oder ein Dashboard erstellt hat, für das das von Ihnen bearbeitete Segment verwendet wurde, erhält er eine E-Mail, in der er über die Änderung informiert wird, zusammen mit der Erklärung, die Sie in dieses Feld schreiben.
+
+
+[Nachricht bearbeiten](images/EditMessage.png)
+
+
+Das Zurückziehen eines Segments führt dazu, dass es nicht mehr über den Abfragegenerator ausgewählt werden kann. Vorhandene gespeicherte Fragen, die von diesem Segment abhängen, werden dadurch jedochnicht beschädigt.
+
+
+Schließlich können Sie auch den Änderungsverlauf für jedes Segment in der Aktionsliste einsehen.
+
