@@ -1,15 +1,11 @@
 ---
-title: Scatterplots and bubble charts
+Titel: Streudiagramme und Blasendiagramme
 redirect_from:
   - /docs/latest/questions/sharing/visualizations/scatterplot-or-bubble-chart
 ---
 
-# Scatterplots and bubble charts
-
-**Scatterplots** are useful for visualizing the correlation between two variables, like comparing the age of your users vs. how many dollars they've spent on your products. To use a scatterplot, you'll need to ask a question that results in two numeric columns, like `Count of Orders grouped by Customer Age`. Alternatively, you can use a table and select the two numeric fields you want to use in the chart options.
-
-If you have a third numeric field, you can also create a **bubble chart**. Select the Scatter visualization, then open up the chart settings and select a field in the **bubble size** dropdown. This field will be used to determine the size of each bubble on your chart. For example, you could use a field that contains the total dollar amount for each x-y pair — i.e. larger bubbles for larger total dollar amounts spent on orders.
-
-Scatterplots and bubble charts also have similar chart options as line, bar, and area charts, including the option to display trend or goal lines.
-
-![Scatter](../images/scatter.png)
+# Streuungsdiagramme und Blasendiagramme
+**Streudiagramme** sind nützlich, um die Korrelation zwischen zwei Variablen zu visualisieren, z. B. den Vergleich zwischen dem Alter Ihrer Nutzer und der Anzahl der Dollar, die sie für Ihre Produkte ausgegeben haben. Um ein Streudiagramm zu verwenden, müssen Sie eine Frage stellen, die zwei numerische Spalten ergibt, z. B. "Anzahl der Bestellungen gruppiert nach Kundenalter". Alternativ können Sie auch eine Tabelle verwenden und die beiden numerischen Felder, die Sie verwenden möchten, in den Diagrammoptionen auswählen.
+Wenn Sie ein drittes numerisches Feld haben, können Sie auch ein **Blasendiagramm** erstellen. Wählen Sie die Streudiagramm-Visualisierung, öffnen Sie dann die Diagrammeinstellungen und wählen Sie ein Feld im Dropdown-Menü **Kugelgröße**. Dieses Feld wird verwendet, um die Größe der einzelnen Blasen in Ihrem Diagramm zu bestimmen. Sie könnten zum Beispiel ein Feld verwenden, das den Gesamtdollarbetrag für jedes x-y-Paar enthält - d. h. größere Blasen für größere Gesamtdollarbeträge, die für Bestellungen ausgegeben wurden.
+Punktdiagramme und Blasendiagramme verfügen über ähnliche Diagrammoptionen wie Linien-, Balken- und Flächendiagramme, einschließlich der Möglichkeit, Trend- oder Ziellinien anzuzeigen.
+![Streuung](../images/scatter.png)
