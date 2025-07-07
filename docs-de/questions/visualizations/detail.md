@@ -1,13 +1,18 @@
 ---
-title: Detail
+Titel: Ausschnitt
 redirect_from:
-  - /docs/latest/questions/sharing/visualizations/detail
+- /docs/latest/questions/sharing/visualizations/detail
 ---
 
-# Detail
 
-The **Detail** visualization shows a single result record (row) in an easy-to-read, two-column display.
+**Detail
 
-![Detail of a record in the account table](../images/detail.png)
 
-You can cycle through records using the arrow buttons.
+Die**Detail** Visualisierung zeigt einen einzelnen Ergebnisdatensatz (Zeile) in einer leicht lesbaren, zweispaltigen Darstellung.
+
+
+![Detail eines Datensatzes in der Kontotabelle](../images/detail.png)
+
+
+Mit den Pfeiltasten können Sie durch die Datensätze blättern.
+
