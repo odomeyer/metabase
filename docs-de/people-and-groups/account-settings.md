@@ -1,36 +1,52 @@
 ---
-title: Account settings
+Titel: Kontoeinstellungen
 redirect_from:
-  - /docs/latest/users-guide/account-settings
+- /docs/latest/users-guide/account-settings
 ---
 
-# Account settings
 
-You can view your account settings by going to the top right of the screen and clicking on the **gear** icon > **Account settings**.
+# Kontoeinstellungen
 
-## Account profile
 
-You can set your first and last names, change your email address, and set your language. See our list of [supported languages](../configuring-metabase/localization.md).
+Sie können Ihre Kontoeinstellungen einsehen, indem Sie oben rechts auf dem Bildschirm auf das Symbol **Zahnrad** > **Kontoeinstellungen** klicken.
 
-## Account password
 
-You can change your password here. Note that if your Metabase uses Single Sign-On (SSO), your administrator will have disabled this password section, as your identity provider will manage logins.
+## Kontoprofil
 
-If you're having trouble logging in, see our [People can't log into Metabase](../troubleshooting-guide/cant-log-in.md).
 
-## Account login history
+Sie können Ihren Vor- und Nachnamen festlegen, Ihre E-Mail-Adresse ändern und Ihre Sprache einstellen. Siehe unsere Liste der [unterstützten Sprachen](../configuring-metabase/localization.md).
 
-The login history lists each login, along with some location information (if available), and some client information (like Browser (Firefox/Windows)).
-If you see any suspicious login attempts, change your password and notify your administrator.
 
-### A note about new login emails
+## Konto-Passwort
 
-Whenever you log in from a new device, Metabase will send you an email just to let you know someone (presumably you) has logged in from an unrecognized device. If you see this email, but don't remember logging in, or don't recognize the device, change your password and let your administrator know.
 
-## Disable animations in Metabase
+Hier können Sie Ihr Passwort ändern. Wenn Ihre Metabase Single Sign-On (SSO) verwendet, hat Ihr Administrator diesen Passwortbereich deaktiviert, da Ihr Identitätsanbieter die Anmeldungen verwaltet.
 
-This isn't an in-Metabase setting, but just so you know: you can disable UI animations in Metabase (like sidebars sliding around, or rotating spinners) by changing the settings for your operating system so it respects the `prefers-reduced-motion` CSS media feature. This change will also affect other applications, not just Metabase. Check out the instructions for how to set the user preferences for your operating system in the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion#user_preferences).
 
-## Notifications
+Wenn Sie Probleme bei der Anmeldung haben, lesen Sie unseren [People can't log into Metabase](../troubleshooting-guide/cant-log-in.md).
 
-If you subscribe or are added to dashboard subscriptions or alerts, you’ll be able to manage those notifications here (as well as on the relevant question or dashboard themselves).
+
+## Login-Historie des Kontos
+
+
+Der Anmeldeverlauf listet jede Anmeldung auf, zusammen mit einigen Standortinformationen (falls verfügbar) und einigen Client-Informationen (wie Browser (Firefox/Windows)).
+Wenn Sie verdächtige Anmeldeversuche feststellen, ändern Sie Ihr Passwort und informieren Sie Ihren Administrator.
+
+
+### Hinweis zu neuen Anmelde-E-Mails
+
+
+Jedes Mal, wenn Sie sich von einem neuen Gerät aus anmelden, schickt Ihnen Metabase eine E-Mail, um Sie darüber zu informieren, dass sich jemand (vermutlich Sie) von einem nicht erkannten Gerät aus angemeldet hat. Wenn Sie diese E-Mail sehen, sich aber nicht an die Anmeldung erinnern können oder das Gerät nicht kennen, ändern Sie Ihr Passwort und informieren Sie Ihren Administrator.
+
+
+## Animationen in der Metabase deaktivieren
+
+
+Dies ist keine Einstellung innerhalb der Metabase, aber nur damit Sie es wissen: Sie können UI-Animationen in der Metabase deaktivieren (z. B. Seitenleisten, die sich verschieben, oder rotierende Spinner), indem Sie die Einstellungen für Ihr Betriebssystem so ändern, dass es die CSS-Medienfunktion "prefers-reduced-motion" respektiert. Diese Änderung wirkt sich auch auf andere Anwendungen aus, nicht nur auf Metabase. Eine Anleitung, wie Sie die Benutzereinstellungen für Ihr Betriebssystem festlegen, finden Sie in den [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion#user_preferences).
+
+
+## Benachrichtigungen
+
+
+Wenn Sie Dashboard-Abonnements oder -Benachrichtigungen abonniert haben oder zu diesen hinzugefügt wurden, können Sie diese Benachrichtigungen hier verwalten (sowie auf der entsprechenden Frage oder dem Dashboard selbst).
+
