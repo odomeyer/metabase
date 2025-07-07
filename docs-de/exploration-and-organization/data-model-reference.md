@@ -1,38 +1,54 @@
 ---
-title: Data reference
+Titel: Datenreferenz
 redirect_from:
-  - /docs/latest/users-guide/12-data-model-reference
-  - /docs/latest/questions/native-editor/data-model-reference
+- /docs/latest/user-guide/12-data-model-reference
+- /docs/aktuell/fragen/native-editor/datenmodell-referenz
 ---
 
-# Data reference
 
-You can open the data reference from:
+# Datenreferenz
 
-- The Metabase sidebar > **Browse** > **Databases** > **Learn about our data**.
-- Hovering over a table in the data browser and clicking on the book icon that appears.
-- The native/SQL > **Book** icon.
 
-## Browse data reference
+Sie können die Datenreferenz öffnen über:
 
-The data reference is a collection of pages organized by database, then tables in that database (the same structure you use to [pick data](../questions/query-builder/editor.md#picking-data)). The data reference section is a great place to find information about the [data types](https://www.metabase.com/learn/grow-your-data-skills/data-fundamentals/data-types-overview) of columns in your data.
 
-## Data reference in the native editor
+- Die Metabase-Seitenleiste > **Durchsuchen** > **Datenbanken** > **Erfahren Sie mehr über unsere Daten**.
+- Bewegen Sie den Mauszeiger über eine Tabelle im Datenbrowser und klicken Sie auf das angezeigte Buchsymbol.
+- Das native/SQL > **Buch** Symbol.
 
-Sometimes when you're writing a query, you might forget the exact names of different tables or columns, or which table contains what. That’s where the **Data reference** comes in handy.
 
-To bring up the data reference panel in the native/SQL editor, click on the open book icon.
+## Datenreferenz durchsuchen
 
-This panel lists all the databases you have access to, and the [models](../data-modeling/models.md) and tables, and the fields inside of them.
 
-![Data reference sidebar](./images/DataReference.png)
+Die Datenreferenz ist eine Sammlung von Seiten, die nach Datenbank und dann nach Tabellen in dieser Datenbank geordnet sind (dieselbe Struktur, die Sie für die [Datenauswahl](../questions/query-builder/editor.md#picking-data) verwenden). Der Abschnitt Datenreferenz ist ein guter Ort, um Informationen über die [Datentypen](https://www.metabase.com/learn/grow-your-data-skills/data-fundamentals/data-types-overview) der Spalten in Ihren Daten zu finden.
 
-Click on the model or table you would like to explore further to see a description of it and a list of all the columns it has. Each table or column will only contain a description if your admin wrote something in the Table Metadata section of the Admin Panel.
 
-If you click on a column you’re interested in, you’ll see a description of its contents, as well as a list of sample values for columns that don't have a huge number of distinct values.
+## Datenreferenz im nativen Editor
 
-## Connections
 
-In the data reference sidebar, under **Connections**, you can find a list of table relationships (defined by [foreign keys](https://www.metabase.com/glossary/foreign-key)).
+Manchmal vergisst man beim Schreiben einer Abfrage die genauen Namen der verschiedenen Tabellen oder Spalten oder welche Tabelle was enthält. In diesem Fall ist die **Datenreferenz** sehr nützlich.
 
-If a foreign key relationship exists in your database, but doesn't show up in your Metabase, your Metabase admin will need to update your [Metabase Table Metadata](../data-modeling/metadata-editing.md).
+
+Um das Datenreferenz-Panel im nativen/SQL-Editor aufzurufen, klicken Sie auf das Symbol für das offene Buch.
+
+
+In diesem Bereich werden alle Datenbanken, auf die Sie Zugriff haben, sowie die [Modelle](../data-modeling/models.md) und Tabellen und die darin enthaltenen Felder aufgelistet.
+
+
+[Datenreferenz-Seitenleiste](./images/DataReference.png)
+
+
+Klicken Sie auf das Modell oder die Tabelle, die Sie näher betrachten möchten, um eine Beschreibung und eine Liste aller Spalten anzuzeigen. Jede Tabelle oder Spalte enthält nur dann eine Beschreibung, wenn Ihr Administrator etwas in den Abschnitt Tabellenmetadaten im Admin Panel geschrieben hat.
+
+
+Wenn Sie auf eine Spalte klicken, die Sie interessiert, sehen Sie eine Beschreibung ihres Inhalts sowie eine Liste von Beispielwerten für Spalten, die keine große Anzahl unterschiedlicher Werte haben.
+
+
+## Verbindungen
+
+
+In der Datenreferenz-Seitenleiste finden Sie unter**Verbindungen** eine Liste der Tabellenbeziehungen (definiert durch [Fremdschlüssel](https://www.metabase.com/glossary/foreign-key)).
+
+
+Wenn eine Fremdschlüsselbeziehung in Ihrer Datenbank existiert, aber nicht in Ihrer Metabase angezeigt wird, muss Ihr Metabase-Administrator Ihre [Metabase Table Metadata](../data-modeling/metadata-editing.md) aktualisieren.
+
