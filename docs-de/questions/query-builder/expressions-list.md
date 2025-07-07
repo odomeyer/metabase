@@ -737,80 +737,84 @@ Beispiel: `Jahr("2021-03-25T12:52:37")` gibt das Jahr 2021 als Ganzzahl zurück,
 
 ## Window functions
 
-Window functions can only be used in the **Summarize** section. They cannot be used to create a custom column or a custom filter.
+Fensterfunktionen können nur im Abschnitt **Zusammenfassen** verwendet werden. Sie können nicht verwendet werden, um eine benutzerdefinierte Spalte oder einen benutzerdefinierten Filter zu erstellen.
 
 ### CumulativeCount
 
-For more info, check out our page on [cumulative functions](./expressions/cumulative.md).
-
-The additive total of rows across a breakout.
-
+Weitere Informationen finden Sie auf unserer Seite über [kumulative Funktionen](./expressions/cumulative.md).
+Die additive Summe der Zeilen in einem Ausschnitt.
 Syntax: `CumulativeCount()`
 
 ### CumulativeSum
 
-For more info, check out our page on [cumulative functions](./expressions/cumulative.md).
-
-The rolling sum of a column across a breakout.
-
-Syntax: `CumulativeSum(column)`
-
-Example: `CumulativeSum([Subtotal])`
-
-Related: [Sum](#sum) and [SumIf](#sumif).
+Weitere Informationen finden Sie auf unserer Seite über [kumulative Funktionen](./expressions/cumulative.md).
+Die rollierende Summe einer Spalte über einen Ausschnitt.
+Syntax: `KumulativSumme(Spalte)`
+Beispiel: `KumulativSumme([Zwischensumme])`
+Verwandt: [Sum](#sum) and [SumIf](#sumif).
 
 ### Offset
 
-> ⚠️ The `Offset` function is currently unavailable for MySQL/MariaDB, ClickHouse, MongoDB, and Druid.
-
-For more info, check out our page on [Offset](./expressions/offset.md).
-
-Returns the value of an expression in a different row. `Offset` can only be used in the query builder's Summarize step (you cannot use `Offset` to create a custom column).
-
-Syntax: `Offset(expression, rowOffset)`
-
-The `expression` is the value to get from a different row.
-
-The `rowOffset` is the number relative to the current row. For example, `-1` for the previous row, or `1` for the next row.
-
-Example: `Offset(Sum([Total]), -1)` would get the `Sum([Total])` value from the previous row.
+> ⚠️ Die Funktion "Offset" ist derzeit nicht für MySQL/MariaDB, ClickHouse, MongoDB und Druid verfügbar.
+Weitere Informationen finden Sie auf unserer Seite über [Offset](./expressions/offset.md).
+Gibt den Wert eines Ausdrucks in einer anderen Zeile zurück. Offset" kann nur im Summarize-Schritt des Query Builders verwendet werden (Sie können Offset" nicht verwenden, um eine eigene Spalte zu erstellen).
+Syntax: `Offset(Ausdruck, ZeilenOffset)`
+Der `Ausdruck` ist der Wert, der aus einer anderen Zeile geholt werden soll.
+Der "Zeilenversatz" ist die Zahl relativ zur aktuellen Zeile. Zum Beispiel `-1` für die vorherige Zeile oder `1` für die nächste Zeile.
+Beispiel: "Offset(Summe([Gesamt]), -1)" würde den Wert "Summe([Gesamt])" aus der vorherigen Zeile ermitteln.
 
 ## Limitations
 
-- [Aggregation expressions](#aggregations) can only be used in the **Summarize** section of the query builder.
+- Aggregationsausdrücke](#aggregations) können nur im Abschnitt **Summarize** des Query Builders verwendet werden.
 
 ## Database limitations
 
-Limitations are noted for each aggregation and function above, and here there are in summary:
+Für jede Aggregation und Funktion sind oben Einschränkungen angegeben, die hier zusammengefasst sind:
 
-**H2** (including Metabase Sample Database): `Median`, `Percentile`, `convertTimezone`, `regexExtract`, `datetime`, `float`, `splitPart`.
+
+**H2** (einschließlich Metabase Sample Database): `Median`, `Percentile`, `convertTimezone`, `regexExtract`, `datetime`, `float`, `splitPart`.
+
 
 **Athena**: `convertTimezone`, `datetime`, `float`, `splitPart`.
 
+
 **Databricks**: `convertTimezone`, `datetime`, `float`, `splitPart`.
 
-**Druid**: `Median`, `Percentile`, `StandardDeviation`, `power`, `log`, `exp`, `sqrt`, `Offset`, `datetime`, `float`, `splitPart`. Function `regexExtract` and some [type casting functions](#type-casting-functions) are only available for the Druid-JDBC driver.
+
+**Druid**: `Median`, `Percentile`, `StandardDeviation`, `power`, `log`, `exp`, `sqrt`, `Offset`, `datetime`, `float`, `splitPart`. Die Funktion `regexExtract` und einige [type-casting-functions](#type-casting-functions) sind nur für den Druid-JDBC-Treiber verfügbar.
+
 
 **MongoDB**: `Median`, `Percentile`, `power`, `log`, `exp`, `sqrt`, `Offset`, `regexExtract`, `datetime`, `float`, `splitPart`.
 
-**MariaDB**: `Median`, `Percentile`, `Offset`.
 
-**MySQL**: `Median`, `Percentile`, `Offset`.
+**MariaDB**: `Median`, `Perzentil`, `Offset`.
+
+
+**MySQL**: Median", "Perzentil", "Offset".
+
 
 **Oracle**: `date`, `datetime`, `float`, `splitPart`.
 
-**Presto**: `convertTimezone`, `datetime`, `float`, `splitPart`. Only provides _approximate_ results for `Median` and `Percentile`.
+
+**Presto**: `convertTimezone`, `datetime`, `float`, `splitPart`. Liefert nur _ungefähre_ Ergebnisse für `Median` und `Percentile`.
+
 
 **SparkSQL**: `convertTimezone`, `datetime`, `float`, `splitPart`.
 
+
 **SQL Server**: `Median`, `Percentile`, `regexExtract`, `datetime`, `float`, `splitPart`.
+
 
 **SQLite**: `exp`, `log`, `Median`, `Percentile`, `power`, `regexExtract`, `StandardDeviation`, `sqrt`, `Variance`, `datetime`, `float`, `splitPart`.
 
+
 **Vertica**: `Median`, `Percentile`, `datetime`, `float`, `splitPart`.
 
-If you're using or maintaining a third-party database driver, please [refer to the wiki](https://github.com/metabase/metabase/wiki/What's-new-in-0.35.0-for-Metabase-driver-authors) to see how your driver might be impacted.
 
-Check out our tutorial on [custom expressions in the query builder](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/custom-expressions) to learn more.
+Wenn Sie einen Datenbanktreiber eines Drittanbieters verwenden oder pflegen, sehen Sie bitte [im Wiki](https://github.com/metabase/metabase/wiki/What's-new-in-0.35.0-for-Metabase-driver-authors) nach, wie Ihr Treiber betroffen sein könnte.
 
-[expressions]: ./expressions.md
+
+Sehen Sie sich unser Tutorial über [benutzerdefinierte Ausdrücke im Query Builder](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/custom-expressions) an, um mehr zu erfahren.
+
+
+[Ausdrücke]: ./expressions.md
