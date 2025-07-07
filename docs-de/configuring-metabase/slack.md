@@ -1,99 +1,96 @@
 ---
-title: Set up Slack
+Titel: Slack einrichten
 redirect_from:
-  - /docs/latest/administration-guide/09-setting-up-slack
+- /docs/latest/administration-guide/09-setting-up-slack
 ---
 
-# Set up Slack
 
-If you want to have your [dashboard subscriptions](../dashboards/subscriptions.md) or [alerts](../questions/alerts.md) sent to Slack channels (or people on Slack), an admin must first integrate your Metabase with Slack.
+# Slack einrichten
 
-## Create your Slack App
 
-For Metabase to post to your Slack channels, you’ll need to create a Slack App and make it available to Metabase.
+Wenn Sie Ihre [Dashboard-Abonnements](../dashboards/subscriptions.md) oder [Alerts](../questions/alerts.md) an Slack-Kanäle (oder Personen auf Slack) senden möchten, muss ein Administrator zunächst Ihre Metabase mit Slack integrieren.
 
-From any Metabase page, go to **Admin settings** > **Settings** > **Notification channels** > **Slack**.
 
-Click on **Open Slack Apps**. Metabase will open a new browser tab and send you over to the Slack website to create the Slack app.
+## Slack-App erstellen
 
-On the Slack website, click **Create an App**.
 
-### Pick a workspace to develop your app
+Damit Metabase in Ihren Slack-Channels posten kann, müssen Sie eine Slack-App erstellen und diese für Metabase verfügbar machen.
 
-Select the workspace you want to create your app.
 
-### The app manifest
+Gehen Sie auf einer beliebigen Metabase-Seite zu**Admin-Einstellungen** >**Einstellungen** >**Benachrichtigungskanäle** >**Slack**.
 
-When you click on **Open Slack App**, Metabase will pass along the app manifest, which Slack will use to set up your app.
 
-You may get a warning that says:
+Klicken Sie auf**Slack-Apps öffnen**. Metabase öffnet eine neue Browser-Registerkarte und schickt Sie auf die Slack-Website, um die Slack-App zu erstellen.
 
-**This app is created from a 3rd party manifest** Always verify URLs and permissions below.
 
-This warning is expected (Metabase is the third party here). You can click on **Configure** to see the app manifest Metabase sent along in the URL. Here is the manifest in YAML format:
+Klicken Sie auf der Slack-Website auf **Create an App**.
+
+
+### Wählen Sie einen Arbeitsbereich für die Entwicklung Ihrer App
+
+
+Wählen Sie den Arbeitsbereich, in dem Sie Ihre Anwendung erstellen möchten.
+
+
+### Das App-Manifest
+
+
+Wenn Sie auf **Slack App öffnen** klicken, übergibt die Metabase das App-Manifest, das Slack zum Einrichten Ihrer App verwendet.
+
+
+Möglicherweise erhalten Sie eine Warnung, die besagt:
+
+
+**Diese App wurde aus einem Manifest eines Drittanbieters erstellt** Überprüfen Sie immer die URLs und Berechtigungen unten.
+
+
+Diese Warnung wird erwartet (Metabase ist hier der Drittanbieter). Sie können auf **Configure** klicken, um das App-Manifest zu sehen, das Metabase in der URL mitgeschickt hat. Hier ist das Manifest im YAML-Format:
+
 
 ```yml
 _metadata:
-  major_version: 1
-  minor_version: 1
+major_version: 1
+minor_version: 1
 display_information:
-  name: Metabase
-  description: Bringing the power of Metabase to your Slack #channels!
-  background_color: "#509EE3"
-features:
-  bot_user:
-    display_name: Metabase
+name: Metabase
+Beschreibung: Bringen Sie die Leistung von Metabase in Ihre Slack #Channels!
+background_color: "#509EE3"
+Eigenschaften:
+bot_user:
+display_name: Metabase
 oauth_config:
-  scopes:
-    bot:
-      - users:read
-      - channels:read
-      - channels:join
-      - files:write
-      - chat:write
-      - chat:write.customize
-      - chat:write.public
-      - groups:read
+Geltungsbereiche:
+bot:
+- benutzer:lesen
+- Kanäle:lesen
+- Kanäle:verbinden
+- dateien:schreiben
+- chat:schreiben
+- chat:write.customize
+- chat:write.public
+- gruppen:lesen
 ```
 
-The manifest just take cares of some settings for your app and helps speed things along.
 
-Click the **Next** button. Then hit **Create** to set up your Slack app.
+Das Manifest kümmert sich nur um einige Einstellungen für Ihre Anwendung und hilft, die Dinge zu beschleunigen.
 
-## Install your app to your workspace
 
-On the Slack site for your newly created app, in the **Settings** > **Basic Information** tab, under **Install your app**, click on **Install to workspace**. On the next screen, click **Allow** to give Metabase access to your Slack workspace.
+Klicken Sie auf die Schaltfläche**Weiter**. Drücken Sie dann**Erstellen**, um Ihre Slack-App einzurichten.
 
-## The Bot User OAuth Token
 
-On the Slack site page for your Slack app, on the left in the **Features** section, click on **OAuth and Permissions** in the Slack Apps sidebar and then copy the **Bot User OAuth Token**. Return to the Slack settings page in your Metabase and paste this token in the Metabase field with the same name.
+## Installieren Sie Ihre App in Ihrem Arbeitsbereich
 
-## Save your changes in Metabase
 
-In Metabase, click on the **Save changes** button and that’s it! Metabase will automatically run a quick test to check that the API token is working properly. If something goes wrong, it'll give you an error message.
+Klicken Sie auf der Slack-Website für Ihre neu erstellte App auf der Registerkarte**Einstellungen** >**Grundinformationen** unter**Installieren Sie Ihre App** auf**In den Arbeitsbereich installieren**. Klicken Sie auf dem nächsten Bildschirm auf**Zulassen**, um der Metabase Zugriff auf Ihren Slack-Arbeitsbereich zu gewähren.
 
-## Sending alerts and subscriptions to private Slack channels
 
-In order to send subscriptions and alerts to private Slack channels, you must first add the Metabase app to the private channel.
+## Das Bot-Benutzer-OAuth-Token
 
-In Slack, go to the private channel and mention the Metabase app. For example, if you called your Slack app "Metabase", you'd just type `@Metabase`. Slack will ask you if you want to invite your app to your channel, which you should.
 
-### Metabase not listing your private channel?
+Klicken Sie auf der Slack-Webseite für Ihre Slack-App links im Abschnitt **Funktionen** in der Seitenleiste für Slack-Apps auf **OAuth und Berechtigungen** und kopieren Sie dann das **Bot User OAuth Token**. Kehren Sie zur Slack-Einstellungsseite in Ihrer Metabase zurück und fügen Sie dieses Token in das gleichnamige Metabase-Feld ein.
 
-It can take a little time for metabase to see all the channels the app has been invited to. New channels may not appear in listings for up to 10 minutes after inviting the app to the channel.
 
-In order for metabase to see private channels, the app must have the `groups:read` oauth scope. Although this scope should be granted when setting up the app through metabase, older installations might not have this scope.
-If you think this might be the case [visit the app settings in slack](https://api.slack.com/apps/):
-- Click on the metabase app in the app listing.
-- Click on **OAuth & Permissions** in the sidebar.
-- Under **Scopes** add the `groups:read` scope.
-- The app will the need to be reinstalled to the workspace
-  by clicking the **Reinstall** button under **OAuth Tokens**.
+## Speichern Sie Ihre Änderungen in der Metabase
 
-## Further reading
 
-- [Alerts](../questions/alerts.md)
-- [Dashboard subscriptions](../dashboards/subscriptions.md)
-- [Notification permissions](../permissions/notifications.md)
-- [Setting up email](./email.md)
-- [Usage analytics](../usage-and-performance-tools/usage-analytics.md)
+Klicken Sie in Metabase auf die Schaltfläche**Änderungen speichern**, und das war's! Metabase führt automatisch einen kurzen Test durch, um zu prüfen, ob das API-Token ordnungsgemäß funktioniert. Wenn etwas schief geht, erhalten Sie eine Fehlermeldung.
