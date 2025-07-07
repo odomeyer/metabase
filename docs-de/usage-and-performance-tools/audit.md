@@ -114,24 +114,29 @@ Eine Liste all Ihrer Dashboards ist ebenfalls verfügbar, und Sie können versch
 
 Verwenden Sie den Abschnitt **Downloads**, um zu erfahren, welche Personen Daten herunterladen (oder exportieren) und wie groß (Anzahl der Zeilen) die Downloads sind, die sie durchführen. Dieser Bereich enthält einige Visualisierungen sowie eine Liste aller Downloads.
 
-### Subscriptions and Alerts
+### Abonnements und Alarme
 
-Here admins can get an overview of all of the [dashboard subscriptions][dashboard-subscriptions] and [alerts][alerts] that are currently active for that Metabase.
 
-- Dashboard name (or Question name for Alerts)
-- Recipients
-- Type (e.g., email or Slack)
-- Collection
-- Frequency
-- Created By
-- Created At
-- Filters
+Hier können sich Administratoren einen Überblick über alle [Dashboard-Abonnements][Dashboard-Abonnements] und [Alerts][Alerts] verschaffen, die derzeit für diese Metabase aktiv sind.
 
-Admins can add and remove people from a subscription or alert by clicking on the item's **Recipients** number. Admins can also delete the subscription or alert entirely by clicking on the **X** on the relevant line.
 
-Everyone can view all of their subscriptions and alerts by clicking on the **gear** icon in the upper right and navigating to **Account settings** > **Notifications**.
+- Dashboard-Name (oder Fragenname für Alerts)
+- Empfänger
+- Art (z. B. E-Mail oder Slack)
+- Sammlung
+- Frequenz
+- Erstellt von
+- Erstellt am
+- Filter
 
-For more, see [how permissions work with alerts and subscriptions](../permissions/notifications.md).
+
+Administratoren können Personen zu einem Abonnement oder einer Benachrichtigung hinzufügen oder daraus entfernen, indem sie auf die Nummer**Empfänger** des Elements klicken. Administratoren können das Abonnement oder die Benachrichtigung auch komplett löschen, indem sie auf das**X** in der entsprechenden Zeile klicken.
+
+
+Jeder kann alle seine Abonnements und Benachrichtigungen einsehen, indem er auf das **Zahnradsymbol** oben rechts klickt und zu **Kontoeinstellungen** > **Benachrichtigungen** navigiert.
+
+
+Weitere Informationen finden Sie unter [wie Berechtigungen mit Alarmen und Abonnements funktionieren](../permissions/notifications.md).
 
 [alerts]: ../questions/alerts.md
 [dashboard-subscriptions]: ../dashboards/subscriptions.md
