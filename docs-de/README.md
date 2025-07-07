@@ -1,5 +1,5 @@
 ---
-title: Metabase documentation
+Titel: Metabase-Dokumentation
 redirect_from:
   - /docs/latest/enterprise-guide
   - /docs/latest/users-guide
@@ -8,37 +8,37 @@ redirect_from:
   - /docs/latest/faq
 ---
 
-# Metabase documentation
+# Metabase Dokumentation
 
 ![Metabase dashboard](./images/metabase-product-screenshot.png)
 
-Metabase is an open-source business intelligence platform. You can use Metabase to ask questions about your data, or embed Metabase in your app to let your customers explore their data on their own.
+Metabase ist eine Open-Source-Plattform für Business Intelligence. Sie können Metabase verwenden, um Fragen zu Ihren Daten zu stellen, oder Metabase in Ihre App einbetten, damit Ihre Kunden ihre Daten selbständig erkunden können.
 
-## First steps
+## Erste Schritte
 
 ### Metabase Cloud
 
-The easiest way to get started with Metabase is to sign up for a free trial of [Metabase Cloud](https://store.metabase.com/checkout). You get support, backups, upgrades, an SMTP server, SSL certificate, SoC2 Type 2 security auditing, and more (plus your money goes toward improving Metabase). Check out our quick overview of [cloud vs self-hosting](./cloud/cloud-vs-self-hosting.md). If you need to, you can always switch to [self-hosting](./installation-and-operation/installing-metabase.md) Metabase at any time (or vice versa).
+Der einfachste Weg, mit Metabase zu arbeiten, ist die Anmeldung für eine kostenlose Testversion von [Metabase Cloud] (https://store.metabase.com/checkout). Sie erhalten Support, Backups, Upgrades, einen SMTP-Server, ein SSL-Zertifikat, SoC2 Typ 2 Sicherheitsaudits und mehr (und Ihr Geld fließt in die Verbesserung von Metabase). Sehen Sie sich unseren kurzen Überblick über [Cloud vs. Self-Hosting](./cloud/cloud-vs-self-hosting.md) an. Bei Bedarf können Sie jederzeit zu [self-hosting](./installation-and-operation/installing-metabase.md) Metabase wechseln (oder umgekehrt).
 
-### [Installing Metabase](./installation-and-operation/installing-metabase.md)
+### [Installation der Metabase](./installation-und-betrieb/installing-metabase.md)
 
-Run as a JAR, using Docker, or on [Metabase Cloud](https://store.metabase.com/checkout).
+Ausführen als JAR, mit Docker oder auf der [Metabase Cloud](https://store.metabase.com/checkout).
 
-### [Setting up Metabase](./configuring-metabase/setting-up-metabase.md)
+### [Einrichten der Metabase](./configuring-metabase/setting-up-metabase.md)
 
-Once installed, set up your Metabase and connect to your data.
+Nach der Installation richten Sie Ihre Metabase ein und stellen eine Verbindung zu Ihren Daten her.
 
-### [Getting started](https://www.metabase.com/learn/metabase-basics/getting-started/index)
+### [Erste Schritte](https://www.metabase.com/learn/metabase-basics/getting-started/index)
 
-With your data connected, get started asking questions, creating dashboards, and sharing your work.
+Nachdem Sie Ihre Daten verbunden haben, können Sie Fragen stellen, Dashboards erstellen und Ihre Arbeit teilen.
 
-### [A tour of Metabase](https://www.metabase.com/learn/metabase-basics/overview/tour-of-metabase)
+### [Ein Rundgang durch Metabase](https://www.metabase.com/learn/metabase-basics/overview/tour-of-metabase)
 
-Metabase is a deep product with a lot of tools to simplify business intelligence, from embeddable charts and interactive dashboards, to GUI and SQL editors, to auditing and data sandboxing, and more.
+Metabase ist ein umfangreiches Produkt mit vielen Tools zur Vereinfachung von Business Intelligence, von einbettbaren Diagrammen und interaktiven Dashboards über GUI- und SQL-Editoren bis hin zu Auditing und Data Sandboxing und vielem mehr.
 
-## Documentation topics
+## Themen der Dokumentation
 
-Metabase's reference documentation.
+Die Referenzdokumentation der Metabase.
 
 ### Installation
 
