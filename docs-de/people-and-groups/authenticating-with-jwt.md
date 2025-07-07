@@ -1,101 +1,80 @@
 ---
-title: JWT-based authentication
-description: How to set up JWT-based authentication in Metabase to connect with your identity provider and manage user access.
+Titel: JWT-basierte Authentifizierung
+Beschreibung: So richten Sie die JWT-basierte Authentifizierung in Metabase ein, um eine Verbindung mit Ihrem Identitätsanbieter herzustellen und den Benutzerzugang zu verwalten.
 redirect_from:
-  - /docs/latest/enterprise-guide/authenticating-with-jwt
+- /docs/latest/enterprise-guide/authenticating-with-jwt
 ---
 
-# JWT-based authentication
 
-{% include plans-blockquote.html feature="JWT-based authentication" %}
+# JWT-basierte Authentifizierung
 
-You can connect Metabase to your identity provider using JSON Web Tokens (JWT) to authenticate people.
 
-## Typical flow for a JWT-based SSO interaction with Metabase
+{% include plans-blockquote.html feature="JWT-basierte Authentifizierung" %}
 
-Assuming your site is localhost serving on port 3000:
 
-1. Person attempts to view a question, e.g., `http://localhost:3000/question/1-superb-question`.
-2. If the person isn't logged in, Metabase redirects them to `http://localhost:3000/auth/sso`.
-3. Retaining the original `/question/1-superb-question` URI, Metabase redirects the person to the SSO provider (the authentication app).
-4. Person logs in using the basic form.
-5. In the event of a successful sign-in, your authentication app should issue a GET request to your Metabase endpoint with the token and the "return to" URI: `http://localhost:3000/auth/sso?jwt=TOKEN_GOES_HERE&return_to=/question/1-superb-question`.
-6. Metabase verifies the JSON Web Token, logs the person in, then redirects the person to their original destination, `/question/1-superb-question`.
+Sie können die Metabase mit Ihrem Identitätsanbieter verbinden, indem Sie JSON Web Tokens (JWT) verwenden, um Personen zu authentifizieren.
 
-## Enabling JWT authentication
 
-Navigate to the **Admin**>**Settings** section of the Admin area, then click on the **Authentication** tab. Click the **Configure** button in the JWT section of this page, and you'll see this form:
+## Typischer Ablauf für eine JWT-basierte SSO-Interaktion mit Metabase
 
-![JWT form](images/JWT-auth-form.png)
 
-Here's a breakdown of each of the settings:
+Angenommen, Ihr Standort ist localhost und wird über Port 3000 bedient:
 
-**JWT Identity Provider URI:** This is where Metabase will redirect login requests. That is, it's where your users go to log in through your identity provider.
 
-**String Used by the JWT Signing Key:** The string used to seed the private key used to validate JWT messages. Both Metabase and the authentication app should have the same JWT signing key.
+1. Die Person versucht, eine Frage anzuzeigen, z.B. "http://localhost:3000/question/1-superb-question".
+2. Wenn die Person nicht eingeloggt ist, leitet Metabase sie auf `http://localhost:3000/auth/sso` um.
+3. Unter Beibehaltung des ursprünglichen URI "/question/1-superb-question" leitet Metabase die Person zum SSO-Anbieter (der Authentifizierungs-App) weiter.
+4. Die Person meldet sich über das Grundformular an.
+5. Im Falle einer erfolgreichen Anmeldung sollte Ihre Authentifizierungsanwendung eine GET-Anforderung an Ihren Metabase-Endpunkt mit dem Token und der "return to"-URI ausgeben: `http://localhost:3000/auth/sso?jwt=TOKEN_GOES_HERE&return_to=/question/1-superb-question`.
+6. Die Metabase verifiziert das JSON-Web-Token, meldet die Person an und leitet sie dann an ihr ursprüngliches Ziel `/question/1-superb-question` weiter.
 
-## User attribute configuration (optional)
 
-These are additional settings you can fill in to pass user attributes to Metabase.
+## Aktivieren der JWT-Authentifizierung
 
-- **Email attribute:** the key to retrieve each JWT user's email address.
-- **First Name attribute:** the key to retrieve each JWT user's first name.
-- **Last Name attribute:** if you guessed that this is the key to retrieve each JWT user's last name, well then you have been paying attention.
 
-You can send additional user attributes to Metabase by adding the attributes as key/value pairs to your JWT. These attributes will be synced on every login.
+Navigieren Sie zum Abschnitt**Admin**>**Einstellungen** des Admin-Bereichs und klicken Sie dann auf die Registerkarte**Authentifizierung**. Klicken Sie auf die Schaltfläche**Konfigurieren** im Abschnitt JWT auf dieser Seite, und Sie sehen dieses Formular:
 
-## Configure group mappings
 
-You can use your JWT to assign Metabase users to custom groups.
+![JWT-Formular](images/JWT-auth-form.png)
 
-1. Add groups to your JWT: `groups: ["group_name"]`.
-1. In Metabase, go to the Admin panel and switch to **Setting > Authentication** tab.
-1. Click the **Configure** button under JWT.
-1. Under **Group Schema**, turn on the toggle **Synchronize Group Memberships**
-1. Click **New mapping** and add the name of a JWT group.
-1. In the row that appears, click the dropdown to pick the Metabase group(s) that this should map to.
-   ![Metabase JWT group mappings](./images/jwt-groups.png)
-1. Repeat this for each of the groups you want to map.
 
-Alternatively, you can define the mappings between JWT and Metabase groups using the [environment variable `MB_JWT_GROUP_MAPPINGS`](../configuring-metabase/environment-variables.md#mb_jwt_group_mappings). It accepts a JSON object where the keys are JWT groups and the values are lists of Metabase groups IDs. For example:
+Hier ist eine Aufschlüsselung der einzelnen Einstellungen:
 
-```
-MB_JWT_GROUP_MAPPINGS='{"extHR":[7], "extSales":[3,4]}'
-```
 
-where `extHR`, `extSales` are names of JWT groups and 3,4,7 are IDs of Metabase groups.
+**JWT-Identitätsanbieter-URI:** Hier werden die Anmeldeanfragen von Metabase umgeleitet. Das heißt, hier melden sich Ihre Benutzer über Ihren Identitätsanbieter an.
 
-You can find Metabase Group ID in the URL for the group page, like `http://your-metabase-url/admin/people/groups/<ID>`. "All Users" group has ID 1 and "Administrators" group has ID 2.
 
-You can also use the [environment variable `MB_JWT_GROUP_SYNC`](../configuring-metabase/environment-variables.md#mb_jwt_group_sync) to turn group sync on or off.
+**Vom JWT-Signierschlüssel verwendete Zeichenkette:** Die Zeichenkette, die zum Seeden des privaten Schlüssels verwendet wird, der zur Validierung von JWT-Nachrichten dient. Sowohl die Metabase als auch die Authentifizierungs-App sollten denselben JWT-Signierungsschlüssel haben.
 
-```
-MB_JWT_GROUP_SYNC=true
-```
 
-## Creating Metabase accounts with SSO
+## Konfiguration der Benutzerattribute (optional)
 
-> Paid plans [charge for each additional account](../cloud/how-billing-works.md#what-counts-as-a-user-account).
 
-A new SSO login will automatically create a new Metabase account.
+Dies sind zusätzliche Einstellungen, die Sie ausfüllen können, um Benutzerattribute an die Metabase zu übergeben.
 
-Metabase accounts created with an external identity provider login don't have passwords. People who sign up for Metabase using an IdP must continue to use the IdP to log into Metabase.
 
-## Disabling password logins
+-E-Mail-Attribut:** Der Schlüssel zum Abrufen der E-Mail-Adresse jedes JWT-Benutzers.
+-Attribut "Vorname":** Der Schlüssel zum Abrufen des Vornamens jedes JWT-Nutzers.
+-**Nachname-Attribut:** Wenn Sie erraten haben, dass dies der Schlüssel für den Abruf des Nachnamens jedes JWT-Benutzers ist, dann haben Sie gut aufgepasst.
 
-> **Avoid locking yourself out of your Metabase!** This setting will apply to all Metabase accounts, _including your Metabase admin account_. We recommend that you keep password authentication **enabled**. This will safeguard you from getting locked out of Metabase in case of any problems with SSO.
 
-To require people to log in with SSO, disable password authentication from **Admin settings** > **Authentication**.
+Sie können weitere Benutzerattribute an die Metabase senden, indem Sie die Attribute als Schlüssel/Wert-Paare zu Ihrem JWT hinzufügen. Diese Attribute werden bei jeder Anmeldung synchronisiert.
 
-![Password disable](images/password-disable.png)
 
-## Note about Azure
+## Konfigurieren Sie die Gruppenzuordnungen
 
-If you're using Azure, you may need to use Azure AD B2C. Check out their [tokens overview](https://docs.microsoft.com/en-us/azure/active-directory-b2c/tokens-overview).
 
-## Example code using JWT-based authentication
+Sie können Ihre JWT verwenden, um Metabase-Benutzer benutzerdefinierten Gruppen zuzuordnen.
 
-You can find example code that uses JWT authentication in the [SSO examples repository](https://github.com/metabase/sso-examples).
 
-- [JWT example in a Clojure app](https://github.com/metabase/sso-examples/tree/master/clj-jwt-example)
-- [JWT example in JavaScript (Node) app](https://github.com/metabase/sso-examples/tree/master/nodejs-jwt-example)
+1. Fügen Sie Gruppen zu Ihrem JWT hinzu: `groups: ["group_name"]`.
+1. Gehen Sie in der Metabase zum Admin-Panel und wechseln Sie zur Registerkarte **Einstellung > Authentifizierung**.
+1. Klicken Sie unter JWT auf die Schaltfläche **Configure**.
+1. Aktivieren Sie unter **Gruppenschema** das Kontrollkästchen **Gruppenmitgliedschaften synchronisieren**.
+1. Klicken Sie auf **Neue Zuordnung** und fügen Sie den Namen einer JWT-Gruppe hinzu.
+1. Klicken Sie in der angezeigten Zeile auf das Dropdown-Menü, um die Metabase-Gruppe(n) auszuwählen, die zugeordnet werden soll(en).
+![Metabase JWT group mappings](./images/jwt-groups.png)
+1. Wiederholen Sie diesen Vorgang für alle Gruppen, die Sie zuordnen möchten.
+
+
+Alternativ können Sie die Zuordnungen zwischen JWT- und Metabase-Gruppen über die [Umgebungsvariable `MB_JWT_GROUP_MAPPINGS`](../configuring-metabase/environment-variables.md#mb_jwt_group_mappings) definieren. Sie akzeptiert ein JSON-Objekt, wobei die Schlüssel JWT-Gruppen und die Werte Listen von Metabase-Gruppen-IDs sind. Zum Beispiel:
