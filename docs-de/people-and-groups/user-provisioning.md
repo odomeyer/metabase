@@ -1,68 +1,90 @@
 ---
-title: User provisioning with SCIM
+Titel: Benutzerbereitstellung mit SCIM
 ---
 
-# User provisioning with SCIM
+
+# Benutzerbereitstellung mit SCIM
+
 
 {% include plans-blockquote.html feature="User provisioning with SCIM" %}
 
-Metabase supports user provisioning via the System for Cross-domain Identity Management (SCIM) protocol. In addition to Single Sign-on (SSO), you can set up user provisioning in Metabase with SCIM to:
 
-- **Decouple authentication from provisioning**. Even though anyone could authenticate with SSO, you may only want some people to be able to create an account in Metabase.
-- **Support deprovisioning user accounts**. If you deactivate someone from your SSO, SCIM can let Metabase know to deactivate their Metabase account as well.
+Die Metabase unterstützt das User Provisioning über das System for Cross-Domain Identity Management (SCIM) Protokoll. Zusätzlich zu Single Sign-on (SSO) können Sie das Benutzer-Provisioning in der Metabase mit SCIM einrichten, um:
 
-> For now, Metabase officially supports SCIM for [Okta](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_scim.htm?cshid=ext_Apps_App_Integration_Wizard-scim) and [Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/configure-automatic-user-provisioning-portal). Other SCIM providers may work, but we haven't tested them. If you're having issues with another identity provider, please [reach out to us](https://www.metabase.com/help-premium).
 
-## Setting up user provisioning
+- **Entkopplung von Authentifizierung und Provisioning**. Auch wenn sich jeder mit SSO authentifizieren kann, möchten Sie vielleicht, dass nur bestimmte Personen ein Konto in der Metabase erstellen können.
+-Unterstützung der Deprovisionierung von Benutzerkonten**. Wenn Sie jemanden aus Ihrem SSO deaktivieren, kann SCIM Metabase mitteilen, dass das Metabase-Konto ebenfalls deaktiviert werden soll.
 
-![Setting up user provisioning with SCIM in Metabase](./images/user-provisioning.png)
 
-To set up user provisioning. Click on the settings **Gear** icon in the upper right and navigate to **Admin settings** > **Settings**> **Authentication**.
+> Zurzeit unterstützt Metabase offiziell SCIM für [Okta](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_scim.htm?cshid=ext_Apps_App_Integration_Wizard-scim) und [Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/configure-automatic-user-provisioning-portal). Andere SCIM-Anbieter funktionieren möglicherweise, aber wir haben sie nicht getestet. Wenn Sie Probleme mit einem anderen Identitätsanbieter haben,wenden Sie sich bitte [an uns](https://www.metabase.com/help-premium).
 
-Click on the **User provisioning** tab.
 
-## User provisioning via SCIM
+## Einrichten der Benutzerbereitstellung
 
-To set up user provisioning with SCIM, hit the toggle to enable it. Metabase will tell you the SCIM endpoint URL and SCIM token to share with your identity provider.
 
-> If you've previously set up user provisioning with SAML, Metabase will turn that setting off and use the SCIM setup instead.
+(/images/user-provisioning.png)[Einrichten der Benutzerbereitstellung mit SCIM in der Metabase]
 
-## SCIM endpoint URL
 
-The SCIM endpoint is `/api/ee/scim/v2`. So your URL will looks something like:
+So richten Sie das Benutzer-Provisioning ein. Klicken Sie auf das Einstellungssymbol **Zahnrad** oben rechts und navigieren Sie zu **Verwaltungseinstellungen** > **Einstellungen**> **Authentifizierung**.
+
+
+Klicken Sie auf die Registerkarte**Benutzerbereitstellung**.
+
+
+## Benutzerbereitstellung über SCIM
+
+
+Um das Benutzer-Provisioning mit SCIM einzurichten, klicken Sie auf den Kippschalter, um es zu aktivieren. Metabase teilt Ihnen die SCIM-Endpunkt-URL und das SCIM-Token mit, die Sie mit Ihrem Identitätsanbieter teilen müssen.
+
+
+> Wenn Sie zuvor die Benutzerbereitstellung mit SAML eingerichtet haben, schaltet Metabase diese Einstellung aus und verwendet stattdessen die SCIM-Einrichtung.
+
+
+## SCIM-Endpunkt-URL
+
+
+Der SCIM-Endpunkt lautet "/api/ee/scim/v2". Ihre URL sieht also etwa so aus:
+
 
 ```
 https://metabase.example.com/api/ee/scim/v2
 ```
 
-Replacing the hostname with your Metabase's hostname.
 
-Share this endpoint URL with your identity provider.
+Ersetzen Sie den Hostnamen durch den Hostnamen Ihrer Metabase.
 
-## SCIM token
 
-Copy the token and save the token somewhere safe. For security, Metabase can't show you the token again. You can, however, regenerate the token, but you'll need to let your identity provider know about the new token.
+Geben Sie diese Endpunkt-URL für Ihren Identitätsanbieter frei.
 
-## SCIM with Okta
 
-Once you've enabled SCIM in Metabase and gotten your SCIM endpoint URL and SCIM token, follow the docs for [Setting up SCIM in Okta](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_scim.htm?cshid=ext_Apps_App_Integration_Wizard-scim).
+## SCIM-Token
 
-With Okta, Metabase supports user and group provisioning; groups are created and populated in Metabase.
 
-NOTE: the authentication mode you need to set is "HTTP Header"
+Kopieren Sie den Token und speichern Sie ihn an einem sicheren Ort. Aus Sicherheitsgründen kann die Metabase Ihnen das Token nicht mehr anzeigen. Sie können das Token jedoch neu generieren, aber Sie müssen Ihren Identitätsanbieter über das neue Token informieren.
 
-## SCIM with Microsoft Entra ID
 
-Once you've enabled SCIM in Metabase and gotten your SCIM endpoint URL and SCIM token, follow the docs for [Setting up SCIM in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/configure-automatic-user-provisioning-portal).
+## SCIM mit Okta
 
-With Microsoft Entra ID, Metabase only supports user provisioning (groups aren't created or populated).
 
-## Notify admins of new users provisioned from SSO
+Sobald Sie SCIM in der Metabase aktiviert und Ihre SCIM-Endpunkt-URL und Ihr SCIM-Token erhalten haben, folgen Sie den Anweisungen für [Einrichten von SCIM in Okta](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_scim.htm?cshid=ext_Apps_App_Integration_Wizard-scim).
 
-If you're not using SCIM to provision user accounts, you can optionally have Metabase send an email to admins whenever someone signs in to Metabase via SSO for the first time (which creates a Metabase account). This setting doesn't require you to set up SCIM.
 
-## Further reading
+Mit Okta unterstützt Metabase die Bereitstellung von Benutzern und Gruppen; Gruppen werden in Metabase erstellt und aufgefüllt.
 
-- [Authenticating with SAML](./authenticating-with-saml.md)
-- [SAML with Okta](./saml-okta.md)
-- [SAML with Microsoft Entra ID](./saml-azure.md)
+
+HINWEIS: Der Authentifizierungsmodus, den Sie einstellen müssen, ist "HTTP Header".
+
+
+## SCIM mit Microsoft Entra ID
+
+
+Sobald Sie SCIM in der Metabase aktiviert und die SCIM-Endpunkt-URL und das SCIM-Token erhalten haben, folgen Sie den Anweisungen für [Einrichten von SCIM in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/configure-automatic-user-provisioning-portal).
+
+
+Mit Microsoft Entra ID unterstützt die Metabase nur das Provisioning von Benutzern (Gruppen werden nicht erstellt oder aufgefüllt).
+
+
+## Benachrichtigung von Administratoren über neue Benutzer, die über SSO bereitgestellt wurden
+
+
+Wenn Sie für die Bereitstellung von Benutzerkonten nicht SCIM verwenden, können Sie optional festlegen, dass die Metabase eine E-Mail an Administratoren sendet, wenn sich jemand zum ersten Mal über SSO bei der Metabase anmeldet (wodurch ein Metabase-Konto erstellt wird). Für diese Einstellung ist es nicht erforderlich, SCIM einzurichten.
