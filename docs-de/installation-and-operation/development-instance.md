@@ -1,52 +1,74 @@
 ---
-title: Development instances
-summary: Create development instances of Metabase for testing without paying per user. Perfect for trying out changes before pushing them to production.
+Titel: Entwicklungsinstanzen
+Zusammenfassung: Erstellen Sie Entwicklungsinstanzen von Metabase zum Testen, ohne pro Benutzer zu bezahlen. Perfekt, um Änderungen auszuprobieren, bevor sie in die Produktion übernommen werden.
 ---
 
-# Development instances
 
-{% include plans-blockquote.html feature="Development instances" %}
+# Entwicklungsinstanzen
 
-> A development instance **can't be used in production** and must be on **Metabase version 55 or above**.
 
-On Pro and Enterprise plans, you can purchase a development instance or development token as an add-on to your plan.
+{% include plans-blockquote.html feature="Entwicklungsinstanzen" %}
 
-- **Self-hosted**: you can purchase a dev token that you can use for one or more self-hosted development instances (meaning: you can reuse the same token for multiple dev instances at no additional cost). The development token will have access to the same set of paid features as your production token.
-- **Cloud**: you can purchase a development instance hosted on [Metabase Cloud](https://www.metabase.com/cloud/). The development instance will have access to the same set of paid features as your production token.
 
-Dev instances are only available to Pro and Enterprise plans; they're not included in the base plans. Dev instances must be purchased as an add-on to your plan, after you've completed your trial and made your first payment.
+> Eine Entwicklungsinstanz **kann nicht in der Produktion verwendet werden** und muss auf **Metabase Version 55 oder höher** sein.
 
-## Pay a flat fee, not per test user
 
-That's the basic value proposition. Unlike production instances where you pay per user account, you can just pay a flat fee for a dev instance. That way you can mess around with dashboards, permissions, and so on, without paying for user accounts that you only use for testing.
+Bei Pro- und Enterprise-Tarifen können Sie eine Entwicklungsinstanz oder ein Entwicklungs-Token als Add-on zu Ihrem Tarif erwerben.
 
-Once you're happy with the changes in your dev instance, you can [export your changes and import them](./serialization.md) into your production Metabase.
 
-## You can't use development instances in production
+-Selbst gehostet**: Sie können einen Entwicklungs-Token erwerben, den Sie für eine oder mehrere selbst gehostete Entwicklungsinstanzen verwenden können (d. h. Sie können denselben Token ohne zusätzliche Kosten für mehrere Entwicklungsinstanzen wiederverwenden). Der Entwicklungs-Token hat Zugang zu denselben kostenpflichtigen Funktionen wie Ihr Produktions-Token.
+-Cloud**: Sie können eine Entwicklungsinstanz erwerben, die auf [Metabase Cloud](https://www.metabase.com/cloud/) gehostet wird. Die Entwicklungsinstanz hat Zugriff auf die gleichen kostenpflichtigen Funktionen wie Ihr Produktions-Token.
 
-The UI for development instances, including the UI for all its exports and notifications, is watermarked.
 
-![Watermark banner](./images/watermark-banner.png)
+Entwicklungsinstanzen sind nur für Pro- und Enterprise-Pläne verfügbar; sie sind nicht in den Basisplänen enthalten. Dev-Instanzen müssen als Add-on zu Ihrem Plan erworben werden, nachdem Sie Ihre Testphase abgeschlossen und Ihre erste Zahlung geleistet haben.
 
-## Creating a development instance
 
-If you're on a Pro or Enterprise plan, you can purchase a development instance of Metabase in the Metabase Store.
+## Sie zahlen eine Pauschalgebühr, nicht pro Testbenutzer.
 
-1. Log in to your [store account](https://store.metabase.com).
-2. Go to the Instances tab.
-3. Click **+ New instance**.
-4. Select **Development instance**.
 
-![Create development instance](./images/create-development-instance.png)
+Das ist das grundlegende Nutzenversprechen. Im Gegensatz zu Produktionsinstanzen, bei denen Sie pro Benutzerkonto zahlen, können Sie für eine Entwicklungsinstanz nur eine Pauschalgebühr zahlen. Auf diese Weise können Sie mit Dashboards, Berechtigungen usw. herumspielen, ohne für Benutzerkonten zu bezahlen, die Sie nur zum Testen verwenden.
 
-You can choose a Cloud instance or get a token for a self-hosted development instance.
 
-## Downgrading with development instances
+Sobald Sie mit den Änderungen in Ihrer Entwicklungsinstanz zufrieden sind, können Sie [Ihre Änderungen exportieren und in Ihre Produktionsmetabasisimportieren](./serialization.md).
 
-If you're on a Pro Cloud plan and downgrade to a Starter plan, we'll delete any development instances you've created. All of your production instances will remain intact (minus the Pro features).
 
-If you downgrade and you're on a self-hosted plan, the token will no longer be valid, and you'll lose access to the paid features.
+## Sie können Entwicklungsinstanzen nicht in der Produktion verwenden.
 
-## Getting data from development to production
 
-You can export changes made in your development instance and import them into your production instance. Check out [serialization](../installation-and-operation/serialization.md).
+Die Benutzeroberfläche für Entwicklungsinstanzen, einschließlich der Benutzeroberfläche für alle Exporte und Benachrichtigungen, ist mit einem Wasserzeichen versehen.
+
+
+[Wasserzeichen-Banner](./images/watermark-banner.png)
+
+
+## Erstellen einer Entwicklungsinstanz
+
+
+Wenn Sie über einen Pro- oder Enterprise-Plan verfügen, können Sie im Metabase Store eine Entwicklungsinstanz von Metabase erwerben.
+
+
+1. Loggen Sie sich in Ihr [Shop-Konto](https://store.metabase.com) ein.
+2. Gehen Sie auf die Registerkarte Instanzen.
+3. Klicken Sie auf **+ Neue Instanz**.
+4. Wählen Sie **Entwicklungsinstanz**.
+
+
+[Entwicklungsinstanz erstellen](./images/create-development-instance.png)
+
+
+Sie können eine Cloud-Instanz wählen oder ein Token für eine selbst gehostete Entwicklungsinstanz erhalten.
+
+
+## Downgrading mit Entwicklungsinstanzen
+
+
+Wenn Sie einen Pro Cloud-Tarif haben und ein Downgrade auf einen Starter-Tarif durchführen, löschen wir alle von Ihnen erstellten Entwicklungsinstanzen. Alle Ihre Produktionsinstanzen bleiben intakt (abzüglich der Pro-Funktionen).
+
+
+Wenn Sie ein Downgrade durchführen und einen selbst gehosteten Plan haben, ist der Token nicht mehr gültig und Sie verlieren den Zugang zu den bezahlten Funktionen.
+
+
+## Daten von der Entwicklung in die Produktion übertragen
+
+
+Sie können Änderungen, die Sie in Ihrer Entwicklungsinstanz vorgenommen haben, exportieren und in Ihre Produktionsinstanz importieren. Sehen Sie sich [serialization](../installation-and-operation/serialization.md) an.
