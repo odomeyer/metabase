@@ -1,73 +1,88 @@
 ---
-title: "People overview"
+Titel: "Personenübersicht"
 redirect_from:
-  - /docs/latest/administration-guide/sso
-  - /docs/latest/people-and-groups
+- /docs/latest/administration-guide/sso
+- /docs/latest/personen-und-gruppen
 ---
 
-# People overview
 
-User accounts, groups, and authentication. For permissions, see [Permissions overview](../permissions/start.md).
+# Personenübersicht
 
-## [Editing your account settings](./account-settings.md)
 
-Edit your profile and password, and view your login history.
+Benutzerkonten, Gruppen und Authentifizierung. Zu den Berechtigungen siehe [Übersicht über die Berechtigungen](../permissions/start.md).
 
-## [Managing people and groups](./managing.md)
 
-Admin controls for setting up user accounts and organizing them into groups.
+## [Bearbeiten Ihrer Kontoeinstellungen](./account-settings.md)
 
-## [Changing password complexity](./changing-password-complexity.md)
 
-Make people use longer and more complex passwords.
+Bearbeiten Sie Ihr Profil und Ihr Passwort, und sehen Sie sich Ihre Login-Historie an.
 
-## [Changing session expiration](./changing-session-expiration.md)
 
-Tell Metabase how long it should wait before asking people to log in again.
+## [Personen und Gruppen verwalten](./managing.md)
 
-## Authentication
 
-Metabase offers several options for authentication.
+Admin-Kontrollen für die Einrichtung von Benutzerkonten und deren Einteilung in Gruppen.
 
-> If you need to set up 2-step or multi-factor authentication (2FA or MFA) for your Metabase, consider using one of the SSO options below.
 
-### SSO for Metabase Open Source and Starter plans
+## [Passwortkomplexität ändern](./changing-password-complexity.md)
 
-- [Google Sign-in](./google-sign-in.md)
+
+Bringen Sie die Leute dazu, längere und komplexere Passwörter zu verwenden.
+
+
+## [Ändern der Sitzungsdauer](./changing-session-expiration.md)
+
+
+Teilen Sie der Metabase mit, wie lange sie warten soll, bevor sie die Benutzer auffordert, sich erneut anzumelden.
+
+
+## Authentifizierung
+
+
+Metabase bietet mehrere Optionen für die Authentifizierung.
+
+
+> Wenn Sie eine 2-Schritt- oder Multi-Faktor-Authentifizierung (2FA oder MFA) für Ihre Metabase einrichten müssen, sollten Sie eine der unten aufgeführten SSO-Optionen verwenden.
+
+
+### SSO für Metabase Open Source und Starter-Pakete
+
+
+- [Google-Anmeldung](./google-sign-in.md)
 - [LDAP](./ldap.md)
 
-### SSO for Metabase Pro and Enterprise plans
 
-With [Pro and Enterprise plans](https://www.metabase.com/pricing/), you have more options to help orchestrate lots of people and groups.
+### SSO für Metabase Pro und Enterprise-Pakete
+
+
+Mit den [Pro- und Enterprise-Plänen](https://www.metabase.com/pricing/) haben Sie mehr Optionen, um viele Personen und Gruppen zu orchestrieren.
+
 
 - [JWT][jwt]
-- LDAP advanced features
-  - [Group membership filter](./ldap.md#ldap-group-membership-filter)
-  - [Syncing user attributes](./ldap.md#syncing-user-attributes-with-ldap)
+- Erweiterte LDAP-Funktionen
+- [Gruppenmitgliedschaftsfilter](./ldap.md#ldap-group-membership-filter)
+- [Benutzerattribute synchronisieren](./ldap.md#syncing-user-attributes-with-ldap)
 - [SAML][saml]
-  - [Auth0][saml-auth0]
-  - [Microsoft Entra ID][azure-ad]
-  - [Google][saml-google]
-  - [Keycloak][saml-keycloak]
-  - [Okta][saml-okta]
+- [Auth0][saml-auth0]
+- [Microsoft Entra ID][azure-ad]
+- [Google][saml-google]
+- [Keycloak][saml-keycloak]
+- [Okta][saml-okta]
 
-## [API keys](./api-keys.md)
 
-Create keys to authenticate API calls.
+## [API-Schlüssel](./api-keys.md)
+
+
+Erstellen von Schlüsseln zur Authentifizierung von API-Aufrufen.
+
 
 ## [User provisioning](./user-provisioning.md)
 
-Metabase supports user provisioning via the SCIM protocol.
 
-[azure-ad]: ./saml-azure.md
-[google-sign-in]: ./google-and-ldap.md#enabling-google-sign-in
-[jwt]: ./authenticating-with-jwt.md
-[ldap]: ./google-and-ldap.md#enabling-ldap-authentication
-[ldap-group-membership-filter]: ./google-and-ldap.md#ldap-group-membership-filter
-[ldap-user-attributes]: ./google-and-ldap.md#syncing-user-attributes-with-ldap
-[saml-okta]: ./saml-okta.md
-[saml]: ./authenticating-with-saml.md
-[saml-auth0]: ./saml-auth0.md
-[saml-google]: ./saml-google.md
-[saml-keycloak]: ./saml-keycloak.md
-[sso-def]: https://www.metabase.com/glossary/sso
+Die Metabase unterstützt die Bereitstellung von Benutzern über das SCIM-Protokoll.
+
+
+[azure-ad]:. /saml-azure.md
+[google-sign-in]:. /google-and-ldap.md#enabling-google-sign-in
+[jwt]:. /authenticating-with-jwt.md
+[ldap]:. /google-and-ldap.md#enabling-ldap-authentication
