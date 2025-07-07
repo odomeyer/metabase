@@ -1,62 +1,85 @@
 ---
-title: Troubleshooting models
+Titel: Fehlersuche bei Modellen
 ---
 
-# Troubleshooting models
 
-What kind of problem are you having with your [model][model-docs]?
+# Fehlersuche bei Modellen
 
-## Can't create a model
 
-If you don't see [the model button][model-button-image] (three squares):
+Welche Art von Problem haben Sie mit Ihrem [model][model-docs]?
 
-1. Check if you're using a Metabase version that's 0.42.0 or greater by going to the top right of the screen and clicking on the **gear** icon > **About Metabase**.
-2. Clear your browser cache.
-3. Ask your Metabase admin to clear the proxy cache (if you're using one).
 
-## Can't edit or save changes to a model
+## Kann kein Modell erstellen
 
-If your changes to a model's metadata or underlying question aren't showing up:
 
-1. Refresh your browser to confirm you're not viewing cached results.
-2. Search for [known model issues][known-issues-models] using the label `Querying/Models`. For more information, go to [How to find a known bug or limitation][known-issues].
+Wenn Sie [die Modell-Schaltfläche][Modell-Schaltflächen-Bild] (drei Quadrate) nicht sehen:
 
-## Model performance is poor
 
-1. Use model persistence.
+1. Prüfen Sie, ob Sie eine Metabase-Version von 0.42.0 oder höher verwenden, indem Sie oben rechts auf dem Bildschirm auf das Symbol **Zahnrad** > **Über Metabase** klicken.
+2. Löschen Sie Ihren Browser-Cache.
+3. Bitten Sie Ihren Metabase-Administrator, den Proxy-Cache zu löschen (falls Sie einen solchen verwenden).
 
-   - Metabase can [write back to your data warehouse][model-persistence]. If you enable model persistence, Metabase will read a pre-computed and materialized version of the model directly from the database instead of running the query from scratch. Please consider this option is only available in some supported data warehouses.
 
-2. Optimize the underlying saved question or SQL query.
+## Änderungen an einem Modell können nicht bearbeitet oder gespeichert werden
 
-   - [Ask for less data][limit-data-learn].
-   - For models that use SQL questions, [look for bottlenecks using SQL EXPLAIN][sql-explain-learn].
 
-3. Optimize your database schemas.
+Wenn Ihre Änderungen an den Metadaten eines Modells oder der zugrunde liegenden Frage nicht angezeigt werden:
 
-   - [Aggregate data ahead of time with summary tables][summary-tables-learn].
-   - [Index frequently queried columns][indexes-learn].
-   - [Denormalize your data][denormalize-data-learn].
-   - [Materialize views][materialize-views-learn].
-   - [Pull data out of JSON and slot its keys into columns][flatten-json-learn].
 
-4. Optimize your data warehouse(s) or database(s).
+1. Aktualisieren Sie Ihren Browser, um sicherzustellen, dass Sie keine zwischengespeicherten Ergebnisse sehen.
+2. Suchen Sie nach [bekannten Modellproblemen][known-issues-models], indem Sie das Label `Querying/Models` verwenden. Weitere Informationen finden Sie unter [How to find a known bug or limitation][known-issues].
 
-   - [Replicate your database][replicate-database-learn].
-   - [Consider a database optimized for analytics][analytics-database-learn].
 
-**Explanation**
+## Die Modellleistung ist schlecht
 
-Models are a type of saved question, so they will only perform as fast as the original question or SQL query.
 
-If you want to improve the performance of a model, you can make optimizations at the query, schema, or database level (depending on your data permissions, technical expertise, and willingness to tinker).
+1. Verwenden Sie die Modellpersistenz.
 
-## Are you still stuck?
 
-If you can’t solve your problem using the troubleshooting guides:
+- Metabase kann [zurück in Ihr Data Warehouse schreiben][model-persistence]. Wenn Sie die Modellpersistenz aktivieren, liest Metabase eine vorberechnete und materialisierte Version des Modells direkt aus der Datenbank, anstatt die Abfrage von Grund auf neu auszuführen. Bitte beachten Sie, dass diese Option nur in einigen unterstützten Data Warehouses verfügbar ist.
 
-- Search or ask the [Metabase community][discourse].
-- Search for [known model issues][known-issues-models] using the label `Querying/Models`. For more information, go to [How to find a known bug or limitation][known-issues].
+
+2. Optimieren Sie die zugrunde liegende gespeicherte Frage oder SQL-Abfrage.
+
+
+- [Weniger Daten anfordern][limit-data-learn].
+- Bei Modellen, die SQL-Fragen verwenden, [suchen Sie mit SQL EXPLAIN nach Engpässen][sql-explain-learn].
+
+
+3. Optimieren Sie Ihre Datenbankschemata.
+
+
+-Aggregieren Sie Daten im Voraus mit Übersichtstabellen][summary-tables-learn].
+-Häufig abgefragte Spalten indizieren][indexes-learn].
+- [Daten denormalisieren][denormalize-data-learn].
+- [Ansichten materialisieren][materialize-views-learn].
+- [Daten aus JSON herausziehen und ihre Schlüssel in Spalten einfügen][flatten-json-learn].
+
+
+4. Optimieren Sie Ihr(e) Data Warehouse(s) oder Datenbank(en).
+
+
+- [Replizieren Sie Ihre Datenbank][replicate-database-learn].
+- [Betrachten Sie eine für Analysen optimierte Datenbank][analytics-database-learn].
+
+
+**Erläuterung**
+
+
+Modelle sind eine Art von gespeicherten Fragen. Sie sind daher nur so schnell wie die ursprüngliche Frage oder SQL-Abfrage.
+
+
+Wenn Sie die Leistung eines Modells verbessern möchten, können Sie Optimierungen auf Abfrage-, Schema- oder Datenbankebene vornehmen (je nach Ihren Datenberechtigungen, Ihrem technischen Fachwissen und Ihrer Bereitschaft zum Tüfteln).
+
+
+## Stecken Sie immer noch fest?
+
+
+Wenn Sie Ihr Problem nicht mit Hilfe der Anleitungen zur Fehlerbehebung lösen können:
+
+
+- Suchen oder fragen Sie in der [Metabase-Community][Diskurs].
+- Suchen Sie nach [bekannten Modellproblemen][known-issues-models] mit dem Label `Querying/Models`. Weitere Informationen finden Sie unter [How to find a known bug or limitation][known-issues].
 
 [analytics-database-learn]: https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/making-dashboards-faster#consider-a-database-optimized-for-analytics
 [denormalize-data-learn]: https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/making-dashboards-faster#denormalize-data
