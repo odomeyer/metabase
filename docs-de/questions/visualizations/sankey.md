@@ -1,87 +1,64 @@
 ---
-title: Sankey charts
+Titel: Sankey-Tabellen
 redirect_from:
   - /docs/latest/questions/sharing/visualizations/sankey
 ---
 
-# Sankey charts
+# Sankey-Diagramme
+Sankey-Diagramme zeigen, wie Daten durch mehrdimensionale Schritte fließen. Sie sind nützlich, um zu zeigen, welche Elemente, Knoten genannt, zum Gesamtfluss beitragen.
+![Linksbündiges Sankey-Diagramm](../images/sankey-left-aligned.png)
 
-Sankey charts show how data flows through multi-dimensional steps. They're useful for showing which elements, called nodes, contribute to the overall flow.
-
-![Left-aligned sankey chart](../images/sankey-left-aligned.png)
-
-## Sankey data shape
-
-To create a Sankey chart, you'll need at least three columns in your results:
-
-- **Source column**: specifies a node in the Sankey flow.
-- **Target column**: specifies a receiving node.
-- **Count column**: value that determines the thickness of the target node.
-
-If you had raw page views where each row had a source page (like the title of a referrer page) and a target page (like the title for the current page view), you could summarize by count and group by the source, then the target.
-
+## Sankey-Datenform
+Um ein Sankey-Diagramm zu erstellen, benötigen Sie mindestens drei Spalten in Ihren Ergebnissen:
+- **Quellenspalte**: gibt einen Knoten im Sankey-Fluss an.
+- **Zielspalte**: gibt einen empfangenden Knoten an.
+- Spalte **Zahl**: Wert, der die Dicke des Zielknotens bestimmt.
+Wenn Sie rohe Seitenansichten hätten, bei denen jede Zeile eine Quellseite (z. B. den Titel einer Verweisseite) und eine Zielseite (z. B. den Titel der aktuellen Seitenansicht) enthielte, könnten Sie nach Anzahl zusammenfassen und nach der Quelle und dann nach dem Ziel gruppieren.
 ![Sankey summarize count and group by source and target](../images/sankey-summarize-count-source-target.png)
-
-Here's the data shape used to create the chart above.
-
-| Source page  | Target page  | Total Visitors |
+Hier ist die Datenform, die zur Erstellung des obigen Diagramms verwendet wurde.
+| Quellseite | Zielseite | Besucher insgesamt |
 | ------------ | ------------ | -------------- |
-| Entry        | Homepage     | 584            |
-| Homepage     | Product Page | 2,700          |
-| Product Page | Add to Cart  | 572            |
-| Add to Cart  | Checkout     | 2,490          |
-| Checkout     | Purchase     | 1,756          |
-| Homepage     | Search       | 2,427          |
-| Search       | Product Page | 2,027          |
-| Product Page | Add to Cart  | 2,203          |
-| Add to Cart  | Checkout     | 1,475          |
-| Search       | Product Page | 1,563          |
-| Checkout     | Purchase     | 1,041          |
-| Homepage     | Exit         | 810            |
-| Product Page | Checkout     | 815            |
-| Checkout     | Purchase     | 2,217          |
-| Homepage     | Exit         | 1,020          |
+| Einstieg | Startseite | 584 |
+| Startseite | Produktseite | 2.700 |
+| Produktseite | In den Warenkorb | 572 |
+| In den Warenkorb | Zur Kasse | 2.490 |
+| Kasse | Kaufen | 1.756 | Startseite
+| Startseite | Suche | 2.427 |
+| Suche | Produktseite | 2.027 |
+| Produktseite | In den Warenkorb | 2,203 |
+| In den Warenkorb | Zur Kasse | 1.475 |
+| Suche | Produktseite | 1.563 |
+| Kasse | Kauf | 1.041 |
+| Startseite | Beenden | 810 |
+| Produktseite | Zur Kasse | 815 |
+| Kasse | Kauf | 2.217 |
+| Startseite | Beenden | 1.020 |
+Siehe [Datenoptionen](#sankey-data-options).
 
-See [data options](#sankey-data-options).
+### Zirkuläre Abhängigkeiten werden nicht funktionieren
+Wenn einige Ihrer Quellen auf Ziele verweisen, die wiederum auf dieselben Quellen verweisen, kann Metabase kein Sankey-Diagramm erstellen.
 
-### Circular dependencies won't work
+## Sankey-Datenoptionen
+Um auszuwählen, welche Spalten Metabase als Quelle, Ziel und Werte für das Sankey-Diagramm verwenden soll, klicken Sie auf das Symbol **Einstellungen** unten rechts, um die Registerkarte **Daten** anzuzeigen.
+[Sankey-Datenoptionen](../images/sankey-data-options.png)
+Ihre Daten können mehr als drei Spalten enthalten, aber jede Zeile muss die erforderlichen drei Spalten enthalten: Quelle, Ziel und einen Wert zur Skalierung der Größe des Zielknotens.
 
-If some of your sources point to targets that point back to the same sources, Metabase won't be able to create a Sankey chart.
+## Sankey-Anzeigeoptionen
+Sie können die Ausrichtung eines Diagramms, die Kantenbeschriftung und die Kantenfarben ändern.
 
-## Sankey data options
+### Ausrichtung
+Sie können für das Sankey-Diagramm die Ausrichtung links, rechts oder im Blocksatz wählen. Die Ausrichtung legt fest, wie das Diagramm die Endknoten (auch bekannt als Blattknoten oder Endknoten) anzeigen soll.
+Das Diagramm im obigen Abschnitt ist linksbündig ausgerichtet. Die Endknoten `Ausgang` und `Einkauf` sind links ausgerichtet.
+Bei der Rechtsausrichtung werden die Endknoten `Ausgang` und `Einkauf` nach rechts verschoben:
+![Rechtsbündiges Sankey-Diagramm](../images/sankey-right-aligned.png)
+In diesem Fall sieht die Ausrichtung gleich aus, da die Endknoten so verschoben werden, dass sie das gesamte Diagramm einnehmen.
 
-To select which columns Metabase should use as the source, target, and values for the Sankey chart, click on the **settings** icon in the bottom right to view the **Data** tab.
+### Kantenbeschriftungen
+Ob eine Kante (auch bekannt als Link oder Pfeil) ihren Wert anzeigt. Die Optionen für die Anzeige von Beschriftungen sind automatisch, kompakt oder vollständig formatiert.
 
-![Sankey data options](../images/sankey-data-options.png)
-
-Your data can include more than three columns, but each row must include the required three columns: source, target, and a value to scale the size of the target node.
-
-## Sankey display options
-
-You can change a charts alignment, edge labels, and edge colors.
-
-### Alignment
-
-You can select left, right, or justified alignment for the Sankey chart. Alignment determines how the chart should display the end nodes (a.k.a. leaf nodes or terminal nodes).
-
-The chart in the section above is left-aligned. The end nodes, `Exit` and `Purchase`, are aligned to the left.
-
-For right alignment, the end nodes, `Exit` and `Purchase`, move to the chart's right:
-
-![Right-aligned sankey chart](../images/sankey-right-aligned.png)
-
-In this case, justified alignment looks the same, as the end nodes move to take up the whole chart.
-
-### Edge labels
-
-Whether an edge (a.k.a. link or arrow) displays its value. Options for displaying labels include auto, compact, or full formatting.
-
-### Edge color
-
-![Sankey gray edges](../images/sankey-gray-edges.png)
-
-Options for edge colors include:
-
-- **Gray**: All edges are gray. Nodes retain their color.
-- **Source**: The source node determines the edge colors. The source node is the node to the left of an edge.
-- **Target**: The target node determines the edge colors. The target node is the node to the right of an edge.
+### Kantenfarbe
+![Sankey graue Kanten](../images/sankey-gray-edges.png)
+Optionen für Kantenfarben sind:
+- **Grau**: Alle Kanten sind grau. Die Knoten behalten ihre Farbe.
+- **Quelle**: Der Quellknoten bestimmt die Kantenfarben. Der Quellknoten ist der Knoten links von einer Kante.
+- **Ziel**: Der Zielknoten bestimmt die Kantenfarben. Der Zielknoten ist der Knoten rechts von einer Kante.
