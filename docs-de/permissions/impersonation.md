@@ -1,71 +1,79 @@
 ---
-title: Impersonation access
+Titel: Impersonation access
 ---
 
-# Impersonation permissions
+
+# Impersonation-Berechtigungen
+
 
 {% include plans-blockquote.html feature="Impersonation access" %}
 
-> For now, impersonation access is only available for MySQL, PostgreSQL, Redshift, Snowflake, and SQL Server. If you want to switch database _connections_ based on who is logged in, check out [Database routing](./database-routing.md).
 
-> If you're using views in PostgresSQL, the row-level security policies on views will only work on Postgres versions 15 and higher.
+> Momentan ist Impersonation Access nur für MySQL, PostgreSQL, Redshift, Snowflake und SQL Server verfügbar. Wenn Sie die Datenbank _Verbindungen_ umschalten wollen, je nachdem, wer eingeloggt ist, lesen Sie [Database routing](./database-routing.md).
 
-This page covers the [View data](./data.md#view-data-permissions) permission level called Impersonation.
 
-**Impersonation access** allows admins to "outsource" View data permissions to roles in your database. Admins can associate user attributes with database-defined roles and their privileges. If someone is in a group with their View data permission set to Impersonation, the person will be able to view and query data based on the privileges granted to the role specified by their user attribute.
+> Wenn Sie Views in PostgresSQL verwenden, funktionieren die Sicherheitsrichtlinien auf Zeilenebene für Views nur in Postgres-Versionen 15 und höher.
 
-## Setting up connection impersonation
 
-> \*\*For impersonation to work for Redshift databases, the user account Metabase uses to [connect to your Redshift database](../databases/connections/redshift.md) must be a superuser, as Metabase will need to be able to run the [SET SESSION AUTHORIZATION](https://docs.aws.amazon.com/redshift/latest/dg/r_SET_SESSION_AUTHORIZATION) command, which can only be run by a database superuser.
+Diese Seite behandelt die [View data](./data.md#view-data-permissions) Berechtigungsebene namens Impersonation.
 
-For impersonation access to work, you'll first need to set up roles in your database for Metabase to impersonate, then configure Metabase to impersonate those roles when people view or query data.
 
-### In your database, set up roles
+Der **Impersonation-Zugang** ermöglicht es Administratoren, die Berechtigungen für die Datenansicht an Rollen in Ihrer Datenbank "auszulagern". Administratoren können Benutzerattribute mit datenbankdefinierten Rollen und deren Berechtigungen verknüpfen. Wenn eine Person einer Gruppe angehört, deren Berechtigung zum Anzeigen von Daten auf "Impersonation" gesetzt ist, kann die Person Daten auf der Grundlage der Berechtigungen anzeigen und abfragen, die der durch ihr Benutzerattribut angegebenen Rolle gewährt werden.
 
-1. Create a new role (in Redshift, this would be a new user).
-2. Grant that role privileges.
 
-For exactly how to create a new role in your database and grant that role privileges, you'll need to consult your database's documentation. We also have some docs on [users, roles, and privileges](../databases/users-roles-privileges.md) that can help you get started.
+## Einrichten der Verbindungs-Impersonation
 
-### In your Metabase, set up impersonation and specify a user attribute
 
-1. **Create a [new group](../people-and-groups/managing.md#groups)**, or select an existing group.
+> Damit die Impersonation für Redshift-Datenbanken funktioniert, muss das Benutzerkonto, das Metabase für die [Verbindung zu Ihrer Redshift-Datenbank](../databases/connections/redshift.md) verwendet, ein Superuser sein, da Metabase in der Lage sein muss, den Befehl [SET SESSION AUTHORIZATION](https://docs.aws.amazon.com/redshift/latest/dg/r_SET_SESSION_AUTHORIZATION) auszuführen, der nur von einem Datenbank-Superuser ausgeführt werden kann.
 
-2. **Assign a [user attribute](../people-and-groups/managing.md#adding-a-user-attribute) to people in that group.** You'll use this user attribute to associate people in that group with a role that you created in your database. For example, if you created a role named `sales` in your database with access to a subset of tables relevant to the sales team, you would add a user attribute called `db_role` (or whatever you want to call the attribute) and assign the value `sales` to the person's `db_role`. The value of the attribute (`sales` in this case) should match the name of the role in your database. Only some databases enforce case sensitivity, so you might want to make sure the attribute's value and the database's role match exactly.
 
-3. **Apply the impersonation access to that group.**. Hit Cmd/Ctrl + K to bring up the command palette. Search for **Permissions**. Or go to **Admin settings** > **Permissions** > **Data**.
+Damit der Impersonation-Zugriff funktioniert, müssen Sie zunächst in Ihrer Datenbank Rollen einrichten, die Metabase verkörpern soll, und dann Metabase so konfigurieren, dass diese Rollen verkörpert werden, wenn Personen Daten anzeigen oder abfragen.
 
-4. Select the database you want to set permissions on.
 
-5. Find the group that you want to associate with the database role you created. Under **View data** setting for that group, select **Impersonation**.
+### Richten Sie in Ihrer Datenbank Rollen ein.
 
-6. From the dropdown, select the user attribute that you added that maps to the role you want the group to use when querying the database.
 
-7. Save your changes.
+1. Erstellen Sie eine neue Rolle (in Redshift wäre dies ein neuer Benutzer).
+2. Gewähren Sie dieser Rolle Berechtigungen.
 
-## People in a group with impersonation access to data do not necessarily share the same privileges
 
-Metabase will use whatever role you specify in the user attribute for each person. E.g., if you select the `db_role` attribute for impersonation, one person's `db_role` could be `sales`, another person's could be `engineering`, or whatever other value that maps to a valid role in your database.
+Wie genau Sie eine neue Rolle in Ihrer Datenbank erstellen und dieser Rolle Rechte erteilen, müssen Sie in der Dokumentation Ihrer Datenbank nachlesen. Wir haben auch einige Dokumente über [Benutzer, Rollen und Privilegien](../databases/users-roles-privileges.md), die Ihnen den Einstieg erleichtern können.
 
-## Use impersonation to set up row-level SQL access
 
-You can use impersonation to give people access to the native/SQL editor, while restricting their access to data based on a specific database role. And not just table-level access, but row-level access---or however you define access for that role in your database. Effectively, you can use impersonation to set up data sandbox-like access to your data, while letting people use the SQL editor to query that data. The difference is that, _instead of setting up a data sandbox in Metabase, you need to set up that row-level security via the privileges granted to a role in your database._
+### Richten Sie in Ihrer Metabase die Impersonation ein und geben Sie ein Benutzerattribut
 
-If instead you want to give a group SQL access to some, but not all, of the schemas or tables in that database, you can create an additional role in your database that only includes a subset of those tables---or even specific row-level access---and then use Metabase's impersonation feature to associate a user attribute with that role. Essentially what Metabase will do is take the user attribute and pass that attribute as a string into a `SET ROLE` or `USE ROLE` command for the database _before_ Metabase executes the query.
 
-Connection impersonation doesn't apply to people in the Metabase admins group, as their more permissive privileges take precedence.
+1. **Erstellen Sie eine [neue Gruppe](../people-and-groups/managing.md#groups)**, oder wählen Sie eine bestehende Gruppe aus.
 
-For more about how to set this up, check out [Use Impersonation to get row-level permissions with both GUI and SQL queries](https://www.metabase.com/learn/metabase-basics/administration/permissions/impersonation).
 
-## Metabase gives people the most permissive access to data across all of their groups
+2. **Weisen Sie den Personen in dieser Gruppeein [Benutzerattribut](../people-and-groups/managing.md#adding-a-user-attribute) zu.** Sie werden dieses Benutzerattribut verwenden, um die Personen in dieser Gruppe mit einer Rolle zu verbinden, die Sie in Ihrer Datenbank erstellt haben. Wenn Sie zum Beispiel eine Rolle mit dem Namen "sales" in Ihrer Datenbank erstellt haben, die Zugriff auf eine Untergruppe von Tabellen hat, die für das Verkaufsteam relevant sind, würden Sie ein Benutzerattribut mit dem Namen "db_role" (oder wie immer Sie das Attribut nennen wollen) hinzufügen und der "db_role" der Person den Wert "sales" zuweisen. Der Wert des Attributs(in diesem Fall"sales" ) sollte mit dem Namen der Rolle in Ihrer Datenbank übereinstimmen. Nur in einigen Datenbanken wird zwischen Groß- und Kleinschreibung unterschieden, daher sollten Sie darauf achten, dass der Wert des Attributs und die Rolle in der Datenbank genau übereinstimmen.
 
-So if a person is in two groups with different permissions for the same database:
 
-- Red group with impersonated access that limits what they can see.
-- Blue group with View data set to "Can view" and Create queries set to "Query builder and native".
+3. **Wenden Sie den Impersonationszugriff auf diese Gruppe an. Drücken Sie Cmd/Ctrl + K, um die Befehlspalette aufzurufen. Suchen Sie nach**Berechtigungen**. Oder gehen Sie zu**Admin-Einstellungen** >**Berechtigungen** >**Daten**.
 
-Blue group's more permissive access would override the impersonated access.
 
-## Further reading
+4. Wählen Sie die Datenbank, für die Sie Berechtigungen festlegen möchten.
 
-- [Use Impersonation to get row-level permissions with both GUI and SQL queries](https://www.metabase.com/learn/metabase-basics/administration/permissions/impersonation)
+
+5. Suchen Sie die Gruppe, die Sie mit der von Ihnen erstellten Datenbankrolle verknüpfen möchten. Wählen Sie unter der Einstellung **Daten anzeigen** für diese Gruppe die Option **Impersonation**.
+
+
+6. Wählen Sie aus der Dropdown-Liste das Benutzerattribut aus, das Sie hinzugefügt haben und das der Rolle entspricht, die die Gruppe bei der Abfrage der Datenbank verwenden soll.
+
+
+7. Speichern Sie Ihre Änderungen.
+
+
+## Personen in einer Gruppe mit Impersonationszugriff auf Daten haben nicht unbedingt die gleichen Rechte.
+
+
+Die Metabase verwendet die Rolle, die Sie im Benutzerattribut für jede Person angeben. Wenn Sie z. B. das Attribut "db_role" für Impersonation auswählen, könnte die "db_role" einer Person "sales" sein, die einer anderen Person "engineering" oder ein anderer Wert, der einer gültigen Rolle in Ihrer Datenbank entspricht.
+
+
+## Verwenden Sie Impersonation, um SQL-Zugriff auf Zeilenebene einzurichten.
+
+
+Sie können Impersonation verwenden, um Personen Zugriff auf den Native/SQL-Editor zu gewähren und gleichzeitig ihren Zugriff auf Daten auf der Grundlage einer bestimmten Datenbankrolle einzuschränken. Und zwar nicht nur auf Tabellenebene, sondern auch auf Zeilenebene - oder wie immer Sie den Zugriff für diese Rolle in Ihrer Datenbank definieren. Sie können die Impersonation verwenden, um einen Daten-Sandbox-ähnlichen Zugriff auf Ihre Daten einzurichten und gleichzeitig den SQL-Editor zur Abfrage dieser Daten zu verwenden. Der Unterschied besteht darin, dass Sie _anstelle einer Daten-Sandbox in der Metabase diese Sicherheit auf Zeilenebene über die einer Rolle in Ihrer Datenbank gewährten Berechtigungen einrichten müssen._
+
+
+Wenn Sie stattdessen einer Gruppe SQL-Zugriff auf einige, aber nicht alle Schemata oder Tabellen in dieser Datenbank gewähren möchten, können Sie eine zusätzliche Rolle in Ihrer Datenbank erstellen, die nur eine Teilmenge dieser Tabellen - oder sogar einen spezifischen Zugriff auf Zeilenebene - umfasst, und dann die Personifizierungsfunktion von Metabase verwenden, um ein Benutzerattribut mit dieser Rolle zu verknüpfen. Im Wesentlichen nimmt Metabase das Benutzerattribut und übergibt dieses Attribut als Zeichenkette an einen "SET ROLE"- oder "USE ROLE" -Befehl für die Datenbank, bevor Metabase die Abfrage ausführt.
