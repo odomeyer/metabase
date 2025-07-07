@@ -1,39 +1,54 @@
 ---
-title: Customizing the Metabase Jetty webserver
+Titel: Anpassung des Metabase Jetty Webservers
 redirect_from:
-  - /docs/latest/operations-guide/customizing-jetty-webserver
+- /docs/latest/operations-guide/customizing-jetty-webserver
 ---
 
-# Customizing the Metabase Jetty webserver
 
-In most cases there will be no reason to modify any of the settings around how Metabase runs its embedded Jetty webserver to host the application, but if you wish to run HTTPS directly with your Metabase server or if you need to run on another port, that's all configurable.
+# Anpassen des Metabase Jetty-Webservers
 
-## Running Metabase on another port
 
-By default Metabase will launch on port 3000, but if you prefer to run the application on another port you can do so by setting the following environment variable:
+In den meisten Fällen gibt es keinen Grund, die Einstellungen für die Art und Weise zu ändern, wie Metabase den eingebetteten Jetty-Webserver zum Hosten der Anwendung ausführt. Wenn Sie jedoch HTTPS direkt mit Ihrem Metabase-Server ausführen möchten oder einen anderen Port benötigen, können Sie dies konfigurieren.
 
-    export MB_JETTY_PORT=12345
-    java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar
 
-In this example once the application starts up you will access it on port `12345` instead of the default port of 3000.
+## Ausführen von Metabase auf einem anderen Port
 
-## Listening on a specific network interface
 
-By default, Metabase will be listening on `localhost`. In some production environments you may want to listen on a different interface, which can be done by using the `MB_JETTY_HOST` environment variable:
+Standardmäßig wird Metabase auf Port 3000 gestartet. Wenn Sie die Anwendung jedoch lieber auf einem anderen Port ausführen möchten, können Sie die folgende Umgebungsvariable setzen:
 
-    export MB_JETTY_HOST=0.0.0.0
-    java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar
 
-## Using HTTPS with Metabase
+export MB_JETTY_PORT=12345
+java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar
 
-If you have an SSL certificate and would prefer to have Metabase run over HTTPS directly using its webserver, you can do so by using the following environment variables:
 
-    export MB_JETTY_SSL="true"
-    export MB_JETTY_SSL_PORT="8443"
-    export MB_JETTY_SSL_KEYSTORE="path/to/keystore.jks" # replace this value with your own
-    export MB_JETTY_SSL_KEYSTORE_PASSWORD="storepass" # replace this value with your own
-    java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar
+In diesem Beispiel wird nach dem Start der Anwendung der Zugriff auf den Port "12345" statt auf den Standardport "3000" erfolgen.
 
-Be sure to replace `path/to/keystore.jks` and `storepass` with the correct path to and password for your [Java KeyStore](https://www.digitalocean.com/community/tutorials/java-keytool-essentials-working-with-java-keystores). With the above settings applied you will be running Metabase on port 8443 over HTTPS using the supplied certificate.
 
-No idea how to generate a Java KeyStore yourself? This is sort of an advanced topic, but if you're feeling froggy you can read more about how to configure SSL in Jetty [in their own documentation](https://jetty.org/docs/jetty/12/operations-guide/keystore/index.html). Otherwise, you'll probably find it easiest to handle SSL termination outside of Metabase.
+## Überwachen einer bestimmten Netzwerkschnittstelle
+
+
+Standardmäßig lauscht die Metabase auf ` localhost`. In manchen Produktionsumgebungen möchten Sie vielleicht eine andere Schnittstelle verwenden, was Sie mit der Umgebungsvariablen ` MB_JETTY_HOST` erreichen können:
+
+
+export MB_JETTY_HOST=0.0.0.0
+java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar
+
+
+## Verwendung von HTTPS mit Metabase
+
+
+Wenn Sie über ein SSL-Zertifikat verfügen und die Metabase direkt über HTTPS mit ihrem Webserver ausführen möchten, können Sie die folgenden Umgebungsvariablen verwenden:
+
+
+export MB_JETTY_SSL="true"
+export MB_JETTY_SSL_PORT="8443"
+export MB_JETTY_SSL_KEYSTORE="path/to/keystore.jks" # ersetzen Sie diesen Wert durch Ihren eigenen
+export MB_JETTY_SSL_KEYSTORE_PASSWORD="storepass" # ersetzen Sie diesen Wert durch Ihren eigenen
+java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar
+
+
+Stellen Sie sicher, dass Sie "path/to/keystore.jks" und "storepass" durch den richtigen Pfad und das richtige Passwort für Ihren [Java KeyStore](https://www.digitalocean.com/community/tutorials/java-keytool-essentials-working-with-java-keystores) ersetzen. Mit den obigen Einstellungen wird Metabase auf Port 8443 über HTTPS unter Verwendung des mitgelieferten Zertifikats ausgeführt.
+
+
+Sie wissen nicht, wie Sie einen Java KeyStore selbst generieren können? Dies ist ein etwas fortgeschrittenes Thema, aber wenn Sie sich wie ein Frosch fühlen, können Sie mehr darüber lesen, wie man SSL in Jetty konfiguriert [in der eigenen Dokumentation](https://jetty.org/docs/jetty/12/operations-guide/keystore/index.html). Ansonsten ist es wahrscheinlich am einfachsten, die SSL-Terminierung außerhalb von Metabase zu handhaben.
+
