@@ -1,143 +1,77 @@
 ---
-title: MongoDB
+Titel: MongoDB
 redirect_from:
-  - /docs/latest/administration-guide/databases/mongodb
+- /docs/latest/administration-guide/databases/mongodb
 ---
+
 
 # MongoDB
 
-To add a database connection, click on the **gear** icon in the top right, and navigate to **Admin settings** > **Databases** > **Add a database**.
 
-## Supported versions
+Um eine Datenbankverbindung hinzuzufügen, klicken Sie auf das **Zahnradsymbol** oben rechts und navigieren Sie zu **Verwaltungseinstellungen** > **Datenbanken** > **Datenbank hinzufügen**.
 
-Metabase supports the oldest supported version of MongoDB through the latest stable version. See [MongoDB Software Lifecycle Schedules](https://www.mongodb.com/legal/support-policy/lifecycles).
 
-## Connecting to MongoDB
+## Unterstützte Versionen
 
-There are two ways to connect to MongoDB:
 
-1. Using the [Metabase fields to input your connection details](#using-metabase-fields).
-2. Pasting your [connection string](#using-a-connection-string).
+Metabase unterstützt die älteste unterstützte Version von MongoDB bis zur neuesten stabilen Version. Siehe [MongoDB Software Lifecycle Schedules](https://www.mongodb.com/legal/support-policy/lifecycles).
 
-### Using Metabase fields
 
-The default way to connect to MongoDB is to fill out your connection details in the fields Metabase provides:
+## Verbindung zu MongoDB herstellen
+
+
+Es gibt zwei Möglichkeiten, sich mit MongoDB zu verbinden:
+
+
+1. Verwenden Sie die [Metabase-Felder zur Eingabe Ihrer Verbindungsdaten](#using-metabase-fields).
+2. Einfügen des [Verbindungsstrings](#using-a-connection-string).
+
+
+### Verwendung von Metabase-Feldern
+
+
+Die Standardmethode für die Verbindung zu MongoDB besteht darin, die Verbindungsdetails in die von Metabase bereitgestellten Felder einzutragen:
+
 
 - Host
-- Database name
-- Port
-- Username
-- Password
-- Authentication Database (optional)
-- Additional connection string options (optional)
+- Name der Datenbank
+- Anschluss
+- Benutzername
+- Kennwort
+- Authentifizierungsdatenbank (optional)
+- Zusätzliche Optionen für die Verbindungszeichenfolge (optional)
 
-You'll also have the option to **Use a secure connection (SSL)**. Enable SSL and paste the contents of the server's SSL certificate chain in the input text box. This option is available for this method of connection only (i.e. you cannot include a certificate when connecting with a connection string).
 
-### Advanced settings for direct connection
+Sie haben auch die Möglichkeit, **eine sichere Verbindung (SSL)**zu verwenden. Aktivieren Sie SSL und fügen Sie den Inhalt der SSL-Zertifikatskette des Servers in das Textfeld ein. Diese Option ist nur für diese Verbindungsmethode verfügbar (d.h. Sie können kein Zertifikat einfügen, wenn Sie eine Verbindung mit einer Verbindungszeichenfolge herstellen).
 
-- **Use DNS SRV when connecting** Using this option requires that provided host is a FQDN. If connecting to an Atlas cluster, you might need to enable this option. If you don't know what this means, leave this disabled.
 
-### Using a connection string
+### Erweiterte Einstellungen für die direkte Verbindung
 
-If you'd prefer to connect to MongoDB using a [connection string](https://docs.mongodb.com/manual/reference/connection-string/), click on **Paste a connection string**. The Metabase user interface will update with a field to paste your connection string.
 
-Metabase currently does NOT support the following connection string parameters:
+- **DNS SRV bei der Verbindung verwenden** Die Verwendung dieser Option erfordert, dass der angegebene Host ein FQDN ist. Wenn Sie eine Verbindung zu einem Atlas-Cluster herstellen, müssen Sie diese Option möglicherweise aktivieren. Wenn Sie nicht wissen, was das bedeutet, lassen Sie diese Option deaktiviert.
 
-- `tlsCertificateKeyFile`
+
+### Verwendung einer Verbindungszeichenfolge
+
+
+Wenn Sie eine Verbindung zu MongoDB über eine [Verbindungszeichenfolge](https://docs.mongodb.com/manual/reference/connection-string/) herstellen möchten, klicken Sie auf **Verbindungszeichenfolge einfügen**. Die Metabase-Benutzeroberfläche wird mit einem Feld zum Einfügen des Verbindungsstrings aktualisiert.
+
+
+Die Metabase unterstützt derzeit NICHT die folgenden Parameter für die Verbindungszeichenfolge:
+
+
+-`tlsCertificateKeyFile`
 - `tlsCertificateKeyFilePassword`
-- `tlsCAFile`
+-`tlsCAFile`
 
-If you need to use a certificate, connect via the [default method](#using-metabase-fields) and enable **Use a secure connection(SSL)**.
 
-### Settings common to both connection options
+Wenn Sie ein Zertifikat verwenden müssen, stellen Sie die Verbindung über die [Standardmethode](# using-metabase-fields) her und aktivieren Sie **Use a secure connection (SSL)**.
 
-- **Use an SSH tunnel**: Some database installations can only be accessed by connecting through an SSH bastion host. This option also provides an extra layer of security when a VPN is not available. Enabling this is usually slower than a direct connection.
-- **Rerun queries for simple exploration**: When this is on, Metabase will automatically run queries when users do simple explorations with the Summarize and Filter buttons when viewing a table or chart. You can turn this off if querying this database is slow. This setting doesn't affect drill-throughs or SQL queries.
-- **Choose when syncs and scans happen**: See [syncs and scans](../sync-scan.md#choose-when-syncs-and-scans-happen).
-- **Periodically refingerprint tables**: This setting — disabled by default — enables Metabase to scan for additional field values during syncs allowing smarter behavior, like improved auto-binning on your bar charts.
 
-## Connecting to a MongoDB Atlas cluster
+### Gemeinsame Einstellungen für beide Verbindungsoptionen
 
-### Whitelist IP addresses
 
-If you are using Metabase Cloud, you'll need to whitelist [Metabase Cloud IP addresses](../../cloud/ip-addresses-to-whitelist.md) in your Atlas cluster. If you are using self-hosted Metabase, you'll need to whitelist the IP of your Metabase instance.
-
-1. Log into your [Atlas cluster](https://cloud.mongodb.com)
-2. Go to **Network Access**
-3. Add the IP addresses that your Metabase uses to connect.
-
-### Connect Metabase to your Atlas cluster
-
-> The connection string provided in Atlas "Connect" interface does not include the database. Metabase requires you to provide a database name when connecting, so you'll need to edit the connection string to add the database name.
-
-1. Log into your [Atlas account](https://cloud.mongodb.com)
-
-2. Select the cluster you want to connect to, and click **Connect**.
-
-   ![Your cluster screengrab](../images/atlas-connect.png)
-
-3. Select **Drivers**.
-
-4. Copy the connection string from **Add your connection string into your application code** section.
-
-   ![Connect screengrab](../images/connection-string.png)
-
-5. In Metabase, go to Admin -> Databases, and click the **Add database** button.
-6. Select MongoDB from the dropdown, and enter a **Display name** for this database.
-7. Click on **"Paste the connection string"** and paste your connection string.
-8. Edit the connection string to include the name of the database after `/`:
-
-   ```
-   mongodb+srv://metabot:metapass@my-test-cluster.a5ej7.mongodb.net/DATABASE_NAME?retryWrites=true&w=majority&appName=my-test-cluster
-   ```
-
-If you're using Metabase fields to input connection information for your Atlas cluster instead of using the connection string, you might need to turn on **Use DNS SRV when connecting**.
-
-See more information about [Advanced options](#settings-common-to-both-connection-options).
-
-## Configuring SSL via the command line
-
-You can enter a self-signed certificate via the Metabase UI (though not when using a connection string), or you can use the command line to add a self-signed certificate.
-
-```
-cp /usr/lib/jvm/default-jvm/jre/lib/security/cacerts ./cacerts.jks
-keytool -import -alias cacert -storepass changeit -keystore cacerts.jks -file my-cert.pem
-```
-
-Then, start Metabase using the store:
-
-```
-java -Djavax.net.ssl.trustStore=cacerts.jks -Djavax.net.ssl.trustStorePassword=changeit -jar metabase.jar
-```
-
-Learn more about [configuring SSL with MongoDB](http://mongodb.github.io/mongo-java-driver/3.0/driver/reference/connecting/ssl/).
-
-## How Metabase syncs data in MongoDB
-
-Because MongoDB contains unstructured data, Metabase takes a different approach to syncing your database's metadata. To get a sense of the schema, Metabase will query the first and last 500 documents (most of the calculation is done in MongoDB). This sampling helps Metabase do things like differentiate datetime fields from string fields, and provide people with pre-populated filters. The reason Metabase only scans a sample of the documents is because scanning every document in every collection on every sync would put too much strain on your database. And while the sampling does a pretty good job keeping Metabase up to date, it can also mean that new fields can sometimes fall through the cracks, leading to visualization issues, or even fields failing to appear in your results. For more info, check out our [troubleshooting guide](../../troubleshooting-guide/db-connection.md).
-
-## General connectivity concerns
-
-- **Connect using `DNS SRV`**, which is the recommended method for newer Atlas clusters.
-- **Have you checked your cluster host whitelist?** When testing a connection but seeing failure, have you tried setting the IP whitelist to `0.0.0.0/0`? Whitelisting this address allows connections from any IP addresses. If you know the IP address(es) or CIDR block of clients, use that instead.
-- **Connect to the secondary server**. When connecting to a cluster, always use the `?readPreference=secondary` argument in the connection string, which allows Metabase to read from a secondary server instead of consuming resources from the primary server.
-
-## I added fields to my database but don't see them in Metabase
-
-Metabase may not sync all of your fields. Since any document in a MongoDB collection can contain any number of fields, the only way to get 100% coverage of all fields would be to scan every single document in every single collection. The reason Metabase doesn't do a full scan is because it would put too much strain on your database.
-
-Instead, Metabase gets a sample of the fields in a collection by scanning a sample of 1000 documents in each collection (the first 500 documents and the last 500 documents in each collection).
-
-If you're not seeing all of the fields show up for a collection in Metabase, one workaround is to include all possible keys in the first document of the collection, and give those keys null values. That way, Metabase will be able to recognize the correct schema for the entire collection.
-
-## Database routing
-
-See [Database routing](../../permissions/database-routing.md).
-
-## Danger zone
-
-See [Danger zone](../danger-zone.md).
-
-## Further reading
-
-See our troubleshooting guide for [troubleshooting your connection](../../troubleshooting-guide/db-connection.md).
+- **Einen SSH-Tunnel verwenden**: Auf einige Datenbankinstallationen kann nur über einen SSH-Bastion-Host zugegriffen werden. Diese Option bietet auch eine zusätzliche Sicherheitsebene, wenn kein VPN verfügbar ist. Die Aktivierung dieser Option ist in der Regel langsamer als eine Direktverbindung.
+- **Abfragen bei einfacher Exploration wiederholen**: Wenn diese Option aktiviert ist, führt Metabase automatisch Abfragen aus, wenn Benutzer bei der Anzeige einer Tabelle oder eines Diagramms mit den Schaltflächen "Zusammenfassen" und "Filtern" einfache Erkundungen vornehmen. Sie können diese Einstellung deaktivieren, wenn die Abfrage dieser Datenbank langsam ist. Diese Einstellung hat keine Auswirkungen auf Drill-Throughs oder SQL-Abfragen.
+-Wählen Sie, wann Synchronisationen und Scans stattfinden**: Siehe [syncs and scans](../sync-scan.md#choose-when-syncs-and-scans-happen).
+- **Regelmäßig Refingerprint-Tabellen**: Mit dieser Einstellung - die standardmäßig deaktiviert ist - kann Metabase während der Synchronisierung nach zusätzlichen Feldwerten suchen, was ein intelligenteres Verhalten ermöglicht, z. B. eine verbesserte automatische Einteilung in Balkendiagrammen.
