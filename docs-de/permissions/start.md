@@ -1,41 +1,60 @@
 ---
-title: Permissions overview
+Titel: Übersicht über Berechtigungen
 redirect_from:
-  - /docs/latest/permissions
+- /docs/latest/permissions
 ---
 
-# Permissions overview
 
-Metabase has a simple, but powerful permissions system.
+# Übersicht der Berechtigungen
 
-## [Permissions introduction](./introduction.md)
 
-Get a lay of the permissions land.
+Metabase verfügt über ein einfaches, aber leistungsstarkes Berechtigungssystem.
 
-## [Data permissions](./data.md)
 
-Restricting group access to databases, schemas, and tables.
+## [Einführung in die Berechtigungen](./introduction.md)
 
-## [Collection permissions](./collections.md)
 
-Granting group access to collections of questions, dashboards, models, and sub-collections.
+Verschaffen Sie sich einen Überblick über das Berechtigungsland.
 
-## [Application permissions](./application.md)
 
-Granting group access to different Metabase features.
+## [Datenberechtigungen](./data.md)
 
-## [Data sandboxing](./data-sandboxes.md)
 
-Creating data sandboxes to restrict access to rows and columns in tables.
+Einschränkung des Gruppenzugriffs auf Datenbanken, Schemata und Tabellen.
 
-## [Snippet folder permissions](./snippets.md)
 
-Organize snippets into folders that require permissions to view.
+## [Sammlungsberechtigungen](./collections.md)
 
-## [Notification permissions](./notifications.md)
 
-Notes on how permissions interact with dashboard subscriptions and alerts.
+Gewährung des Gruppenzugriffs auf Sammlungen von Fragen, Dashboards, Modellen und Untersammlungen.
 
-## [Configuring permissions for embedding](./embedding.md)
 
-The permissions tooling available for different embedding setups.
+## [Anwendungsrechte](./application.md)
+
+
+Gewährung von Gruppenzugriff auf verschiedene Metabase-Funktionen.
+
+
+## [Daten-Sandboxing](./data-sandboxes.md)
+
+
+Erstellen von Daten-Sandboxen, um den Zugriff auf Zeilen und Spalten in Tabellen zu beschränken.
+
+
+## [Snippet-Ordner-Berechtigungen](./snippets.md)
+
+
+Organisieren Sie Snippets in Ordnern, für die eine Berechtigung zur Ansicht erforderlich ist.
+
+
+## [Benachrichtigungsberechtigungen](./notifications.md)
+
+
+Hinweise zur Interaktion von Berechtigungen mit Dashboard-Abonnements und Benachrichtigungen.
+
+
+## [Rechte für die Einbettung konfigurieren](./embedding.md)
+
+
+Die für verschiedene Einbettungskonfigurationen verfügbaren Berechtigungswerkzeuge.
+
