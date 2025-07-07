@@ -1,8 +1,4 @@
 ---
-Titel: Benutzerdefinierte Aktionen
----
-
-
 # Benutzerdefinierte Aktionen
 
 
@@ -15,7 +11,7 @@ Schreiben Sie SQL, um Datensätze in Ihren Datenbanken zu aktualisieren.
 ## Erstellen einer benutzerdefinierten Aktion
 
 
-> Sie müssen einer Gruppe angehören, die Zugriff auf die Bearbeitung von nativen Abfragen hat, um eine Aktion zu erstellen.
+> Um eine Aktion zu erstellen, müssen Sie einer Gruppe angehören, die Zugriff auf die Bearbeitung von nativen Abfragen hat.
 
 
 Es gibt zwei Möglichkeiten, eine benutzerdefinierte Aktion zu erstellen:
@@ -31,7 +27,7 @@ Es gibt zwei Möglichkeiten, eine benutzerdefinierte Aktion zu erstellen:
 Von einem Modell aus:
 
 
-1. Zuerst [ein Modell erstellen](../data-modeling/models.md).
+1. Zunächst [ein Modell erstellen](../data-modeling/models.md).
 2. Besuchen Sie das Modell und klicken Sie auf die Schaltfläche **Info**.
 3. Klicken Sie auf die Registerkarte **Aktionen**.
 
@@ -83,8 +79,80 @@ Sowohl für **Dropdown** als auch für **Inline select** können Sie eine Liste 
 
 ![Dropdown select](./images/dropdown.png)
 
-
 ## Erscheinungsbild
+![Beispiel Aktionsformular](./images/form.png)
 
 
-Auf der Registerkarte Erscheinungsbild im Aktionseditor-Modal wird eine Vorschau des Formularelements der Variablen angezeigt. In der Abbildung unten haben wir auf das **Zahnrad** der Variable geklickt und die Variable so eingestellt, dass sie eine Text > Dropdown-Liste verwendet. Der Abschnitt "Erscheinungsbild" bietet eine Vorschau darauf, wie das Formularelement aussehen würde:
+### Beispiel ` INSERT` Aktion
+
+
+Einfügeanweisungen sind ziemlich einfach:
+
+
+```sql
+{% raw %}
+INSERT INTO rechnungen (
+konto_id
+,Zahlung
+,expected_invoice
+,plan
+,Datum_erhalten
+)
+VALUES (
+{{ account_id }}
+,{{ payment }}
+,CAST ({{erwartete_Rechnung}} AS boolean)
+,{{plan}}
+,({{date_received}}
+);
+{% endraw %}
+```
+
+
+### Casting von Feldwerten in Aktionen
+
+
+Wenn Sie beim Absenden eines Formulars einen Typfehler erhalten, müssen Sie möglicherweise den Datentyp in der Abfrage soumwandeln, dass er mit dem Datentyp des Zielfelds in der Datenbank übereinstimmt. Hier wandeln wir einen Wert in einen "booleschen" Wert um:
+
+
+``sql
+{% raw %}
+UPDATE Rechnungen
+SET erwartete_Rechnung = CAST({{erwartete_Rechnung}} AS boolean)
+WHERE id = {{id}};
+{% endraw %}
+```
+
+
+### Bezugnahme auf gespeicherte Fragen in Aktionen
+
+
+Sie können auch in Aktionen auf gespeicherte Fragen verweisen. Hier nehmen wir die Ergebnisse einer SELECT-Anweisung auf eine gespeicherte Frage ( "Potenzielle Kunden") und fügen die Ergebnisse in eine Tabelle "people_to_write" ein.
+
+
+``sql
+{% raw %}
+WITH prospects AS {{#6-potenzielle-Kunden}}
+
+
+INSERT INTO
+people_to_write (
+vor_name
+,nachname
+,E-Mail
+)
+SELECT
+vor_name
+,nachname
+,E-Mail
+FROM Interessenten;
+{% endraw %}
+```
+
+
+## Weitere Lektüre
+
+
+- [Einführung in Aktionen](./introduction.md)
+- [Grundlegende Aktionen](./basic.md)
+- [Aktionen in Dashboards](../dashboards/actions.md)
