@@ -1,30 +1,42 @@
 ---
-title: Danger zone
-description: The Danger Zone section of database connections is where you can discard field values or remove database connections and all of their related content.
+Titel: Gefahrenzone
+Beschreibung: Im Abschnitt "Gefahrenzone" der Datenbankverbindungen können Sie Feldwerte verwerfen oder Datenbankverbindungen und alle damit verbundenen Inhalte entfernen.
 ---
 
-# Danger Zone
 
-The Danger zone section of the database connection is the destructive section. Here you can discard field values for that database, or remove the database entirely.
+# Gefahrenzone
 
-But since of course you're making [backups of your Metabase application database](../installation-and-operation/backing-up-metabase-application-data.md), it's not _that_ destructive. But these changes are permanent in Metabase. The only way to get your stuff back is if you restore your Metabase application database from a backup. If you're on [Metabase Cloud](https://www.metabase.com/cloud/), backups are handled for you.
 
-To access the Danger Zone section for a database connection:
+Der Abschnitt "Gefahrenzone" der Datenbankverbindung ist der destruktive Abschnitt. Hier können Sie die Feldwerte für diese Datenbank verwerfen oder die Datenbank ganz entfernen.
 
-1. Click on the **gear** icon in the top right of Metabase.
-2. Go to **Admin settings** > **Databases**.
-3. Find the database you want to modify and click on it.
-4. Scroll down to the bottom of the database's settings page to find the "Danger Zone" section.
 
-## Discard saved field values
+Aber da Sie natürlich [Backups Ihrer Metabase-Anwendungsdatenbank](../installation-and-operation/backing-up-metabase-application-data.md) erstellen, ist das nicht _so_ destruktiv. Aber diese Änderungen sind in der Metabase dauerhaft. Die einzige Möglichkeit, Ihre Daten wiederherzustellen, ist die Wiederherstellung Ihrer Metabase-Anwendungsdatenbank aus einem Backup. Wenn Sie die [Metabase Cloud](https://www.metabase.com/cloud/) nutzen, werden die Backups für Sie durchgeführt.
 
-This option allows you to clear all saved field values that were collected during [syncs and fingerprinting](./sync-scan.md). This will remove the cached information about your database's fields, but won't affect your actual database data or connection settings.
 
-## Remove this database
+So greifen Sie auf den Bereich "Gefahrenzone" für eine Datenbankverbindung zu:
 
-> If you’re trying to migrate from a development DB to a production one, you don’t need to do this. You can just
-> edit your connection details.
 
-This will delete the database _connection_ (not your database and its data). But deleting the connection will also delete all of the questions, models, metrics, segments. You'll have to check a bunch of boxes to even do this to make you know what you're doing.
+1. Klicken Sie auf das Symbol **Zahnrad** oben rechts in der Metabase.
+2. Gehen Sie zu **Admin-Einstellungen** > **Datenbanken**.
+3. Suchen Sie die Datenbank, die Sie ändern möchten, und klicken Sie sie an.
+4. Blättern Sie auf der Einstellungsseite der Datenbank nach unten, um den Abschnitt "Gefahrenzone" zu finden.
 
-This action is irreversible in Metabase. If you accidentally delete a database connection, the only way to get your stuff back is to restore your Metabase from the last [backup of your application database](../installation-and-operation/backing-up-metabase-application-data.md).
+
+## Gespeicherte Feldwerte verwerfen
+
+
+Mit dieser Option können Sie alle gespeicherten Feldwerte löschen, die während [syncs and fingerprinting](./sync-scan.md) gesammelt wurden. Dies löscht die zwischengespeicherten Informationen über die Felder Ihrer Datenbank, hat aber keinen Einfluss auf die tatsächlichen Datenbankdaten oder Verbindungseinstellungen.
+
+
+## Diese Datenbank entfernen
+
+
+> Wenn Sie versuchen, von einer Entwicklungs-DB auf eine Produktions-DB zu migrieren, müssen Sie dies nicht tun. Sie können einfach
+> Ihre Verbindungsdetails bearbeiten.
+
+
+Dadurch wird die Datenbank _Verbindung_ gelöscht (nicht Ihre Datenbank und deren Daten). Durch das Löschen der Verbindung werden aber auch alle Fragen, Modelle, Metriken und Segmente gelöscht. Sie müssen eine Reihe von Kästchen ankreuzen, damit Sie überhaupt wissen, was Sie tun.
+
+
+Diese Aktion ist in der Metabase unumkehrbar. Wenn Sie versehentlich eine Datenbankverbindung löschen, können Sie Ihre Daten nur wiederherstellen, indem Sie Ihre Metabase aus der letzten [Sicherung Ihrer Anwendungsdatenbank](../installation-and-operation/backing-up-metabase-application-data.md) wiederherstellen.
+
