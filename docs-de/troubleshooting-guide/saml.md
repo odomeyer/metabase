@@ -1,71 +1,173 @@
 ---
-title: Troubleshooting SAML authentication setup
+Titel: Fehlerbehebung bei der Einrichtung der SAML-Authentifizierung
 ---
 
-# Troubleshooting SAML authentication setup
 
-{% include plans-blockquote.html feature="SAML authentication" %}
+# Fehlersuche bei der Einrichtung der SAML-Authentifizierung
 
-Some common problems when setting up SAML.
 
-## Does your app support SAML?
+{% include plans-blockquote.html feature="SAML-Authentifizierung" %}
 
-Verify that the application you created in your IdP supports SAML. Sometimes other options are presented during the app creation process.
 
-## Is the issuer or Entity ID correct?
+Einige häufige Probleme bei der Einrichtung von SAML.
 
-After filling out the authentication form with your identity provider, you're taken back to Metabase but it throws an error. To see the error, go to **Admin settings** > **Troubleshooting** > **Logs**. You'll see an error that says something like **Incorrect response <issuer\>**.
 
-**Root cause**: Your issuer or Entity ID is incorrect.
+## Unterstützt Ihre Anwendung SAML?
 
-**Steps to take**:
 
-1. You should have received an XML file of metadata from your identity provider. Open that metadata file, and look for the correct issuer or Entity ID. This ID is a unique identifier for the identity provider. Depending on your provider, the issuer or Entity ID usually looks something like this:
-   ```
-   http://www.example.com/141xkex604w0Q5PN724v
-   ```
-2. Copy the issuer or Entity ID from the XML file.
-3. Go to Metabase and select **Admin settings** > **Settings** > **Authentication** > **SAML**. Enter the issuer or Entity ID into the **SAML Identity Provider Issuer** field.
+Überprüfen Sie, ob die Anwendung, die Sie in Ihrem IdP erstellt haben, SAML unterstützt. Manchmal werden während des Erstellungsprozesses der Anwendung andere Optionen angezeigt.
 
-## Is the SAML identity provider certificate value correct?
 
-After filling out the authentication form with your identity provider, you go back to Metabase but it throws an error. Go to **Admin settings** > **Troubleshooting** > **Logs**. You'll see an error that says something like **Invalid assertion error <issuer\>**.
+## Ist die Aussteller- oder Entitäts-ID korrekt?
 
-**Root cause**: The certificate value you entered is incorrect.
 
-**Steps to take**:
+Nachdem Sie das Authentifizierungsformular mit Ihrem Identitätsanbieter ausgefüllt haben, kehren Sie zur Metabase zurück, aber es tritt ein Fehler auf. Um den Fehler zu sehen, gehen Sie zu **Admin-Einstellungen** > **Fehlerbehebung** > **Protokolle**. Es wird ein Fehler angezeigt, der in etwa lautet:**Falsche Antwort <Ausgeber\>**.
 
-1. Go to Metabase and select **Admin settings** > **Settings** > **Authentication** > **SAML**. Check that the certificate that you entered into the **SAML Identity Provider Certificate** field matches the certificate in the XML file you got from your identity provider.
 
-   - Depending on your provider, you might need to download the XML file, open it in a text editor, then copy and paste the certificate's contents into the **SAML Identity Provider Certificate** field in Metabase.
+**Grundursache**: Ihre Emittenten- oder Entitäts-ID ist falsch.
 
-   - Note that your certificate text may include header and footer comments that look like `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----`. These comments should be included when pasting your certificate text into Metabase.
 
-## Is the SSO URL correct?
+**Zu ergreifende Maßnahmen**:
 
-Verify that the Single Sign On URL (or equivalent) that you enter on your SAML provider’s website has `/auth/sso` appended to it. For instance, if you want your users to end up at `https://metabase.mycompany.com`, the full URL should be `https://metabase.mycompany.com/auth/sso`.
 
-## Searching for private key and found a null
+1. Sie sollten eine XML-Datei mit Metadaten von Ihrem Identitätsanbieter erhalten haben. Öffnen Sie diese Metadaten-Datei und suchen Sie nach der richtigen Aussteller- oder Entitäts-ID. Diese ID ist ein eindeutiger Bezeichner für den Identitätsanbieter. Je nach Anbieter sieht die Issuer- oder Entity-ID in der Regel etwa so aus:
+```
+http://www.example.com/141xkex604w0Q5PN724v
+```
+2. Kopieren Sie die Emittenten- oder Entitäts-ID aus der XML-Datei.
+3. Gehen Sie zu Metabase und wählen Sie**Admin-Einstellungen** >**Einstellungen** >**Authentifizierung** >**SAML**. Geben Sie die ID des Ausstellers oder der Entität in das Feld**SAML Identity Provider Issuer** ein.
 
-This error will only occur if you're using **Signed SSO requests**. That is, in Metabase, you've filled out the fields in the configuration section in **Admin settings** > **Settings** > **Authentication** > **SAML** > **Signed SSO requests**. Those fields are:
 
-- **SAML Keystore Path**: the absolute path to the Keystore file to use for signing SAML requests.
-- **SAML Keystore Password**: the password for opening the keystore.
-- **SAML Keystore Alias**: the alias for the key that Metabase should use for signing SAML requests.
+## Ist der Wert des SAML-Identitätsanbieter-Zertifikats korrekt?
 
-**Root cause**: The certificate in the keystore file lacks a private key.
 
-**Steps to take**:
+Nachdem Sie das Authentifizierungsformular mit Ihrem Identitätsanbieter ausgefüllt haben, kehren Sie zur Metabase zurück, aber es wird ein Fehler ausgegeben. Gehen Sie zu**Admin-Einstellungen** >**Fehlerbehebung** >**Protokolle**. Sie werden eine Fehlermeldung sehen, die ungefähr so lautet:**Ungültiger Behauptungsfehler <Aussteller\>**.
 
-1. Add a certificate with a private key to your keystore.
 
-## Checking if SAML is working correctly
+**Wurzelursache**: Der von Ihnen eingegebene Zertifikatswert ist falsch.
 
-Go to your Metabase login page. If SAML is working correctly, you should see [a single button to sign in](https://www.metabase.com/glossary/sso) with your identity provider (IdP). Once you're authenticated, you should be automatically redirected to the Metabase home page.
 
-## Are you still stuck?
+**Durchzuführende Schritte**:
 
-If you can’t solve your problem using the troubleshooting guides:
 
-- Search or ask the [Metabase community](https://discourse.metabase.com/).
-- Search for [known bugs or limitations](./known-issues.md).
+1. Gehen Sie zur Metabase und wählen Sie**Admin-Einstellungen** >**Einstellungen** >**Authentifizierung** >**SAML**. Überprüfen Sie, ob das Zertifikat, das Sie in das Feld**Zertifikat des SAML-Identitätsanbieters** eingegeben haben, mit dem Zertifikat in der XML-Datei übereinstimmt, die Sie von Ihrem Identitätsanbieter erhalten haben.
+
+
+- Je nach Anbieter müssen Sie möglicherweise die XML-Datei herunterladen, sie in einem Texteditor öffnen und dann den Inhalt des Zertifikats kopieren und in das Feld**SAML-Identitätsanbieter-Zertifikat** in der Metabase einfügen.
+
+
+- Beachten Sie, dass Ihr Zertifikatstext Kopf- und Fußzeilenkommentare enthalten kann, die wie `-----BEGIN CERTIFICATE-----` und `-----END CERTIFICATE-----` aussehen. Diese Kommentare sollten beim Einfügen des Zertifikatstextes in die Metabase berücksichtigt werden.
+
+
+## Ist die SSO-URL korrekt?
+
+
+Vergewissern Sie sich, dass die Single Sign On-URL (oder eine gleichwertige URL), die Sie auf der Website Ihres SAML-Anbieters eingeben, die Endung "/auth/sso" enthält. Wenn Sie z. B. möchten, dass Ihre Benutzer bei "https://metabase.mycompany.com" landen, sollte die vollständige URL "https://metabase.mycompany.com/auth/sso" lauten.
+
+
+## Bei der Suche nach dem privaten Schlüssel wurde eine Null gefunden.
+
+
+Dieser Fehler tritt nur auf, wenn Sie**Signierte SSO-Anfragen** verwenden. Das heißt, Sie haben in der Metabase die Felder im Konfigurationsabschnitt unter**Admin-Einstellungen** >**Einstellungen** >**Authentifizierung** >**SAML** >**Signierte SSO-Anfragen** ausgefüllt. Diese Felder sind:
+
+
+-**SAML Keystore Path**: der absolute Pfad zur Keystore-Datei, die zum Signieren von SAML-Anfragen verwendet werden soll.
+-SAML Keystore Password**: das Passwort zum Öffnen des Keystore.
+-**SAML Keystore Alias**: der Alias für den Schlüssel, den die Metabase zum Signieren von SAML-Anfragen verwenden soll.
+
+
+**Hauptursache**: Dem Zertifikat in der Keystore-Datei fehlt ein privater Schlüssel.
+
+
+**Durchzuführende Schritte**:
+
+
+1. Fügen Sie ein Zertifikat mit einem privaten Schlüssel zu Ihrem Keystore hinzu.
+
+
+## Überprüfen, ob SAML korrekt funktioniert
+
+
+Rufen Sie Ihre Metabase-Anmeldeseite auf. Wenn SAML korrekt funktioniert, sollten Sie [eine einzelne Schaltfläche zur Anmeldung](https://www.metabase.com/glossary/sso) bei Ihrem Identitätsanbieter (IdP) sehen. Sobald Sie authentifiziert sind, sollten Sie automatisch zur Metabase-Startseite weitergeleitet werden.
+
+
+## Stecken Sie immer noch fest?
+
+
+Wenn Sie Ihr Problem nicht mit Hilfe der Anleitungen zur Fehlerbehebung lösen können:
+
+
+- Suchen oder fragen Sie die [Metabase-Community](https://discourse.metabase.com/).
+- Suchen Sie nach [bekannten Fehlern oder Einschränkungen](./known-issues.md).
+
+---
+Titel: Fehlerbehebung bei der Einrichtung der SAML-Authentifizierung
+---
+
+# Fehlersuche bei der Einrichtung der SAML-Authentifizierung
+
+{% include plans-blockquote.html feature="SAML-Authentifizierung" %}
+
+Einige häufige Probleme bei der Einrichtung von SAML.
+
+## Unterstützt Ihre Anwendung SAML?
+
+Überprüfen Sie, ob die Anwendung, die Sie in Ihrem IdP erstellt haben, SAML unterstützt. Manchmal werden während des Erstellungsprozesses der Anwendung andere Optionen angezeigt.
+
+## Ist die Aussteller- oder Entitäts-ID korrekt?
+
+Nachdem Sie das Authentifizierungsformular mit Ihrem Identitätsanbieter ausgefüllt haben, kehren Sie zur Metabase zurück, aber es tritt ein Fehler auf. Um den Fehler zu sehen, gehen Sie zu **Admin-Einstellungen** > **Fehlerbehebung** > **Protokolle**. Es wird ein Fehler angezeigt, der in etwa lautet:**Falsche Antwort <Ausgeber\>**.
+
+**Grundursache**: Ihre Emittenten- oder Entitäts-ID ist falsch.
+
+**Zu ergreifende Maßnahmen**:
+
+1. Sie sollten eine XML-Datei mit Metadaten von Ihrem Identitätsanbieter erhalten haben. Öffnen Sie diese Metadaten-Datei und suchen Sie nach der richtigen Aussteller- oder Entitäts-ID. Diese ID ist ein eindeutiger Bezeichner für den Identitätsanbieter. Je nach Anbieter sieht die Issuer- oder Entity-ID in der Regel etwa so aus:
+```
+http://www.example.com/141xkex604w0Q5PN724v
+```
+2. Kopieren Sie die Emittenten- oder Entitäts-ID aus der XML-Datei.
+3. Gehen Sie zu Metabase und wählen Sie**Admin-Einstellungen** >**Einstellungen** >**Authentifizierung** >**SAML**. Geben Sie die ID des Ausstellers oder der Entität in das Feld**SAML Identity Provider Issuer** ein.
+
+## Ist der Wert des SAML-Identitätsanbieter-Zertifikats korrekt?
+
+Nachdem Sie das Authentifizierungsformular mit Ihrem Identitätsanbieter ausgefüllt haben, kehren Sie zur Metabase zurück, aber es wird ein Fehler ausgegeben. Gehen Sie zu**Admin-Einstellungen** >**Fehlerbehebung** >**Protokolle**. Sie werden eine Fehlermeldung sehen, die ungefähr so lautet:**Ungültiger Behauptungsfehler <Aussteller\>**.
+
+**Wurzelursache**: Der von Ihnen eingegebene Zertifikatswert ist falsch.
+
+**Durchzuführende Schritte**:
+
+1. Gehen Sie zur Metabase und wählen Sie**Admin-Einstellungen** >**Einstellungen** >**Authentifizierung** >**SAML**. Überprüfen Sie, ob das Zertifikat, das Sie in das Feld**Zertifikat des SAML-Identitätsanbieters** eingegeben haben, mit dem Zertifikat in der XML-Datei übereinstimmt, die Sie von Ihrem Identitätsanbieter erhalten haben.
+
+-  Je nach Anbieter müssen Sie möglicherweise die XML-Datei herunterladen, sie in einem Texteditor öffnen und dann den Inhalt des Zertifikats kopieren und in das Feld**SAML-Identitätsanbieter-Zertifikat** in der Metabase einfügen.
+
+-  Beachten Sie, dass Ihr Zertifikatstext Kopf- und Fußzeilenkommentare enthalten kann, die wie `-----BEGIN CERTIFICATE-----` und `-----END CERTIFICATE-----` aussehen. Diese Kommentare sollten beim Einfügen des Zertifikatstextes in die Metabase berücksichtigt werden.
+
+## Ist die SSO-URL korrekt?
+
+Vergewissern Sie sich, dass die Single Sign On-URL (oder eine gleichwertige URL), die Sie auf der Website Ihres SAML-Anbieters eingeben, die Endung "/auth/sso" enthält. Wenn Sie z. B. möchten, dass Ihre Benutzer bei "https://metabase.mycompany.com" landen, sollte die vollständige URL "https://metabase.mycompany.com/auth/sso" lauten.
+
+## Bei der Suche nach dem privaten Schlüssel wurde eine Null gefunden.
+
+Dieser Fehler tritt nur auf, wenn Sie**Signierte SSO-Anfragen** verwenden. Das heißt, Sie haben in der Metabase die Felder im Konfigurationsabschnitt unter**Admin-Einstellungen** >**Einstellungen** >**Authentifizierung** >**SAML** >**Signierte SSO-Anfragen** ausgefüllt. Diese Felder sind:
+
+-**SAML Keystore Path**: der absolute Pfad zur Keystore-Datei, die zum Signieren von SAML-Anfragen verwendet werden soll.
+-SAML Keystore Password**: das Passwort zum Öffnen des Keystore.
+-**SAML Keystore Alias**: der Alias für den Schlüssel, den die Metabase zum Signieren von SAML-Anfragen verwenden soll.
+
+**Hauptursache**: Dem Zertifikat in der Keystore-Datei fehlt ein privater Schlüssel.
+
+**Durchzuführende Schritte**:
+
+1. Fügen Sie ein Zertifikat mit einem privaten Schlüssel zu Ihrem Keystore hinzu.
+
+## Überprüfen, ob SAML korrekt funktioniert
+
+Rufen Sie Ihre Metabase-Anmeldeseite auf. Wenn SAML korrekt funktioniert, sollten Sie [eine einzelne Schaltfläche zur Anmeldung](https://www.metabase.com/glossary/sso) bei Ihrem Identitätsanbieter (IdP) sehen. Sobald Sie authentifiziert sind, sollten Sie automatisch zur Metabase-Startseite weitergeleitet werden.
+
+## Stecken Sie immer noch fest?
+
+Wenn Sie Ihr Problem nicht mit Hilfe der Anleitungen zur Fehlerbehebung lösen können:
+
+-  Suchen oder fragen Sie die [Metabase-Community](https://discourse.metabase.com/).
+-  Suchen Sie nach [bekannten Fehlern oder Einschränkungen](./known-issues.md).
