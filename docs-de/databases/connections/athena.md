@@ -1,221 +1,87 @@
 ---
-title: Amazon Athena
+Titel: Amazonas Athena
 ---
+
 
 # Amazon Athena
 
-To add a database connection, click on the **gear** icon in the top right, and navigate to **Admin settings** > **Databases** > **Add a database**.
 
-## Connection and sync
+Um eine Datenbankverbindung hinzuzufügen, klicken Sie auf das **Zahnradsymbol** oben rechts, und navigieren Sie zu **Admin-Einstellungen** > **Datenbanken** > **Datenbank hinzufügen**.
 
-After connecting to a database, you'll see the "Connection and sync" section that displays the current connection status and options to manage your database connection.
 
-Here you can [sync the database schema and rescan field values](../sync-scan.md), and edit connection details.
+## Verbindung und Synchronisierung
 
-### Edit connection details
 
-You can edit these settings at any time (and remember to save your changes).
+Nachdem Sie eine Verbindung zu einer Datenbank hergestellt haben, sehen Sie den Abschnitt "Verbindung und Synchronisierung", der den aktuellen Verbindungsstatus und Optionen zur Verwaltung Ihrer Datenbankverbindung anzeigt.
 
-### Display name
 
-The display name for the database in the Metabase interface.
+Hier können Sie [das Datenbankschema synchronisieren und Feldwerte neu scannen](../sync-scan.md) und Verbindungsdetails bearbeiten.
+
+
+### Verbindungsdetails bearbeiten
+
+
+Sie können diese Einstellungen jederzeit bearbeiten (und vergessen Sie nicht, Ihre Änderungen zu speichern).
+
+
+### Anzeigename
+
+
+Der Anzeigename für die Datenbank in der Metabase-Schnittstelle.
+
 
 ### Region
 
-The AWS region where your database is hosted, for Amazon Athena. For example, you might enter `us-east-1`.
 
-### Workgroup
+Die AWS-Region, in der Ihre Datenbank gehostet wird, für Amazon Athena. Sie könnten zum Beispiel `us-east-1` eingeben.
 
-AWS workgroup. For example: `primary`. See [documentation on workgroups](https://docs.aws.amazon.com/athena/latest/ug/user-created-workgroups.html).
 
-### S3 Staging directory
+### Arbeitsgruppe
 
-This S3 staging directory must be in the same region you specify above.
 
-### Access key
+AWS-Arbeitsgruppe. Zum Beispiel: `primary`. Siehe [Dokumentation über Arbeitsgruppen](https://docs.aws.amazon.com/athena/latest/ug/user-created-workgroups.html).
 
-Part of IAM credentials for AWS. Metabase will encrypt these credentials.
 
-If you're running Metabase on AWS and want to use [AWS Default Credentials Chain](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default), leave the Access and Secret keys blank.
+### S3 Staging-Verzeichnis
 
-See also our [notes on connecting to Athena](#notes-on-connecting-to-athena).
 
-### Secret Key
+Dieses S3-Staging-Verzeichnis muss sich in derselben Region befinden, die Sie oben angegeben haben.
 
-Part of IAM credentials for AWS. Metabase will encrypt these credentials.
 
-### Additional Athena connection string options
+### Zugriffsschlüssel
 
-You can specify additional options via a string, e.g., `UseResultsetStreaming=0;LogLevel=6`.
 
-### Include User ID and query hash in queries
+Teil der IAM-Anmeldeinformationen für AWS. Metabase verschlüsselt diese Anmeldeinformationen.
 
-This can be useful for auditing and debugging, but prevents databases from caching results and may increase your costs. Enable this feature if you need to track which users are running specific queries.
 
-### Re-run queries for simple explorations
+Wenn Sie Metabase auf AWS ausführen und [AWS Default Credentials Chain](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default) verwenden möchten, lassen Sie die Schlüssel Access und Secret leer.
 
-Turn this option **OFF** if people want to click **Run** (the play button) before applying any [Summarize](../../questions/query-builder/summarizing-and-grouping.md) or filter selections.
 
-By default, Metabase will execute a query as soon as you choose an grouping option from the **Summarize** menu or a filter condition from the [drill-through menu](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through). If your database is slow, you may want to disable re-running to avoid loading data on each click.
+Siehe auch unsere [Hinweise zur Verbindung mit Athena](#notes-on-connecting-to-athena).
 
-### Choose when syncs and scans happen
 
-See [syncs and scans](../sync-scan.md#choose-when-syncs-and-scans-happen).
+### Geheimer Schlüssel
 
-### Periodically refingerprint tables
 
-> Periodic refingerprinting will increase the load on your database.
+Teil der IAM-Anmeldeinformationen für AWS. Die Metabase verschlüsselt diese Anmeldeinformationen.
 
-Turn this option **ON** to scan a sample of values every time Metabase runs a [sync](../sync-scan.md#how-database-syncs-work).
 
-A fingerprinting query examines the first 10,000 rows from each column and uses that data to guesstimate how many unique values each column has, what the minimum and maximum values are for numeric and timestamp columns, and so on. If you leave this option **OFF**, Metabase will only fingerprint your columns once during setup.
+### Zusätzliche Athena-Verbindungsstring-Optionen
 
-## Notes on connecting to Athena
 
-If you use other AWS services, we recommend that you create a special AWS Service Account that only has the permissions required to run Athena, and input the IAM credentials from that account to connect Metabase to Athena.
+Sie können zusätzliche Optionen über einen String angeben, z.B. `UseResultsetStreaming=0;LogLevel=6`.
 
-See [Identity and access management in Athena](https://docs.aws.amazon.com/athena/latest/ug/security-iam-athena.html).
 
-### Connecting using AWS Default Credentials Chain
+### Benutzer-ID und Abfrage-Hash in Abfragen einbeziehen
 
-If you're running Metabase on AWS and want to use [AWS Default Credentials Chain](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default), leave the Access and Secret keys blank.
 
-- For EC2, you can use [instance profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html).
-- For ECS, you can use [IAM roles for tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)
+Dies kann für Auditing und Debugging nützlich sein, verhindert aber, dass Datenbanken Ergebnisse zwischenspeichern und kann Ihre Kosten erhöhen. Aktivieren Sie diese Funktion, wenn Sie verfolgen müssen, welche Benutzer bestimmte Abfragen ausführen.
 
-In both cases, the Athena driver will automatically fetch session credentials based on which IAM role you've configured.
 
-### Permissions and IAM Policies
+### Wiederholung von Abfragen für einfache Erkundungen
 
-Most issues that we see when people attempt to connect to AWS Athena involve permissions. Querying AWS Athena requires permissions to:
 
-- AWS Athena.
-- AWS Glue.
-- The S3 bucket where Athena results are stored.
-- The resources that Athena is querying against (i.e., the S3 bucket(s) Athena is querying).
-- If you're using AWS Lake Formation, then you also need to grant AWS Lake Formation permissions through the AWS Console (AWS Lake Formation > Permissions > Data Lake Permissions > Grant data lake permissions; the role Metabase uses needs SELECT and DESCRIBE table permissions).
+Schalten Sie diese Option**AUS**, wenn Sie auf**Ausführen** (die Abspielschaltfläche) klicken möchten, bevor Sie eine [Zusammenfassen](../../questions/query-builder/summarizing-and-grouping.md) oder eine Filterauswahl treffen.
 
-### Example IAM Policy
 
-This policy provides read-only permissions for data in S3. You'll need to specify any S3 buckets that you want Metabase to be able to query from _as well as_ the S3 bucket provided as part of the configuration where results are written to.
-
-There may be additional permissions required for other Athena functionality, like federated queries. For details, check out the [Athena docs](https://docs.aws.amazon.com/athena/latest/ug/security-iam-athena).
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "Athena",
-      "Effect": "Allow",
-      "Action": [
-        "athena:BatchGetNamedQuery",
-        "athena:BatchGetQueryExecution",
-        "athena:GetNamedQuery",
-        "athena:GetQueryExecution",
-        "athena:GetQueryResults",
-        "athena:GetQueryResultsStream",
-        "athena:GetWorkGroup",
-        "athena:ListDatabases",
-        "athena:ListDataCatalogs",
-        "athena:ListNamedQueries",
-        "athena:ListQueryExecutions",
-        "athena:ListTagsForResource",
-        "athena:ListWorkGroups",
-        "athena:ListTableMetadata",
-        "athena:StartQueryExecution",
-        "athena:StopQueryExecution",
-        "athena:CreatePreparedStatement",
-        "athena:DeletePreparedStatement",
-        "athena:GetPreparedStatement",
-        "athena:GetTableMetadata"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "Glue",
-      "Effect": "Allow",
-      "Action": [
-        "glue:BatchGetPartition",
-        "glue:GetDatabase",
-        "glue:GetDatabases",
-        "glue:GetPartition",
-        "glue:GetPartitions",
-        "glue:GetTable",
-        "glue:GetTables",
-        "glue:GetTableVersion",
-        "glue:GetTableVersions"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "S3ReadAccess",
-      "Effect": "Allow",
-      "Action": ["s3:GetObject", "s3:ListBucket", "s3:GetBucketLocation"],
-      "Resource": [
-        "arn:aws:s3:::bucket1",
-        "arn:aws:s3:::bucket1/*",
-        "arn:aws:s3:::bucket2",
-        "arn:aws:s3:::bucket2/*"
-      ]
-    },
-    {
-      "Sid": "AthenaResultsBucket",
-      "Effect": "Allow",
-      "Action": [
-        "s3:PutObject",
-        "s3:GetObject",
-        "s3:AbortMultipartUpload",
-        "s3:ListBucket",
-        "s3:GetBucketLocation"
-      ],
-      "Resource": ["arn:aws:s3:::bucket2", "arn:aws:s3:::bucket2/*"]
-    }
-  ]
-}
-```
-
-If Metabase also needs to create tables, you'll need additional AWS Glue permissions. The `"Resource": "*"` key-value pair gives the account Delete and Update permissions to any table:
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "VisualEditor0",
-      "Effect": "Allow",
-      "Action": [
-        "glue:BatchCreatePartition",
-        "glue:UpdateDatabase",
-        "glue:DeleteDatabase",
-        "glue:CreateTable",
-        "glue:CreateDatabase",
-        "glue:UpdateTable",
-        "glue:BatchDeletePartition",
-        "glue:BatchDeleteTable",
-        "glue:DeleteTable",
-        "glue:CreatePartition",
-        "glue:DeletePartition",
-        "glue:UpdatePartition",
-        "glue:GetCatalogImportStatus"
-      ],
-      "Resource": "*"
-    }
-  ]
-}
-```
-
-## Model features
-
-There aren't (yet) any model features available for Athena.
-
-## Danger zone
-
-See [Danger Zone](../danger-zone.md).
-
-## Further reading
-
-- [Managing databases](../../databases/connecting.md)
-- [Metadata editing](../../data-modeling/metadata-editing.md)
-- [Models](../../data-modeling/models.md)
-- [Setting data access permissions](../../permissions/data.md)
+Standardmäßig führt Metabase eine Abfrage aus, sobald Sie eine Gruppierungsoption aus dem Menü**Zusammenfassen** oder eine Filterbedingung aus dem [Drill-through-Menü](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through) auswählen. Wenn Ihre Datenbank langsam ist, sollten Sie die erneute Ausführung deaktivieren, um das Laden von Daten bei jedem Klick zu vermeiden.
