@@ -1,50 +1,71 @@
 ---
-title: Backing up Metabase
+Titel: Sichern der Metabase
 redirect_from:
-  - /docs/latest/operations-guide/backing-up-metabase-application-data
+- /docs/latest/operations-guide/backing-up-metabase-application-data
 ---
 
-# Backing up Metabase
 
-Avoid losing your application data (all of your questions, dashboards, collections and so on) by backing up your data.
+# Sichern der Metabase
 
-Metabase uses a single SQL database for all of its runtime application data, so all you need to do is back up that database and you're good to go. You can use that backup to restore your Metabase installation if anything goes wrong (like during an upgrade).
 
-## Backing up the default H2 database
+Vermeiden Sie den Verlust Ihrer Anwendungsdaten (alle Fragen, Dashboards, Sammlungen usw.), indem Sie eine Sicherungskopie Ihrer Daten erstellen.
 
-If you didn't specify an application database using environment variables when you launched Metabase, Metabase will have created an embedded H2 database in its directory.
 
-But if you're at the point where you have questions and dashboards that you want to keep, you should consider migrating to a [production-ready database](migrating-from-h2.md) before you upgrade.
+Metabase verwendet eine einzige SQL-Datenbank für alle Laufzeit-Anwendungsdaten. Sie brauchen also nur diese Datenbank zu sichern, und schon kann es losgehen. Mit dieser Sicherung können Sie Ihre Metabase-Installation wiederherstellen, falls etwas schief geht (z. B. bei einem Upgrade).
 
-If you're just using Metabase for personal use and want to keep your application data, here's what you'll need to do.
 
-### If you're running the Metabase Docker image
+## Sichern der Standard-H2-Datenbank
 
-If you're running Docker, you should already have switched to a [production-ready database](migrating-from-h2.md).
 
-Before migrating to a production application database, you should copy the H2 app db file out of the Docker container. For example, if the container is called metabase, you'd run:
+Wenn Sie beim Start von Metabase keine Anwendungsdatenbank mit Hilfe von Umgebungsvariablen angegeben haben, hat Metabase eine eingebettete H2-Datenbank in ihrem Verzeichnis erstellt.
+
+
+Wenn Sie jedoch Fragen und Dashboards haben, die Sie beibehalten möchten, sollten Sie vor dem Upgrade eine Migration zu einer [produktionsbereiten Datenbank](migrating-from-h2.md) in Betracht ziehen.
+
+
+Wenn Sie Metabase nur für den persönlichen Gebrauch verwenden und Ihre Anwendungsdaten behalten möchten, müssen Sie Folgendes tun.
+
+
+### Wenn Sie das Metabase-Docker-Image verwenden
+
+
+Wenn Sie mit Docker arbeiten, sollten Sie bereits auf eine [produktionsreife Datenbank](migrating-from-h2.md) umgestellt haben.
+
+
+Bevor Sie zu einer produktiven Anwendungsdatenbank migrieren, sollten Sie die H2 app db-Datei aus dem Docker-Container kopieren. Wenn der Container z.B. metabase heißt, führen Sie folgendes aus:
+
 
 ```
 docker cp metabase:/metabase.db/metabase.db.mv.db ./
 ```
 
-The above command would copy the database file to the directory you ran the command from. You can also create a copy of this H2 file and use it to migrate the data to a production-ready database. See [Migrating from H2](migrating-from-h2.md).
 
-### If you're running the Metabase JAR
+Mit dem obigen Befehl wird die Datenbankdatei in das Verzeichnis kopiert, in dem Sie den Befehl ausgeführt haben. Sie können auch eine Kopie dieser H2-Datei erstellen und diese für die Migration der Daten in eine produktionsfähige Datenbank verwenden. Siehe [Migrieren von H2](migrating-from-h2.md).
 
-1. Navigate to your Metabase directory.
-2. If your Metabase is running, stop the Metabase process. You can either close the terminal or kill the process with CTRL-C. If you are running the process as a service, then stop the service.
-3. Copy the application database file (called `metabase.db.mv.db`) and keep that copy somewhere safe. That's it.
-4. Restart Metabase: `java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar` or start the service again.
 
-## Amazon RDS for the application database
+### Wenn Sie das Metabase JAR verwenden
 
-Amazon has its own best practices on how to backup and restore RDS databases, so we'll defer to them. We recommend that you enable automated RDS Backups.
 
-Instructions can be found in the [Amazon RDS User Guide](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html).
+1. Navigieren Sie zu Ihrem Metabase-Verzeichnis.
+2. Wenn Ihre Metabase läuft, beenden Sie den Metabase-Prozess. Sie können entweder das Terminal schließen oder den Prozess mit CTRL-C beenden. Wenn Sie den Prozess als Dienst ausführen, beenden Sie den Dienst.
+3. Kopieren Sie die Anwendungsdatenbankdatei (mit dem Namen `metabase.db.mv.db`) und bewahren Sie diese Kopie an einem sicheren Ort auf. Das war's.
+4. Starten Sie die Metabase neu: `java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar` oder starten Sie den Dienst erneut.
 
-## Self-hosted PostgreSQL database
 
-If you're hosting your own PostgreSQL database, simply follow PostgreSQL's instructions for [backing up your database](https://www.postgresql.org/docs/current/backup.html).
+## Amazon RDS für die Anwendungsdatenbank
 
-As long as you have a dump of the Metabase database, you should be good to go.
+
+Amazon hat seine eigenen Best Practices für die Sicherung und Wiederherstellung von RDS-Datenbanken, so dass wir uns an diese halten. Wir empfehlen, dass Sie automatische RDS-Backups aktivieren.
+
+
+Anweisungen dazu finden Sie im [Amazon RDS User Guide](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html).
+
+
+## Selbst gehostete PostgreSQL-Datenbank
+
+
+Wenn Sie Ihre eigene PostgreSQL-Datenbank hosten, folgen Sie einfach den Anweisungen von PostgreSQL für [Backups Ihrer Datenbank](https://www.postgresql.org/docs/current/backup.html).
+
+
+Solange Sie einen Dump der Metabase-Datenbank haben, sollten Sie damit arbeiten können.
+
