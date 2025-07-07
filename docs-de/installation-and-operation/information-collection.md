@@ -1,46 +1,63 @@
 ---
-title: About the anonymous usage data we collect
+Titel: Über die von uns gesammelten anonymen Nutzungsdaten
 redirect_from:
-  - /docs/latest/information-collection
+- /docs/latest/information-collection
 ---
 
-# About the anonymous usage data we collect
 
-If you're self-hosting Metabase and you've opted in to provide us with anonymous usage data (thank you!), Metabase will phone home some data collected via Snowplow.
+# Über die von uns gesammelten anonymen Nutzungsdaten
 
-**[We only collect anonymous Metabase data; we don't collect any of your data](https://www.metabase.com/security).** We don't collect any usernames, emails, server IPs, database details of any kind, or any personally identifiable information (PII).
 
-This anonymous data helps us understand how people are actually using Metabase, which in turn helps us prioritize what to work on next.
+Wenn Sie Metabase selbst hosten und sich dafür entschieden haben, uns anonyme Nutzungsdaten zur Verfügung zu stellen (vielen Dank!), wird Metabase einige über Snowplow gesammelte Daten telefonisch weitergeben.
 
-## Examples of the anonymous data we collect and how we use it
 
-In a nutshell: we track some basic events to find opportunities for improving the product and evaluating project outcomes. We _don't_ use the data for sales or advertising (and the data's anonymous, so we couldn't use it for that anyway).
+** [Wir sammeln nur anonyme Metabase-Daten; wir sammeln keine Ihrer Daten](https://www.metabase.com/security).** Wir sammeln keine Benutzernamen, E-Mails, Server-IPs, Datenbankdetails jeglicher Art oder andere persönlich identifizierbare Informationen (PII).
 
-We collect things like:
 
-- Events in the product (for example, when people create models)
-- Some performance data
-- The number and types of DBs you've connected to your Metabase
-- The number of questions and dashboards and other items you've created
+Diese anonymen Daten helfen uns zu verstehen, wie die Nutzer Metabase tatsächlich verwenden, was uns wiederum hilft, Prioritäten für die nächsten Arbeiten zu setzen.
 
-This anonymous data helps us figure out things like:
 
-- Which features you're using
-- Where people get stuck
-- How performance for key workflows (like querying or loading) changes over time
+## Beispiele für die von uns erfassten anonymen Daten und deren Verwendung
 
-## Opting out of anonymous usage data collection for self-hosted Metabases
 
-If you're self-hosting Metabase, you can opt out of providing us with your anonymous usage data:
+Kurz gesagt: Wir verfolgen einige grundlegende Ereignisse, um Möglichkeiten zur Verbesserung des Produkts zu finden und die Projektergebnisse zu bewerten. Wir _ verwenden_ die Datennicht für Verkäufe oder Werbung (und die Daten sind anonym, so dass wir sie ohnehin nicht dafür verwenden könnten).
 
-1. Click on the gear icon.
-2. Select **Admin settings**.
-3. Go to the **Settings** tab.
-4. Click **General**
-5. Toggle the **Anonymous tracking** option.
 
-If you're in the process of setting up your Metabase, you can also toggle off tracking during the `Usage Data Preferences` onboarding step. We collect a few anonymous events before that point, but won't do so anymore if you choose to opt out.
+Wir sammeln Dinge wie:
 
-## Further reading
 
-Check out our page on [data privacy and security](https://www.metabase.com/security).
+- Ereignisse im Produkt (z. B., wenn Menschen Modelle erstellen)
+- Einige Leistungsdaten
+- Anzahl und Typen der DBs, die Sie mit Ihrer Metabase verbunden haben
+- Die Anzahl der Fragen, Dashboards und anderer Elemente, die Sie erstellt haben
+
+
+Diese anonymen Daten helfen uns, Dinge herauszufinden wie:
+
+
+- Welche Funktionen Sie nutzen
+- Wo die Leute steckenbleiben
+- Wie sich die Leistung bei wichtigen Arbeitsabläufen (wie Abfragen oder Laden) im Laufe der Zeit verändert
+
+
+## Abmeldung von der Erhebung anonymer Nutzungsdaten für selbst gehostete Metabases
+
+
+Wenn Sie die Metabase selbst hosten, können Sie sich gegen die Weitergabe Ihrer anonymen Nutzungsdaten entscheiden:
+
+
+1. Klicken Sie auf das Zahnradsymbol.
+2. Wählen Sie **Admin-Einstellungen**.
+3. Wechseln Sie zur Registerkarte **Einstellungen**.
+4. Klicken Sie auf **Allgemein**.
+5. Schalten Sie die Option **Anonymes Tracking** aus.
+
+
+Wenn Sie gerade dabei sind, Ihre Metabase einzurichten, können Sie das Tracking auch während des Einführungsschritts "Nutzungsdateneinstellungen" deaktivieren. Wir sammeln einige anonyme Ereignisse vor diesem Zeitpunkt, werden dies aber nicht mehr tun, wenn Sie die Option deaktivieren.
+
+
+## Weitere Informationen
+
+
+Besuchen Sie unsere Seite zu [Datenschutz und Sicherheit](https://www.metabase.com/security).
+
