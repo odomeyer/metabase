@@ -1,50 +1,67 @@
 ---
-title: Timezones
+Titel: Zeitzonen
 redirect_from:
-  - /docs/latest/operations-guide/handling-timezones
+- /docs/latest/operations-guide/handling-timezones
 ---
 
-# Timezones
 
-Metabase does its best to ensure proper and accurate reporting in whatever timezone you want. But timezones are mysterious creatures.
+# Zeitzonen
 
-## Time zone settings
 
-The following places where timezones are set can all impact the data you see:
+Die Metabase tut ihr Bestes, um eine korrekte und genaue Berichterstattung in der von Ihnen gewünschten Zeitzone zu gewährleisten. Aber Zeitzonen sind geheimnisvolle Wesen.
 
-- `Database` - includes global database timezone settings, specific column type settings, and even individual data values.
-- `OS & JVM` - on whatever system is running Metabase the timezone settings of the Operating System as well as the Java Virtual Machine can impact your reports.
-- `Metabase` - inside Metabase the reporting timezone setting (if set) will influence how your data is reported.
-- `Metabase Cloud` - the timezone on the server that hosts your Metabase Cloud instance.
 
-## Recommended settings
+## Zeitzoneneinstellungen
 
-To ensure proper reporting it's important that timezones be set consistently in all places. Metabase recommends the following settings:
 
-- Make sure all of your database columns are properly setup to include [time zone awareness](#data-types).
-- Unless you have a special need it's best to set your database reporting time zone to UTC and store all of your date/time related values in UTC.
-- Configure your JVM to use the same timezone you want to use for reporting, which ideally should also match the timezone of your database.
-- Set the Metabase `Report Timezone` to match the timezone you want to see your reports in, again, this should match the rest of the timezone settings you've made.
-- If you want to change your Metabase Cloud timezone, please [contact support](https://www.metabase.com/help-premium).
+Die folgenden Stellen, an denen Zeitzonen eingestellt werden, können sich alle auf die angezeigten Daten auswirken:
 
-## Data types
 
-You can make your database columns time zone aware by storing them as specific data types, such as:
+-Datenbank" - umfasst globale Datenbank-Zeitzoneneinstellungen, spezifische Spaltentypeinstellungen und sogar einzelne Datenwerte.
+-OS & JVM" - auf jedem System, auf dem Metabase läuft, können sich die Zeitzoneneinstellungen des Betriebssystems und der Java Virtual Machine auf Ihre Berichte auswirken.
+-Metabase" - innerhalb der Metabase beeinflusst die Einstellung der Berichtszeitzone (falls festgelegt), wie Ihre Daten berichtet werden.
+-Metabase Cloud" - die Zeitzone auf dem Server, der Ihre Metabase Cloud-Instanz hostet.
 
-| Data type                     | Description                               | Example                                              |
+
+## Empfohlene Einstellungen
+
+
+Um eine korrekte Berichterstattung zu gewährleisten, ist es wichtig, dass die Zeitzonen an allen Stellen einheitlich eingestellt sind. Metabase empfiehlt die folgenden Einstellungen:
+
+
+- Vergewissern Sie sich, dass alle Ihre Datenbankspalten so eingerichtet sind, dass sie [Zeitzonenbewusstsein] enthalten(#data-types).
+- Wenn Sie keinen besonderen Bedarf haben, ist es am besten, die Zeitzone für Ihre Datenbankberichte auf UTC einzustellen und alle Ihre datums-/zeitbezogenen Werte in UTC zu speichern.
+- Konfigurieren Sie Ihre JVM so, dass sie dieselbe Zeitzone verwendet, die Sie auch für die Berichterstellung verwenden möchten, und die idealerweise auch mit der Zeitzone Ihrer Datenbank übereinstimmt.
+- Stellen Sie die Metabase "Report Timezone" so ein, dass sie der Zeitzone entspricht, in der Sie Ihre Berichte sehen möchten. Auch dies sollte mit den übrigen Zeitzoneneinstellungen übereinstimmen, die Sie vorgenommen haben.
+- Wenn Sie die Zeitzone Ihrer Metabase Cloud ändern möchten,wenden Sie sich bittean den Support(https://www.metabase.com/help-premium).
+
+
+## Datentypen
+
+
+Sie können Ihre Datenbankspalten zeitzonenabhängig machen, indem Sie sie als spezifische Datentypen speichern, z. B:
+
+
+| Datentyp | Beschreibung | Beispiel |
 | ----------------------------- | ----------------------------------------- | ---------------------------------------------------- |
-| `timestamp with time zone`    | Knows about location.                     | `2022-12-28T12:00:00 AT TIME ZONE 'America/Toronto'` |
-| `timestamp with offset`       | Knows about the time difference from UTC. | `2022-12-28T12:00:00-04:00`                          |
-| `timestamp without time zone` | No time zone info.                        | `2022-12-28T12:00:00`                                |
+| `Zeitstempel mit Zeitzone` | Kennt den Ort. | `2022-12-28T12:00:00 AT TIME ZONE 'America/Toronto'` |
+| `Zeitstempel mit Offset` | Kennt den Zeitunterschied zur UTC. | `2022-12-28T12:00:00-04:00` |
+| `Zeitstempel ohne Zeitzone` | Keine Zeitzoneninformation. | `2022-12-28T12:00:00` |
 
-The exact data type will depend on your database. Some Metabase features only work with specific data types:
 
-- [Report timezone setting](../configuring-metabase/localization.md#report-timezone)
-- [`converttimezone` custom expression](../questions/query-builder/expressions/converttimezone.md)
+Der genaue Datentyp hängt von Ihrer Datenbank ab. Einige Metabase-Funktionen funktionieren nur mit bestimmten Datentypen:
 
-## Common pitfalls
 
-1. Your database is using date/time columns without any timezone information. Typically when this happens your database will assume all the data is from whatever timezone the database is configured in or possible just default to UTC (check your database vendor to be sure).
-2. Your JVM timezone is different from your Metabase `Report Timezone` choice. This is a very common issue and can be corrected by launching java with the `-Duser.timezone=<timezone>` option properly set to match your Metabase report timezone.
+- [Einstellung der Berichtszeitzone](../configuring-metabase/localization.md#report-timezone)
+- [`converttimezone` eigener Ausdruck](../questions/query-builder/expressions/converttimezone.md)
 
-If you are still experiencing timezone problems, then have a look at the [timezone troubleshooting guide](../troubleshooting-guide/timezones.md).
+
+## Häufige Fallstricke
+
+
+1. Ihre Datenbank verwendet Datum/Zeit-Spalten ohne Zeitzoneninformationen. Wenn dies der Fall ist, geht Ihre Datenbank normalerweise davon aus, dass alle Daten aus der Zeitzone stammen, in der die Datenbank konfiguriert ist, oder sie ist möglicherweise einfach auf UTC voreingestellt (überprüfen Sie Ihren Datenbankanbieter, um sicherzugehen).
+2. Ihre JVM-Zeitzone unterscheidet sich von der in der Metabase gewählten "Report Timezone". Dies ist ein sehr häufig auftretendes Problem und kann behoben werden, indem Sie Java mit der Option `-Duser.timezone=<timezone>` starten, die so eingestellt ist, dass sie mit der Zeitzone Ihres Metabase Reports übereinstimmt.
+
+
+Wenn Sie immer noch Probleme mit der Zeitzone haben, sehen Sie sich den [timezone troubleshooting-guide](../troubleshooting-guide/timezones.md) an.
+
