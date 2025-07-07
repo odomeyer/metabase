@@ -1,80 +1,87 @@
 ---
-title: Druid
+Titel: Druide
 ---
+
 
 # Druid
 
-> Prefer the Druid JDBC connection.
 
-To add a database connection, click on the **gear** icon in the top right, and navigate to **Admin settings** > **Databases** > **Add a database**.
+> Bevorzugen Sie die Druid JDBC-Verbindung.
 
-## Edit connection details
 
-Fill out the fields for that database, and click **Save changes** at the bottom. You can edit these settings at any time. Just remember to save your changes.
+Um eine Datenbankverbindung hinzuzufügen, klicken Sie auf das**Zahnradsymbol** oben rechts und navigieren Sie zu**Admin-Einstellungen** >**Datenbanken** >**Datenbank hinzufügen**.
 
-### Display name
 
-The display name for the database in the Metabase interface.
+## Verbindungsdetails bearbeiten
+
+
+Füllen Sie die Felder für diese Datenbank aus, und klicken Sie unten auf **Änderungen speichern**. Sie können diese Einstellungen jederzeit bearbeiten. Denken Sie nur daran, Ihre Änderungen zu speichern.
+
+
+### Anzeigename
+
+
+Der Anzeigename für die Datenbank in der Metabase-Schnittstelle.
+
 
 ### Host
 
-Your database's IP address, or its domain name (e.g., esc.mydatabase.com).
 
-### Broker node port
+Die IP-Adresse Ihrer Datenbank oder ihr Domänenname (z. B. esc.mydatabase.com).
 
-The database port (e.g, 8082).
 
-### Use an SSH tunnel
+### Broker-Knoten-Port
 
-See our [guide to SSH tunneling](../ssh-tunnel.md).
 
-### Allow unfolding of JSON columns
+Der Datenbank-Port (z.B. 8082).
 
-> Only available for the Druid JDBC connection.
 
-This enables unfolding of JSON columns into their component fields.
+### Verwenden Sie einen SSH-Tunnel
 
-See [JSON unfolding](../../data-modeling/json-unfolding.md).
 
-### Authentication
+Siehe unsere [Anleitung zum SSH-Tunneling](../ssh-tunnel.md).
 
-> Only available for the Druid JDBC connection.
 
-Toggle on to enable basic authentication with a username and password.
+### Entfaltung von JSON-Spalten zulassen
+
+
+> Nur verfügbar für die Druid JDBC-Verbindung.
+
+
+Dies ermöglicht die Entfaltung von JSON-Spalten in ihre Komponentenfelder.
+
+
+Siehe [JSON Entfaltung](../../data-modeling/json-unfolding.md).
+
+
+### Authentifizierung
+
+
+> Nur für die Druid-JDBC-Verbindung verfügbar.
+
+
+Schalten Sie diese Option ein, um die grundlegende Authentifizierung mit einem Benutzernamen und einem Passwort zu aktivieren.
+
 
 ### Re-run queries for simple explorations
 
-Turn this option **OFF** if people want to click **Run** (the play button) before applying any [Summarize](../../questions/query-builder/summarizing-and-grouping.md) or filter selections.
 
-By default, Metabase will execute a query as soon as you choose an grouping option from the **Summarize** menu or a filter condition from the [drill-through menu](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through). If your database is slow, you may want to disable re-running to avoid loading data on each click.
+Schalten Sie diese Option**AUS**, wenn Sie auf**Ausführen** (die Abspielschaltfläche) klicken möchten, bevor Sie eine [Zusammenfassen](../../questions/query-builder/summarizing-and-grouping.md) oder eine Filterauswahl treffen.
 
-### Choose when syncs and scans happen
 
-See [syncs and scans](../sync-scan.md#choose-when-syncs-and-scans-happen).
+Standardmäßig führt Metabase eine Abfrage aus, sobald Sie eine Gruppierungsoption aus dem Menü**Zusammenfassen** oder eine Filterbedingung aus dem [Drill-through-Menü](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through) auswählen. Wenn Ihre Datenbank langsam ist, sollten Sie die erneute Ausführung deaktivieren, um das Laden von Daten bei jedem Klick zu vermeiden.
 
-### Periodically refingerprint tables
 
-> Periodic refingerprinting will increase the load on your database.
+### Wählen Sie, wann Synchronisationen und Scans stattfinden.
 
-Turn this option **ON** to scan a sample of values every time Metabase runs a [sync](../sync-scan.md#how-database-syncs-work).
 
-A fingerprinting query examines the first 10,000 rows from each column and uses that data to guesstimate how many unique values each column has, what the minimum and maximum values are for numeric and timestamp columns, and so on. If you leave this option **OFF**, Metabase will only fingerprint your columns once during setup.
+Siehe [syncs and scans](../sync-scan.md#choose-when-syncs-and-scans-happen).
 
-## Model features
 
-There aren't (yet) any model features available for Druid.
+### Regelmäßiges Refingerprinting von Tabellen
 
-## Database routing
 
-See [Database routing](../../permissions/database-routing.md).
+> Regelmäßiges Refingerprinting erhöht die Last auf Ihrer Datenbank.
 
-## Danger zone
 
-See [Danger Zone](../danger-zone.md).
-
-## Further reading
-
-- [Managing databases](../../databases/connecting.md)
-- [Metadata editing](../../data-modeling/metadata-editing.md)
-- [Models](../../data-modeling/models.md)
-- [Setting data access permissions](../../permissions/data.md)
+Schalten Sie diese Option **EIN**, um jedes Mal, wenn Metabase einen [sync] ausführt(../sync-scan.md#how-database-syncs-work), eine Stichprobe von Werten zu scannen.
