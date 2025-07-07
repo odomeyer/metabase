@@ -431,428 +431,301 @@ Verwandt: [startsWith](#startswith), [contains](#contains), [doesNotContain](#do
 
 ### float
 
-> Available for PostgreSQL, MySQL/MariaDB, BigQuery, Redshift, ClickHouse, and Snowflake.
-
-Converts a string to a floating point value. Useful if you want to do some math on numbers, but your data is stored as strings.
-
-Syntax: `float(value)`
-
-Example: `float("123.45")` would return `123.45` as a floating point value.
+> Verfügbar für PostgreSQL, MySQL/MariaDB, BigQuery, Redshift, ClickHouse und Snowflake.
+Konvertiert einen String in einen Fließkommawert. Nützlich, wenn Sie mit Zahlen rechnen wollen, Ihre Daten aber als Strings gespeichert sind.
+Syntax: `float(Wert)`
+Beispiel: `float("123.45")` would return `123.45` as a floating point value.
 
 ### host
 
-Extracts the host, which is the domain and the TLD, from a URL or email.
-
-Syntax: `host(urlOrEmail)`
-
-Example: `host([Page URL])`. If the `[Page URL]` column had a value of `https://www.metabase.com`, `host([Page URL])` would return `metabase.com`. `host([Email])` would extract `metabase.com` from `hello@metabase.com`.
-
-Related: [domain](#domain), [path](#path), [subdomain](#subdomain).
+Extrahiert den Host, d. h. die Domäne und die TLD, aus einer URL oder E-Mail.
+Syntax: `Host(urlOderEmail)`
+Beispiel: `Host([Seiten-URL])`. Wenn die Spalte `[Seiten-URL]` einen Wert von `https://www.metabase.com` hätte, würde `host([Seiten-URL])` `metabase.com` zurückgeben. Mit `host([Email])` würde `metabase.com` aus `hello@metabase.com` extrahiert.
+Verwandt: [domain](#domain), [path](#path), [subdomain](#subdomain).
 
 ### [isEmpty](./expressions/isempty.md)
 
-Returns true if a _string column_ contains an empty string or is null. Calling this function on a non-string column will cause an error. You can use [isNull](#isnull) for non-string columns.
-
+Gibt true zurück, wenn eine _String-Spalte_ einen leeren String enthält oder null ist. Der Aufruf dieser Funktion für eine Nicht-String-Spalte führt zu einem Fehler. Sie können [isNull](#isnull) für Nicht-String-Spalten verwenden.
 Syntax: `isEmpty(column)`
-
-Example: `isEmpty([Feedback])` would return true if `Feedback` was an empty string (`''`) or did not contain a value.
-
-Related: [notEmpty](#notempty), [isNull](#isnull).
+Beispiel: `isEmpty([Feedback])` würde true zurückgeben, wenn `Feedback` ein leerer String (`''`) ist oder keinen Wert enthält.
+Verwandt: [notEmpty](#notempty), [isNull](#isnull).
 
 ### integer
 
-> Not available for the non-JDBC Apache Druid driver.
-
-- Converts a string to an integer value. Useful if you want to do some math on numbers, but your data is stored as strings.
-- Converts a floating point value by rounding it to an integer.
-
-Syntax: `integer(value)`
-
-String example: `integer("123")` would return `123` as an integer. The string must evaluate to an integer (so `integer("123.45")` would return an error.)
-
-Float example: `integer(123.45)` would return `123`.
-
-Related: [round](#round).
+> Nicht verfügbar für den Nicht-JDBC-Apache-Druid-Treiber.
+- Konvertiert eine Zeichenkette in einen Integer-Wert. Nützlich, wenn Sie mit Zahlen rechnen wollen, Ihre Daten aber als Strings gespeichert sind.
+- Konvertiert einen Fließkommawert durch Runden in eine ganze Zahl.
+Syntax: `Ganzzahl(Wert)`
+Beispiel für eine Zeichenkette: `integer("123")` würde `123` als ganze Zahl zurückgeben. Die Zeichenkette muss eine ganze Zahl ergeben (`integer("123.45")` würde also einen Fehler zurückgeben).
+Beispiel für Fließkommazahlen: `integer(123.45)` würde `123` zurückgeben.
+Verwandt: [round](#round).
 
 ### lTrim
 
-Removes leading whitespace from a string of text.
-
+Entfernt führende Leerzeichen aus einer Textkette.
 Syntax: `lTrim(text)`
-
-Example: `lTrim([Comment])`. If the comment were `" I'd prefer not to"`, `lTrim` would return `"I'd prefer not to"`.
-
-Related: [trim](#trim) and [rTrim](#rtrim).
+Beispiel: `lTrim([Kommentar])`. Wenn der Kommentar "Ich möchte lieber nicht" lautet, würde `lTrim` "Ich möchte lieber nicht" zurückgeben.
+Verwandt: [trim](#trim) and [rTrim](#rtrim).
 
 ### length
 
-Returns the number of characters in text.
-
-Syntax: `length(text)`
-
-Example: `length([Comment])`. If the `comment` were "wizard", `length` would return 6 ("wizard" has six characters).
+Gibt die Anzahl der Zeichen im Text zurück.
+Syntax: `Länge(Text)`
+Beispiel: `length([Comment])`. If the `comment` were "wizard", `length` would return 6 ("wizard" has six characters).
 
 ### lower
 
-Returns the string of text in all lower case.
-
-Syntax: `lower(text)`
-
-Example: `lower([Status])`. If the `Status` were "QUIET", the expression would return "quiet".
-
-Related: [upper](#upper).
+Gibt die Textzeichenfolge in Kleinbuchstaben zurück.
+Syntax: `niedriger(Text)`
+Beispiel: `niedriger([Status])`. Wenn der `Status` "QUIET" wäre, würde der Ausdruck "quiet" zurückgeben.
+Verwandt: [upper](#upper).
 
 ### notEmpty
 
-Returns true if a _string column_ contains a value that is not the empty string. Calling this function on a non-string column will cause an error. You can use [notNull](#notnull) on non-string columns.
-
+Gibt true zurück, wenn eine _String-Spalte_ einen Wert enthält, der nicht der leere String ist. Der Aufruf dieser Funktion für eine Nicht-String-Spalte führt zu einem Fehler. Sie können [notNull](#notnull) für Nicht-String-Spalten verwenden.
 Syntax: `notEmpty(column)`
-
-Example: `notEmpty([Feedback])` would return true if `Feedback` contains a value that isn't the empty string (`''`).
-
-Related: [isEmpty](#isempty), [isNull](#isnull), [notNull](#notnull)
+Beispiel: `notEmpty([Feedback])` würde true zurückgeben, wenn `Feedback` einen Wert enthält, der nicht die leere Zeichenkette (`''`) ist.
+Verwandt: [isEmpty](#isempty), [isNull](#isnull), [notNull](#notnull)
 
 ### path
 
-Extracts the pathname from a URL.
-
-Syntax: `path(url)`
-
-Example: `path([Page URL])`. For example, `path("https://www.example.com/path/to/page.html?key1=value")` would return `/path/to/page.html`.
-
-Related: [domain](#domain), [host](#host), [subdomain](#subdomain).
+Extrahiert den Pfadnamen aus einer URL.
+Syntax: `pfad(url)`
+Beispiel: `pfad([Seiten-URL])`. Zum Beispiel würde `path("https://www.example.com/path/to/page.html?key1=value")` `/path/to/page.html` zurückgeben.
+Verwandt: [domain](#domain), [host](#host), [subdomain](#subdomain).
 
 ### [regexExtract](./expressions/regexextract.md)
 
-> ⚠️ `regexExtract` is unavailable for MongoDB, SQLite, and SQL Server. For Druid, `regexExtract` is only available for the Druid-JDBC driver.
-
-Extracts matching substrings according to a regular expression.
-
-Syntax: `regexExtract(text, regular_expression)`
-
-Example: `regexExtract([Address], "[0-9]+")`
-
-Databases that don't support `regexExtract`: H2, SQL Server, SQLite.
-
-Related: [contains](#contains), [doesNotContain](#doesnotcontain), [substring](#substring).
+> ⚠️ `regexExtract` ist für MongoDB, SQLite und SQL Server nicht verfügbar. Für Druid ist "regexExtract" nur für den Druid-JDBC-Treiber verfügbar.
+Extrahiert übereinstimmende Teilzeichenfolgen gemäß einem regulären Ausdruck.
+Syntax: `regexExtract(text, regulärer_Ausdruck)`
+Beispiel: `regexExtract([Adresse], "[0-9]+")`
+Datenbanken, die `regexExtract` nicht unterstützen: H2, SQL Server, SQLite.
+Verwandt: [contains](#contains), [doesNotContain](#doesnotcontain), [substring](#substring).
 
 ### replace
 
-Replaces all occurrences of a search text in the input text with the replacement text.
-
+Ersetzt alle Vorkommen eines Suchtextes im Eingabetext durch den Ersetzungstext.
 Syntax: `replace(text, find, replace)`
-
-Example: `replace([Title], "Enormous", "Gigantic")`
+Beispiel: `replace([Titel], "Enorm", "Gigantisch")`
 
 ### splitPart
 
-> Available in PostgreSQL, MySQL/MariaDB, BigQuery, Redshift, Clickhouse, and Snowflake
-
-Splits a string on a specified delimiter and returns the nth substring.
-
-Syntax: `splitPart(text, delimiter, position)`
-
-`text`: The column or text to return a portion of.
-
-`delimiter`: The pattern describing where each split should occur.
-
-`position`: Which substring to return after the split. Index starts at position 1.
-
-Example: `splitPart([Date string], " ", 1)`. If the value for `Date string` was `"2024-09-18 16:55:15.373733-07"`, `splitPart` would return `"2024-09-18"` because it split the data on space (`" "`, and took the first part (the substring at index 1)).
-
-Another example: `splitPart("First name, Middle Name, Last name", ", ", 3)` would return `"Last Name"` (because we used the comma and space `", "` as the delimiter to split the string into parts, and took the third substring).
+> Verfügbar in PostgreSQL, MySQL/MariaDB, BigQuery, Redshift, Clickhouse und Snowflake
+Teilt eine Zeichenfolge an einem angegebenen Begrenzungszeichen und gibt die n-te Teilzeichenfolge zurück.
+Syntax: `splitPart(text, Begrenzungszeichen, Position)`
+Text": Die Spalte oder der Text, von dem ein Teil zurückgegeben werden soll.
+Begrenzer`: Das Muster, das beschreibt, wo jede Aufteilung stattfinden soll.
+Position": Die Teilzeichenkette, die nach der Teilung zurückgegeben werden soll. Der Index beginnt an Position 1.
+Beispiel: `splitPart([Datumszeichenfolge], " ", 1)`. Wenn der Wert für `Date string` `"2024-09-18 16:55:15.373733-07"` wäre, würde `splitPart` `"2024-09-18"` zurückgeben, da es die Daten am Leerzeichen aufteilt (`" "`, und den ersten Teil (die Teilzeichenkette bei Index 1) nimmt).
+Ein anderes Beispiel: `splitPart("Vorname, Mittlerer Name, Nachname", ", ", 3)` würde `"Nachname"` zurückgeben (weil wir das Komma und das Leerzeichen `", "` als Begrenzer verwendet haben, um die Zeichenkette in Teile aufzuteilen, und den dritten Teilstring genommen haben).
 
 ### rTrim
 
-Removes trailing whitespace from a string of text.
-
+Entfernt nachstehende Leerzeichen aus einer Textzeichenkette.
 Syntax: `rTrim(text)`
-
-Example: `rTrim([Comment])`. If the comment were "Fear is the mindkiller. ", the expression would return "Fear is the mindkiller."
-
-Related: [trim](#trim) and [lTrim](#ltrim).
+Beispiel: `rTrim([Kommentar])`. Wenn der Kommentar "Fear is the mindkiller. ", würde der Ausdruck "Fear is the mindkiller." zurückgeben.
+Verwandt: [trim](#trim) and [lTrim](#ltrim).
 
 ### startsWith
 
-Returns true if the beginning of the text matches the comparison text. Performs case-sensitive match by default.
-You can pass an optional parameter `"case-insensitive"` to perform a case-insensitive match.
-
-Syntax: `startsWith(text, comparison)` for case-sensitive match.
-
-`startsWith(text, comparison, "case-insensitive")` for case-insensitive match.
-
-Example: `startsWith([Course Name], "Computer Science")` would return true for course names that began with "Computer Science", like "Computer Science 101: An introduction".
-
-It would return false for "Computer **s**cience 201: Data structures" because the case of "science" does not match the case in the comparison text.
-
-`startsWith([Course Name], "Computer Science", "case-insensitive")` would return true for both "Computer Science 101: An introduction" and "Computer science 201: Data structures".
-
-Related: [endsWith](#endswith), [contains](#contains), [doesNotContain](#doesnotcontain).
+Gibt true zurück, wenn der Anfang des Textes mit dem Vergleichstext übereinstimmt. Führt standardmäßig einen Abgleich unter Berücksichtigung der Groß- und Kleinschreibung durch.
+Sie können einen optionalen Parameter `"case-insensitive"` übergeben, um einen Abgleich ohne Berücksichtigung der Groß-/Kleinschreibung durchzuführen.
+Syntax: `startsWith(text, comparison)` für eine Übereinstimmung unter Berücksichtigung der Groß- und Kleinschreibung.
+`startsWith(text, comparison, "case-insensitive")` für eine Übereinstimmung ohne Berücksichtigung der Groß-/Kleinschreibung.
+Beispiel: `startsWith([Kursname], "Computer Science")` würde true für Kursnamen zurückgeben, die mit "Computer Science" beginnen, wie "Computer Science 101: An introduction".
+Es würde false für "Computer **s**cience 201: Datenstrukturen" falsch, da die Groß- und Kleinschreibung von "Wissenschaft" nicht mit der Groß- und Kleinschreibung im Vergleichstext übereinstimmt.
+startsWith([Kursname], "Informatik", "case-insensitive")` würde sowohl für "Informatik 101: Eine Einführung" als auch für "Informatik 201: Datenstrukturen".
+Verwandt: [endsWith](#endswith), [contains](#contains), [doesNotContain](#doesnotcontain).
 
 ### subdomain
 
-Extracts the subdomain from a URL. Ignores `www` (returns a blank string).
-
+Extrahiert die Subdomain aus einer URL. Ignoriert `www` (gibt eine leere Zeichenkette zurück).
 Syntax: `subdomain(url)`
-
-Example: `subdomain([Page URL])`. If the `[Page URL]` column had a value of `https://status.metabase.com`, `subdomain([Page URL])` would return `status`.
-
-Related: [domain](#domain), [host](#host), [path](#path).
+Beispiel: "subdomain([Seiten-URL])`. Wenn die Spalte `[Seiten-URL]` einen Wert von `https://status.metabase.com` hätte, würde `subdomain([Seiten-URL])` `status` zurückgeben.
+Verwandt: [domain](#domain), [host](#host), [path](#path).
 
 ### [substring](./expressions/substring.md)
 
-Returns a portion of the supplied text, specified by a starting position and a length.
-
+Gibt einen Teil des angegebenen Textes zurück, der durch eine Startposition und eine Länge spezifiziert wird.
 Syntax: `substring(text, position, length)`
-
-Example: `substring([Title], 1, 10)` returns the first 10 letters of a string (the string index starts at position 1).
-
-Related: [regexExtract](#regexextract), [replace](#replace).
+Beispiel: `substring([Titel], 1, 10)` gibt die ersten 10 Buchstaben einer Zeichenkette zurück (der Index der Zeichenkette beginnt an Position 1).
+Verwandt: [regexExtract](#regexextract), [replace](#replace).
 
 ### text
 
-> Not available for the non-JDBC Druid driver
-
-Converts a number or date to text (a string). Useful for applying text filters or joining with other columns based on text comparisons.
-
-Syntax: `text(value)`
-
-Example: `text(Created At])` would take a datetime (`Created At`) and return that datetime converted to a string (like `"2024-03-17 16:55:15.373733-07"`).
+> Nicht verfügbar für den Nicht-JDBC-Druid-Treiber
+Konvertiert eine Zahl oder ein Datum in Text (eine Zeichenkette). Nützlich für die Anwendung von Textfiltern oder die Verknüpfung mit anderen Spalten auf der Grundlage von Textvergleichen.
+Syntax: `Text(Wert)`
+Beispiel: `text(Created At])` would take a datetime (`Created At`) and return that datetime converted to a string (like `"2024-03-17 16:55:15.373733-07"`).
 
 ### trim
 
-Removes leading and trailing whitespace from a string of text.
-
+Entfernt führende und nachgestellte Leerzeichen aus einer Textkette.
 Syntax: `trim(text)`
-
-Example: `trim([Comment])` will remove any whitespace characters on either side of a comment.
+Beispiel: `trim([Comment])` will remove any whitespace characters on either side of a comment.
 
 ### upper
 
-Returns the text in all upper case.
-
-Syntax: `upper(text)`
-
-Example: `upper([Status])`. If status were "hyper", `upper("hyper")` would return "HYPER".
-
-Related: [lower](#lower).
+Gibt den Text in Großbuchstaben zurück.
+Syntax: `Groß(text)`
+Beispiel: `upper([Status])`. Wenn Status "hyper" wäre, würde `upper("hyper")` "HYPER" zurückgeben.
+Verwandt: [lower](#lower).
 
 ## Date functions
 
-Date functions manipulate, extract, or create date and time values.
+Datumsfunktionen manipulieren, extrahieren oder erstellen Datums- und Zeitwerte.
 
 ### [convertTimezone](./expressions/converttimezone.md)
 
-Shifts a date or timestamp value into a specified time zone.
-
-Syntax: `convertTimezone(column, target, source)`
-
-Example: `convertTimezone("2022-12-28T12:00:00", "Canada/Pacific", "Canada/Eastern")` would return the value `2022-12-28T09:00:00`, displayed as `December 28, 2022, 9:00 AM`.
-
-See the [database limitations](./expressions/converttimezone.md#limitations) for `convertTimezone`.
+Verschiebt einen Datums- oder Zeitstempelwert in eine bestimmte Zeitzone.
+Syntax: `convertTimezone(Spalte, Ziel, Quelle)`
+Beispiel: `convertTimezone("2022-12-28T12:00:00", "Canada/Pacific", "Canada/Eastern")` würde den Wert `2022-12-28T09:00:00` zurückgeben, angezeigt als `December 28, 2022, 9:00 AM`.
+Siehe die [Datenbankbeschränkungen](./expressions/converttimezone.md#limitations) für `convertTimezone`.
 
 ### [datetimeAdd](./expressions/datetimeadd.md)
 
-Adds some unit of time to a date or timestamp value.
-
-Syntax: `datetimeAdd(column, amount, unit)`
-
-Example: `datetimeAdd("2021-03-25", 1, "month")` would return the value `2021-04-25`, displayed as `April 25, 2021`.
-
-`amount` must be an integer, not a fractional number. For example, you cannot add "half a year" (0.5).
-
-Related: [between](#between), [datetimeSubtract](#datetimesubtract).
+Fügt eine Zeiteinheit zu einem Datums- oder Zeitstempelwert hinzu.
+Syntax: `datetimeAdd(Spalte, Betrag, Einheit)`
+Beispiel: `datetimeAdd("2021-03-25", 1, "month")` würde den Wert `2021-04-25` zurückgeben, angezeigt als `April 25, 2021`.
+Betrag" muss eine ganze Zahl sein, keine Bruchzahl. Sie können zum Beispiel nicht "ein halbes Jahr" (0,5) hinzufügen.
+Verwandt: [between](#between), [datetimeSubtract](#datetimesubtract).
 
 ### [datetimeDiff](./expressions/datetimediff.md)
 
-Returns the difference between two datetimes in some unit of time. For example, `datetimeDiff(d1, d2, "day")` will return the number of days between `d1` and `d2`.
-
+Gibt die Differenz zwischen zwei Zeitpunkten in einer Zeiteinheit zurück. Zum Beispiel gibt `datetimeDiff(d1, d2, "day")` die Anzahl der Tage zwischen `d1` und `d2` zurück.
 Syntax: `datetimeDiff(datetime1, datetime2, unit)`
-
-Example: `datetimeDiff("2022-02-01", "2022-03-01", "month")` would return `1`.
-
-See the [database limitations](./expressions/datetimediff.md#limitations) for `datetimediff`.
+Beispiel: `datetimeDiff("2022-02-01", "2022-03-01", "month")` würde `1` zurückgeben.
+Siehe die [Datenbankbeschränkungen](./expressions/datetimediff.md#limitations) für `datetimediff`.
 
 ### [datetimeSubtract](./expressions/datetimesubtract.md)
 
-Subtracts some unit of time from a date or timestamp value.
-
-Syntax: `datetimeSubtract(column, amount, unit)`
-
-Example: `datetimeSubtract("2021-03-25", 1, "month")` would return the value `2021-02-25`, displayed as `February 25, 2021`.
-
-`amount` must be an integer, not a fractional number. For example, you cannot subtract "half a year" (0.5).
-
-Related: [between](#between), [datetimeAdd](#datetimeadd).
+Subtrahiert eine Zeiteinheit von einem Datums- oder Zeitstempelwert.
+Syntax: `datetimeSubtract(Spalte, Betrag, Einheit)`
+Beispiel: `datetimeSubtract("2021-03-25", 1, "month")` würde den Wert `2021-02-25` zurückgeben, angezeigt als `February 25, 2021`.
+Betrag" muss eine ganze Zahl sein, keine Bruchzahl. Sie können zum Beispiel nicht "ein halbes Jahr" (0,5) subtrahieren.
+Verwandt: [between](#between), [datetimeAdd](#datetimeadd).
 
 ### day
 
-Takes a datetime and returns the day of the month as an integer.
-
-Syntax: `day([datetime column])`
-
-Example: `day("2021-03-25T12:52:37")` would return the day as an integer, `25`.
+Nimmt eine Datetime und gibt den Tag des Monats als Ganzzahl zurück.
+Syntax: `Tag([datetime-Spalte])`
+Beispiel: `day("2021-03-25T12:52:37")` würde den Tag als Ganzzahl zurückgeben, `25`.
 
 ### dayName
 
-Returns the localized name of a day of the week, given the day's number (1-7). Respects the [first day of the week setting](../../configuring-metabase/localization.md#first-day-of-the-week).
-
-Syntax: `dayName(dayNumber)`
-
-Example: `dayName(1)` would return `Sunday`, unless you change the [first day of the week setting](../../configuring-metabase/localization.md#first-day-of-the-week).
-
-Related: [quarterName](#quartername), [monthName](#monthname).
+Gibt den lokalisierten Namen eines Wochentags mit der Nummer des Tages (1-7) zurück. Beachtet die Einstellung [erster Wochentag] (../../configuring-metabase/localization.md#first-day-of-the-week).
+Syntax: `Tagsname(Tagesnummer)`
+Beispiel: `Tagsname(1)` würde `Sonntag` zurückgeben, es sei denn, Sie ändern die [Einstellung für den ersten Tag der Woche](../../configuring-metabase/localization.md#first-day-of-the-week).
+Verwandt: [quarterName](#quartername), [monthName](#monthname).
 
 ### hour
 
-Takes a datetime and returns the hour as an integer (0-23).
-
-Syntax: `hour([datetime column])`
-
-Example: `hour("2021-03-25T12:52:37")` would return `12`.
+Nimmt eine Datetime und gibt die Stunde als Ganzzahl (0-23) zurück.
+Syntax: `Stunde([Datumszeitspalte])`
+Beispiel: `hour("2021-03-25T12:52:37")` würde `12` zurückgeben.
 
 ### interval
 
-Checks a date column's values to see if they're within the relative range.
-
-Syntax: `interval(column, number, text)`
-
-Example: `interval([Created At], -1, "month")`
-
-The `number` must be an integer. You cannot use a fractional value.
-
-Related: [between](#between).
+Prüft die Werte einer Datumsspalte, um festzustellen, ob sie innerhalb des relativen Bereichs liegen.
+Syntax: `Intervall(Spalte, Zahl, Text)`
+Beispiel: `Intervall([Erstellt am], -1, "Monat")`
+Die `Zahl` muss eine ganze Zahl sein. Sie können keine Bruchzahlen verwenden.
+Verwandt: [between](#between).
 
 ### minute
 
-Takes a datetime and returns the minute as an integer (0-59).
-
-Syntax: `minute([datetime column])`
-
-Example: `minute("2021-03-25T12:52:37")` would return `52`.
+Nimmt eine Datetime und gibt die Minute als Ganzzahl (0-59) zurück.
+Syntax: Minute([Datums-Spalte])`
+Beispiel: `Minute("2021-03-25T12:52:37")` würde `52` zurückgeben.
 
 ### month
 
-Takes a datetime and returns the month number (1-12) as an integer.
-
-Syntax: `month([datetime column])`
-
-Example: `month("2021-03-25T12:52:37")` would return the month as an integer, `3`.
+Nimmt eine Datumszeit und gibt die Monatszahl (1-12) als Ganzzahl zurück.
+Syntax: `Monat([Datumszeitspalte])`
+Beispiel: `Monat("2021-03-25T12:52:37")` gibt den Monat als ganze Zahl zurück, `3`.
 
 ### monthName
 
-Returns the localized short name for the given month.
-
-Syntax: `monthName([Birthday Month])`
-
-Example: `monthName(10)` would return `Oct` for October.
-
-Related: [dayName](#dayname), [quarterName](#quartername).
-
+Gibt den lokalisierten Kurznamen für den angegebenen Monat zurück.
+Syntax: Monatsname([Geburtstagsmonat])`
+Beispiel: `Monatsname(10)` würde `Okt` für Oktober zurückgeben.
+Verwandt: [Tagesname](#Tagsname), [Quartalsname](#Quartalsname).
 ### [now](./expressions/now.md)
-
-Returns the current date and time using your Metabase [report timezone](../../configuring-metabase/localization.md#report-timezone).
-
+Gibt das aktuelle Datum und die Uhrzeit unter Verwendung Ihrer Metabase zurück [report timezone](../../configuring-metabase/localization.md#report-timezone).
 Syntax: `now()`
 
 ### quarter
 
-Takes a datetime and returns the number of the quarter in a year (1-4) as an integer.
-
-Syntax: `quarter([datetime column])`
-
-Example: `quarter("2021-03-25T12:52:37")` would return `1` for the first quarter.
+Nimmt eine Datetime und gibt die Nummer des Quartals in einem Jahr (1-4) als Ganzzahl zurück.
+Syntax: `Quartal([Datums-Spalte])`
+Beispiel: `quarter("2021-03-25T12:52:37")` würde `1` für das erste Quartal zurückgeben.
 
 ### quarterName
 
-Given the quarter number (1-4), returns a string like `Q1`.
-
-Syntax: `quarterName([Fiscal Quarter])`
-
-Example: `quarterName(3)` would return `Q3`.
-
-Related: [dayName](#dayname), [monthName](#monthname).
+Gibt die Viertelnummer (1-4) an und liefert eine Zeichenkette wie `Q1`.
+Syntax: `Quartalsname([Geschäftsquartal])`
+Beispiel: `Quartalsname(3)` würde `Q3` zurückgeben.
+Verwandt: [dayName](#dayname), [monthName](#monthname).
 
 ### relativeDateTime
 
-Gets a timestamp relative to the current time.
-
-Syntax: `relativeDateTime(number, text)`
-
-`number`: Period of interval, where negative values are back in time. The `number` must be an integer. You cannot use a fractional value.
-
-`text`: Type of interval like `"day"`, `"month"`, `"year"`
-
-Note that `relativeDateTime()` will truncate the result to the unit specified as its argument.
-
-Example: `[Orders → Created At] < relativeDateTime(-30, "day")` will filter for orders created over 30 days ago from current date.
-
-Related: [datetimeAdd](#datetimeadd), [datetimeSubtract](#datetimesubtract).
+Ermittelt einen Zeitstempel relativ zur aktuellen Zeit.
+Syntax: `relativeDateTime(Zahl, Text)`
+Zahl": Zeitraum des Intervalls, wobei negative Werte in der Zeit zurückreichen. Die `Zahl` muss eine ganze Zahl sein. Sie können keine Bruchzahlen verwenden.
+Text": Typ des Intervalls wie `"Tag"`, `"Monat"`, `"Jahr"`.
+Beachten Sie, dass `relativeDateTime()` das Ergebnis auf die als Argument angegebene Einheit abschneidet.
+Beispiel: `[Aufträge → Erstellt am] < relativeDateTime(-30, "Tag")` filtert nach Aufträgen, die vor mehr als 30 Tagen ab dem aktuellen Datum erstellt wurden.
+Verwandt: [datetimeAdd](#datetimeadd), [datetimeSubtract](#datetimesubtract).
 
 ### second
 
-Takes a datetime and returns the number of seconds in the minute (0-59) as an integer.
-
-Syntax: `second([datetime column])`
-
-Example: `second("2021-03-25T12:52:37")` would return the integer `37`.
+Nimmt eine Datetime und gibt die Anzahl der Sekunden in der Minute (0-59) als Ganzzahl zurück.
+Syntax: `Sekunde([Datumszeitspalte])`
+Beispiel: `Sekunde("2021-03-25T12:52:37")` würde die ganze Zahl `37` zurückgeben.
 
 ### timeSpan
 
-Gets a time interval of specified length.
-
-Syntax: `timeSpan(number, text)`
-
-`number`: Period of interval, where negative values are back in time. The `number` must be an integer. You cannot use a fractional value.
-
-`text`: Type of interval like `"day"`, `"month"`, `"year"`
-
-Example: `[Orders → Created At] + timeSpan(7, "day")` will return the date 7 days after the `Created At` date.
+Ruft ein Zeitintervall der angegebenen Länge ab.
+Syntax: `Zeitspanne(Zahl, Text)`
+Zahl": Zeitraum des Intervalls, wobei negative Werte in der Zeit zurückreichen. Die `Zahl` muss eine ganze Zahl sein. Sie können keine Bruchzahlen verwenden.
+Text": Typ des Intervalls wie "Tag", "Monat", "Jahr".
+Beispiel: `[Orders → Created At] + timeSpan(7, "day")` gibt das Datum 7 Tage nach dem Datum `Created At` zurück.
 
 ### [week](./expressions/week.md)
 
-Takes a datetime and returns the week as an integer.
-
-Syntax: `week(column, mode)`
-
-Example: `week("2021-03-25T12:52:37")` would return the week as an integer, `12`.
-
-- column: the name of the column of the date or datetime value.
-- mode: Optional.
-  - ISO: (default) Week 1 starts on the Monday before the first Thursday of January.
-  - US: Week 1 starts on Jan 1. All other weeks start on Sunday.
-  - Instance: Week 1 starts on Jan 1. All other weeks start on the day defined in your Metabase localization settings.
-
-Note that summarizing by week of year in the query builder uses a different mode of determining the first week, see [Week of year](./expressions/week.md) for more information.
+Nimmt eine Datetime und gibt die Woche als Ganzzahl zurück.
+Syntax: `Woche(Spalte, Modus)`
+Beispiel: `week("2021-03-25T12:52:37")` gibt die Woche als Ganzzahl zurück, `12`.
+- column: der Name der Spalte des Datums- oder Datetime-Wertes.
+- Modus: Optional.
+- ISO: (Standard) Woche 1 beginnt am Montag vor dem ersten Donnerstag im Januar.
+- US: Woche 1 beginnt am 1. Januar, alle anderen Wochen beginnen am Sonntag.
+- Instanz: Woche 1 beginnt am 1. Januar. Alle anderen Wochen beginnen an dem Tag, der in den Lokalisierungseinstellungen der Metabase festgelegt ist.
+Beachten Sie, dass die Zusammenfassung nach Woche des Jahres im Query Builder einen anderen Modus zur Bestimmung der ersten Woche verwendet, siehe [Woche des Jahres](./expressions/week.md) für weitere Informationen.
 
 ### weekday
 
-Takes a datetime and returns an integer (1-7) with the number of the day of the week.
-
-Syntax: `weekday(column)`
-
-- column: The datetime column.
-
-Example:
-
+Nimmt eine Datetime und gibt eine Ganzzahl (1-7) mit der Nummer des Wochentags zurück.
+Syntax: `Wochentag(Spalte)`
+- Spalte: Die datetime-Spalte.
+Beispiel:
 ```
 case(
-  weekday([Created At]) = 1, "Sunday",
-  weekday([Created At]) = 2, "Monday",
-  weekday([Created At]) = 3, "Tuesday",
-  weekday([Created At]) = 4, "Wednesday",
-  weekday([Created At]) = 5, "Thursday",
-  weekday([Created At]) = 6, "Friday",
-  weekday([Created At]) = 7, "Saturday")
+Wochentag([Erstellt am]) = 1, "Sonntag",
+wochentag([Erstellt am]) = 2, "Montag",
+wochentag([Erstellt am]) = 3, "Dienstag",
+wochentag([Erstellt am]) = 4, "Mittwoch",
+wochentag([Erstellt am]) = 5, "Donnerstag",
+wochentag([Erstellt am]) = 6, "Freitag",
+wochentag([Erstellt am]) = 7, "Samstag")
 ```
 
 ### year
 
-Takes a datetime and returns the year as an integer.
-
-Syntax: `year([datetime column])`
-
-Example: `year("2021-03-25T12:52:37")` would return the year 2021 as an integer, `2,021`.
+Nimmt eine Datetime und gibt das Jahr als Ganzzahl zurück.
+Syntax: `Jahr([Datums-Spalte])`
+Beispiel: `Jahr("2021-03-25T12:52:37")` gibt das Jahr 2021 als Ganzzahl zurück, `2,021`.
 
 ## Type-casting functions
 
