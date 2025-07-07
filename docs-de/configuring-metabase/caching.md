@@ -1,18 +1,11 @@
 ---
-Titel: Caching von Abfrageergebnissen
+Titel: Zwischenspeicherung von Abfrageergebnissen
 redirect_from:
-- /docs/latest/administration-guide/14-caching
-- /docs/latest/enterprise-guide/cache
+  - /docs/latest/administration-guide/14-caching
+  - /docs/latest/enterprise-guide/cache
 ---
 
-
 # Caching von Abfrageergebnissen
-
-
-Wenn sich die Ergebnisse Ihrer Fragen nicht häufig ändern, können Sie die Ergebnisse speichern, so dass die Metabase beim nächsten Aufruf der Frage die zwischengespeicherten Ergebnisse abrufen kann, anstatt die Datenbank erneut abzufragen.
-
-
-Wenn Ihre Daten beispielsweise nur einmal am Tag aktualisiert werden, macht es keinen Sinn, die Datenbank mehr als einmal am Tag abzufragen, da sich die Daten nicht geändert haben werden. Die Rückgabe von zwischengespeicherten Ergebnissen kann erheblich schneller sein, da die Datenbank die Ergebnisse nicht neu berechnen muss, um Ihre Frage zu laden.
 
 
 Sie können [ Cache-Invalidierungsrichtlinien](#cache-invalidation-policies) für [Fragen](#question-caching-policy), [Dashboards](#dashboard-caching-policy) und [Datenbanken](#database-caching-policy) festlegen.
@@ -66,7 +59,7 @@ Invalidieren und Löschen des Caches nach einer bestimmten Anzahl von Stunden. W
 Legen Sie fest, wann der Cache regelmäßig ungültig gemacht werden soll. Die Metabase speichert nur Ergebnisse, wenn eine Abfrage ausgeführt wird, und löscht die zwischengespeicherten Ergebnisse entsprechend dem hier festgelegten Zeitplan.
 
 
-Sie können festlegen, wann der Cache ungültig werden soll:
+Sie können festlegen, dass der Cache ungültig wird:
 
 
 - Stündlich
@@ -77,15 +70,86 @@ Sie können festlegen, wann der Cache ungültig werden soll:
 
 Wir unterstützen noch keine Mondzyklen.
 
-
-### Adaptive Caching-Politik
-
-
-Verwenden Sie die durchschnittliche Ausführungszeit einer Abfrage, um zu bestimmen, wie lange die Ergebnisse der Abfrage zwischengespeichert werden sollen.
+### Adaptive Caching-Richtlinie
 
 
-- **Mindestdauer der Abfrage**: Die Metabase wird diese Frage in den Cache stellen, wenn die durchschnittliche Ausführungszeit der Abfrage größer als diese Anzahl von Sekunden ist.
-- **Multiplikator**: Um zu bestimmen, wie lange jedes zwischengespeicherte Ergebnis gültig sein soll, nehmen wir die durchschnittliche Ausführungszeit dieser Abfrage und multiplizieren sie mit dem hier eingegebenen Wert. Das Ergebnis ist die Anzahl der Sekunden, für die der Cache gültig bleiben soll. Wenn eine Frage beispielsweise durchschnittlich 10 Sekunden braucht, um Ergebnisse zu liefern, und Sie einen Multiplikator von 100 festlegen, speichert die Metabase den Cache für 10 x 100 Sekunden: 1.000 Sekunden (~16 Minuten).
+Datenbank-Caching-Einstellungen in den Admin-Einstellungen auf der Registerkarte Leistung(./images/data-caching-settings.png)
 
 
-Die Metabase berechnet die durchschnittliche Ausführungszeit einer Abfrage immer dann neu, wenn sie die Abfrage gegen die Datenbank ausführt, um die zwischengespeicherten Ergebnisse zu aktualisieren. Wenn also die Metabase bei der ersten Ausführung der Abfrage gegen die Datenbank 5 Minuten für die Rückgabe der Ergebnisse benötigt, beträgt die durchschnittliche Ausführungszeit 5 Minuten. Wenn die nächste Abfrage an die Datenbank 7 Minuten dauert, aktualisiert die Metabase den Durchschnitt auf 6 Minuten (der Durchschnitt von 5 und 7 ist 6).
+Entspricht der Standard-Caching-Richtlinie, allerdings können Sie eine Caching-Richtlinie für bestimmte Datenbanken festlegen.
+
+
+Wenn Sie mit Metabase verbundene Datenbanken haben, für die die Richtlinie**Standard verwenden** eingestellt ist, aktualisiert Metabase die Anzeige entsprechend der eingestellten Standardrichtlinie. Wenn Sie z. B. als Standardrichtlinie "Adaptiv" eingestellt haben, zeigt Metabase für die Datenbanken, die auf "Standard verwenden" eingestellt sind, "Adaptiv" als aktuelle Richtlinie an.
+
+
+### Dashboard-Caching-Richtlinie
+
+
+{% include plans-blockquote.html feature="Dashboard caching" %}
+
+
+Um eine Caching-Richtlinie für ein Dashboard festzulegen, müssen Sie [curate access](../permissions/collections.md#curate-access) für die Sammlung des Dashboards haben.
+
+
+1. Gehen Sie zu Ihrem Dashboard.
+2. Klicken Sie auf das Symbol **Info**.
+3. Klicken Sie auf **Caching-Richtlinie**.
+4. Wählen Sie die [Caching-Invalidierungsrichtlinie](#cache-invalidation-policies).
+5. Optional: Aktivieren Sie [Cache automatisch aktualisieren](#refresh-cache-automatically).
+6. Speichern Sie Ihre Änderungen.
+
+
+### Richtlinie für die Zwischenspeicherung von Fragen
+
+
+{% include plans-blockquote.html feature="Question caching" %}
+
+
+Um eine Caching-Richtlinie für eine Frage festzulegen, müssen Sie [curate access](../permissions/collections.md#curate-access) für die Sammlung der Frage haben.
+
+
+1. Gehen Sie zu Ihrer Frage.
+2. Klicken Sie auf das Drei-Punkte-Menü **...** und wählen Sie **Einstellungen bearbeiten**.
+3. Wählen Sie unter **Caching** die [Caching-Invalidierungsrichtlinie](#cache-invalidation-policies).
+5. Optional: Wenn Sie eine Richtlinie für Dauer oder Zeitplan auswählen, haben Sie die Möglichkeit, denCache automatisch zu aktualisieren(#refresh-cache-automatically).
+6. Speichern Sie Ihre Änderungen.
+
+
+## Wie Dashboard-, Fragen-, Datenbank- und Standard-Caching-Richtlinien zusammenwirken
+
+
+Wenn mehrere Caching-Richtlinien dieselbe Frage betreffen, verwendet Metabase die erste verfügbare Richtlinie, und zwar in dieser Reihenfolge:
+
+
+1. Frage
+2. Armaturenbrett
+3. Datenbank
+4. Standard (standortweit)
+
+
+Eine Fragerichtlinie hat Vorrang vor einer Dashboard-Richtlinie, die wiederum Vorrang vor einer Datenbankrichtlinie hat, die wiederum Vorrang vor einer Standardrichtlinie hat.
+
+
+## Löschen des Caches
+
+
+Um den Cache zu löschen und die Ergebnisse zu aktualisieren:
+
+
+- **Fragen und Dashboards**: Besuchen Sie das Element und klicken Sie auf **Info > Caching policy > Clear cache** (die Schaltfläche "Clear cache" befindet sich unten in der Seitenleiste).
+-**Datenbank**: Klicken Sie auf das **Zahnradsymbol** und klicken Sie sich durch **Admin-Einstellungen** > **Leistung** > **Datenbank-Caching**. Wählen Sie Ihre Datenbank aus und klicken Sie auf die Schaltfläche**Cache löschen** (unten auf der Seite).
+
+
+## Cache-Speicherort
+
+
+Wenn Sie Metabase selbst hosten, werden die im Cache gespeicherten Fragen in Ihrer [Anwendungsdatenbank](../installation-and-operation/configuring-application-database.md) gespeichert.
+
+
+Wenn Sie Metabase Cloud verwenden, werden die zwischengespeicherten Fragenergebnisse auf den Servern von Metabase in den USA gespeichert (da unser Cloud-Service Ihre Anwendungsdatenbank für Sie verwaltet).
+
+
+## Weitere Lektüre
+
+
+- [Modellpersistenz](../data-modeling/model-persistence.md)
