@@ -1,60 +1,76 @@
 ---
-title: Encrypting your database connection
+Titel: Verschlüsselung der Datenbankverbindung
 redirect_from:
-  - /docs/latest/operations-guide/encrypting-database-details-at-rest
+- /docs/latest/operations-guide/encrypting-database-details-at-rest
 ---
 
-# Encrypting your database connection
 
-Metabase stores connection information for the various databases you add in the [Metabase application database](https://www.metabase.com/glossary/application-database). To prevent bad actors from being able to access these details if they were to gain access to the application DB, Metabase can automatically encrypt them with AES256 + SHA512 when they are saved, and decrypt them on-the-fly whenever they are needed.
+# Verschlüsseln Ihrer Datenbankverbindung
 
-## Creating an encryption key
 
-1. Generate a secret key that is at least 16 characters (longer is even better!). We recommend using a secure random key generator, such as `openssl`.
-   > You cannot decrypt connection details without this key. If you lose (or change) the key, you'll have to reset all of the connection details that have been encrypted with that key in the Admin Panel.
-2. Set your secret key as the environment variable `MB_ENCRYPTION_SECRET_KEY`. On self-hosted [Pro and Enterprise plans](https://www.metabase.com/pricing/) plans, you can set also set this using the [config file](../configuring-metabase/config-file.md).
+Metabase speichert Verbindungsinformationen für die verschiedenen Datenbanken, die Sie in der [Metabase-Anwendungsdatenbank](https://www.metabase.com/glossary/application-database) hinzufügen. Um zu verhindern, dass böswillige Akteure auf diese Details zugreifen können, wenn sie sich Zugang zur Anwendungs-DB verschaffen, kann Metabase sie automatisch mit AES256 + SHA512 verschlüsseln, wenn sie gespeichert werden, und sie bei Bedarf sofort entschlüsseln.
 
-### Example commands for creating and adding a key
 
-1. You can use `openssl` to generate a cryptographically-secure, randomly-generated 32-character key.
-   ```
-   openssl rand -base64 32
-   ```
-2. Copy the key to your clipboard. It should look something like this:
-   ```
-   IYqrSi5QDthvFWe4/WdAxhnra5DZC3RKx3ZSrOJDKsM=
-   ```
-3. Set the key as an environment variable and start Metabase as usual.
-   ```
-   MB_ENCRYPTION_SECRET_KEY="IYqrSi5QDthvFWe4/WdAxhnra5DZC3RKx3ZSrOJDKsM=" java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar
-   ```
+## Erstellen eines Verschlüsselungsschlüssels
 
-Once you set the `MB_ENCRYPTION_SECRET_KEY` value, Metabase will automatically encrypt and store the connection details for each new database that you add. To encrypt existing connections, see the next section.
 
-## Encrypting an existing connection
+1. Generieren Sie einen geheimen Schlüssel, der mindestens 16 Zeichen lang ist (länger ist noch besser!). Wir empfehlen die Verwendung eines sicheren Zufallsschlüsselgenerators, z. B. `openssl`.
+> Ohne diesen Schlüssel können Sie die Verbindungsdaten nicht entschlüsseln. Wenn Sie den Schlüssel verlieren (oder ändern), müssen Sie alle Verbindungsdetails, die mit diesem Schlüssel verschlüsselt wurden, in der Verwaltungskonsole zurücksetzen.
+2. Setzen Sie Ihren geheimen Schlüssel als Umgebungsvariable `MB_ENCRYPTION_SECRET_KEY`. Bei selbst gehosteten [Pro- und Enterprise-Plänen](https://www.metabase.com/pricing/) können Sie dies auch über die [Konfigurationsdatei](../configuring-metabase/config-file.md) einstellen.
 
-If you added databases before setting the `MB_ENCRYPTION_SECRET_KEY` value, you can encrypt the connection details by going to each one of those databases in **Admin settings** > **Databases** and clicking on the **Save** button. Existing databases with unencrypted details will continue to work normally.
 
-## Rotating an encryption key
+### Beispielbefehle zum Erstellen und Hinzufügen eines Schlüssels
 
-1. We recommend that you [backup](../installation-and-operation/backing-up-metabase-application-data.md) your data before doing a key rotation.
-2. Stop running your Metabase app.
-3. Run the CLI command `rotate-encryption-key`.
-   - Set the current encryption key as `MB_ENCRYPTION_SECRET_KEY`.
-   - Set the new encryption key as a parameter.
 
-### Example command for rotating a key
-
+1. Sie können ` openssl` benutzen, um einen kryptographisch sicheren, zufällig generierten 32-Zeichen-Schlüssel zu erzeugen.
 ```
-MB_ENCRYPTION_SECRET_KEY=your-current-key java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar rotate-encryption-key new-key
+openssl rand -base64 32
+```
+2. Kopieren Sie den Schlüssel in Ihre Zwischenablage. Er sollte in etwa so aussehen:
+```
+IYqrSi5QDthvFWe4/WdAxhnra5DZC3RKx3ZSrOJDKsM=
+```
+3. Setzen Sie den Schlüssel als Umgebungsvariable und starten Sie Metabase wie gewohnt.
+```
+MB_ENCRYPTION_SECRET_KEY="IYqrSi5QDthvFWe4/WdAxhnra5DZC3RKx3ZSrOJDKsM=" java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar
 ```
 
-## Disabling an encryption key
 
-To disable an encryption key, follow the steps to [rotate an encryption key](#rotating-an-encryption-key), but use an empty string (`""`) as the new key.
+Sobald Sie den Wert "MB_ENCRYPTION_SECRET_KEY" festgelegt haben, verschlüsselt und speichert Metabase automatisch die Verbindungsdetails für jede neue Datenbank, die Sie hinzufügen. Um bestehende Verbindungen zu verschlüsseln, siehe den nächsten Abschnitt.
 
-### Example command for disabling a key
+
+## Verschlüsseln einer bestehenden Verbindung
+
+
+Wenn Sie Datenbanken hinzugefügt haben, bevor Sie den Wert "MB_ENCRYPTION_SECRET_KEY" festgelegt haben, können Sie die Verbindungsdetails verschlüsseln, indem Sie zu jeder dieser Datenbanken in **Verwaltungseinstellungen** > **Datenbanken** gehen und auf die Schaltfläche **Speichern** klicken. Bestehende Datenbanken mit unverschlüsselten Details funktionieren weiterhin normal.
+
+
+## Drehen eines Verschlüsselungsschlüssels
+
+
+1. Wir empfehlen Ihnen, vor einer Schlüsselrotation ein [Backup](../installation-and-operation/backing-up-metabase-application-data.md) Ihrer Daten durchzuführen.
+2. Beenden Sie die Ausführung Ihrer Metabase-Anwendung.
+3. Führen Sie den CLI-Befehl "rotate-encryption-key" aus.
+- Legen Sie den aktuellen Verschlüsselungsschlüssel als ` MB_ENCRYPTION_SECRET_KEY` fest.
+- Setzen Sie den neuen Verschlüsselungscode als Parameter.
+
+
+### Beispielbefehl zum Drehen eines Schlüssels
+
+
+```
+MB_ENCRYPTION_SECRET_KEY=Ihr-aktueller-Schlüssel java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar rotate-encryption-key new-key
+```
+
+
+## Deaktivieren eines Verschlüsselungscodes
+
+
+Um einen Verschlüsselungscode zu deaktivieren, befolgen Sie die Schritte zur [Rotation eines Verschlüsselungscodes](#rotating-an-encryption-key), verwenden Sie jedoch eine leere Zeichenfolge(`""`) als neuen Schlüssel.
+
+
+### Beispielbefehl zum Deaktivieren eines Schlüssels
+
 
 ```
 MB_ENCRYPTION_SECRET_KEY="your-current-key" java --add-opens java.base/java.nio=ALL-UNNAMED -jar metabase.jar rotate-encryption-key ""
-```
