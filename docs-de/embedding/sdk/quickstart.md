@@ -1,82 +1,69 @@
 ---
-title: Embedded analytics SDK - quickstart
-description: "This guide walks you through how to set up the Embedded analytics SDK in your application with your Metabase."
+Titel: SDK für eingebettete Analytik - Schnellstart
+Beschreibung: "Dieser Leitfaden zeigt Ihnen, wie Sie das Embedded Analytics SDK in Ihrer Anwendung mit Ihrer Metabase einrichten."
 ---
 
-# Embedded analytics SDK - quickstart
 
-This guide walks you through how to set up the Embedded analytics SDK in your application with your Metabase using API keys.
-
-This setup:
-
-- Is only for evaluation (so you can see how the SDK works).
-- Only works on localhost when developing your app (though your Metabase doesn't need to be running locally).
-- Works with both the Enterprise and Open Source editions of Metabase, both self-hosted and on Metabase Cloud.
-
-If you want to use the SDK in production, however, you'll also need to [set up JWT SSO authentication](./authentication.md), which requires a [Pro](https://store.metabase.com/checkout/embedding) or [Enterprise plan](https://www.metabase.com/pricing/). To enable JWT SSO when you're self-hosting Metabase, you'll need to run the Enterprise Edition Docker image or JAR, and [activate your license](../../installation-and-operation/activating-the-enterprise-edition.md).
-
-## Prerequisites
-
-- [Metabase](https://github.com/metabase/metabase/releases) version 52 or higher (OSS or EE). See [Installing Metabase](../../installation-and-operation/installing-metabase.md).
-- An application using React 17 or 18. (You could also use the [sample React app](https://github.com/metabase/metabase-nodejs-react-sdk-embedding-sample/tree/{{page.version | remove: "v0."}}-stable))
-
-If you _don't_ have a Metabase up and running, check out the [Quickstart CLI](./quickstart-cli.md).
-
-If you _don't_ want to use your own application code, check out our [quickstart with a sample app](./quickstart-with-sample-app.md).
-
-## Overview
-
-To embed a dashboard in your app using the SDK, you'll need to:
-
-1. [Enable the SDK in Metabase](#1-enable-the-sdk-in-metabase)
-2. [Create an API key in Metabase](#2-create-an-api-key-in-metabase)
-3. [Install the SDK in your app](#3-install-the-sdk-in-your-app)
-4. [Embed SDK components in your app](#4-embed-sdk-components-in-your-app)
-5. [View your embedded Metabase dashboard](#5-view-your-embedded-metabase-dashboard)
-
-## 1. Enable the SDK in Metabase
-
-In Metabase, click on the gear icon in the upper right and navigate to **Admin Settings > Settings > Embedding** and enable the Embedded analytics SDK.
-
-## 2. Create an API key in Metabase
-
-Still in the Admin's Settings tab, navigate to the **Authentication** section in the sidebar and click on the **API keys** tab. [Create a new API key](../../people-and-groups/api-keys.md).
-
-- Key name: "Embedded analytics SDK" (just to make the key easy to identify).
-- Group: select “Admin” (since this is only for local testing).
-
-## 3. Install the SDK in your app
-
-When installing the NPM package, it's critical to use the npm dist-tag that corresponds to the major version of your Metabase. For example, if your Metabase is version 1.53.x, you'd run `53-stable`. See [SDK versioning](./version.md).
-
-Via NPM:
-
-```
-npm install @metabase/embedding-sdk-react@53-stable
-```
-
-Via Yarn:
-
-```
-yarn add @metabase/embedding-sdk-react@53-stable
-```
-
-## 4. Embed SDK components in your app
-
-In your app, import the SDK components, like so:
+# Embedded analytics SDK - Schnellstart
 
 
-```jsx
-{% include_file "{{ dirname }}/snippets/quickstart/example.tsx" %}
-```
+Diese Anleitung zeigt Ihnen, wie Sie das Embedded Analytics SDK in Ihrer Anwendung mit Ihrer Metabase unter Verwendung von API-Schlüsseln einrichten.
 
-## 5. View your embedded Metabase dashboard
 
-Run your app and visit the page with the embedded dashboard.
+Diese Einrichtung:
 
-![Embedded example dashboard](../images/embedded-example-dashboard.png)
 
-## Next steps
+- Dient nur zur Evaluierung (damit Sie sehen können, wie das SDK funktioniert).
+- Funktioniert bei der Entwicklung Ihrer Anwendung nur auf localhost (obwohl Ihre Metabase nicht lokal ausgeführt werden muss).
+- Funktioniert sowohl mit der Enterprise- als auch mit der Open Source-Edition von Metabase, sowohl selbst gehostet als auch in der Metabase Cloud.
 
-- Explore [theming to change the look and feel](./appearance.md).
-- Continue by [setting up JWT SSO in Metabase and your app](./authentication.md) in order to sign people in, manage permissions, and deploy your app in production.
+
+Wenn Sie das SDK in der Produktion verwenden möchten, müssen Sie jedoch auch die [JWT SSO-Authentifizierung einrichten](./authentication.md), wofür ein [Pro](https://store.metabase.com/checkout/embedding) oder [Enterprise-Plan](https://www.metabase.com/pricing/) erforderlich ist. Um JWT SSO zu aktivieren, wenn Sie Metabase selbst hosten, müssen Sie das Enterprise Edition Docker-Image oder JAR ausführen und [Ihre Lizenz aktivieren](../../installation-and-operation/activating-the-enterprise-edition.md).
+
+
+## Voraussetzungen
+
+
+- [Metabase](https://github.com/metabase/metabase/releases) Version 52 oder höher (OSS oder EE). Siehe [Installieren von Metabase](../../installation-and-operation/installing-metabase.md).
+- Eine Anwendung, die React 17 oder 18 verwendet. (Sie können auch die [React-Beispielanwendung](https://github.com/metabase/metabase-nodejs-react-sdk-embedding-sample/tree/{{page.version | remove: "v0."}}-stable))
+
+
+Wenn Sie _noch keine_ Metabase haben, sehen Sie sich die [Quickstart CLI](./quickstart-cli.md) an.
+
+
+Wenn Sie_keinen_ eigenen Anwendungscode verwenden wollen, schauen Sie sich unseren [quickstart with a sample app](./quickstart-with-sample-app.md) an.
+
+
+## Überblick
+
+
+Um ein Dashboard mit dem SDK in Ihre Anwendung einzubinden, müssen Sie Folgendes tun
+
+
+1. [Aktivieren Sie das SDK in der Metabase](#1-enable-the-sdk-in-metabase)
+2. [Einen API-Schlüssel in der Metabase erstellen](#2-create-an-api-key-in-metabase)
+3. [Installieren Sie das SDK in Ihrer Anwendung](#3-install-the-sdk-in-your-app)
+4. [SDK-Komponenten in Ihre Anwendung einbetten](#4-embed-sdk-components-in-your-app)
+5. [Betrachten Sie Ihr eingebettetes Metabase Dashboard](#5-view-your-embedded-metabase-dashboard)
+
+
+## 1. Aktivieren Sie das SDK in Metabase
+
+
+Klicken Sie in Metabase auf das Zahnradsymbol oben rechts und navigieren Sie zu **Admin Settings > Settings > Embedding** und aktivieren Sie das Embedded analytics SDK.
+
+
+## 2. Erstellen Sie einen API-Schlüssel in der Metabase
+
+
+Navigieren Sie auf der Registerkarte Einstellungen des Administrators zum Abschnitt**Authentifizierung** in der Seitenleiste und klicken Sie auf die Registerkarte**API-Schlüssel**. [Erstellen Sie einen neuen API-Schlüssel](../../people-and-groups/api-keys.md).
+
+
+- Schlüsselname: "Embedded analytics SDK" (damit der Schlüssel leicht zu identifizieren ist).
+- Gruppe: Wählen Sie "Admin" (da dies nur für lokale Tests gedacht ist).
+
+
+## 3. Installieren Sie das SDK in Ihrer Anwendung
+
+
+Bei der Installation des NPM-Pakets ist es wichtig, das npm dist-Tag zu verwenden, das der Hauptversion Ihrer Metabase entspricht. Wenn Ihre Metabase beispielsweise Version 1.53.x ist, müssen Sie ` 53-stable` verwenden. Siehe [SDK-Versionierung](./version.md).
