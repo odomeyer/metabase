@@ -1,85 +1,94 @@
 ---
-title: SparkSQL
+Titel: SparkSQL
 ---
 
-# SparkSQL
 
-To add a database connection, click on the **gear** icon in the top right, and navigate to **Admin settings** > **Databases** > **Add a database**.
+* SparkSQL
 
-## Settings
 
-You can edit these settings at any time. Just remember to save your changes.
+Um eine Datenbankverbindung hinzuzufügen, klicken Sie auf das **Zahnradsymbol** oben rechts, und navigieren Sie zu **Admin-Einstellungen** > **Datenbanken** > **Datenbank hinzufügen**.
 
-### Display name
 
-The display name for the database in the Metabase interface.
+## Einstellungen
+
+
+Sie können diese Einstellungen jederzeit ändern. Denken Sie nur daran, Ihre Änderungen zu speichern.
+
+
+### Anzeigename
+
+
+Der Anzeigename für die Datenbank in der Metabase-Schnittstelle.
+
 
 ### Host
 
-Your database's IP address, or its domain name (e.g., esc.mydatabase.com).
 
-### Port
+Die IP-Adresse Ihrer Datenbank oder ihr Domänenname (z. B. esc.mydatabase.com).
 
-The database port. E.g., 10000
 
-### Username
+### Anschluss
 
-The database username for the account that you want to use to connect to your database. You can set up multiple connections to the same database using different user accounts to connect to the same database, each with different sets of [privileges](../users-roles-privileges.md).
 
-### Password
+Der Datenbank-Port. Z.B., 10000
 
-The password for the username that you use to connect to the database.
 
-### Use an SSH tunnel
+### Benutzername
 
-See our [guide to SSH tunneling](../ssh-tunnel.md).
 
-### Additional JDBC connection string options
+Der Datenbank-Benutzername für das Konto, das Sie für die Verbindung zu Ihrer Datenbank verwenden möchten. Sie können mehrere Verbindungen zu derselben Datenbank einrichten, indem Sie verschiedene Benutzerkonten mit unterschiedlichen [Privilegien] verwenden(../users-roles-privileges.md).
 
-You can append options to the connection string that Metabase uses to connect to your database.
 
-### Re-run queries for simple explorations
+### Passwort
 
-Turn this option **OFF** if people want to click **Run** (the play button) before applying any [Summarize](../../questions/query-builder/summarizing-and-grouping.md) or filter selections.
 
-By default, Metabase will execute a query as soon as you choose an grouping option from the **Summarize** menu or a filter condition from the [drill-through menu](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through). If your database is slow, you may want to disable re-running to avoid loading data on each click.
+Das Passwort für den Benutzernamen, den Sie für die Verbindung zur Datenbank verwenden.
 
-### Choose when Metabase syncs and scans
 
-Turn this option **ON** to manage the queries that Metabase uses to stay up to date with your database. For more information, see [Syncing and scanning databases](../sync-scan.md).
+### Verwenden Sie einen SSH-Tunnel
 
-#### Database syncing
 
-If you've selected **Choose when syncs and scans happen** > **ON**, you'll be able to set:
+Siehe unsere [Anleitung zum SSH-Tunneling](../ssh-tunnel.md).
 
-- The frequency of the [sync](../sync-scan.md#how-database-syncs-work): hourly (default) or daily.
-- The time to run the sync, in the timezone of the server where your Metabase app is running.
 
-#### Scanning for filter values
+### Zusätzliche JDBC-Verbindungsstring-Optionen
 
-Metabase can scan the values present in each field in this database to enable checkbox filters in dashboards and questions. This can be a somewhat resource-intensive process, particularly if you have a very large database.
 
-If you've selected **Choose when syncs and scans happen** > **ON**, you'll see the following options under **Scanning for filter values**:
+Sie können Optionen an die Verbindungszeichenfolge anhängen, die Metabase für die Verbindung mit Ihrer Datenbank verwendet.
 
-- **Regularly, on a schedule** allows you to run [scan queries](../sync-scan.md#how-database-scans-work) at a frequency that matches the rate of change to your database. The time is set in the timezone of the server where your Metabase app is running. This is the best option for a small database, or tables with distinct values that get updated often.
-- **Only when adding a new filter widget** is a great option if you want scan queries to run on demand. Turning this option **ON** means that Metabase will only scan and cache the values of the field(s) that are used when a new filter is added to a dashboard or SQL question.
-- **Never, I'll do this manually if I need to** is an option for databases that are either prohibitively large, or which never really have new values added. Use the [Re-scan field values now](../sync-scan.md#manually-scanning-column-values) button to run a manual scan and bring your filter values up to date.
 
-### Periodically refingerprint tables
+### Abfragen für einfache Untersuchungen wiederholen
 
-> Periodic refingerprinting will increase the load on your database.
 
-Turn this option **ON** to scan a sample of values every time Metabase runs a [sync](../sync-scan.md#how-database-syncs-work).
+Schalten Sie diese Option**AUS**, wenn Sie auf**Ausführen** (die Abspielschaltfläche) klicken möchten, bevor Sie eine [Zusammenfassen](../../questions/query-builder/summarizing-and-grouping.md) oder eine Filterauswahl treffen.
 
-A fingerprinting query examines the first 10,000 rows from each column and uses that data to guesstimate how many unique values each column has, what the minimum and maximum values are for numeric and timestamp columns, and so on. If you leave this option **OFF**, Metabase will only fingerprint your columns once during setup.
 
-## Danger zone
+Standardmäßig führt Metabase eine Abfrage aus, sobald Sie eine Gruppierungsoption aus dem Menü**Zusammenfassen** oder eine Filterbedingung aus dem [Drill-through-Menü](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through) auswählen. Wenn Ihre Datenbank langsam ist, sollten Sie die erneute Ausführung deaktivieren, um das Laden von Daten bei jedem Klick zu vermeiden.
 
-See [Danger zone](../danger-zone.md).
 
-## Further reading
+### Auswählen, wann Metabase synchronisiert und scannt
 
-- [Managing databases](../../databases/connecting.md)
-- [Metadata editing](../../data-modeling/metadata-editing.md)
-- [Models](../../data-modeling/models.md)
-- [Setting data access permissions](../../permissions/data.md)
+
+Aktivieren Sie diese Option**EIN**, um die Abfragen zu verwalten, die Metabase verwendet, um mit Ihrer Datenbank auf dem neuesten Stand zu bleiben. Weitere Informationen finden Sie unter [Synchronisieren und Scannen von Datenbanken](../sync-scan.md).
+
+
+#### Datenbank-Synchronisierung
+
+
+Wenn Sie **Auswählen, wann Synchronisierungen und Scans stattfinden** > **ON** gewählt haben, können Sie dies einstellen:
+
+
+- Die Häufigkeit des [sync](../sync-scan.md#how-database-syncs-work): stündlich (Standard) oder täglich.
+- Die Uhrzeit für die Synchronisierung, in der Zeitzone des Servers, auf dem Ihre Metabase-Anwendung läuft.
+
+
+#### Scannen nach Filterwerten
+
+
+Metabase kann die Werte in den einzelnen Feldern dieser Datenbank durchsuchen, um Checkbox-Filter in Dashboards und Fragen zu aktivieren. Dies kann ein etwas ressourcenintensiver Prozess sein, insbesondere wenn Sie eine sehr große Datenbank haben.
+
+
+Wenn Sie **Auswählen, wann Synchronisierungen und Scans stattfinden** > **ON** gewählt haben, sehen Sie unter **Scannen nach Filterwerten** die folgenden Optionen:
+
+
+- Mit**Regelmäßig, nach Zeitplan** können Sie [Scan-Abfragen](../sync-scan.md#how-database-scans-work) in einer Häufigkeit ausführen, die der Änderungsrate Ihrer Datenbank entspricht. Die Zeit wird in der Zeitzone des Servers eingestellt, auf dem Ihre Metabase-Anwendung läuft. Dies ist die beste Option für eine kleine Datenbank oder Tabellen mit eindeutigen Werten, die häufig aktualisiert werden.
