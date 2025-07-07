@@ -1,66 +1,70 @@
 ---
-title: Embedding introduction
+Titel: Einführung in die Einbettung
 redirect_from:
-  - /docs/latest/administration-guide/13-embedding
+- /docs/latest/administration-guide/13-embedding
 ---
 
-# Embedding introduction
 
-You can embed Metabase tables, charts, and dashboards—even Metabase's query builder—in your website or application.
+# Einführung in die Einbettung
 
-Here are the different ways you can embed Metabase.
 
-{% include shared/in-page-promo-embedding-workshop.html %}
+Sie können Metabase-Tabellen, -Diagramme und -Dashboards - sogar den Query Builder der Metabase - in Ihre Website oder Anwendung einbetten.
 
-## Embedded analytics SDK with React
 
-With the [Embedded analytics SDK](./sdk/introduction.md), you can embed individual Metabase components with React (like standalone charts, dashboards, the query builder, and more). You can manage access and interactivity per component, and you have advanced customization for seamless styling.
+Hier sind die verschiedenen Möglichkeiten, wie Sie Metabase einbetten können.
 
-**When to use the Embedded analytics SDK**: you want the most control over how you embed Metabase in your React app.
 
-## Interactive embedding
+{% include shared/in-page-promo-einbettung-workshop.html %}
 
-Interactive embedding is the only kind of embedding that [integrates with SSO and data permissions](./interactive-embedding.md) to enable true self-service access to the underlying data.
 
-**When to use interactive embedding**: you want to [offer multi-tenant, self-service analytics](https://www.metabase.com/blog/why-full-app-embedding). With interactive embedding, people can create their own questions, dashboards, models, and more, all in their own data sandbox.
+## Eingebettetes Analytik-SDK mit React
 
-## Static embedding
 
-Also known as signed embedding, [static embedding](./static-embedding.md) is a secure way to embed charts and dashboards.
+Mit dem [Embedded analytics SDK](./sdk/introduction.md) können Sie einzelne Metabase-Komponenten mit React einbetten (z. B. eigenständige Diagramme, Dashboards, den Query Builder und mehr). Sie können den Zugriff und die Interaktivität pro Komponente verwalten und haben erweiterte Anpassungsmöglichkeiten für ein nahtloses Styling.
 
-**When to use static embedding**: you don't want to offer ad-hoc querying or chart drill-through. To filter data relevant to the viewer, you can use static embeds with [locked parameters](./static-embedding-parameters.md#locked-parameters-limit-the-values-available-to-other-editable-parameters).
 
-## Public links and embeds
+**Wann Sie das SDK für eingebettete Analysen verwenden sollten**: Sie möchten die größtmögliche Kontrolle darüber haben, wie Sie Metabase in Ihre React-App einbetten.
 
-If you'd like to share your data with the good people of the internet, admins can create a [public link](./public-links.md) or embed a question or dashboard directly in your website.
 
-**When to use public links and embeds**: public links and embeds are good for one-off charts and dashboards. Admins can use them when you just need to show someone a chart or dashboard without giving people access to your Metabase. And you don't care who sees the data; you want to make those stats available to everyone.
+## Interaktive Einbettung
 
-## Comparison of embedding types
 
-| Action                                                                                                                          | [Embedded analytics SDK](./sdk/introduction.md) | [Interactive](./interactive-embedding.md) | [Static](./static-embedding.md) | [Public](../embedding/public-links.md) |
+Die interaktive Einbettung ist die einzige Art der Einbettung, die [mit SSO und Datenberechtigungen](./interactive-embedding.md)integriert ist, um einen echten Selbstbedienungszugriff auf die zugrunde liegenden Daten zu ermöglichen.
+
+
+**Wann sollte man interaktive Einbettung verwenden**: Sie möchten [mandantenfähige, selbstverwaltete Analysen anbieten](https://www.metabase.com/blog/why-full-app-embedding). Mit der interaktiven Einbettung können Benutzer ihre eigenen Fragen, Dashboards, Modelle und mehr in ihrer eigenen Daten-Sandbox erstellen.
+
+
+## Statische Einbettung
+
+
+Die [statische Einbettung](./static-embedding.md), auch bekannt als signierte Einbettung, ist eine sichere Methode zur Einbettung von Diagrammen und Dashboards.
+
+
+**Wann sollten Sie statische Einbettungen verwenden**: Sie möchten keine Ad-hoc-Abfragen oder Diagramm-Drill-Throughs anbieten. Um für den Betrachter relevante Daten zu filtern, können Sie statische Einbettungen mit [gesperrten Parametern](./static-embedding-parameters.md#locked-parameters-limit-the-values-available-to-other-editable-parameters) verwenden.
+
+
+## Öffentliche Links und Einbettungen
+
+
+Wenn Sie Ihre Daten mit den guten Menschen im Internet teilen möchten, können Administratoren einen [öffentlichen Link](./public-links.md) erstellen oder eine Frage oder ein Dashboard direkt in Ihre Website einbetten.
+
+
+** ÖffentlicheLinks und Einbettungen**: Öffentliche Links und Einbettungen sind gut für einmalige Diagramme und Dashboards. Admins können sie verwenden, wenn Sie jemandem nur ein Diagramm oder Dashboard zeigen möchten, ohne anderen Personen Zugang zu Ihrer Metabase zu gewähren. Und es ist Ihnen egal, wer die Daten sieht; Sie wollen diese Statistiken für alle zugänglich machen.
+
+
+## Vergleich der Einbettungstypen
+
+
+| Action | [Embedded analytics SDK](./sdk/introduction.md) | [Interactive](./interactive-embedding.md) | [Static](./static-embedding.md) | [Public](../embedding/public-links.md) |
 | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- | ----------------------------------------- | ------------------------------- | -------------------------------------- |
-| Display charts and dashboards                                                                                                   | ✅                                              | ✅                                        | ✅                              | ✅                                     |
-| Display interactive [filter widgets](https://www.metabase.com/glossary/filter-widget)                                           | ✅                                              | ✅                                        | ✅                              | ✅                                     |
-| Export results\*                                                                                                                | ✅                                              | ✅                                        | ✅                              | ✅                                     |
-| Restrict data with [locked filters](./static-embedding-parameters.md#restricting-data-in-a-static-embed-with-locked-parameters) | ❌                                              | ❌                                        | ✅                              | ❌                                     |
-| Restrict data with [sandboxes](../permissions/data-sandboxes.md)                                                                | ✅                                              | ✅                                        | ❌                              | ❌                                     |
-| Use the [drill-through menu](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through)    | ✅                                              | ✅                                        | ❌                              | ❌                                     |
-| Self-serve via [query builder](https://www.metabase.com/glossary/query_builder)                                                 | ✅                                              | ✅                                        | ❌                              | ❌                                     |
-| View usage of embeds with [usage analytics](../usage-and-performance-tools/usage-analytics.md)                                  | ✅                                              | ✅                                        | ❌                              | ❌                                     |
-| [Actions on dashboards](../dashboards/actions.md)                                                                               | ✅                                              | ✅                                        | ❌                              | ❌                                     |
-| Embed individual Metabase components                                                                                            | ✅                                              | ❌                                        | ❌                              | ❌                                     |
-| Manage access and interactivity per component                                                                                   | ✅                                              | ❌                                        | ❌                              | ❌                                     |
-
-\* Each embedding type allows data downloads by default, but only [Pro and Enterprise](https://www.metabase.com/pricing/) plans can disable data downloads.
-
-## Switching from static to interactive embedding
-
-[Interactive embedding](./interactive-embedding.md) requires authentication via single sign-on (SSO), so you'll need to set that up both in your Metabase and in your application's server. Check out our [Interactive embedding quick start](../embedding/interactive-embedding-quick-start-guide.md).
-
-## Further reading
-
-- [Strategies for delivering customer-facing analytics](https://www.metabase.com/learn/metabase-basics/embedding/overview).
-- [Publishing data visualizations to the web](https://www.metabase.com/learn/metabase-basics/embedding/charts-and-dashboards).
-- [Multi-tenant self-service analytics](https://www.metabase.com/learn/metabase-basics/embedding/multi-tenant-self-service-analytics).
-- [Customizing Metabase's appearance](../configuring-metabase/appearance.md).
+| Diagramme und Dashboards anzeigen | ✅ | ✅ | ✅ | ✅ |
+| Interaktive [Filterwidgets] anzeigen(https://www.metabase.com/glossary/filter-widget) | ✅ | ✅ | ✅ | ✅ |
+| Export results\* | ✅ | ✅ | ✅ | ✅ |
+| Daten mit [gesperrten Filtern] einschränken(./static-embedding-parameters.md#restricting-data-in-a-static-embed-with-locked-parameters) | ❌ | ❌ | ✅ | ❌ |
+| Daten mit [sandboxes] einschränken(../permissions/data-sandboxes.md) | ✅ | ✅ | ❌ | ❌ |
+| Verwenden Sie das [Drill-Through-Menü](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through) | ✅ | ✅ | ❌ | ❌ |
+| Selbstbedienung über [query builder](https://www.metabase.com/glossary/query_builder) | ✅ | ✅ | ❌ | ❌ |
+| Anzeigen der Nutzung von Einbettungen mit [usage analytics](../usage-and-performance-tools/usage-analytics.md) | ✅ | ✅ | ❌ | ❌ |
+| [Aktionen auf Dashboards](../dashboards/actions.md) | ✅ | ✅ | ❌ | ❌ |
+| Einzelne Metabase-Komponenten einbetten | ✅ | ❌ | ❌ | ❌ |
