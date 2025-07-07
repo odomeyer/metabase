@@ -1,46 +1,59 @@
 ---
-title: Usage analytics
+Titel: Verwendungsanalytik
 ---
 
-# Usage analytics
+# Nutzungsanalyse
 
-{% include plans-blockquote.html feature="Usage analytics" %}
 
-The **Usage analytics** collection is a special collection that contains view-only questions, dashboards, and models that help you understand how people are using your Metabase.
+{% include plans-blockquote.html feature="Nutzungsanalyse" %}
+
+
+Die Sammlung**Nutzungsanalyse** ist eine spezielle Sammlung, die Fragen, Dashboards und Modelle enthält, die nur zur Ansicht bestimmt sind und die Ihnen helfen zu verstehen, wie die Benutzer Ihre Metabase nutzen.
 
 ![Usage analytics collection](./images/metabase-analytics.png)
 
-You can find the **Usage analytics** collection under **collections** in the left navigation sidebar. You can also create custom reports.
+Sie finden die Sammlung **Nutzungsanalyse** unter **Sammlungen** in der linken Navigationsleiste. Sie können auch benutzerdefinierte Berichte erstellen.
 
-These resources are useful for:
 
-- **Understanding Usage**: Understand how people use your Metabase (e.g., new questions, most active people and groups, and so on).
-- **Auditing activity**: Know who viewed or did what and when, including tracking dashboard and question views, queries, downloads, and other activity like changing settings or inviting people to your Metabase.
-- **Improving operations**: Know the slowest dashboards and questions, how your database's are performing, who's consuming the most resources, and so on.
+Diese Ressourcen sind nützlich für:
 
-> Metabase creates some default user accounts that you might see in your usage analytics, like `internal@metabase.com`. See [Default accounts](../people-and-groups/managing.md#default-user-accounts).
 
-## Access to Usage analytics
+- **Verstehen der Nutzung**: Verstehen, wie die Nutzer Ihre Metadatenbank verwenden (z. B. neue Fragen, die aktivsten Personen und Gruppen usw.).
+-Überprüfen der Aktivitäten**: Wissen, wer was wann angesehen oder getan hat, einschließlich der Verfolgung von Dashboard- und Frageansichten, Abfragen, Downloads und anderen Aktivitäten wie dem Ändern von Einstellungen oder dem Einladen von Personen zu Ihrer Metabase.
+- **Verbesserung der Abläufe**: Sie kennen die langsamsten Dashboards und Fragen, wissen, wie Ihre Datenbanken arbeiten, wer die meisten Ressourcen verbraucht und so weiter.
 
-You can find the **Usage analytics** collection under **collections** in the navigation sidebar. By default, only admins can see the Usage analytics collection, but admins can grant other groups view access to it. You can manage permissions for the collection in **Admin settings** > **Permissions** > **Collections**.
 
-There are only two access types for the Usage analytics collection: **View** and **No access**. Even admins can't curate Usage analytics.
+> Die Metabase erstellt einige Standardbenutzerkonten, die Sie in Ihren Nutzungsanalysen sehen können, z. B. ` internal@metabase.com`. Siehe [Standardkonten](../people-and-groups/managing.md#default-user-accounts).
 
-Additionally, this Usage analytics collection has a default sub-collection called "Custom reports" which you can use to save duplicated/modified questions, dashboards, and models. This sub-collection inherits the same permissions, but it's not view-only; admins have curate access by default, and can grant other groups view access.
+## Zugang zur Nutzungsanalyse
 
->  If you're upgrading from a version older than 48, people in groups with monitoring access will also get access to the Usage analytics collection. But after that initial grandfathering in, the monitoring access privilege is unrelated to the Usage analytics collection; you'll need to specifically grant groups access to the Usage analytics collection.
 
-## Viewing usage insights for a question, dashboard, or model
+Sie finden die Sammlung**Nutzungsanalyse** unter**Sammlungen** in der Navigationsleiste. Standardmäßig können nur Administratoren die Nutzungsanalyse-Sammlung sehen, aber Administratoren können anderen Gruppen Zugriff auf die Sammlung gewähren. Sie können die Berechtigungen für die Sammlung unter **Admin-Einstellungen** > **Berechtigungen** > **Sammlungen** verwalten.
 
-> Only people in groups with view access to the Usage analytics collection will see this Usage insights option.
 
-To view usage analytics for a question, dashboard, or model:
+Es gibt nur zwei Zugriffsarten für die Nutzungsanalysesammlung: **Ansicht** und **Kein Zugriff**. Nicht einmal Administratoren können Nutzungsanalysen kuratieren.
 
-- Visit the item.
-- Click on the info button in the upper right.
-- Click **Insights**.
 
-Metabase will take you to the relevant usage dashboard and plug in the item's ID.
+Darüber hinaus verfügt diese Nutzungsanalysesammlung über eine standardmäßige Untersammlung namens "Benutzerdefinierte Berichte", die Sie zum Speichern von duplizierten/geänderten Fragen, Dashboards und Modellen verwenden können. Diese Untersammlung verfügt über dieselben Berechtigungen, ist aber nicht auf die Ansicht beschränkt; Administratoren haben standardmäßig den Zugriff "Curate" und können anderen Gruppen den Zugriff auf die Ansicht gewähren.
+
+
+> Wenn Sie ein Upgrade von einer älteren Version als 48 durchführen, erhalten Personen in Gruppen mit Überwachungszugriff auch Zugriff auf die Sammlung Nutzungsanalyse. Nach dieser anfänglichen Eingliederung ist die Berechtigung für den Überwachungszugriff jedoch nicht mehr mit der Sammlung Nutzungsanalyse verknüpft; Sie müssen den Gruppen ausdrücklich Zugriff auf die Sammlung Nutzungsanalyse gewähren.
+
+## Nutzungseinblicke für eine Frage, ein Dashboard oder ein Modell anzeigen
+
+
+> Nur Personen in Gruppen mit Ansichtszugriff auf die Sammlung Nutzungsanalyse sehen diese Option Nutzungsanalyse.
+
+
+So zeigen Sie Nutzungsanalysen für eine Frage, ein Dashboard oder ein Modell an:
+
+
+- Besuchen Sie das Element.
+- Klicken Sie auf die Info-Schaltfläche oben rechts.
+- Klicken Sie auf **Einblicke**.
+
+
+Metabase leitet Sie zum entsprechenden Nutzungs-Dashboard weiter und gibt die ID des Artikels ein.
 
 ## How long Metabase keeps usage data
 
