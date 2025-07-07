@@ -1,91 +1,96 @@
 ---
-title: Snippet folder permissions
+Titel: Berechtigungen für Snippet-Ordner
 redirect_from:
-  - /docs/latest/enterprise-guide/sql-snippets
+- /docs/latest/enterprise-guide/sql-snippets
 ---
 
-# Snippet folder permissions
 
-{% include plans-blockquote.html feature="Snippet controls" %}
+# Berechtigungen für Snippet-Ordner
 
-This article covers **Snippet folders**, which allow you to organize and set permissions on [Snippets](../questions/native-editor/snippets.md).
 
-Folder permissions should not be considered a security feature, but instead a feature that helps organize and standardize snippets. Although folders are distinct and separate from Collections, they both serve an organizational function: Collections gather and permission dashboards and questions; folders gather and permission snippets. For more info, see the [discussion on permissions below](#permissions).
+{% include plans-blockquote.html feature="Snippet-Steuerungen" %}
 
-## Folders
 
-Folders work similarly to a file system. You can add snippets to folders, and put folders inside of other folders. You can nest as many folders as your Metabase instance can handle or the laws of physics allow (whichever yields first).
+Dieser Artikel befasst sich mit **Snippet-Ordnern**, die es Ihnen ermöglichen, [Snippets](../questions/native-editor/snippets.md) zu organisieren und Berechtigungen darauf zu setzen.
 
-The **Top folder** is the snippet sidebar's default folder. It is the root folder that contains all folders and snippets.
 
-### Creating a new Snippet folder
+Ordnerberechtigungen sollten nicht als Sicherheitsfunktion betrachtet werden, sondern als eine Funktion, die die Organisation und Standardisierung von Snippets unterstützt. Obwohl Ordner von Sammlungen getrennt sind, haben sie beide eine organisatorische Funktion: Sammlungen sammeln und erlauben Dashboards und Fragen; Ordner sammeln und erlauben Snippets. Weitere Informationen finden Sie in der [Diskussion über Berechtigungen unten](#permissions).
 
-You can create a Snippet folder from the **Snippets** menu in the [SQL editor](../questions/native-editor/writing-sql.md).
 
-![Create new snippet folder](./images/snippet-folder.png)
+## Ordner
 
-1. Click on the **Snippets** menu icon (the snippet icon looks like a block of text or code with three uneven horizontal lines).
-2. Click on the **+** icon and select **New folder**.
-3. Give your folder a name, and optionally **Add a description** and/or place the folder in an existing folder (the **Folder this should be in** option).
 
-![Create new folder modal](./images/create-new-folder-modal.png)
+Ordner funktionieren ähnlich wie ein Dateisystem. Sie können Snippets zu Ordnern hinzufügen und Ordner in anderen Ordnern ablegen. Sie können so viele Ordner verschachteln, wie Ihre Metabase-Instanz verarbeiten kann oder wie es die Gesetze der Physik zulassen (je nachdem, was zuerst eintritt).
 
-### Creating a new Snippet
 
-On [some plans](https://www.metabase.com/pricing/), when creating a Snippet, you'll also see an additional option to add that snippet to an existing folder (the **Folder this should be in** option).
+Der**Oberste Ordner** ist der Standardordner für die Snippet-Seitenleiste. Er ist der Stammordner, der alle Ordner und Snippets enthält.
 
-![Add a snippet enterprise modal](./images/enterprise-add-snippet.png)
 
-The default location is the **Top folder**, which is the root folder for all snippets and folders. You can add a snippet to a folder at any time (or relocate a snippet to another folder, provided you have Edit permission to both folders).
+### Erstellen eines neuen Snippet-Ordners
 
-Note that snippet names must be unique; folders do not affect this requirement.
 
-## Permissions
+Sie können einen Snippet-Ordner über das Menü **Snippets** im [SQL-Editor](../questions/native-editor/writing-sql.md) erstellen.
 
-Administrators (and only administrators) can set snippet visibility and editability by placing snippets in **folders**, then granting groups one of three permission levels with respect to those folders. If you're familiar with [collection permissions](./collections.md#setting-permissions-for-collections), the functionality is similar. For more on how collection and folder permissions work together, see [how folder permissions work](#how-folder-permissions-work) below.
 
-### Changing permissions on a folder
+[Neuen Snippet-Ordner erstellen](./images/snippet-folder.png)
 
-Administrators can set the permissions on a folder by clicking on the ellipsis (**...**) next to a folder, and selecting **Change permissions**.
 
-You can additionally change the currently selected folder by mousing over to the top of the Snippets sidebar, clicking on the ellipsis (**...**) to the left of the **+**, and selecting **Change permissions**. When at the **Top folder**, selecting the **...** at the top of the sidebar will give Administrators the option to set permissions for all snippets, folders, and sub-folders.
+1. Klicken Sie auf das Menüsymbol **Snippets** (das Snippet-Symbol sieht aus wie ein Text- oder Codeblock mit drei ungleichmäßigen horizontalen Linien).
+2. Klicken Sie auf das Symbol **+** und wählen Sie **Neuer Ordner**.
+3. Geben Sie Ihrem Ordner einen Namen, undfügen Sie optional **eine Beschreibung hinzu** und/oder platzieren Sie den Ordner in einem bestehenden Ordner (die Option **Ordner, in dem er sich befinden sollte** ).
 
-When changing permissions on a folder that has sub-folders, you have an option to extend those permissions to that folder's sub-folders by toggling the **Also change sub-folders** setting.
 
-### Options for folder permissions
+![Neuen Ordner erstellen modal](./images/create-new-folder-modal.png)
 
-![Change permissions](./images/change-permissions.png)
 
-There are three options for changing snippet folder permissions:
+### Erstellen eines neuen Snippets
 
-- **Edit access (green checkmark icon)**. The default setting. When a folder is created, all users (who have SQL editor permissions for at least one database) can view, edit, and archive or unarchive the folder's snippets.
-- **View access (yellow eye icon)**. Users in groups with view access can view snippets in the folder, but not edit or archive/unarchive them. They can, of course, copy snippet code and create new snippets, with no effect on the existing snippets.
-- **Revoke access (red X icon)**. Users in groups with neither edit nor view permissions to a snippet folder will not see that folder's snippets in the sidebar, nor will any snippets in that folder appear in typeahead suggestions for those users. Note that if people have access to a question with a snippet they don't have permission to, they will still be able to get results from that question. See the discussion below on [how folder permissions work](#how-folder-permissions-work).
 
-### Archiving does not affect permissions
+Bei [einigen Plänen](https://www.metabase.com/pricing/) wird beim Erstellen eines Snippets eine zusätzliche Option angezeigt, mit der Sie das Snippet zu einem bestehenden Ordner hinzufügen können (die Option **Ordner, in dem es sich befinden sollte** ).
 
-Archiving or unarchiving snippets does not affect a snippet's permissions. If, for example, only one group, say the Accounting group, has edit permissions on a folder, only people in the Accounting group (and admins) would be able to archive and unarchive snippets in that folder, as archiving and unarchiving is considered editing the snippet.
 
-### How folder permissions work
+(./images/enterprise-add-snippet.png)[Ein Snippet hinzufügen Unternehmen modal]
 
-As with collection permissions, folder permissions are additive, meaning that the more permissive access overrules less permissive access. See [Setting permissions](./start.md) for a more detailed discussion.
 
-But snippet folder permissions require some more effort to unpack, as permissions for snippet folders must work in conjunction with permissions for data and collections.
+Der Standardspeicherort ist der **Top-Ordner**, der der Stammordner für alle Snippets und Ordner ist. Sie können jederzeit ein Snippet zu einem Ordner hinzufügen (oder ein Snippet in einen anderen Ordner verschieben, vorausgesetzt, Sie haben die Berechtigung zum Bearbeiten für beide Ordner).
 
-Here's the basic rule: data is more sensitive than code, so permissions that apply to data will take precedence over permissions that apply to code. Let's work through an example to illustrate how this works in practice.
 
-#### Permissions example
+Beachten Sie, dass Snippet-Namen eindeutig sein müssen; Ordner haben keinen Einfluss auf diese Anforderung.
 
-Consider the following scenario (and here's a sentence that merits slow reading): a group could have permission to a Collection that contains a question that uses a snippet housed in a folder that the group does _not_ have permissions to. To rephrase: people in that group have permissions to run questions in a collection, but they do not have permission to a folder containing a snippet used in one of the collection's questions. How will Metabase resolve permissions in this case?
 
-In three parts:
+## Berechtigungen
 
-1. **People in that group can run the question and get results**. They have permission to see that data (the question results), so they should be able to see that data. The group's permission to the collection takes precedence over permissions to the folder (the snippet code).
-2. **The snippet would not show up in the Snippet sidebar**. However, just because people in that group can run the question without issue, they still don't have permission to the snippet's folder, so they wouldn't be able to see or edit that snippet (or the snippet's folder) in the Snippet sidebar.
-3. **People with SQL query access can still run the snippet if they know its name, regardless if they have permissions to the snippet's folder**. They wouldn't be able to view or edit the snippet, but they could include it in a query if they knew its name, e.g, `{% raw %}{{snippet: Example snippet I don't have permissions to but can still use }}{% endraw %}`.
 
-Because of how snippet folder permissions work, we recommend that you consider snippet folder permissions as an additional tool for snippet organization, not as method of preventing access to the SQL code those snippets contain. Use folder permissions to keep the snippet sidebar tidy by exposing teams to folders relevant to their analytical domain, and restrict editing permissions to key snippets in your organization to keep important SQL code accurate and safe from bugs introduced by unvetted edits.
+Administratoren (und nur Administratoren) können die Sichtbarkeit und Bearbeitbarkeit von Snippets festlegen, indem sie Snippets in **Ordnern** ablegen und dann Gruppen eine von drei Berechtigungsstufen für diese Ordner erteilen. Wenn Sie mit [collection permissions](./collections.md#setting-permissions-for-collections) vertraut sind, ist die Funktionalität ähnlich. Mehr darüber, wie Sammlungs- und Ordnerberechtigungen zusammenarbeiten, finden Sie unter [ how-folder-permissions-work](#how-folder-permissions-work) weiter unten.
 
-## Further reading
 
-- [Snippets](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/sql-in-metabase/snippets).
+### Ändern von Berechtigungen für einen Ordner
+
+
+Administratoren können die Berechtigungen für einen Ordner festlegen, indem sie auf die Ellipse(**...**) neben einem Ordner klicken und **Berechtigungen ändern** wählen.
+
+
+Sie können außerdem den aktuell ausgewählten Ordner ändern, indem Sie mit der Maus zum oberen Rand der Snippets-Seitenleiste fahren, auf die Ellipse(**...**) links neben dem **+** klicken und**Berechtigungen ändern** auswählen. Wenn Sie sich im**Obersten Ordner** befinden, können Administratoren durch Klicken auf **...** oben in der Seitenleiste die Berechtigungen für alle Snippets, Ordner und Unterordner festlegen.
+
+
+Wenn Sie die Berechtigungen für einen Ordner mit Unterordnern ändern, haben Sie die Möglichkeit, diese Berechtigungen auf die Unterordner dieses Ordners auszuweiten, indem Sie die Einstellung**Auch Unterordner ändern** aktivieren.
+
+
+### Optionen für Ordnerberechtigungen
+
+
+![Rechte ändern](./images/change-permissions.png)
+
+
+Es gibt drei Optionen zum Ändern der Berechtigungen für Snippet-Ordner:
+
+
+- **Zugriff bearbeiten (grünes Häkchensymbol)**. Die Standardeinstellung. Wenn ein Ordner erstellt wird, können alle Benutzer (die über SQL-Editor-Berechtigungen für mindestens eine Datenbank verfügen) die Snippets des Ordners anzeigen, bearbeiten und archivieren oder dearchivieren.
+- **Anzeigezugriff (gelbes Augensymbol)**. Benutzer in Gruppen mit Anzeigezugriff können Snippets im Ordner anzeigen, aber nicht bearbeiten oder archivieren/entarchivieren. Sie können natürlich Snippet-Code kopieren und neue Snippets erstellen, ohne dass dies Auswirkungen auf die vorhandenen Snippets hat.
+- **Zugriff widerrufen (rotes X-Symbol)**. Benutzer in Gruppen, die weder Bearbeitungs- noch Ansichtsrechte für einen Snippet-Ordner haben, sehen die Snippets dieses Ordners nicht in der Seitenleiste und es werden auch keine Snippets in diesem Ordner in den Vorschlägen für diese Benutzer angezeigt. Beachten Sie, dass Personen, die Zugriff auf eine Frage mit einem Snippet haben, für das sie keine Berechtigung haben, trotzdem Ergebnisse aus dieser Frage erhalten können. Siehe die Diskussion weiter unten über [wie Ordnerberechtigungen funktionieren](#how-folder-permissions-work).
+
+
+### Archivierung hat keinen Einfluss auf Berechtigungen
+
+
+Das Archivieren oder Dearchivieren von Snippets hat keinen Einfluss auf die Berechtigungen eines Snippets. Wenn z. B. nur eine Gruppe, z. B. die Gruppe "Buchhaltung", über Bearbeitungsrechte für einen Ordner verfügt, können nur Personen der Gruppe "Buchhaltung" (und Administratoren) Snippets in diesem Ordner archivieren und dearchivieren, da das Archivieren und Dearchivieren als Bearbeitung des Snippets gilt.
