@@ -1,15 +1,19 @@
 ---
-title: Waterfall charts
+Titel: Wasserfalldiagramme
 redirect_from:
   - /docs/latest/questions/sharing/visualizations/waterfall-chart
 ---
 
-# Waterfall charts
+# Wasserfalldiagramme
 
-Waterfall charts are a kind of bar chart useful for visualizing results that contain both positive and negative values. Each bar on a waterfall chart shows either an increase or decrease, with a final bar on the right of the chart that represents the total value.
 
-![Waterfall chart](../images/waterfall-chart.png)
+Wasserfalldiagramme sind eine Art Balkendiagramm, das sich zur Darstellung von Ergebnissen eignet, die sowohl positive als auch negative Werte enthalten. Jeder Balken in einem Wasserfalldiagramm zeigt entweder einen Anstieg oder einen Rückgang an, wobei der letzte Balken auf der rechten Seite des Diagramms den Gesamtwert darstellt.
 
-In the example above, the waterfall chart displays "Profit" for each "Product:" apples, bananas, oranges, peaches, and mangos. From left to right, each bar indicates the change in total. The products with green bars indicate positive values (they made a profit). Peaches, however, lost money, indicated by a red bar, which signals a negative value. The bar at the end shows the total profit of all products combined. You can show values on each bar, and change the colors for increases and decreases.
 
-For waterfall charts, you'll want a query that is a single metric grouped by a single dimension: by time or category.
+[Wasserfalldiagramm](../images/waterfall-chart.png)
+
+
+Im obigen Beispiel zeigt das Wasserfalldiagramm den "Gewinn" für jedes "Produkt" an: Äpfel, Bananen, Orangen, Pfirsiche und Mangos. Von links nach rechts zeigt jeder Balken die Veränderung der Gesamtsumme an. Die Produkte mit grünen Balken zeigen positive Werte an (sie haben einen Gewinn gemacht). Pfirsiche hingegen haben Geld verloren, was durch einen roten Balken angezeigt wird, der einen negativen Wert signalisiert. Der Balken am Ende zeigt den Gesamtgewinn für alle Produkte zusammen an. Sie können für jeden Balken Werte anzeigen und die Farben für Zu- und Abnahmen ändern.
+
+
+Für Wasserfalldiagramme benötigen Sie eine Abfrage, die eine einzelne Metrik darstellt, die nach einer einzigen Dimension gruppiert ist: nach Zeit oder Kategorie.
