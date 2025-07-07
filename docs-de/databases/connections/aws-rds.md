@@ -1,26 +1,33 @@
 ---
-title: "Connecting to AWS's Relational Database Service (RDS)"
+Titel: "Verbindung zu AWS's Relational Database Service (RDS)"
 redirect_from:
-  - /docs/latest/administration-guide/databases/aws-rds
+- /docs/latest/administration-guide/databases/aws-rds
 ---
 
-# Connecting to AWS's Relational Database Service (RDS)
 
-RDS offers several databases that Metabase officially supports, including PostgreSQL, MySQL, MariaDB, Oracle, and SQL server.
+# Verbindung mit dem Relationalen Datenbankdienst (RDS) von AWS
 
-Here's how to get connection information for databases on Amazon's RDS:
 
-1. Go to your AWS Management Console.
-   - Need help finding that? Visit `https://**My_AWS_Account_ID**.signin.aws.amazon.com/console`. Be sure to insert your own AWS Account ID, though!
-2. Go to **Database** > **RDS** > **Instances**.
-3. Select the database you want to connect to Metabase.
-4. Get the information you'll need to connect Metabase to your RDS:
-   - **Hostname**. This is listed as the Endpoint parameter.
-   - **Port**. Find the port parameter under Security and Network.
-   - **Username**. Find this under Configuration Details.
-   - **Database Name**. Find this under Configuration Details.
-   - **Password**. Ask your database administrator for the password.
+RDS bietet mehrere Datenbanken, die Metabase offiziell unterstützt, darunter PostgreSQL, MySQL, MariaDB, Oracle und SQL Server.
 
-## Database routing
 
-See [Database routing](../../permissions/database-routing.md).
+Hier erfahren Sie, wie Sie Verbindungsinformationen für Datenbanken auf Amazons RDS erhalten:
+
+
+1. Gehen Sie zu Ihrer AWS Management Console.
+- Brauchen Sie Hilfe, um diese zu finden? Besuchen Sie `https://**My_AWS_Account_ID**.signin.aws.amazon.com/console`. Achten Sie jedoch darauf, dass Sie Ihre eigene AWS-Konto-ID eingeben!
+2. Gehen Sie zu **Datenbank** > **RDS** > **Instanzen**.
+3. Wählen Sie die Datenbank aus, die Sie mit Metabase verbinden möchten.
+4. Holen Sie sich die Informationen, die Sie benötigen, um die Metabase mit Ihrem RDS zu verbinden:
+- **Hostname**. Dieser wird als Endpunkt-Parameter aufgeführt.
+- **Anschluss**. Suchen Sie den Port-Parameter unter Sicherheit und Netzwerk.
+- **Benutzername**. Diesen finden Sie unter Konfigurationsdetails.
+- **Datenbankname**. Diesen finden Sie unter Konfigurationsdetails.
+- **Passwort**. Fragen Sie Ihren Datenbankadministrator nach dem Passwort.
+
+
+## Datenbank-Routing
+
+
+Siehe [Database routing](../../permissions/database-routing.md).
+
