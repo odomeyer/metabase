@@ -1,110 +1,90 @@
 ---
-title: SQL Server
+Titel: SQL-Server
 ---
+
 
 # SQL Server
 
-To add a database connection, click on the **gear** icon in the top right, and navigate to **Admin settings** > **Databases** > **Add a database**.
 
-## Supported versions
+Um eine Datenbankverbindung hinzuzufügen, klicken Sie auf das **Zahnradsymbol** oben rechts, und navigieren Sie zu **Verwaltungseinstellungen** > **Datenbanken** > **Datenbank hinzufügen**.
 
-Metabase supports the oldest supported version of SQL Server through the latest stable version. See [SQL Server end of support options](https://learn.microsoft.com/en-us/sql/sql-server/end-of-support/sql-server-end-of-support-overview).
 
-## Settings
+## Unterstützte Versionen
 
-You can edit these settings at any time. Just remember to save your changes.
 
-### Display name
+Metabase unterstützt die älteste unterstützte Version von SQL Server bis zur letzten stabilen Version. Siehe [SQL Server end of support options](https://learn.microsoft.com/en-us/sql/sql-server/end-of-support/sql-server-end-of-support-overview).
 
-The display name for the database in the Metabase interface.
+
+## Einstellungen
+
+
+Sie können diese Einstellungen jederzeit ändern. Denken Sie nur daran, Ihre Änderungen zu speichern.
+
+
+### Anzeigename
+
+
+Der Anzeigename für die Datenbank in der Metabase-Schnittstelle.
+
 
 ### Host
 
-Your database's IP address, or its domain name (e.g., esc.mydatabase.com).
 
-### Port
+Die IP-Adresse Ihrer Datenbank oder ihr Domänenname (z. B. esc.mydatabase.com).
 
-The database port. E.g., 1433. To use Dynamic Ports, leave this field empty.
 
-### Database name
+### Anschluss
 
-The name of the database you're connecting to.
 
-### Database instance name
+Der Datenbank-Port. Z.B. 1433. Um dynamische Ports zu verwenden, lassen Sie dieses Feld leer.
 
-If you're running multiple databases on the same host, you can include the instance name here.
 
-### Username
+### Datenbankname
 
-The database username for the account that you want to use to connect to your database. You can set up multiple connections to the same database using different user accounts to connect to the same database, each with different sets of [privileges](../users-roles-privileges.md).
 
-### Password
+Der Name der Datenbank, mit der Sie sich verbinden.
 
-The password for the username that you use to connect to the database.
 
-### Use a secure connection (SSL)
+### Name der Datenbankinstanz
 
-Metabase automatically tries to connect to databases with SSL first, then without if that doesn't work. If it's possible to connect to your database with an SSL connection, Metabase will make that the default setting for your database. If you prefer to connect without this layer of security, you can always change this setting later, but we highly recommend keeping SSL turned on to keep your data secure.
 
-### Use an SSH tunnel
+Wenn Sie mehrere Datenbanken auf demselben Rechner betreiben, können Sie hier den Namen der Instanz angeben.
 
-See our [guide to SSH tunneling](../ssh-tunnel.md).
 
-### Additional JDBC connection string options
+### Benutzername
 
-You can append options to the connection string that Metabase uses to connect to your database.
 
-### Re-run queries for simple explorations
+Der Datenbank-Benutzername für das Konto, das Sie für die Verbindung zu Ihrer Datenbank verwenden möchten. Sie können mehrere Verbindungen zu derselben Datenbank einrichten, indem Sie verschiedene Benutzerkonten mit unterschiedlichen [Privilegien] verwenden(../users-roles-privileges.md).
 
-Turn this option **OFF** if people want to click **Run** (the play button) before applying any [Summarize](../../questions/query-builder/summarizing-and-grouping.md) or filter selections.
 
-By default, Metabase will execute a query as soon as you choose an grouping option from the **Summarize** menu or a filter condition from the [drill-through menu](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through). If your database is slow, you may want to disable re-running to avoid loading data on each click.
+### Passwort
 
-### Choose when syncs and scans happen
 
-See [syncs and scans](../sync-scan.md#choose-when-syncs-and-scans-happen).
+Das Passwort für den Benutzernamen, den Sie für die Verbindung zur Datenbank verwenden.
 
-#### Database syncing
 
-If you've selected **Choose when syncs and scans happen** > **ON**, you'll be able to set:
+### Sichere Verbindung verwenden (SSL)
 
-- The frequency of the [sync](../sync-scan.md#how-database-syncs-work): hourly (default) or daily.
-- The time to run the sync, in the timezone of the server where your Metabase app is running.
 
-### Scanning for filter values
+Metabase versucht automatisch, zuerst eine Verbindung zu Datenbanken mit SSL herzustellen, und dann ohne, wenn das nicht funktioniert. Wenn es möglich ist, eine Verbindung zu Ihrer Datenbank mit einer SSL-Verbindung herzustellen, macht Metabase dies zur Standardeinstellung für Ihre Datenbank. Wenn Sie es vorziehen, eine Verbindung ohne diese Sicherheitsebene herzustellen, können Sie diese Einstellung später jederzeit ändern, aber wir empfehlen dringend, SSL aktiviert zu lassen, um Ihre Daten zu schützen.
 
-Metabase can scan the values present in each field in this database to enable checkbox filters in dashboards and questions. This can be a somewhat resource-intensive process, particularly if you have a very large database.
 
-If you've selected **Choose when syncs and scans happen** > **ON**, you'll see the following options under **Scanning for filter values**:
+### Verwenden Sie einen SSH-Tunnel
 
-- **Regularly, on a schedule** allows you to run [scan queries](../sync-scan.md#how-database-scans-work) at a frequency that matches the rate of change to your database. The time is set in the timezone of the server where your Metabase app is running. This is the best option for a small database, or tables with distinct values that get updated often.
-- **Only when adding a new filter widget** is a great option if you want scan queries to run on demand. Turning this option **ON** means that Metabase will only scan and cache the values of the field(s) that are used when a new filter is added to a dashboard or SQL question.
-- **Never, I'll do this manually if I need to** is an option for databases that are either prohibitively large, or which never really have new values added. Use the [Re-scan field values](../sync-scan.md#manually-scanning-column-values) button to run a manual scan and bring your filter values up to date.
 
-### Periodically refingerprint tables
+Siehe unsere [Anleitung zum SSH-Tunneling](../ssh-tunnel.md).
 
-> Periodic refingerprinting will increase the load on your database.
 
-Turn this option **ON** to scan a sample of values every time Metabase runs a [sync](../sync-scan.md#how-database-syncs-work).
+### Zusätzliche JDBC-Verbindungsstring-Optionen
 
-A fingerprinting query examines the first 10,000 rows from each column and uses that data to guesstimate how many unique values each column has, what the minimum and maximum values are for numeric and timestamp columns, and so on. If you leave this option **OFF**, Metabase will only fingerprint your columns once during setup.
 
-## Connecting to Azure SQL
+Sie können Optionen an die Verbindungszeichenfolge anhängen, die Metabase für die Verbindung mit Ihrer Datenbank verwendet.
 
-To connect to Azure SQL, you'll need to set the port to 1433.
 
-## Database routing
+### Abfragen für einfache Untersuchungen wiederholen
 
-See [Database routing](../../permissions/database-routing.md).
 
-## Danger zone
+Schalten Sie diese Option**AUS**, wenn Sie auf**Ausführen** (die Abspielschaltfläche) klicken möchten, bevor Sie eine [Zusammenfassen](../../questions/query-builder/summarizing-and-grouping.md) oder eine Filterauswahl treffen.
 
-See [Danger zone](../danger-zone.md).
 
-## Further reading
-
-- [Microsoft JDBC Driver for SQL Server support matrix](https://learn.microsoft.com/en-us/sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server-support-matrix)
-- [Managing databases](../../databases/connecting.md)
-- [Metadata editing](../../data-modeling/metadata-editing.md)
-- [Models](../../data-modeling/models.md)
-- [Setting data access permissions](../../permissions/data.md)
+Standardmäßig führt Metabase eine Abfrage aus, sobald Sie eine Gruppierungsoption aus dem Menü**Zusammenfassen** oder eine Filterbedingung aus dem [Drill-through-Menü](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through) auswählen. Wenn Ihre Datenbank langsam ist, sollten Sie die erneute Ausführung deaktivieren, um das Laden von Daten bei jedem Klick zu vermeiden.
