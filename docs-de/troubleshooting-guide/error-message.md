@@ -1,31 +1,44 @@
 ---
-title: Troubleshooting error messages
+Titel: Fehlersuche bei Fehlermeldungen
 ---
 
-# Troubleshooting error messages
 
-An error message can help you find the right troubleshooting guide. The exact wording depends on your database and Metabase version, so try to look for the closest match.
+# Fehlermeldungen zur Fehlerbehebung
 
-## SQL editor
 
-See if your error details contain any of:
+Eine Fehlermeldung kann Ihnen helfen, die richtige Anleitung zur Fehlerbehebung zu finden. Der genaue Wortlaut hängt von Ihrer Datenbank und der Metabase-Version ab. Versuchen Sie daher, die nächstliegende Übereinstimmung zu finden.
 
-- [Table or column "not found" or "not recognized"](https://www.metabase.com/learn/sql/debugging-sql/sql-syntax#column-or-table-name-is-not-found-or-not-recognized).
-- [Function does not exist](https://www.metabase.com/learn/sql/debugging-sql/sql-syntax#sql-function-does-not-exist).
+
+## SQL-Editor
+
+
+Prüfen Sie, ob Ihre Fehlerdetails eines der folgenden Elemente enthalten:
+
+
+- [Tabelle oder Spalte "nicht gefunden" oder "nicht erkannt"](https://www.metabase.com/learn/sql/debugging-sql/sql-syntax#column-or-table-name-is-not-found-or-not-recognized).
+- [Funktion existiert nicht](https://www.metabase.com/learn/sql/debugging-sql/sql-syntax#sql-function-does-not-exist).
 - [Permission denied](./data-permissions.md#getting-a-permission-denied-error-message).
 
-For example, this SQL error tells you that the function `DATEFROMPARTS` does not work on a BigQuery database:
 
-![Sample SQL error message](./images/sample-error-sql.png)
+Dieser SQL-Fehler besagt zum Beispiel, dass die Funktion ` DATEFROMPARTS` in einer BigQuery-Datenbank nicht funktioniert:
 
-## Questions and dashboards
 
-- [Your question took too long](./timeout.md).
+(./images/sample-error-sql.png)Beispielhafte SQL-Fehlermeldung
+
+
+## Fragen und Dashboards
+
+
+- [Ihre Frage hat zu lange gedauert](./timeout.md).
 - [Still waiting...](./my-dashboard-is-slow.md).
 
-## Are you still stuck?
 
-If you can't find your error on this page:
+## Stecken Sie immer noch fest?
 
-- Search or ask the [Metabase community](https://discourse.metabase.com/).
-- Search for [known bugs or limitations](./known-issues.md).
+
+Wenn Sie Ihren Fehler auf dieser Seite nicht finden können:
+
+
+- Suchen Sie oder fragen Sie die [Metabase community](https://discourse.metabase.com/).
+- Suchen Sie nach [bekannten Fehlern oder Einschränkungen](./known-issues.md).
+
