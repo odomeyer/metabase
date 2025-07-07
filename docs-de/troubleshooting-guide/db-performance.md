@@ -1,83 +1,69 @@
 ---
-title: Troubleshooting database performance
+Titel: Fehlerbehebung bei der Datenbankleistung
 ---
 
-# Troubleshooting database performance
 
-This guide deals with databases or data warehouses that are [connected to Metabase](../databases/connecting.md) as data sources.
+# Fehlersuche bei der Datenbankleistung
 
-To fix problems with your Metabase [application database](../installation-and-operation/configuring-application-database.md), check out these troubleshooting guides:
 
-- [Running Metabase](./running.md).
-- [Running Metabase on Docker](./docker.md).
-- [Using or migrating from an H2 application database](./loading-from-h2.md).
+Diese Anleitung bezieht sich auf Datenbanken oder Data Warehouses, die als Datenquellenmit der Metabase verbunden sind(../databases/connecting.md).
 
-## Identifying bottlenecks
 
-1. Optional: use Metabase's [Usage analytics](../usage-and-performance-tools/usage-analytics.md) to look at your Metabase usage stats.\*
-2. Go to your database's server logs and check whether:
-   - Your tables are growing in size,
-   - More people are using Metabase to access your database,
-   - People are accessing your database more often, or
-   - A script or application (other than Metabase) is accessing the database frequently.
-3. If specific tables are being queried a lot, try [Optimizing your table schemas](https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/making-dashboards-faster#organize-data-to-anticipate-common-questions).
-4. Run a question from Metabase, then [run the same query](../questions/query-builder/editor.md#viewing-the-native-query-that-powers-your-question) directly against your database.
-   - If the queries take about the same time, your data or usage might be outgrowing your database. You can give your database more resources, or consider [upgrading your hardware](https://www.metabase.com/learn/grow-your-data-skills/data-landscape/which-data-warehouse).
-   - If the query in Metabase takes longer than a direct query against your database, you might need to adjust the deployment of your Metabase app. Check out some options in [Metabase at scale](https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-at-scale).
-5. If a script or third-party application is hitting your database with a lot of queries at a time:
-   - Stop your script or application, and [clear any queued queries](#clearing-queued-queries).
-   - Recommended: add a timeout to your script, schedule the script or application to run during off-hours, or replicate your database (and point your tools there instead).
+Um Probleme mit Ihrer Metabase [Anwendungsdatenbank](../installation-and-operation/configuring-application-database.md) zu beheben, lesen Sie diese Anleitungen zur Fehlerbehebung:
 
-\* Available on Pro and Enterprise plans.
 
-## Resetting a database connection
+- [Ausführen von Metabase](./running.md).
+- [Ausführender Metabase auf Docker](./docker.md).
+- [Verwenden oder Migrieren von einer H2-Anwendungsdatenbank](./loading-from-h2.md).
 
-1. Go to **Settings** > **Admin settings** > **Databases** > your database.
-2. Click **Save changes** (without making changes) to reset Metabase's connections to your database.
-3. Alternatively: kill the connection(s) directly from your database.
 
-**Explanation**
+## Identifizierung von Engpässen
 
-"Turn it off, and on again" by disconnecting and reconnecting your database---an easy sanity check that can save you a lot of time.
 
-In general, Metabase will try to close hanging connections to your database after 10 minutes, and then again after 20 minutes. But if your database doesn't respond, you may need to close the connection to Metabase from the database side.
+1. Optional: Verwenden Sie die Metabase [Usage analytics](../usage-and-performance-tools/usage-analytics.md), um Ihre Metabase-Nutzungsstatistiken zu betrachten.\*
+2. Gehen Sie zu den Serverprotokollen Ihrer Datenbank und überprüfen Sie, ob:
+- Ihre Tabellen werden immer größer,
+- Mehr Personen verwenden Metabase für den Zugriff auf Ihre Datenbank,
+- Es wird häufiger auf Ihre Datenbank zugegriffen, oder
+- Ein Skript oder eine Anwendung (außer Metabase) greift häufig auf die Datenbank zu.
+3. Wenn bestimmte Tabellen häufig abgefragt werden, versuchen Sie [Optimieren Sie Ihre Tabellenschemata](https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/making-dashboards-faster#organize-data-to-anticipate-common-questions).
+4. Führen Sie eine Frage aus der Metabase aus und [führen Sie danndieselbe Abfrage](../questions/query-builder/editor.md#viewing-the-native-query-that-powers-your-question) direkt gegen Ihre Datenbank aus.
+- Wenn die Abfragen in etwa die gleiche Zeit benötigen, kann es sein, dass Ihre Daten oder die Nutzung Ihrer Datenbank über den Kopf gewachsen sind. Sie können Ihrer Datenbank mehr Ressourcen zur Verfügung stellen oder ein [Upgrade Ihrer Hardware] in Betracht ziehen(https://www.metabase.com/learn/grow-your-data-skills/data-landscape/which-data-warehouse).
+- Wenn die Abfrage in der Metabase länger dauert als eine direkte Abfrage in Ihrer Datenbank, müssen Sie möglicherweise die Bereitstellung Ihrer Metabase-Anwendung anpassen. Sehen Sie sich einige Optionen in [Metabase at scale](https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-at-scale) an.
+5. Wenn ein Skript oder eine Anwendung eines Drittanbieters Ihre Datenbank mit einer Vielzahl von Abfragen gleichzeitig belastet:
+- Stoppen Sie Ihr Skript oder Ihre Anwendung und [löschen Sie alle Abfragen in der Warteschlange](#clearing-queued-queries).
+- Empfohlen: Fügen Sie Ihrem Skript eine Zeitüberschreitung hinzu, planen Sie das Skript oder die Anwendung so, dass es/sie außerhalb der Geschäftszeiten ausgeführt wird, oder replizieren Sie Ihre Datenbank (und richten Sie Ihre Tools stattdessen dorthin).
 
-## Clearing queued queries
 
-1. Stop the process (e.g., a script, or a dashboard with [too many cards](./my-dashboard-is-slow.md#dashboard-has-over-10-cards) that's launching a lot of queries at once.
-2. Go to your database server and stop all queries (from Metabase) that are in progress.
-3. Optional: Increase the [number of connections to your database](../configuring-metabase/environment-variables.md#mb_jdbc_data_warehouse_max_connection_pool_size).
+\* Verfügbar für Pro- und Enterprise-Tarife.
 
-**Explanation**
 
-If someone or something creates 100 queries at the same time, this stampede of queries will take up all of the available connections between Metabase and your database, preventing any new queries from running. If other people continue running questions and dashboards while the first 100 queries are still in progress, the queue will grow at a faster rate than your database can keep up with.
+## Zurücksetzen einer Datenbankverbindung
 
-## Managing resource-intensive queries
 
-1. [Reschedule or disable Metabase syncs and scans](../databases/sync-scan.md).
+1. Gehen Sie zu **Einstellungen** > **Verwaltungseinstellungen** > **Datenbanken** > Ihre Datenbank.
+2. Klicken Sie auf **Änderungen speichern** (ohne Änderungen vorzunehmen), um die Verbindungen der Metabase mit Ihrer Datenbank zurückzusetzen.
+3. Alternativ: Beenden Sie die Verbindung(en) direkt von Ihrer Datenbank aus.
 
-**Explanation**
 
-By default, Metabase makes regular sync and scan queries against your database to keep your tables up to date, get fresh values for filter dropdowns, and make helpful suggestions. If you've got a very large database, you can choose to trigger these queries manually instead of on a schedule.
+**Erläuterung**
 
-## Questions that use number, date, or timestamp columns
 
-1. Update your database schema so that the columns are typed correctly.
-2. [Sync the updated columns](../databases/sync-scan.md#manually-syncing-tables-and-columns) to bring the changes into Metabase.
+"Schalten Sie es aus und wieder ein", indem Sie die Verbindung zu Ihrer Datenbank trennen und wiederherstellen - eine einfache Überprüfung, die Ihnen viel Zeit ersparen kann.
 
-**Explanation**
 
-If a question uses data stored as the wrong [data type](https://www.metabase.com/learn/grow-your-data-skills/data-fundamentals/data-types-overview) in your database (most common with number, date, or timestamp values stored as strings), Metabase will generate a query that asks your database to convert the values on the fly. Typing your columns correctly at the schema level will help your database avoid that extra step to return results faster in Metabase.
+Im Allgemeinen versucht Metabase, hängende Verbindungen zu Ihrer Datenbank nach 10 Minuten und dann erneut nach 20 Minuten zu schließen. Wenn Ihre Datenbank jedoch nicht antwortet, müssen Sie die Verbindung zur Metabase möglicherweise von der Datenbankseite aus schließen.
 
-## Related problems
 
-- [My connection or query is timing out](./timeout.md).
-- [I can't connect to a database](./db-connection.md).
-- [My dashboard is slow or failing to load](./my-dashboard-is-slow.md).
+## Löschen von Abfragen in der Warteschlange
 
-## Are you still stuck?
 
-If you can’t solve your problem using the troubleshooting guides:
+1. Stoppen Sie den Prozess (z. B. ein Skript oder ein Dashboard mit [zu vielen Karten](./my-dashboard-is-slow.md#dashboard-has-over-10-cards), der viele Abfragen auf einmal startet.
+2. Gehen Sie zu Ihrem Datenbankserver und stoppen Sie alle laufenden Abfragen (von Metabase).
+3. Optional: Erhöhen Sie die [Anzahl der Verbindungen zu Ihrer Datenbank](../configuring-metabase/environment-variables.md#mb_jdbc_data_warehouse_max_connection_pool_size).
 
-- Search or ask the [Metabase community](https://discourse.metabase.com/).
-- Search for [known bugs or limitations](./known-issues.md).
+
+**Erläuterung**
+
+
+Wenn jemand oder etwas 100 Abfragen gleichzeitig erstellt, nimmt diese Flut von Abfragen alle verfügbaren Verbindungen zwischen der Metabase und Ihrer Datenbank in Anspruch, so dass keine neuen Abfragen mehr ausgeführt werden können. Wenn andere Personen weiterhin Fragen und Dashboards erstellen, während die ersten 100 Abfragen noch in Bearbeitung sind, wächst die Warteschlange schneller, als Ihre Datenbank mithalten kann.
