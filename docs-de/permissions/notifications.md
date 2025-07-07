@@ -1,58 +1,81 @@
 ---
-title: Notification permissions
-summary: Learn who can create and edit alerts and dashboard subscriptions, and what data recipients can see in their notifications.
+Titel: Berechtigungen für Benachrichtigungen
+Zusammenfassung: Erfahren Sie, wer Benachrichtigungen und Dashboard-Abonnements erstellen und bearbeiten kann und welche Daten die Empfänger in ihren Benachrichtigungen sehen können.
 ---
 
-# Notification permissions
 
-Notifications in Metabase include [alerts](../questions/alerts.md) and [dashboard subscriptions](../dashboards/subscriptions.md#setting-up-a-dashboard-subscription).
+# Berechtigungen für Benachrichtigungen
 
-## Who can edit dashboard subscriptions and alerts
 
-What you can do with alerts and dashboard subscriptions depends on whether you're in the Administrators group or in a sandboxed group.
+Zu den Benachrichtigungen in der Metabase gehören [Alerts](../questions/alerts.md) und [Dashboard-Abonnements](../dashboards/subscriptions.md#setting-up-a-dashboard-subscription).
 
-- [All Users group](#all-users-group-notification-permissions)
-- [Sandboxed group](#sandboxed-accounts-notification-permissions)
-- [Administrators group](#administrators-group-notification-permissions)
 
-### All Users group notification permissions
+## Wer kann Dashboard-Abonnements und Alerts bearbeiten?
 
-Everyone's in the All Users group. Which means that everyone can:
 
-- Create [alerts](../questions/alerts.md) and [dashboard subscriptions](../dashboards/subscriptions.md#setting-up-a-dashboard-subscription).
-- Add new recipients to dashboard subscriptions and alerts that they created.
-- Unsubscribe from any alert or subscription in their [Account settings](../people-and-groups/account-settings.md).
+Was Sie mit Alarmen und Dashboard-Abonnements tun können, hängt davon ab, ob Sie zur Gruppe der Administratoren oder zu einer Sandbox-Gruppe gehören.
 
-When a notification creator adds new recipients to an alert or subscription, Metabase will display data to the recipients using the **creator's** [data permissions](../permissions/data.md) and [collection permissions](../permissions/collections.md).
 
-### Sandboxed accounts notification permissions
+- [Gruppe Alle Benutzer](#all-users-group-notification-permissions)
+- [Sandbox-Gruppe](#sandboxed-accounts-notification-permissions)
+- [Gruppe Administratoren](#administrators-group-notification-permissions)
 
-Same as everyone in the All Users group, but with a special case: **people in sandboxed groups will only see themselves in the list of recipients** when creating an alert or subscription.
 
-### Administrators group notification permissions
+### Benachrichtigungsberechtigungen für die Gruppe Alle Benutzer
 
-People in the admin group can:
 
-- View all subscriptions and alerts.
-- Add or remove recipients from an existing subscription or alert. Admins can safely add and remove recipients without changing the permissions of the alert or subscription. For example, if an admin adds Anya to a subscription created by Beau, Anya will receive emails with the same data that Beau can see (not what the admin can see).
-- Delete subscriptions or alerts.
+Jeder ist in der Gruppe "Alle Benutzer". Das bedeutet, dass jeder kann:
 
-## What notification recipients can see
 
-Notification **recipients** can see whatever the notification **creator** can see. For example, if:
+- [Warnungen](../questions/alerts.md) und [Dashboard-Abonnements](../dashboards/subscriptions.md#setting-up-a-dashboard-subscription) erstellen.
+- Fügen Sie neue Empfänger zu Dashboard-Abonnements und -Warnungen hinzu, die Sie erstellt haben.
+- Abmeldung von jeder Benachrichtigung oder jedem Abonnement in ihren [Kontoeinstellungen](../people-and-groups/account-settings.md).
 
-- Beau creates a subscription to a dashboard saved in their [personal collection](../exploration-and-organization/collections.md#your-personal-collection).
-- Beau adds Anya to the dashboard subscription.
-- Anya will see the dashboard results in her email, even though she lacks permissions to view that dashboard in Beau's personal collection.
 
-## More control over email options
+Wenn ein Ersteller von Benachrichtigungen neue Empfänger zu einer Benachrichtigung oder einem Abonnement hinzufügt, zeigt die Metabase den Empfängern die Daten unter Verwendung der** [Datenberechtigungen](../permissions/data.md) und [Sammlungsberechtigungen](../permissions/collections.md)des Erstellers an.
 
-On [Enterprise](https://www.metabase.com/product/enterprise) and [Pro](https://www.metabase.com/product/pro) plans, Admins can:
 
-- Limit email recipients to [approved domains for notifications](../configuring-metabase/email.md#approved-domains-for-notifications).
-- [Limit which recipients Metabase suggests](../configuring-metabase/email.md#suggest-recipients-on-dashboard-subscriptions-and-alerts) when people set up a subscription or alert.
+### Berechtigungen für die Benachrichtigung von Sandbox-Konten
 
-## Further reading
 
-- [Dashboard subscriptions](../dashboards/subscriptions.md)
-- [Alerts](../questions/alerts.md)
+Wie alle in der Gruppe Alle Benutzer, aber mit einem Sonderfall: **Personen in Sandbox-Gruppen sehen nur sich selbst in der Liste der Empfänger**, wenn sie eine Benachrichtigung oder ein Abonnement erstellen.
+
+
+### Benachrichtigungsberechtigungen der Administratorengruppe
+
+
+Die Mitglieder der Administratorengruppe können:
+
+
+- Alle Abonnements und Benachrichtigungen anzeigen.
+- Hinzufügen oder Entfernen von Empfängern aus einem bestehenden Abonnement oder Alarm. Administratoren können auf sichere Weise Empfänger hinzufügen und entfernen, ohne die Berechtigungen der Benachrichtigung oder des Abonnements zu ändern. Wenn ein Administrator zum Beispiel Anya zu einem von Beau erstellten Abonnement hinzufügt, erhält Anya E-Mails mit denselben Daten, die Beau sehen kann (nicht die, die der Administrator sehen kann).
+- Löschen von Abonnements oder Benachrichtigungen.
+
+
+## Was die Empfänger von Benachrichtigungen sehen können
+
+
+Empfänger von Benachrichtigungen** können sehen, was derErsteller der Benachrichtigung** sehen kann. Zum Beispiel, wenn:
+
+
+- Beau erstellt ein Abonnement für ein Dashboard, das in seiner [persönlichen Sammlung](../exploration-and-organization/collections.md#your-personal-collection) gespeichert ist.
+- Beau fügt Anya zu dem Dashboard-Abonnement hinzu.
+- Anya sieht die Ergebnisse des Dashboards in ihrer E-Mail, auch wenn sie keine Berechtigung hat, das Dashboard in Beaus persönlicher Sammlung zu sehen.
+
+
+## Mehr Kontrolle über E-Mail-Optionen
+
+
+Bei den Tarifen [Enterprise](https://www.metabase.com/product/enterprise) und [Pro](https://www.metabase.com/product/pro) können Admins:
+
+
+- E-Mail-Empfänger auf [zugelassene Domains für Benachrichtigungen] beschränken(../configuring-metabase/email.md#approved-domains-for-notifications).
+- [Begrenzen Sie die von der Metabase vorgeschlagenen Empfänger](../configuring-metabase/email.md#suggest-recipients-on-dashboard-subscriptions-and-alerts), wenn ein Abonnement oder eine Benachrichtigung eingerichtet wird.
+
+
+## Weitere Lektüre
+
+
+- [Dashboard-Abonnements](../dashboards/subscriptions.md)
+- [Warnmeldungen](../questions/alerts.md)
+
