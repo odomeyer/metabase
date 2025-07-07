@@ -1,110 +1,178 @@
 ---
-title: MariaDB
+Titel: MariaDB
+---
+
+
+# MariaDB
+
+
+> Diese Seite behandelt die Verbindung mit MariaDB als _Data Warehouse_. Zur Verwendung von MariaDB als_Anwendungsdatenbank der Metabase siehe [Konfigurieren der Metabase-Anwendungsdatenbank](../../installation-and-operation/configuring-application-database.md).
+
+
+Um eine Datenbankverbindung hinzuzufügen, klicken Sie auf das**Zahnradsymbol** oben rechts und navigieren Sie zu**Admin-Einstellungen** >**Datenbanken** >**Datenbank hinzufügen**.
+
+
+MariaDB teilt sich einen Treiber mit MySQL, wählen Sie also den**MySQL**-Treiber.
+
+
+## Unterstützte Versionen
+
+
+Metabase unterstützt die älteste unterstützte Version von Maria DB bis zur letzten stabilen Version. Siehe [MariaDB Server-Versionen](https://mariadb.com/kb/en/mariadb-server-release-dates/).
+
+
+## Verbindungsdetails bearbeiten
+
+
+Sie können diese Einstellungen jederzeit ändern. Denken Sie nur daran, Ihre Änderungen zu speichern.
+
+
+### Anzeigename
+
+
+Der Anzeigename für die Datenbank in der Metabase-Schnittstelle.
+
+
+### Host
+
+
+Die IP-Adresse Ihrer Datenbank oder ihr Domänenname (z. B. esc.mydatabase.com).
+
+
+### Anschluss
+
+
+Der Datenbank-Port. Z.B. 3306.
+
+
+### Benutzername
+
+
+Der Datenbank-Benutzername für das Konto, das Sie für die Verbindung zu Ihrer Datenbank verwenden möchten. Sie können mehrere Verbindungen zu derselben Datenbank einrichten, indem Sie verschiedene Benutzerkonten mit unterschiedlichen [Privilegien] verwenden(../users-roles-privileges.md).
+
+
+### Passwort
+
+
+Das Passwort für den Benutzernamen, den Sie für die Verbindung zur Datenbank verwenden.
+
+
+### Verwenden Sie eine sichere Verbindung (SSL)
+
+
+Sie können die SSL-Zertifizierungskette Ihres Servers einfügen.
+
+
+### Verwenden Sie einen SSH-Tunnel
+
+
+Siehe unsere [Anleitung zum SSH-Tunneling](../ssh-tunnel.md).
+
+
+### JSON-Spalten aufklappen
+
+
+JSON-Folding wird für MariaDB-Datenbanken nicht unterstützt.
+
+
+### Zusätzliche JDBC-Verbindungsstring-Optionen
+
+
+Sie können Optionen an die Verbindungszeichenfolge anhängen, die Metabase für die Verbindung mit Ihrer Datenbank verwendet.
+
+
+### Abfragen für einfache Untersuchungen wiederholen
+
+
+Schalten Sie diese Option**AUS**, wenn Sie auf**Ausführen** (die Abspieltaste) klicken möchten, bevor Sie eine [zusammenfassen](../../questions/query-builder/summarizing-and-grouping.md)) oder [filtern](../../questions/query-builder/filters.md) Auswahl treffen.
+
+
+Standardmäßig führt Metabase eine Abfrage aus, sobald Sie eine Gruppierungsoption aus dem Menü **Zusammenfassen** oder eine Filterbedingung aus demMenü [Drill-through](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through) auswählen. Wenn Ihre Datenbank langsam ist, sollten Sie die erneute Ausführung deaktivieren, um das Laden von Daten bei jedem Klick zu vermeiden.
+
+
+### Wählen Sie, wann Synchronisationen und Scans stattfinden.
+
+
+Siehe [Synchronisationen und Scans](../sync-scan.md#choose-when-syncs-and-scans-happen).
+
+
+#### Datenbank-Synchronisierung
+
+
+Wenn Sie **Auswählen, wann Synchronisierungen und Scans stattfinden** > **ON** gewählt haben, können Sie dies einstellen:
+
+
+- Die Häufigkeit des [sync](../sync-scan.md#how-database-syncs-work): stündlich (Standard) oder täglich.
+- Die Uhrzeit für die Synchronisierung in der Zeitzone des Servers, auf dem Ihre Metabase-Anwendung ausgeführt wird.---
+Titel: MariaDB
 ---
 
 # MariaDB
 
-> This page covers connecting to MariaDB as a _data warehouse_. For using MariaDB as Metabase's _application database_, see [Configuring the Metabase application database](../../installation-and-operation/configuring-application-database.md).
+>  Diese Seite behandelt die Verbindung mit MariaDB als _Data Warehouse_. Zur Verwendung von MariaDB als_Anwendungsdatenbank der Metabase siehe [Konfigurieren der Metabase-Anwendungsdatenbank](../../installation-and-operation/configuring-application-database.md).
 
-To add a database connection, click on the **gear** icon in the top right, and navigate to **Admin settings** > **Databases** > **Add a database**.
+Um eine Datenbankverbindung hinzuzufügen, klicken Sie auf das**Zahnradsymbol** oben rechts und navigieren Sie zu**Admin-Einstellungen** >**Datenbanken** >**Datenbank hinzufügen**.
 
-MariaDB shares a driver with MySQL, so select the **MySQL** driver.
+MariaDB teilt sich einen Treiber mit MySQL, wählen Sie also den**MySQL**-Treiber.
 
-## Supported versions
+## Unterstützte Versionen
 
-Metabase supports the oldest supported version of Maria DB through the latest stable version. See [MariaDB Server releases](https://mariadb.com/kb/en/mariadb-server-release-dates/).
+Metabase unterstützt die älteste unterstützte Version von Maria DB bis zur letzten stabilen Version. Siehe [MariaDB Server-Versionen](https://mariadb.com/kb/en/mariadb-server-release-dates/).
 
-## Edit connection details
+## Verbindungsdetails bearbeiten
 
-You can edit these settings at any time. Just remember to save your changes.
+Sie können diese Einstellungen jederzeit ändern. Denken Sie nur daran, Ihre Änderungen zu speichern.
 
-### Display name
+### Anzeigename
 
-The display name for the database in the Metabase interface.
+Der Anzeigename für die Datenbank in der Metabase-Schnittstelle.
 
 ### Host
 
-Your database's IP address, or its domain name (e.g., esc.mydatabase.com).
+Die IP-Adresse Ihrer Datenbank oder ihr Domänenname (z. B. esc.mydatabase.com).
 
-### Port
+### Anschluss
 
-The database port. E.g., 3306.
+Der Datenbank-Port. Z.B. 3306.
 
-### Username
+### Benutzername
 
-The database username for the account that you want to use to connect to your database. You can set up multiple connections to the same database using different user accounts to connect to the same database, each with different sets of [privileges](../users-roles-privileges.md).
+Der Datenbank-Benutzername für das Konto, das Sie für die Verbindung zu Ihrer Datenbank verwenden möchten. Sie können mehrere Verbindungen zu derselben Datenbank einrichten, indem Sie verschiedene Benutzerkonten mit unterschiedlichen [Privilegien] verwenden(../users-roles-privileges.md).
 
-### Password
+### Passwort
 
-The password for the username that you use to connect to the database.
+Das Passwort für den Benutzernamen, den Sie für die Verbindung zur Datenbank verwenden.
 
-### Use a secure connection (SSL)
+### Verwenden Sie eine sichere Verbindung (SSL)
 
-You can paste your server's SSL certification chain.
+Sie können die SSL-Zertifizierungskette Ihres Servers einfügen.
 
-### Use an SSH tunnel
+### Verwenden Sie einen SSH-Tunnel
 
-See our [guide to SSH tunneling](../ssh-tunnel.md).
+Siehe unsere [Anleitung zum SSH-Tunneling](../ssh-tunnel.md).
 
-### Unfold JSON Columns
+### JSON-Spalten aufklappen
 
-JSON folding is not supported for MariaDB databases.
+JSON-Folding wird für MariaDB-Datenbanken nicht unterstützt.
 
-### Additional JDBC connection string options
+### Zusätzliche JDBC-Verbindungsstring-Optionen
 
-You can append options to the connection string that Metabase uses to connect to your database.
+Sie können Optionen an die Verbindungszeichenfolge anhängen, die Metabase für die Verbindung mit Ihrer Datenbank verwendet.
 
-### Re-run queries for simple explorations
+### Abfragen für einfache Untersuchungen wiederholen
 
-Turn this option **OFF** if people want to click **Run** (the play button) before applying any [summarize](../../questions/query-builder/summarizing-and-grouping.md)) or [filter](../../questions/query-builder/filters.md) selections.
+Schalten Sie diese Option**AUS**, wenn Sie auf**Ausführen** (die Abspieltaste) klicken möchten, bevor Sie eine [zusammenfassen](../../questions/query-builder/summarizing-and-grouping.md)) oder [filtern](../../questions/query-builder/filters.md) Auswahl treffen.
 
-By default, Metabase will execute a query as soon as you choose an grouping option from the **Summarize** menu or a filter condition from the [drill-through menu](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through). If your database is slow, you may want to disable re-running to avoid loading data on each click.
+Standardmäßig führt Metabase eine Abfrage aus, sobald Sie eine Gruppierungsoption aus dem Menü **Zusammenfassen** oder eine Filterbedingung aus demMenü [Drill-through](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through) auswählen. Wenn Ihre Datenbank langsam ist, sollten Sie die erneute Ausführung deaktivieren, um das Laden von Daten bei jedem Klick zu vermeiden.
 
-### Choose when syncs and scans happen
+### Wählen Sie, wann Synchronisationen und Scans stattfinden.
 
-See [syncs and scans](../sync-scan.md#choose-when-syncs-and-scans-happen).
+Siehe [Synchronisationen und Scans](../sync-scan.md#choose-when-syncs-and-scans-happen).
 
-#### Database syncing
+#### Datenbank-Synchronisierung
 
-If you've selected **Choose when syncs and scans happen** > **ON**, you'll be able to set:
+Wenn Sie **Auswählen, wann Synchronisierungen und Scans stattfinden** > **ON** gewählt haben, können Sie dies einstellen:
 
-- The frequency of the [sync](../sync-scan.md#how-database-syncs-work): hourly (default) or daily.
-- The time to run the sync, in the timezone of the server where your Metabase app is running.
+-  Die Häufigkeit des [sync](../sync-scan.md#how-database-syncs-work): stündlich (Standard) oder täglich.
+-  Die Uhrzeit für die Synchronisierung in der Zeitzone des Servers, auf dem Ihre Metabase-Anwendung ausgeführt wird.
 
-#### Scanning for filter values
-
-Metabase can scan the values present in each field in this database to enable checkbox filters in dashboards and questions. This can be a somewhat resource-intensive process, particularly if you have a very large database.
-
-If you've selected **Choose when syncs and scans happen** > **ON**, you'll see the following options under **Scanning for filter values**:
-
-- **Regularly, on a schedule** allows you to run [scan queries](../sync-scan.md#how-database-scans-work) at a frequency that matches the rate of change to your database. The time is set in the timezone of the server where your Metabase app is running. This is the best option for a small database, or tables with distinct values that get updated often.
-- **Only when adding a new filter widget** is a great option if you want scan queries to run on demand. Turning this option **ON** means that Metabase will only scan and cache the values of the field(s) that are used when a new filter is added to a dashboard or SQL question.
-- **Never, I'll do this manually if I need to** is an option for databases that are either prohibitively large, or which never really have new values added. Use the [Re-scan field values](../sync-scan.md#manually-scanning-column-values) button to run a manual scan and bring your filter values up to date.
-
-### Periodically refingerprint tables
-
-> Periodic refingerprinting will increase the load on your database.
-
-Turn this option **ON** to scan a sample of values every time Metabase runs a [sync](../sync-scan.md#how-database-syncs-work).
-
-A fingerprinting query examines the first 10,000 rows from each column and uses that data to guesstimate how many unique values each column has, what the minimum and maximum values are for numeric and timestamp columns, and so on. If you leave this option **OFF**, Metabase will only fingerprint your columns once during setup.
-
-## Syncing records that include JSON
-
-JSON schema inference doesn't work with MariaDB, due to implementation differences between MySQL and MariaDB.
-
-## Database routing
-
-See [Database routing](../../permissions/database-routing.md).
-
-## Danger zone
-
-See [Danger zone](../danger-zone.md).
-
-## Further reading
-
-- [MySQL](./mysql.md)
-- [Managing databases](../../databases/connecting.md)
-- [Metadata editing](../../data-modeling/metadata-editing.md)
-- [Models](../../data-modeling/models.md)
-- [Setting data access permissions](../../permissions/data.md)
