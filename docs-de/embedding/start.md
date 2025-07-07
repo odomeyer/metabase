@@ -1,43 +1,63 @@
 ---
-title: Embedding overview
+Titel: Übersicht über die Einbettung
 redirect_from:
-  - /docs/latest/embedding
+- /docs/latest/embedding
 ---
 
-# Embedding overview
 
-## [Introduction](./introduction.md)
+# Übersicht einbetten
 
-What is embedding, and how does it work?
 
-## [Interactive embedding](./interactive-embedding.md)
+## [Einführung](./introduction.md)
 
-The solution to self-service customer analytics: embed the full Metabase app in your app. Interactive embedding integrates with your data permissions to let people slice and dice data on their own using Metabase's query builder.
 
-## [Interactive embedding quickstart](./interactive-embedding-quick-start-guide.md)
+Was ist Einbettung, und wie funktioniert sie?
 
-You'll embed the full Metabase application in your app. Once logged in, people can view a Metabase dashboard in your web app, and be able to use the full Metabase application to explore their data, and only their data.
 
-## [Interactive UI components](./interactive-ui-components.md)
+## [Interaktive Einbettung](./interactive-embedding.md)
 
-Customize the UI components in your interactive embed by adding parameters to the embedding URL.
+
+Die Lösung für Self-Service-Kundenanalysen: Binden Sie die vollständige Metabase-Anwendung in Ihre Anwendung ein. Die interaktive Einbettung lässt sich in Ihre Datenberechtigungen integrieren, so dass die Benutzer die Daten mithilfe des Query Builders von Metabase selbst zerlegen und auswerten können.
+
+
+## [Interaktive Einbettung Schnellstart](./interactive-embedding-quick-start-guide.md)
+
+
+Sie betten die vollständige Metabase-Anwendung in Ihre Anwendung ein. Nach der Anmeldung können die Benutzer ein Metabase-Dashboard in Ihrer Webanwendung anzeigen und die vollständige Metabase-Anwendung verwenden, um ihre Daten - und nur ihre Daten - zu untersuchen.
+
+
+## [Interaktive UI-Komponenten](./interactive-ui-components.md)
+
+
+Passen Sie die UI-Komponenten in Ihrer interaktiven Einbettung an, indem Sie der Einbettungs-URL Parameter hinzufügen.
+
 
 ## [Embedded analytics SDK](./sdk/introduction.md)
 
-With the Embedded analytics SDK, you can embed individual Metabase components with React (like standalone charts, dashboards, the query builder, and more). You can manage access and interactivity per component, and you have advanced customization for seamless styling.
+
+Mit dem Embedded analytics SDK können Sie einzelne Metabase-Komponenten in React einbetten (z. B. eigenständige Diagramme, Dashboards, den Query Builder und mehr). Sie können den Zugriff und die Interaktivität pro Komponente verwalten und haben erweiterte Anpassungsmöglichkeiten für ein nahtloses Styling.
+
 
 ## [Embedded analytics SDK quickstart](./sdk/quickstart.md)
 
-Jump to a SDK quickstart with a sample React application.
 
-## [Static embedding](./static-embedding.md)
+Springen Sie zu einem SDK-Schnellstart mit einer React-Beispielanwendung.
 
-Also known as Signed Embedding, Static embedding is a secure way to embed charts and dashboards. Static embeds are view only; people won't be able to drill-through charts and tables.
 
-## [Parameters for static embeds](./static-embedding-parameters.md)
+## [Statische Einbettung](./static-embedding.md)
 
-You can pass parameters between Metabase and your website via the embedding URL to specify how Metabase items should look and behave inside the iframe on your website.
 
-## [Public embeds](./public-links.md)
+Die statische Einbettung, auch bekannt als signierte Einbettung, ist eine sichere Möglichkeit, Diagramme und Dashboards einzubetten. Statische Einbettungen sind nur zur Ansicht geeignet; Diagramme und Tabellen können nicht durchgeblättert werden.
 
-Admins can also create unsecured public links or embeds of questions and dashboards.
+
+## [Parameter für statische Einbettungen](./static-embedding-parameters.md)
+
+
+Sie können über die Einbettungs-URL Parameter zwischen der Metabase und Ihrer Website übergeben, um festzulegen, wie die Metabase-Elemente innerhalb des Iframe auf Ihrer Website aussehen und sich verhalten sollen.
+
+
+## [Öffentliche Einbettungen](./public-links.md)
+
+
+Admins können auch ungesicherte öffentliche Links oder Einbettungen von Fragen und Dashboards erstellen.
+
