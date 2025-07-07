@@ -1,9 +1,43 @@
 ---
+Titel: Die Daten und Zeiten in meinen Fragen und Diagrammen sind falsch
+---
+
+
+# Die Daten und Zeiten in meinen Fragen und Diagrammen sind falsch.
+
+
+Sie führen Berechnungen mit Daten und Zeiten durch oder zeigen sie in Diagrammen an, aber:
+
+
+- die Werte scheinen falsch zu sein, oder
+- die zusammengefassten Werte sind falsch.
+
+## Liegt das Problem an den Zeitzonen?
+
+
+**Ursache:**Daten und Zeiten werden in verschiedenen Zeitzonen gespeichert, aber einige oder alle dieser Zeitzonen werden bei den Berechnungen nicht berücksichtigt (d. h. das Problem sind inkonsistente Daten).
+
+
+**Zu unternehmende Schritte:**
+
+
+Um dieses Problem zu lösen, benötigen Sie Antworten auf folgende Fragen:
+
+
+1. Welches ist die korrekte Zeitzone der Daten, die Ihrer Meinung nach falsch angezeigt werden (d. h., wie lautet die richtige Antwort)?
+2. Gibt es eine explizite Zeitzoneneinstellung für jeden Zeitstempel, oder werden einige oder alle Zeitstempel ohne Zeitzone gespeichert? Zum Beispiel enthält "1. Dezember 2019 00:00:00Z00" die Zeitzone (nach dem "Z"), aber "1. Dezember 2019" nicht.
+3. In welcher Zeitzone befindet sich der Datenbankserver?
+4. In welcher Zeitzone arbeitet die Metabase?
+
+
+Sobald Sie diese Antworten haben, suchen Sie nach Fällen wie diesen:
+
+
 1. Ihre Frage oder Ihr Diagramm vergleicht oder sortiert Werte mit inkonsistenten oder fehlenden Zeitzonen. Wenn beispielsweise die Abflug- und Ankunftszeiten eines Fluges in Ortszeit angegeben werden, kann es so aussehen, als ob der Flug ankommt, bevor er abgeflogen ist.
-2. In Ihrer Frage geht es um die Aggregation von Zeitstempeln mit unterschiedlichen Zeitzonen: Die "täglichen" Gesamtwerte für den Datenverkehr Ihrer Website enthalten beispielsweise mehr als 24 Stunden, weil Sie die lokalen Daten aus Ostasien, Europa und Amerika verwenden.
+2. In Ihrer Frage geht es um die Aggregation von Zeitstempeln mit unterschiedlichen Zeitzonen: Die "täglichen" Gesamtwerte für den Datenverkehr auf Ihrer Website enthalten beispielsweise mehr als 24 Stunden, weil Sie die lokalen Daten aus Ostasien, Europa und Amerika verwenden.
 
 
-Sobald Sie glauben, ein Problem identifiziert zu haben, sollten Sie sich genau ansehen, welche Zeitzonenumstellung das Problem verursacht. Angenommen, Sie betrachten eine Zeitreihe mit täglichen Werten; wenn der Fehler bei wöchentlichen Gesamtwerten auftritt, können Sie:
+Wenn Sie glauben, ein Problem identifiziert zu haben, sollten Sie es genauer untersuchen, um zu verstehen, welche Zeitzonenumstellung das Problem verursacht. Angenommen, Sie betrachten eine Zeitreihe mit täglichen Werten; wenn Ihr Fehler bei wöchentlichen Gesamtwerten auftritt, können Sie:
 
 
 1. Wählen Sie einen bestimmten Tag, von dem Sie wissen, dass die Zahl falsch ist.
@@ -52,7 +86,7 @@ SELECT spalte::TIMESTAMP AT TIME ZONE 'EST' AS spalte_est
 Diese Anweisung wandelt die Spalte zunächst in einen Datentyp "timestamp" um und konvertiert dann den "timestamp" in einen Datentyp "timestamptz" mit der Zeitzone "EST".
 
 
-## Werden Daten ohne explizite Zeitzone in einen anderen Tag konvertiert?
+## Werden Datumsangaben ohne explizite Zeitzone in einen anderen Tag konvertiert?
 
 
 **Ursache:** Sie gruppieren nach einem Datum (statt nach einer Uhrzeit), dem eine Zeitzone fehlt.
@@ -76,4 +110,3 @@ Diese Anweisung wandelt die Spalte zunächst in einen Datentyp "timestamp" um un
 
 1. Dies ist typischerweise bei einer Frage der Fall, die mehrere Felder verwendet: Sie filtern zum Beispiel nach einem Zeitstempel und gruppieren nach einem anderen. Überprüfen Sie die Zeitzonen der einzelnen Daten oder Zeiten, die Sie in Ihrer Frage verwenden.
 2. Sie müssen die Zeitzone für jeden Wert, der keine explizite Zeitzone hat, explizit festlegen. Dies muss entweder in einer SQL-Abfrage geschehen oder durch Umwandlung der Daten in Ihrer Datenbank, um sicherzustellen, dass beide Zeitstempel Zeitzonen haben.
-
