@@ -1,37 +1,51 @@
 ---
-title: How to request new features
+Titel: Wie man neue Funktionen beantragt
 ---
 
-# How to request new features
 
-1. Check out the [issues in the github repo][github-issues] to make sure someone hasn't already requested the feature.
-2. If someone has already requested the feature, click on the thumbs emoji to vote for the issue.
-3. If you can add more context about the feature, add a comment that describes your use case or any nuances important to the feature that the description of the issue doesn't already cover. Avoid comments like "Any updates?"
-4. If your feature idea isn't listed, create a [new feature request issue][feature-request].
+# Wie man neue Funktionen beantragt
 
-## Feature description prompts
 
-Follow these prompts when creating your issue.
+1. Überprüfen Sie die [issues im github repo][github-issues], um sicherzustellen, dass nicht bereits jemand die Funktion angefordert hat.
+2. Wenn jemand die Funktion bereits angefordert hat, klicken Sie auf das Daumen-Emoji, um für das Thema zu stimmen.
+3. Wenn Sie mehr Kontext über die Funktion hinzufügen können, fügen Sie einen Kommentar hinzu, der Ihren Anwendungsfall oder wichtige Nuancen der Funktion beschreibt, die in der Problembeschreibung noch nicht enthalten sind. Vermeiden Sie Kommentare wie "Any updates?".
+4. Wenn Ihre Feature-Idee nicht aufgelistet ist, erstellen Sie einen [new feature request issue][feature-request].
 
-**Is your feature request related to a problem? Please describe.**
 
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## Aufforderungen zur Funktionsbeschreibung
 
-**Describe the solution you'd like**
 
-A clear and concise description of what you want to happen.
+Befolgen Sie diese Anweisungen bei der Erstellung Ihres Problems.
 
-**Describe alternatives you've considered**
 
-A clear and concise description of any alternative solutions or features you've considered.
+** Bezieht sich Ihre Funktionsanfrage auf ein Problem? Bitte beschreiben Sie es.**
 
-**How important is this feature to you?**
 
-Note: the more honest and specific you are here the more we will take you seriously.
+Eine klare und prägnante Beschreibung des Problems. Beispiel. Ich bin immer frustriert, wenn [...]
 
-**Additional context**
 
-Add any other context or screenshots about the feature request here.
+**Beschreiben Sie die Lösung, die Sie wünschen**
+
+
+Eine klare und präzise Beschreibung dessen, was Sie erreichen wollen.
+
+
+**Beschreiben Sie die Alternativen, die Sie in Betracht gezogen haben**
+
+
+Eine klare und prägnante Beschreibung aller alternativen Lösungen oder Funktionen, die Sie in Betracht gezogen haben.
+
+
+**Wie wichtig ist diese Funktion für Sie?
+
+
+Hinweis: Je ehrlicher und konkreter Sie hier sind, desto ernster werden wir Sie nehmen.
+
+
+**Zusätzlicher Kontext**
+
+
+Fügen Sie hier weitere Informationen oder Screenshots zu der Funktionsanfrage hinzu.
 
 [github-issues]: ./known-issues.md#how-to-find-a-known-product-limitation
 [feature-request]: https://github.com/metabase/metabase/issues/new?assignees=&labels=.Needs+Triage%2C+Type%3ANew+Feature&template=feature_request.md
