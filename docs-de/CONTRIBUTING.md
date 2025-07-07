@@ -1,110 +1,188 @@
 ---
-title: Contributing to Metabase
-redirect_from:
-  - /docs/latest/developers-guide/contributing
+
+
+### A ) Identifizierung von Produktanforderungen aus der Community
+
+
+Wir suchen aktiv nach Ideen für neue Funktionen, die von unserer Community, unserer Benutzerbasis und unserer eigenen internen Verwendung der Metabase kommen. Wir konzentrieren uns auf das zugrundeliegende _Problem_ oder _Bedürfnis_ und nicht auf Anfragen für spezifische Funktionen. Während manchmal vorgeschlagene Funktionen wie gewünscht gebaut werden, stellen wir oft fest, dass sie Änderungen an bestehenden Funktionen beinhalten, und vielleicht eine völlig andere Lösung für das zugrunde liegende Problem. Diese werden typischerweise in einer Reihe von Themen gesammelt und mit [Proposal](https://github.com/metabase/metabase/labels/.Proposal)
+
+
+### B ) Synthetisierung dieser Bedürfnisse in eine konkrete Funktion
+
+
+In der Regel fassen wir eine Gruppe von Fragen oder Vorschlägen zu einem neuen Funktionskonzept zusammen. In der Regel erstellen wir ein Arbeitsdokument, in dem alle "offenen Fragen" zu dem, was die Funktion tun und vor allem nicht tun soll, gesammelt werden. Wir unterhalten uns mit unseren Nutzern, führen vielleicht ausführliche Interviews durch und versuchen generell, die Funktion genau zu definieren. Wenn eine Funktion Zeit braucht, um diskutiert und definiert zu werden, wird sie mit [Proposal/Being Discussed](https://github.com/metabase/metabase/labels/.Proposal%2FBeing%20Discussed) gekennzeichnet, um anzuzeigen, dass sie noch aktiv diskutiert wird.
+
+
+### C ) Entwurf der Funktion
+
+
+Sobald eine Funktion definiert ist, wird sie normalerweise von einem Produktdesigner übernommen. Hier werden Low-Fi-Mocks erstellt, Feedback von unseren Nutzern und der Community eingeholt und iteriert.
+
+
+Sobald die wichtigsten UX-Flows festgelegt sind, wird ein visuelles Hi-Fidelity-Design erstellt.
+
+
+Funktionen, die für das Design bereit sind, werden mit [Design Needed](https://github.com/metabase/metabase/labels/.Design%20Needed) gekennzeichnet. Sobald ein Feature ein einigermaßen vollständiges visuelles Design hat, sollte es mit [Help Wanted](https://github.com/metabase/metabase/labels/.Help%20Wanted) gekennzeichnet werden.
+
+
+### D ) Erstellen der Funktion
+
+
+Sobald eine Funktion mit [Help Wanted](https://github.com/metabase/metabase/labels/.Help%20Wanted) gekennzeichnet ist, gilt sie als bereit für die Erstellung. Ein Mitglied des Kernteams (oder du, der du so unglaublich hilfreich bist) kann mit der Arbeit daran beginnen.
+
+
+Wenn Sie etwas bauen, das die Benutzer in der Metabase sehen werden, lesen Sie bitte den Style Guide (zu finden unter `https://storybook.metabase.com`), um zu erfahren, wie und wann verschiedene Metabase UI-Elemente zu verwenden sind.
+
+
+Sobald eine oder mehrere Personen mit der Arbeit an einem Feature begonnen haben, sollte es als [In Progress](https://github.com/metabase/metabase/labels/.In%20Progress) markiert werden. Sobald es einen Zweig + etwas Code gibt, wird ein Pull Request eröffnet, der mit der Funktion + allen Problemen, die zur Information der Funktion zusammengezogen wurden, verbunden ist.
+
+
+### E ) Überprüfung und Zusammenführung
+
+
+Alle PRs, die mehr als eine unbedeutende Änderung beinhalten, sollten überprüft werden. Siehe unseren [Code Review Process](./developers-guide/code-reviews.md).
+
+
+Wenn alles gut geht, wird das Feature kodiert, verifiziert und dann wird der Pull Request zusammengeführt! Herzlichen Glückwunsch an alle.
+
+
+Wenn in der Pull-Anfrage Tests fehlen, Probleme mit dem Code-Stil oder spezifische architektonische Probleme bestehen, sollten diese vor dem Zusammenführen behoben werden. Wir haben einen sehr hohen Anspruch an die Code- und Produktqualität und es ist wichtig, dass diese auch in Zukunft beibehalten wird, also haben Sie bitte Geduld mit uns.
+
+
+## Wie Sie helfen können
+
+
+Der erste Schritt besteht darin, sich mit dem Produkt Metabase vertraut zu machen und sich zurechtzufinden. Wenn Sie es bereits bei der Arbeit verwenden, ist das großartig! Wenn nicht, [laden Sie Metabase](https://www.metabase.com/start/oss/)herunter und spielen Sie damit herum. Lesen Sie die Dokumentationen und bekommen Sie ein Gefühl für die Funktionsweise des Produkts.
+
+
+Hier sind einige Möglichkeiten, wie Sie helfen können, in der Reihenfolge der zunehmenden Koordination + Interaktion mit uns:
+
+
+### Helfen Sie bei der Identifizierung von Bedürfnissen und Problemen, die Metabase lösen kann
+
+
+Wenn Sie helfen wollen, probieren Sie Metabase aus. Verwenden Sie sie in Ihrem Unternehmen und berichten Sie uns, was Ihnen gefällt, was Ihnen nicht gefällt und auf welche Probleme Sie stoßen. Helfen Sie uns, Ihr Datenmodell, die erforderlichen Metriken und die üblichen Nutzungsmuster so gut wie möglich zu verstehen. Diese Informationen wirken sich direkt auf die Qualität des Produkts aus. Je mehr Sie uns über die Art Ihrer Probleme erzählen, desto besser können wir sie lösen.
+
+
+### Helfen Sie uns bei der Triage und der Unterstützung anderer Benutzer
+
+
+Verbringen Sie Zeit auf discourse.metabase.com und bei neuen Problemen und versuchen Sie, die gemeldeten Fehler zu reproduzieren. Helfen Sie den Leuten, die Probleme mit ihren Datenbanken haben, bei denen Sie sich auskennen, aus. Wer weiß, vielleicht können sie Ihnen in Zukunft bei etwas helfen.
+
+
+Es ist hilfreich, wenn Sie unseren [Priorisierungsrahmen](https://github.com/metabase/metabase/wiki/Bug-Prioritization) verstehen, wenn Sie antworten.
+
+
+### Erzählen Sie Ihren Freunden
+
+
+Informieren Sie Ihre Freunde über Metabase. Gründen Sie eine Benutzergruppe in Ihrer Nähe. (http://twitter.com/metabase). Bloggen Sie darüber, wie Sie Metabase verwenden, und teilen Sie Ihre Erfahrungen.
+
+
+### Bugs beheben
+
+
+Nach unserer Definition sind "Bugs" Situationen, in denen das Programm nicht das tut, was es nach dem Entwurf oder der Spezifikation tun sollte. Diese sind in der Regel auf Probleme beschränkt, für die es ein klar definiertes korrektes Verhalten gibt. Es ist in der Regel sicher, sich eines dieser Probleme zu schnappen, es zu beheben, und einen PR (mit Tests!) einzureichen. Diese werden ohne großes Drama zusammengeführt, es sei denn, der PR berührt eine Menge Code. Seien Sie nicht beleidigt, wenn wir Sie bitten, kleine Änderungen vorzunehmen oder weitere Tests hinzuzufügen. Wir sind ein bisschen zwanghaft, was die Codeabdeckung und den Kodierungsstil angeht.
+
+
+### Hilfe bei der Dokumentation
+
+
+Es gibt viele Dokumentationen, was bedeutet, dass es schwierig ist, sie auf dem neuesten Stand zu halten. Wenn Sie Ungereimtheiten, Fehler oder veraltete Informationen bemerken, helfen Sie uns bitte, sie aktuell zu halten!
+
+
+Beachten Sie, dass **wir zur Zeit keine Übersetzungen für die Dokumentation akzeptieren können**. Wir unterstützen [In-App-Übersetzungen](./configuring-metabase/localization.md) und unterstützen nur Sprachen, die zu 100% abgedeckt sind. Aber 1) ist der In-App-Text um Größenordnungen kürzer als unsere Dokumente, 2) ändert er sich langsamer, und 3) haben wir eine Menge Leute, die uns helfen. Möglicherweise werden wir in Zukunft mehrsprachige Dokumentationen unterstützen, aber im Moment müssen wir unsere Ressourcen auf die Verbesserung unserer bestehenden Dokumentation konzentrieren (und sie erweitern, um alle neuen Funktionen zu berücksichtigen, die wir hinzufügen).
+
+
+### Arbeit an Funktionen
+
+
+Einige Funktionen, z.B. Datenbanktreiber, haben keine benutzerorientierten Pixel. Sie eignen sich hervorragend für den Einstieg in die Mitarbeit, da sie nicht so viel Kommunikation, Diskussionen über Kompromisse und Prozesse im Allgemeinen erfordern.
+
+
+In Situationen, in denen ein Entwurf bereits fertiggestellt wurde, können wir immer Hilfe gebrauchen. Melden Sie sich bei einer Pull-Anfrage oder einem Problem und bieten Sie Ihre Hilfe an.
+
+
+Generell ist jedes Thema in [Help Wanted](https://github.com/metabase/metabase/labels/.Help%20Wanted) Freiwild.
+
+
+### #YOLO EINFACH EINEN PR EINREICHEN
+
+
+Wenn Ihnen etwas wirklich Cooles einfällt und Sie es mit uns teilen wollen, reichen Sie einfach einen PR ein. Wenn es den oben genannten Prozess nicht durchlaufen hat, werden wir es wahrscheinlich nicht zusammenführen, aber wenn es überzeugend ist, sind wir mehr als bereit, Ihnen durch Code-Reviews, Design-Reviews und allgemeines Erbsenzählertum zu helfen, damit es in den Rest unserer Codebasis passt.
+
 ---
 
-# Contributing to Metabase
+### A ) Identifizierung von Produktanforderungen aus der Community
 
-## Thank you
+Wir suchen aktiv nach Ideen für neue Funktionen, die von unserer Community, unserer Benutzerbasis und unserer eigenen internen Verwendung der Metabase kommen. Wir konzentrieren uns auf das zugrundeliegende _Problem_ oder _Bedürfnis_ und nicht auf Anfragen für spezifische Funktionen. Während manchmal vorgeschlagene Funktionen wie gewünscht gebaut werden, stellen wir oft fest, dass sie Änderungen an bestehenden Funktionen beinhalten, und vielleicht eine völlig andere Lösung für das zugrunde liegende Problem. Diese werden typischerweise in einer Reihe von Themen gesammelt und mit [Proposal](https://github.com/metabase/metabase/labels/.Proposal)
 
-First off, thanks for your interest in Metabase and for wanting to contribute!
+### B ) Synthetisierung dieser Bedürfnisse in eine konkrete Funktion
 
-In this guide, we'll discuss how Metabase is built. This should give you a good sense of our process and where you might want to fit in.
+In der Regel fassen wir eine Gruppe von Fragen oder Vorschlägen zu einem neuen Funktionskonzept zusammen. In der Regel erstellen wir ein Arbeitsdokument, in dem alle "offenen Fragen" zu dem, was die Funktion tun und vor allem nicht tun soll, gesammelt werden. Wir unterhalten uns mit unseren Nutzern, führen vielleicht ausführliche Interviews durch und versuchen generell, die Funktion genau zu definieren. Wenn eine Funktion Zeit braucht, um diskutiert und definiert zu werden, wird sie mit [Proposal/Being Discussed](https://github.com/metabase/metabase/labels/.Proposal%2FBeing%20Discussed) gekennzeichnet, um anzuzeigen, dass sie noch aktiv diskutiert wird.
 
-In general, we like to have an open issue for every pull request as a place to discuss the nature of any bug or proposed improvement. Each pull request should address a single issue, and contain both the fix as well as a description of the pull request and tests that validate that the PR fixes the issue in question.
+###  C ) Entwurf der Funktion
 
-For bug fixes, please submit the pull request to target the `master` branch. From time to time, our team will backport selected critical bug fixes to the stable/release branch.
+Sobald eine Funktion definiert ist, wird sie normalerweise von einem Produktdesigner übernommen. Hier werden Low-Fi-Mocks erstellt, Feedback von unseren Nutzern und der Community eingeholt und iteriert.
 
-For significant feature additions, it is expected that discussion will have taken place in the attached issue. Any feature that requires a major decision to be reached will need to have an explicit design document written. The goals of this document are to make explicit the assumptions, constraints and tradeoffs any given feature implementation will contain. The point is not to generate documentation but to allow discussion to reference a specific proposed design and to allow others to consider the implications of a given design.
+Sobald die wichtigsten UX-Flows festgelegt sind, wird ein visuelles Hi-Fidelity-Design erstellt.
 
-## Contributor License Agreement
+Funktionen, die für das Design bereit sind, werden mit [Design Needed](https://github.com/metabase/metabase/labels/.Design%20Needed) gekennzeichnet. Sobald ein Feature ein einigermaßen vollständiges visuelles Design hat, sollte es mit [Help Wanted](https://github.com/metabase/metabase/labels/.Help%20Wanted) gekennzeichnet werden.
 
-We don't like getting sued, so before merging any pull request, we'll need each person contributing code to sign a [Contributor License Agreement](https://docs.google.com/a/metabase.com/forms/d/1oV38o7b9ONFSwuzwmERRMi9SYrhYeOrkbmNaq9pOJ_E/viewform).
+### D ) Erstellen der Funktion
 
-## What we're trying to build
+Sobald eine Funktion mit [Help Wanted](https://github.com/metabase/metabase/labels/.Help%20Wanted) gekennzeichnet ist, gilt sie als bereit für die Erstellung. Ein Mitglied des Kernteams (oder du, der du so unglaublich hilfreich bist) kann mit der Arbeit daran beginnen.
 
-Metabase is all about letting non-technical users get access to their organization's data. We're trying to maximize the amount of power that can be comfortably used by someone who understands their business, is quantitatively bent, but probably only comfortable with Excel.
+Wenn Sie etwas bauen, das die Benutzer in der Metabase sehen werden, lesen Sie bitte den Style Guide (zu finden unter `https://storybook.metabase.com`), um zu erfahren, wie und wann verschiedene Metabase UI-Elemente zu verwenden sind.
 
-It's important to keep in mind these goals of the Metabase project. Many times
-proposals will be marked "Out of Scope" or otherwise deprioritized. This doesn't mean the proposal isn't useful, or that we wouldn't be interested in seeing it done as a side project or as an experimental branch. However, it does mean that we won't point the core team or contributors to it in the near term. Issues that are slightly out of scope will be kept open in case there is community support (and ideally contributions).
+Sobald eine oder mehrere Personen mit der Arbeit an einem Feature begonnen haben, sollte es als [In Progress](https://github.com/metabase/metabase/labels/.In%20Progress) markiert werden. Sobald es einen Zweig + etwas Code gibt, wird ein Pull Request eröffnet, der mit der Funktion + allen Problemen, die zur Information der Funktion zusammengezogen wurden, verbunden ist.
 
-To get a sense for the end goals, make sure to read the [Zen of Metabase](https://github.com/metabase/metabase/blob/master/zen.md).
+### E ) Überprüfung und Zusammenführung
 
-## Our product process:
+Alle PRs, die mehr als eine unbedeutende Änderung beinhalten, sollten überprüft werden. Siehe unseren [Code Review Process](./developers-guide/code-reviews.md).
 
-The core team runs a pretty well defined product process. It is actively being tweaked, but the below is a pretty faithful description of it at the time of writing. You should have a clear idea of how we work before jumping in with a PR.
+Wenn alles gut geht, wird das Feature kodiert, verifiziert und dann wird der Pull Request zusammengeführt! Herzlichen Glückwunsch an alle.
 
-### A) Identify product needs from the community
+Wenn in der Pull-Anfrage Tests fehlen, Probleme mit dem Code-Stil oder spezifische architektonische Probleme bestehen, sollten diese vor dem Zusammenführen behoben werden. Wir haben einen sehr hohen Anspruch an die Code- und Produktqualität und es ist wichtig, dass diese auch in Zukunft beibehalten wird, also haben Sie bitte Geduld mit uns.
 
-We actively look for new feature ideas from our community, user base and our own use of Metabase internally. We concentrate on the underlying _problem_ or _need_ as opposed to requests for specific features. While sometimes suggested features are built as requested, often we find that they involve changes to existing features, and perhaps an entirely different solution to the underlying problem. These will typically be collected in a number of issues, and tagged [Proposal](https://github.com/metabase/metabase/labels/.Proposal)
+## Wie Sie helfen können
 
-### B) Synthesize these needs into a concrete feature
+Der erste Schritt besteht darin, sich mit dem Produkt Metabase vertraut zu machen und sich zurechtzufinden. Wenn Sie es bereits bei der Arbeit verwenden, ist das großartig! Wenn nicht, [laden Sie Metabase](https://www.metabase.com/start/oss/)herunter und spielen Sie damit herum. Lesen Sie die Dokumentationen und bekommen Sie ein Gefühl für die Funktionsweise des Produkts.
 
-We typically will collect a group of issues or suggestions into a new topline feature concept. Typically we'll create a working document that collects all "Open Questions" regarding to what the feature is meant to do, and more importantly not do. We'll chat with our users, maybe do in depth interviews and generally try to tightly define the feature. If a feature seems like it will need time to be discussed and scoped, it will be tagged [Proposal/Being Discussed](https://github.com/metabase/metabase/labels/.Proposal%2FBeing%20Discussed) to signify that it is still actively under discussion.
+Hier sind einige Möglichkeiten, wie Sie helfen können, in der Reihenfolge der zunehmenden Koordination + Interaktion mit uns:
 
-### C) Design the feature
+### Helfen Sie bei der Identifizierung von Bedürfnissen und Problemen, die Metabase lösen kann
 
-Once a feature has been defined, typically it will be taken on by a product designer. Here, they will produce low fi mocks, get feedback from our users and community, and iterate.
+Wenn Sie helfen wollen, probieren Sie Metabase aus. Verwenden Sie sie in Ihrem Unternehmen und berichten Sie uns, was Ihnen gefällt, was Ihnen nicht gefällt und auf welche Probleme Sie stoßen. Helfen Sie uns, Ihr Datenmodell, die erforderlichen Metriken und die üblichen Nutzungsmuster so gut wie möglich zu verstehen. Diese Informationen wirken sich direkt auf die Qualität des Produkts aus. Je mehr Sie uns über die Art Ihrer Probleme erzählen, desto besser können wir sie lösen.
 
-Once the main UX flows have been dialed in, there will be a hi-fidelity visual design.
+### Helfen Sie uns bei der Triage und der Unterstützung anderer Benutzer
 
-Features that are ready for design are tagged [Design Needed](https://github.com/metabase/metabase/labels/.Design%20Needed). Once a feature has had a reasonably complete visual design it should be tagged [Help Wanted](https://github.com/metabase/metabase/labels/.Help%20Wanted).
+Verbringen Sie Zeit auf discourse.metabase.com und bei neuen Problemen und versuchen Sie, die gemeldeten Fehler zu reproduzieren. Helfen Sie den Leuten, die Probleme mit ihren Datenbanken haben, bei denen Sie sich auskennen, aus. Wer weiß, vielleicht können sie Ihnen in Zukunft bei etwas helfen.
 
-### D) Build the feature
+Es ist hilfreich, wenn Sie unseren [Priorisierungsrahmen](https://github.com/metabase/metabase/wiki/Bug-Prioritization) verstehen, wenn Sie antworten.
 
-Once a feature is tagged [Help Wanted](https://github.com/metabase/metabase/labels/.Help%20Wanted), it is considered ready to be built. A core team member (or you, awesomely helpful person that you are) can start working on it.
+### Erzählen Sie Ihren Freunden
 
-If you're building something that users will see in Metabase, please refer to the Style Guide (found at `https://storybook.metabase.com`) to learn how and when to use various Metabase UI elements.
+Informieren Sie Ihre Freunde über Metabase. Gründen Sie eine Benutzergruppe in Ihrer Nähe. (http://twitter.com/metabase). Bloggen Sie darüber, wie Sie Metabase verwenden, und teilen Sie Ihre Erfahrungen.
 
-Once one or more people have started to work on a feature, it should be marked [In Progress](https://github.com/metabase/metabase/labels/.In%20Progress). Once there is a branch+some code, a pull request is opened, linked to the feature + any issues that were pulled together to inform the feature.
+### Bugs beheben
 
-### E) Verification and merging
+Nach unserer Definition sind "Bugs" Situationen, in denen das Programm nicht das tut, was es nach dem Entwurf oder der Spezifikation tun sollte. Diese sind in der Regel auf Probleme beschränkt, für die es ein klar definiertes korrektes Verhalten gibt. Es ist in der Regel sicher, sich eines dieser Probleme zu schnappen, es zu beheben, und einen PR (mit Tests!) einzureichen. Diese werden ohne großes Drama zusammengeführt, es sei denn, der PR berührt eine Menge Code. Seien Sie nicht beleidigt, wenn wir Sie bitten, kleine Änderungen vorzunehmen oder weitere Tests hinzuzufügen. Wir sind ein bisschen zwanghaft, was die Codeabdeckung und den Kodierungsstil angeht.
 
-All PRs that involve more than an insignificant change should be reviewed. See our [Code Review Process](./developers-guide/code-reviews.md).
+### Hilfe bei der Dokumentation
 
-If all goes well, the feature gets coded up, verified and then the pull request gets merged! High-fives all around.
+Es gibt viele Dokumentationen, was bedeutet, dass es schwierig ist, sie auf dem neuesten Stand zu halten. Wenn Sie Ungereimtheiten, Fehler oder veraltete Informationen bemerken, helfen Sie uns bitte, sie aktuell zu halten!
 
-If there are tests missing, code style concerns or specific architectural issues in the pull request, they should be fixed before merging. We have a very high bar on both code and product quality and it's important that this be maintained going forward, so please be patient with us here.
+Beachten Sie, dass **wir zur Zeit keine Übersetzungen für die Dokumentation akzeptieren können**. Wir unterstützen [In-App-Übersetzungen](./configuring-metabase/localization.md) und unterstützen nur Sprachen, die zu 100% abgedeckt sind. Aber 1) ist der In-App-Text um Größenordnungen kürzer als unsere Dokumente, 2) ändert er sich langsamer, und 3) haben wir eine Menge Leute, die uns helfen. Möglicherweise werden wir in Zukunft mehrsprachige Dokumentationen unterstützen, aber im Moment müssen wir unsere Ressourcen auf die Verbesserung unserer bestehenden Dokumentation konzentrieren (und sie erweitern, um alle neuen Funktionen zu berücksichtigen, die wir hinzufügen).
 
-## Ways to help
+### Arbeit an Funktionen
 
-The starting point would be to get familiar with Metabase the product, and know your way around. If you're using it at work, that's great! If not, [download Metabase](https://www.metabase.com/start/oss/) and play around with it. Read the docs and generally get a feel for the flow of the product.
+Einige Funktionen, z.B. Datenbanktreiber, haben keine benutzerorientierten Pixel. Sie eignen sich hervorragend für den Einstieg in die Mitarbeit, da sie nicht so viel Kommunikation, Diskussionen über Kompromisse und Prozesse im Allgemeinen erfordern.
 
-Here are some ways you can help, in order of increasing coordination + interaction with us:
+In Situationen, in denen ein Entwurf bereits fertiggestellt wurde, können wir immer Hilfe gebrauchen. Melden Sie sich bei einer Pull-Anfrage oder einem Problem und bieten Sie Ihre Hilfe an.
 
-### Help with identifying needs and problems Metabase can solve
+Generell ist jedes Thema in [Help Wanted](https://github.com/metabase/metabase/labels/.Help%20Wanted) Freiwild.
 
-If you want to help, try out Metabase. Use it at your company, and report back the things you like, dislike and any problems you run into. Help us understand your data model, required metrics and common usage patterns as much as you can. This information directly affects the quality of the product. The more you tell us about the kinds of problems you're facing, the better we'll be able to address them.
+### #YOLO EINFACH EINEN PR EINREICHEN
 
-### Help us triage and support other users
-
-Spend time on discourse.metabase.com and on new issues and try to reproduce the bugs reported. For people having trouble with their databases where you have significant knowledge, help them out. Who knows, maybe they'll end up helping you with something in the future.
-
-It is helpful if you understand our [prioritization framework](https://github.com/metabase/metabase/wiki/Bug-Prioritization) when responding.
-
-### Tell your friends
-
-Let your friends know about Metabase. Start a user group in your area. [Tweet about us](http://twitter.com/metabase). Blog about how you're using Metabase, and share what you've learned.
-
-### Fix bugs
-
-By our definition, "Bugs" are situations where the program doesn't do what it was expected to according to the design or specification. These are typically scoped to issues where there is a clearly defined correct behavior. It's usually safe to grab one of these, fix it, and submit a PR (with tests!). These will be merged without too much drama unless the PR touches a lot of code. Don't be offended if we ask you to make small modifications or add more tests. We're a bit OCD on code coverage and coding style.
-
-### Help with Documentation
-
-There are a lot of docs, which means keeping them up to date is hard. If you notice inconsistencies, errors, or outdated information, please help us keep them current!
-
-Note that **we cannot accept translations for documentation at this time**. We support [in-app translations](./configuring-metabase/localization.md), and only support languages that have 100% coverage. But 1) the in-app text is orders of magnitude shorter than our docs, 2) it changes at a slower pace, and 3) we have a lot of people help out. We may consider supporting docs in multiple languages in the future, but for now we need to focus our resources on improving our existing documentation (and expanding it to include all of the new features we're adding).
-
-### Working on features
-
-Some features, eg Database drivers, don't have any user facing pixels. These are a great place to start off contributing as they don't require as much communication, discussions about tradeoffs and process in general.
-
-In situations where a design has already been done, we can always use some help. Chime in on a pull request or an issue and offer to help.
-
-Generally speaking, any issue in [Help Wanted](https://github.com/metabase/metabase/labels/.Help%20Wanted) is fair game.
-
-### #YOLO JUST SUBMIT A PR
-
-If you come up with something really cool, and want to share it with us, just submit a PR. If it hasn't gone through the above process, we probably won't merge it as is, but if it's compelling, we're more than willing to help you via code review, design review and generally OCD nitpicking so that it fits into the rest of our codebase.
+Wenn Ihnen etwas wirklich Cooles einfällt und Sie es mit uns teilen wollen, reichen Sie einfach einen PR ein. Wenn es den oben genannten Prozess nicht durchlaufen hat, werden wir es wahrscheinlich nicht zusammenführen, aber wenn es überzeugend ist, sind wir mehr als bereit, Ihnen durch Code-Reviews, Design-Reviews und allgemeines Erbsenzählertum zu helfen, damit es in den Rest unserer Codebasis passt.
