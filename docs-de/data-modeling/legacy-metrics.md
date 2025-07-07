@@ -1,16 +1,22 @@
 ---
-title: Legacy metrics
+Titel: Legacy Metrics
 ---
 
-# Legacy metrics
 
-Metabase upgraded [metrics](./metrics.md) starting in version 51.
+# Veraltete Metriken
 
-If you're upgrading from Metabase 50 or earlier, all of your existing metrics will be migrated to the new metrics, which you can find in the Migrated Metrics V1 collection with curate access only for admins. You can leave the metrics there, or move them into different collections.
 
-## What's new with metrics
+Die Metabase hat [metrics](./metrics.md) ab Version 51 aktualisiert.
 
-- Anyone can create a new metric.
-- Metrics can be stored (and pinned) to collections.
-- If you have curate access to the collection, you can edit a metric in that collection.
-- You can explore metrics in your Metabase in the data browser.
+
+Wenn Sie ein Upgrade von Metabase 50 oder früher durchführen, werden alle vorhandenen Metriken in die neuen Metriken migriert, die Sie in der Sammlung "Migrated Metrics V1" finden, die nur für Administratoren zugänglich ist. Sie können die Metriken dort belassen oder sie in andere Sammlungen verschieben.
+
+
+## Was ist neu bei den Metriken?
+
+
+- Jeder kann eine neue Metrik erstellen.
+- Metriken können in Sammlungen gespeichert (und angeheftet) werden.
+- Wenn Sie über einen Kuratorenzugriff auf die Sammlung verfügen, können Sie eine Metrik in dieser Sammlung bearbeiten.
+- Sie können die Metriken in Ihrer Metabase im Datenbrowser untersuchen.
+
