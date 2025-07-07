@@ -1,90 +1,79 @@
 ---
-title: SSH tunneling
+Titel: SSH-Tunneling
 redirect_from:
-  - /docs/latest/administration-guide/ssh-tunnel-for-database-connections
+- /docs/latest/administration-guide/ssh-tunnel-fuer-datenbank-verbindungen
 ---
 
-# SSH tunneling
 
-Metabase can connect to some databases by first establishing a connection to a server in between Metabase and a data warehouse, then connecting to the data warehouse using that connection as a bridge. This makes connecting to some data warehouses possible in situations that would otherwise prevent the use of Metabase.
+# SSH-Tunneling
 
-## When to use SSH tunneling
 
-In general, there are two basic use cases for an SSH tunnel:
+Metabase kann eine Verbindung zu einigen Datenbanken herstellen, indem zunächst eine Verbindung zu einem Server zwischen Metabase und einem Data Warehouse hergestellt wird und dann eine Verbindung zum Data Warehouse über diese Verbindung als Brücke hergestellt wird. Dies ermöglicht die Verbindung zu einigen Data Warehouses in Situationen, in denen die Verwendung von Metabase ansonsten nicht möglich wäre.
 
-- When a direct connection is impossible.
-- When a direct connection is forbidden due to a security policy.
 
-Sometimes when a data warehouse is inside an enterprise environment, direct connections are blocked by security devices such as firewalls and intrusion prevention systems. Bastion hosts offer the option to first connect to a computer on the edge of the protected network, then, from that bastion host computer, establish a second connection to the data warehouse within the internal network, essentially patching these two connections together. Using the SSH tunneling feature, Metabase can automate this process.
+## Wann wird SSH-Tunneling verwendet?
 
-> [Metabase Cloud](https://www.metabase.com/cloud/) does not currently support VPN connections to databases. To connect to databases in private networks, you can instead use SSH tunneling.
 
-## How to use SSH tunneling
+Im Allgemeinen gibt es zwei grundlegende Anwendungsfälle für einen SSH-Tunnel:
 
-When connecting though a bastion host:
 
-- Answer yes to the "Use an SSH-tunnel for database connections" parameter.
-- Enter the hostname for the data warehouse as it is seen from inside the network in the `Host` parameter.
-- Enter the data warehouse port as seen from inside the network into the `Port` parameter.
-- Enter the external name of the bastion host as seen from the outside of the network (or wherever you are) into the `SSH tunnel host` parameter.
-- Enter the SSH port as seen from outside the network into the `SSH tunnel port` parameter. This is usually 22, regardless of which data warehouse you are connecting to.
+- Wenn eine direkte Verbindung unmöglich ist.
+- Wenn eine direkte Verbindung aufgrund von Sicherheitsrichtlinien verboten ist.
 
-For authentication, you have two options:
 
-- **Using a username and password:**
+Wenn sich ein Data Warehouse innerhalb einer Unternehmensumgebung befindet, werden direkte Verbindungen manchmal durch Sicherheitseinrichtungen wie Firewalls und Intrusion Prevention Systeme blockiert. Bastion-Hosts bieten die Möglichkeit, sich zunächst mit einem Computer am Rande des geschützten Netzwerks zu verbinden und dann von diesem Bastion-Host-Computer aus eine zweite Verbindung zum Data Warehouse innerhalb des internen Netzwerks herzustellen, wobei diese beiden Verbindungen im Wesentlichen zusammengefügt werden. Mithilfe der SSH-Tunneling-Funktion kann Metabase diesen Prozess automatisieren.
 
-  - In the `SSH tunnel username` and `SSH tunnel password` fields, enter the username and password you use to log in to the bastion host.
 
-- **Using SSH key (PKI authentication):**
+> [Metabase Cloud](https://www.metabase.com/cloud/) unterstützt derzeit keine VPN-Verbindungen zu Datenbanken. Um eine Verbindung zu Datenbanken in privaten Netzwerken herzustellen, können Sie stattdessen SSH-Tunneling verwenden.
 
-  - Select SSH Key for the `SSH authentication` option.
-  - Paste the contents of your SSH private key into the `SSH private key` field.
-  - If your key has a passphrase, enter it into the `Passphrase for the SSH private key` field.
 
-If you're unable to connect test your SSH credentials by connecting to the SSH server/Bastion Host using ssh directly:
+## So verwenden Sie SSH-Tunneling
 
-```
-ssh <SSH tunnel username>@<SSH tunnel host> -p <SSH tunnel port>
-```
 
-Another common case where direct connections are impossible is when connecting to a data warehouse that is only accessible locally and does not allow remote connections. In this case you will be opening an SSH connection to the data warehouse, then from there connecting back to the same computer.
+Wenn Sie eine Verbindung über einen Bastion-Host herstellen:
 
-- Answer yes to the "Use an SSH-tunnel for database connections" parameter.
-- Enter `localhost` in the `Host` parameter. This is the name the server.
-- Enter the same value in the `Port` parameter that you would use if you where sitting directly at the data warehouse host system.
-- Enter the external name of the data warehouse, as seen from the outside of the network (or wherever you are) into the `SSH tunnel host` parameter.
-- Enter the SSH port as seen from outside the network into the `SSH tunnel port` parameter. This is usually 22, regardless of which data warehouse you are connecting to.
-- Choose your authentication method as described above (username and password or SSH key).
 
-If you have problems connecting, verify the SSH host port and password by connecting manually using ssh or PuTTY on older windows systems.
+- Beantworten Sie den Parameter "Use an SSH-tunnel for database connections" mit "yes".
+- Geben Sie in den Parameter "Host" den Hostnamen für das Data Warehouse ein, wie er von innerhalb des Netzwerks gesehen wird.
+- Geben Sie in den Parameter "Port" den Port des Data Warehouse ein, wie er von innerhalb des Netzes gesehen wird.
+- Geben Sie den externen Namen des Bastion-Hosts von außerhalb des Netzes (oder wo immer Sie sich befinden) in den Parameter "SSH tunnel host" ein.
+- Geben Sie den SSH-Port, den Sie von außerhalb des Netzes sehen, in den Parameter "SSH-Tunnelport" ein. In der Regel ist dies 22, unabhängig davon, mit welchem Data Warehouse Sie sich verbinden.
 
-NOTE: the SSH server needs to have "AllowTcpForwarding" configuration set to "yes" for the tunneling to work.
 
-## Disadvantages of indirect connections
+Für die Authentifizierung haben Sie zwei Möglichkeiten:
 
-While using an SSH tunnel makes it possible to use a data warehouse that is otherwise inaccessible, it's almost always preferable to use a direct connection when possible.
 
-There are several inherent limitations to connecting through a tunnel:
+- **Mit einem Benutzernamen und einem Passwort:**
 
-- If the enclosing SSH connection is closed because you put your computer to sleep or change networks, all established connections will be closed as well. This can cause delays resuming connections after suspending your laptop.
-- It's almost always slower. The connection has to go through an additional computer.
-- Opening new SSH connections takes longer.
-- Multiple operations over the same SSH tunnel can block each other. This can increase latency.
-- The number of connections through a bastion host is often limited by organizational policy.
-- Some organizations have IT security policies forbidding using SSH tunnels to bypass security perimeters.
 
-## Running SSH directly
+- Geben Sie in die Felder "SSH-Tunnel-Benutzername" und "SSH-Tunnel-Passwort" den Benutzernamen und das Passwort ein, mit denen Sie sich beim Bastion-Host anmelden.
 
-The SSH tunneling feature in Metabase exists as a convenient wrapper around SSH, and automates the common cases of connecting through a tunnel. It also makes connections possible with systems that don't give shell access. Metabase uses a built-in SSH client that doesn't depend on the installed system's SSH client. This allows connections from systems where you can't run SSH manually. It also means that Metabase can't take advantage of authentication services provided by the system, such as Windows Domain Authentication or Kerberos Authentication.
 
-If you need to connect using a method not enabled by Metabase, you can often accomplish this by running SSH directly:
+-SSH-Schlüssel verwenden (PKI-Authentifizierung):**
+
+
+- Wählen Sie SSH-Schlüssel für die Option "SSH-Authentifizierung".
+- Fügen Sie den Inhalt Ihres privaten SSH-Schlüssels in das Feld "SSH-Schlüssel" ein.
+- Wenn Ihr Schlüssel eine Passphrase hat, geben Sie diese in das Feld "Passphrase für den privaten SSH-Schlüssel" ein.
+
+
+Wenn Sie keine Verbindung herstellen können, testen Sie Ihre SSH-Zugangsdaten, indem Sie sich mit ssh direkt mit dem SSH-Server/Bastion Host verbinden:
+
 
 ```
-ssh -Nf -L input-port:internal-server-name:port-on-server username@bastion-host.domain.com
+ssh <SSH-Tunnel-Benutzername>@<SSH-Tunnel-Host> -p <SSH-Tunnel-Port>
 ```
 
-This allows you to use the full array of features included in SSH. If you find yourself doing this often, please let us know so we can see about making your process more convenient through Metabase.
 
-## Further reading
+Ein weiterer häufiger Fall, in dem direkte Verbindungen nicht möglich sind, ist die Verbindung zu einem Data Warehouse, das nur lokal zugänglich ist und keine Fernverbindungen zulässt. In diesem Fall öffnen Sie eine SSH-Verbindung zum Data Warehouse und verbinden sich von dort aus wieder mit demselben Computer.
 
-- [Adding and managing databases](./connecting.md).
+
+- Beantworten Sie den Parameter "Use an SSH-tunnel for database connections" mit "yes".
+- Geben Sie "localhost" in den Parameter "Host" ein. Dies ist der Name des Servers.
+- Geben Sie in den Parameter "Port" denselben Wert ein, den Sie verwenden würden, wenn Sie sich direkt am Data Warehouse-Host-System befinden würden.
+- Geben Sie in den Parameter "SSH-Tunnel-Host" den externen Namen des Data Warehouse ein, wie er von außerhalb des Netzes (oder wo immer Sie sich befinden) gesehen wird.
+- Geben Sie in den Parameter "SSH-Tunnelport" den SSH-Port ein, den Sie von außerhalb des Netzes sehen. In der Regel ist dies 22, unabhängig davon, mit welchem Data Warehouse Sie sich verbinden.
+- Wählen Sie Ihre Authentifizierungsmethode wie oben beschrieben (Benutzername und Passwort oder SSH-Schlüssel).
+
+
+Wenn Sie Probleme bei der Verbindung haben, überprüfen Sie den SSH-Host-Port und das Passwort, indem Sie sich manuell mit ssh oder PuTTY auf älteren Windows-Systemen verbinden.
