@@ -1,23 +1,31 @@
 ---
-title: History
+Titel: Geschichte
 ---
 
-# History
 
-For questions, dashboards, and models, Metabase keeps a version history for the previous fifteen versions of that item. You can view changes, and revert to previous versions.
+# Historie
 
-## Viewing tracked changes
 
-1. Go to your question, dashboard, or model.
-2. Click the info icon.
-3. Click on the **History** tab.
-4. The History tab will display the item's history of up to 15 versions.
+Für Fragen, Dashboards und Modelle führt die Metabase einen Versionsverlauf für die letzten fünfzehn Versionen des jeweiligen Elements. Sie können Änderungen anzeigen und zu früheren Versionen zurückkehren.
 
-Metabase will keep track of a version each time you save, move, revert, [move to Trash](./delete-and-restore.md), or [verify](./content-verification.md) an item.
 
-## Reverting to previous versions
+## Verfolgte Änderungen anzeigen
 
-1. Go to your question, dashboard, or model.
-2. Click the info icon (an **i** in a circle).
-3. A sidebar will appear with up to fifteen previous versions.
-4. Click on the **back arrow** beside a version to revert your item to that point in time.
+
+1. Gehen Sie zu Ihrer Frage, dem Dashboard oder dem Modell.
+2. Klicken Sie auf das Info-Symbol.
+3. Klicken Sie auf die Registerkarte **Verlauf**.
+4. Auf der Registerkarte "Historie" wird die Historie des Objekts mit bis zu 15 Versionen angezeigt.
+
+
+Jedes Mal, wenn Sie einen Artikel speichern, verschieben, rückgängig machen, [in den Papierkorb verschieben](./delete-and-restore.md) oder [verify](./content-verification.md), wird eine Version in der Metabase gespeichert.
+
+
+## Zurückkehren zu früheren Versionen
+
+
+1. Gehen Sie zu Ihrer Frage, dem Dashboard oder dem Modell.
+2. Klicken Sie auf das Info-Symbol (ein **i** in einem Kreis).
+3. Es erscheint eine Seitenleiste mit bis zu fünfzehn früheren Versionen.
+4. Klicken Sie auf den **Zurück-Pfeil** neben einer Version, um Ihren Artikel auf diesen Zeitpunkt zurückzusetzen.
+
