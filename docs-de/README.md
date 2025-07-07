@@ -42,254 +42,254 @@ Die Referenzdokumentation der Metabase.
 
 ### Installation
 
-- [Installation overview](./installation-and-operation/start.md)
-- [Installing Metabase](./installation-and-operation/installing-metabase.md)
-- [Upgrading Metabase](./installation-and-operation/upgrading-metabase.md)
-- [Configuring the Metabase application database](./installation-and-operation/configuring-application-database.md)
-- [Backing up Metabase](./installation-and-operation/backing-up-metabase-application-data.md)
-- [Migrating to a production application database](./installation-and-operation/migrating-from-h2.md)
-- [Monitoring your Metabase](./installation-and-operation/monitoring-metabase.md)
-- [Development instances](./installation-and-operation/development-instance.md)
-- [Serialization](./installation-and-operation/serialization.md)
-- [Commands](./installation-and-operation/commands.md)
-- [Supported browsers](./installation-and-operation/supported-browsers.md)
-- [Privacy](./installation-and-operation/privacy.md)
-- [About the anonymous usage data we collect](./installation-and-operation/information-collection.md)
+- [Installationsübersicht](./installation-und-betrieb/start.md)
+- [Installation der Metabase](./installation-and-operation/installing-metabase.md)
+- [Aktualisierung der Metabase](./installation-and-operation/upgrading-metabase.md)
+- [Konfigurieren der Metabase-Anwendungsdatenbank](./installation-and-operation/configuring-application-database.md)
+- [Sichern der Metabase](./installation-and-operation/backing-up-metabase-application-data.md)
+- [Migration zu einer Produktionsanwendungsdatenbank](./installation-and-operation/migrating-from-h2.md)
+- [Überwachung der Metabasis](./installation-and-operation/monitoring-metabase.md)
+- [Entwicklungsinstanzen](./installation-and-operation/development-instance.md)
+- [Serialisierung](./installation-und-betrieb/serialization.md)
+- [Befehle](./installation-and-operation/commands.md)
+-Unterstützte Browser](./installation-and-operation/supported-browsers.md)
+- [Datenschutz](./installation-and-operation/privacy.md)
+- [Über die von uns gesammelten anonymen Nutzungsdaten](./installation-and-operation/information-collection.md)
 
-### Databases
+### Datenbanken
 
-- [Databases overview](./databases/start.md)
-- [Adding and managing databases](./databases/connecting.md)
-- [Database users, roles, and privileges](./databases/users-roles-privileges.md)
-- [Syncing and scanning databases](./databases/sync-scan.md)
-- [Encrypting your database connection](./databases/encrypting-details-at-rest.md)
-- [SSH tunneling](./databases/ssh-tunnel.md)
-- [SSL certificate](./databases/ssl-certificates.md)
-- [Uploading data](./databases/uploads.md)
+- [Überblick über Datenbanken](./databases/start.md)
+- [Hinzufügen und Verwalten von Datenbanken](./databases/connecting.md)
+- [Datenbankbenutzer, Rollen und Rechte](./databases/users-roles-privileges.md)
+- [Synchronisieren und Scannen von Datenbanken](./databases/sync-scan.md)
+- [Verschlüsselung der Datenbankverbindung](./databases/encrypting-details-at-rest.md)
+- [SSH-Tunneling](./databases/ssh-tunnel.md)
+- [SSL-Zertifikat](./databases/ssl-certificates.md)
+- [Daten hochladen](./databases/uploads.md)
 
-### Questions
+### Fragen
 
-- [Questions overview](./questions/start.md)
-- [Alerts](./questions/alerts.md)
-- [Exporting data](./questions/exporting-results.md)
+- [Fragenübersicht](./questions/start.md)
+- [Warnungen](./questions/alerts.md)
+- [Daten exportieren](./questions/exporting-results.md)
+  
+#### Abfrage-Editor
 
-#### Query builder
+- [Der Abfrage-Editor](./questions/query-builder/editor.md)
+- [Filterung](./questions/query-builder/filters.md)
+- [Zusammenfassen und gruppieren](./questions/query-builder/summarizing-and-grouping.md)
+- [Benutzerdefinierte Ausdrücke](./questions/query-builder/expressions.md)
+- [Liste der Ausdrücke](./questions/query-builder/expressions-list.md)
+- [Verknüpfung von Daten](./questions/query-builder/join.md)
 
-- [The query editor](./questions/query-builder/editor.md)
-- [Filtering](./questions/query-builder/filters.md)
-- [Summarizing and grouping](./questions/query-builder/summarizing-and-grouping.md)
-- [Custom expressions](./questions/query-builder/expressions.md)
-- [List of expressions](./questions/query-builder/expressions-list.md)
-- [Joining data](./questions/query-builder/join.md)
+#### SQL und native Abfragen
 
-#### SQL and native queries
+- [Der SQL-Editor](./questions/native-editor/writing-sql.md)
+- [SQL-Parameter](./questions/native-editor/sql-parameters.md)
+- [Referenzierung von Modellen und gespeicherten Fragen](./questions/native-editor/referencing-saved-questions-in-queries.md)
+- [Schnipsel](./questions/native-editor/snippets.md)
+- [Snippet-Ordner-Zulassungen](./permissions/snippets.md)
 
-- [The SQL editor](./questions/native-editor/writing-sql.md)
-- [SQL parameters](./questions/native-editor/sql-parameters.md)
-- [Referencing models and saved questions](./questions/native-editor/referencing-saved-questions-in-queries.md)
-- [Snippets](./questions/native-editor/snippets.md)
-- [Snippet folder permissions](./permissions/snippets.md)
+#### Visualisierung von Daten
 
-#### Visualizing data
-
-- [Visualizing data](./questions/visualizations/visualizing-results.md)
-- [Combo charts](./questions/visualizations/combo-chart.md)
+- [Visualisierung von Daten](./questions/visualizations/visualizing-results.md)
+- [Kombinationsdiagramme](./questions/visualizations/combo-chart.md)
 - [Detail](./questions/visualizations/detail.md)
-- [Funnel charts](./questions/visualizations/funnel.md)
-- [Gauge charts](./questions/visualizations/gauge.md)
-- [Line, bar, and area charts](./questions/visualizations/line-bar-and-area-charts.md)
-- [Maps](./questions/visualizations/map.md)
-- [Numbers](./questions/visualizations/numbers.md)
-- [Pie or donut charts](./questions/visualizations/pie-or-donut-chart.md)
-- [Pivot table](./questions/visualizations/pivot-table.md)
-- [Progress bar](./questions/visualizations/progress-bar.md)
-- [Sankey chart](./questions/visualizations/sankey.md)
-- [Scatterplot or bubble chart](./questions/visualizations/scatterplot-or-bubble-chart.md)
-- [Table](./questions/visualizations/table.md)
+- [Trichterdiagramme](./questions/visualizations/funnel.md)
+- [Pegeldiagramme](./questions/visualizations/gauge.md)
+- [Linien-, Balken- und Flächendiagramme](./questions/visualizations/line-bar-and-area-charts.md)
+- [Karten](./questions/visualizations/map.md)
+- [Zahlen](./questions/visualizations/numbers.md)
+- [Torten- oder Donut-Diagramme](./questions/visualizations/pie-or-donut-chart.md)
+- [Pivot-Tabelle](./questions/visualizations/pivot-table.md)
+- [Fortschrittsbalken](./questions/visualizations/progress-bar.md)
+- [Sankey-Diagramm](./questions/visualizations/sankey.md)
+- [Streudiagramm oder Blasendiagramm](./questions/visualizations/scatterplot-or-bubble-chart.md)
+- [Tabelle](./questions/visualizations/table.md)
 - [Tooltips](./questions/visualizations/tooltips.md)
 - [Trend](./questions/visualizations/trend.md)
-- [Waterfall chart](./questions/visualizations/waterfall-chart.md)
+- [Wasserfalldiagramm](./questions/visualizations/waterfall-chart.md)
 
 ### Dashboards
 
-- [Dashboards overview](./dashboards/start.md)
-- [Introduction to dashboards](./dashboards/introduction.md)
-- [Dashboard filters](./dashboards/filters.md)
-- [Interactive dashboards](./dashboards/interactive.md)
-- [Charts with multiple series](./dashboards/multiple-series.md)
-- [Dashboard subscriptions](./dashboards/subscriptions.md)
-- [Actions on dashboards](./dashboards/actions.md)
+- [Übersicht über die Dashboards](./dashboards/start.md)
+- [Einführung in Dashboards](./dashboards/introduction.md)
+- [Dashboard-Filter](./dashboards/filters.md)
+- [Interaktive Dashboards](./dashboards/interactive.md)
+- [Diagramme mit mehreren Reihen](./dashboards/multiple-series.md)
+- [Dashboard-Abonnements](./dashboards/subscriptions.md)
+- [Aktionen auf Dashboards](./dashboards/actions.md)
+  
+### Datenmodellierung
 
-### Data modeling
+- [Überblick über die Datenmodellierung](./data-modeling/start.md)
+- [Modelle](./data-modeling/models.md)
+- [Modell-Persistenz](./data-modeling/model-persistence.md)
+- [Metriken](./data-modeling/metrics.md)
+- [Verwaltungseinstellungen für Tabellenmetadaten](./data-modeling/metadata-editing.md)
+- [Feldtypen](./data-modeling/field-types.md)
+- [Formatierungsvorgaben](./data-modeling/formatting.md)
+- [Arbeiten mit JSON](./data-modeling/json-unfolding.md)
+- [Segmente](./data-modeling/segments.md)
 
-- [Data modeling overview](./data-modeling/start.md)
-- [Models](./data-modeling/models.md)
-- [Model persistence](./data-modeling/model-persistence.md)
-- [Metrics](./data-modeling/metrics.md)
-- [Table metadata admin settings](./data-modeling/metadata-editing.md)
-- [Field types](./data-modeling/field-types.md)
-- [Formatting defaults](./data-modeling/formatting.md)
-- [Working with JSON](./data-modeling/json-unfolding.md)
-- [Segments](./data-modeling/segments.md)
+### Aktionen
 
-### Actions
+- [Übersicht über Aktionen](./actions/start.md)
+- [Einführung in Aktionen](./actions/introduction.md)
+- [Grundlegende Aktionen](./actions/basic.md)
+- [Benutzerdefinierte Aktionen](./actions/custom.md)
 
-- [Actions overview](./actions/start.md)
-- [Introduction to actions](./actions/introduction.md)
-- [Basic actions](./actions/basic.md)
-- [Custom actions](./actions/custom.md)
+### Erkundung und Organisation
 
-### Exploration and organization
+- [Organisationsübersicht](./exploration-and-organization/start.md)
+- [Grundlegende Erkundung](./exploration-and-organisation/exploration.md)
+- [Sammlungen](./exploration-and-organization/collections.md)
+- [Tastaturkürzel](./exploration-and-organization/keyboard-shortcuts.md)
+- [Geschichte](./exploration-and-organization/history.md)
+- [Papierkorb](./exploration-and-organization/delete-and-restore.md)
+- [Datenreferenz](./exploration-and-organization/data-model-reference.md)
+- [Ereignisse und Zeitleisten](./exploration-and-organization/events-and-timelines.md)
+- [Röntgenbilder](./exploration-and-organization/x-rays.md)
+- [Inhaltsüberprüfung](./exploration-and-organization/content-verification.md)
 
-- [Organization overview](./exploration-and-organization/start.md)
-- [Basic exploration](./exploration-and-organization/exploration.md)
-- [Collections](./exploration-and-organization/collections.md)
-- [Keyboard shortcuts](./exploration-and-organization/keyboard-shortcuts.md)
-- [History](./exploration-and-organization/history.md)
-- [Trash](./exploration-and-organization/delete-and-restore.md)
-- [Data reference](./exploration-and-organization/data-model-reference.md)
-- [Events and timelines](./exploration-and-organization/events-and-timelines.md)
-- [X-rays](./exploration-and-organization/x-rays.md)
-- [Content verification](./exploration-and-organization/content-verification.md)
+### Personen
 
-### People
-
-- [People overview](./people-and-groups/start.md)
-- [Account settings](./people-and-groups/account-settings.md)
-- [Managing people and groups](./people-and-groups/managing.md)
-- [Password complexity](./people-and-groups/changing-password-complexity.md)
-- [Session expiration](./people-and-groups/changing-session-expiration.md)
-- [Google Sign-In](./people-and-groups/google-sign-in.md)
+- [Personenübersicht](./people-and-groups/start.md)
+- [Kontoeinstellungen](./people-and-groups/account-settings.md)
+- [Personen und Gruppen verwalten](./people-and-groups/managing.md)
+- [Passwortkomplexität](./people-and-groups/changing-password-complexity.md)
+- [Ablauf der Sitzung](./people-and-groups/changing-session-expiration.md)
+- [Google-Anmeldung](./people-and-groups/google-sign-in.md)
 - [LDAP](./people-and-groups/ldap.md)
-- [API keys](./people-and-groups/api-keys.md)
+- [API-Schlüssel](./people-and-groups/api-keys.md)
 
-#### Paid SSO options
+#### Paid SSO-Optionen
 
-- [JWT-based authentication](./people-and-groups/authenticating-with-jwt.md)
-- [SAML-based authentication](./people-and-groups/authenticating-with-saml.md)
-  - [SAML with Auth0](./people-and-groups/saml-auth0.md)
-  - [SAML with Microsoft Entra ID](./people-and-groups/saml-azure.md)
-  - [SAML with Google](./people-and-groups/saml-google.md)
-  - [SAML with Keycloak](./people-and-groups/saml-keycloak.md)
-  - [SAML with Okta](./people-and-groups/saml-okta.md)
-- [User provisioning with SCIM](./people-and-groups/user-provisioning.md)
+- [JWT-basierte Authentifizierung](./people-and-groups/authenticating-with-jwt.md)
+- [SAML-basierte Authentifizierung](./people-and-groups/authenticating-with-saml.md)
+- [SAML mit Auth0](./people-and-groups/saml-auth0.md)
+- [SAML mit Microsoft Entra ID](./leute-und-gruppen/saml-azure.md)
+- [SAML mit Google](./people-and-groups/saml-google.md)
+- [SAML mit Keycloak](./people-and-groups/saml-keycloak.md)
+- [SAML mit Okta](./people-and-groups/saml-okta.md)
+- [Benutzerbereitstellung mit SCIM](./people-and-groups/user-provisioning.md)
 
-### Permissions
+### Erlaubnisse
 
-- [Permissions overview](./permissions/start.md)
-- [Permissions introduction](./permissions/introduction.md)
-- [Data permissions](./permissions/data.md)
-- [Collection permissions](./permissions/collections.md)
-- [Application permissions](./permissions/application.md)
-- [Data sandboxes](./permissions/data-sandboxes.md)
-- [Data sandbox examples](./permissions/data-sandbox-examples.md)
-- [Connection impersonation](./permissions/impersonation.md)
-- [Database routing](./permissions/database-routing.md)
-- [Snippets folder permissions](./permissions/snippets.md)
-- [Notification permissions](./permissions/notifications.md)
-- [Configuring permissions for embedding](./permissions/embedding.md)
+- [Übersicht über Berechtigungen](./permissions/start.md)
+- [Einführung in die Berechtigungen](./permissions/introduction.md)
+- [Datenberechtigungen](./permissions/data.md)
+- [Sammlungsberechtigungen](./permissions/collections.md)
+- [Anwendungsberechtigungen](./permissions/application.md)
+- [Daten-Sandkästen](./permissions/data-sandboxes.md)
+- [Daten-Sandbox-Beispiele](./permissions/data-sandbox-examples.md)
+- [Anschluss-Impersonation](./permissions/impersonation.md)
+- [Datenbank-Routing](./permissions/database-routing.md)
+- [Snippets-Ordner-Berechtigungen](./permissions/snippets.md)
+- [Berechtigungen für Benachrichtigungen](./permissions/notifications.md)
+- [Berechtigungen für die Einbettung konfigurieren](./permissions/embedding.md)
 
-### Embedding
+### Einbettung
 
-- [Embedding overview](./embedding/start.md)
-- [Embedding introduction](./embedding/introduction.md)
-- [Interactive embedding](./embedding/interactive-embedding.md)
-- [Interactive embedding quick start](./embedding/interactive-embedding-quick-start-guide.md)
-- [Static embedding](./embedding/static-embedding.md)
-- [Parameters for static embeds](./embedding/static-embedding-parameters.md)
+- [Einbettungsübersicht](./embedding/start.md)
+- [Einbettung Einführung](./embedding/introduction.md)
+- [Interaktive Einbettung](./embedding/interactive-embedding.md)
+- [Interaktive Einbettung - Schnellstart](./embedding/interactive-embedding-quick-start-guide.md)
+- [Statische Einbettung](./embedding/static-embedding.md)
+- [Parameter für statische Einbettungen](./embedding/static-embedding-parameters.md)
 
-### Configuration
+### Konfiguration
 
-- [Configuration overview](./configuring-metabase/start.md)
-- [Setting up Metabase](./configuring-metabase/setting-up-metabase.md)
-- [General settings](./configuring-metabase/settings.md)
-- [Email](./configuring-metabase/email.md)
-- [Slack](./configuring-metabase/slack.md)
+- [Konfigurationsübersicht](./configuring-metabase/start.md)
+- [Metabase einrichten](./configuring-metabase/setting-up-metabase.md)
+- [Allgemeine Einstellungen](./configuring-metabase/settings.md)
+- [E-Mail](./konfigurierende-metabasis/email.md)
+- [Slack](./konfigurierende-metabasis/slack.md)
 - [Webhooks](./configuring-metabase/webhooks.md)
-- [Environment variables](./configuring-metabase/environment-variables.md)
-- [Configuration file](./configuring-metabase/config-file.md)
+- [Umgebungsvariablen](./configuring-metabase/environment-variables.md)
+- [Konfigurationsdatei](./configuring-metabase/config-file.md)
 - [Metabase log configuration](./configuring-metabase/log-configuration.md)
-- [Timezones](./configuring-metabase/timezones.md)
-- [Languages and localization](./configuring-metabase/localization.md)
-- [Appearance](./configuring-metabase/appearance.md)
-- [Caching query results](./configuring-metabase/caching.md)
-- [Custom maps](./configuring-metabase/custom-maps.md)
-- [Customizing the Metabase Jetty webserver](./configuring-metabase/customizing-jetty-webserver.md)
+- [Zeitzonen](./configuring-metabase/timezones.md)
+- [Sprachen und Lokalisierung](./configuring-metabase/localization.md)
+- [Erscheinungsbild](./configuring-metabase/appearance.md)
+- [Zwischenspeicherung von Abfrageergebnissen](./configuring-metabase/caching.md)
+- [Benutzerdefinierte Maps](./configuring-metabase/custom-maps.md)
+- [Anpassen des Metabase Jetty-Webservers](./configuring-metabase/customizing-jetty-webserver.md)
 
-### Tools
+### Werkzeuge
 
-- [Tools overview](./usage-and-performance-tools/start.md)
-- [Usage analytics](./usage-and-performance-tools/usage-analytics.md)
-- [Admin tools](./usage-and-performance-tools/tools.md)
+- [Überblick über die Werkzeuge](./usage-and-performance-tools/start.md)
+- [Nutzungsanalyse](./usage-and-performance-tools/usage-analytics.md)
+- [Verwaltungswerkzeuge](./usage-and-performance-tools/tools.md)
 
 ### Metabase Cloud
 
-- [Documentation for Metabase Cloud and Store](./cloud/start.md)
+- [Dokumentation für Metabase Cloud und Store](./cloud/start.md)
 
 ### Metabase API
 
-- [Metabase API documentation](./api.html)
-- [API tutorial](https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-api)
+- [Metabase API Dokumentation](./api.html)
+- [API-Anleitung](https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-api)
 
-### Troubleshooting
+### Fehlersuche
 
-- [Troubleshooting guides](./troubleshooting-guide/index.md)
+- [Fehlersuchanleitung](./troubleshooting-guide/index.md)
 
-### Developer guide
+### Handbuch für Entwickler
 
-- [Developer guide](./developers-guide/start.md)
+- [Entwicklerhandbuch](./developers-guide/start.md)
 
-## Getting help
+## Hilfe erhalten
 
-### Troubleshooting
+### Fehlersuche
 
-- [Troubleshooting guides](troubleshooting-guide/index.md)
+- [Anleitungen zur Fehlerbehebung](troubleshooting-guide/index.md)
 - [Metabase forum](https://discourse.metabase.com/)
-- [Configuring logging](./configuring-metabase/log-configuration.md)
+- [Konfigurieren der Protokollierung](./configuring-metabase/log-configuration.md)
 
-### Tutorials and guides
+### Tutorials und Leitfäden
 
-[Learn Metabase](https://www.metabase.com/learn) has a ton of articles on how to use Metabase, data best practices, and more.
+[Learn Metabase] (https://www.metabase.com/learn) bietet eine Vielzahl von Artikeln über die Verwendung von Metabase, bewährte Datenpraktiken und mehr.
 
-## More resources
+## Weitere Ressourcen
 
-### [Discussion](https://discourse.metabase.com)
+### [Diskussion](https://discourse.metabase.com)
 
-Share and connect with other Metabasers.
+Tauschen Sie sich aus und verbinden Sie sich mit anderen Metabasern.
 
-### [Community stories](https://www.metabase.com/community)
+### [Gemeinschaftsgeschichten](https://www.metabase.com/community)
 
-Practical advice from our community.
+Praktische Ratschläge aus unserer Gemeinschaft.
 
 ### [Metabase blog](https://www.metabase.com/blog)
 
-News, updates, and ideas.
+Neuigkeiten, Aktualisierungen und Ideen.
 
-### [Customers](https://www.metabase.com/case-studies)
+### [Kunden](https://www.metabase.com/case-studies)
 
-Real companies, real data, real stories.
+Echte Unternehmen, echte Daten, echte Geschichten.
 
 ### [Metabase Twitter](https://twitter.com/metabase)
 
-We tweet stuff.
+Wir tweeten Sachen.
 
-### [Source code repository on GitHub](https://github.com/metabase/metabase)
+### [Quellcode-Repository auf GitHub](https://github.com/metabase/metabase)
 
-Follow us on GitHub.
+Folgen Sie uns auf GitHub.
 
-### [List of releases](https://github.com/metabase/metabase/releases)
+### [Liste der Veröffentlichungen](https://github.com/metabase/metabase/releases)
 
-A list of all Metabase releases, including both the Enterprise Edition and the Open Source Edition.
+Eine Liste aller Metabase-Releases, sowohl der Enterprise Edition als auch der Open Source Edition.
 
-### [Developers guide](./developers-guide/start.md)
+### [Entwicklerhandbuch](./developers-guide/start.md)
 
-Contribute to the Metabase open source project!
+Tragen Sie zum Metabase Open Source Projekt bei!
 
-### [Data and Business Intelligence Glossary](https://www.metabase.com/glossary)
+### [Daten- und Business Intelligence-Glossar](https://www.metabase.com/glossary)
 
-Data jargon explained.
+Datenjargon erklärt.
 
 ### [Metabase Experts](https://www.metabase.com/partners/)
 
-If you’d like more technical resources to set up your data stack with Metabase, connect with a [Metabase Expert](https://www.metabase.com/partners/).
-<!-- bump 2 -->
+Wenn Sie weitere technische Ressourcen zum Einrichten Ihres Datenstapels mit Metabase benötigen, wenden Sie sich an einen [Metabase Expert](https://www.metabase.com/partners/).
+<!-- Stoß 2 -->
