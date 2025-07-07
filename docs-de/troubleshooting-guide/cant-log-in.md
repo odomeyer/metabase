@@ -1,42 +1,59 @@
 ---
-title: People can't log in to Metabase
+Titel: Leute können sich nicht bei der Metabase einloggen
 ---
 
-# People can't log in to Metabase
 
-## Reset password
+# Leute können sich nicht bei der Metabase anmelden
 
-To reset a password for your Metabase instance, see:
 
-- [Reset a user's password](../people-and-groups/managing.md#resetting-someones-password).
-- [Reset admin password](../people-and-groups/managing.md#resetting-the-admin-password).
+## Passwort zurücksetzen
 
-To reset password for your Metabase Store account, [contact support](https://www.metabase.com/help-premium).
 
-## No access to Metabase login page
+Um ein Passwort für Ihre Metabase-Instanz zurückzusetzen, siehe:
 
-If you're not a Metabase admin, you'll have to tag them for help here.
 
-1. Check that you have the correct [site URL](../configuring-metabase/settings.md) from **Settings** > **Admin settings** > **General**.
-2. Check if the [account is deactivated](../people-and-groups/managing.md#deactivating-an-account).
+- [Passwort eines Benutzers zurücksetzen](../people-and-groups/managing.md#resetting-someones-password).
+- [Admin-Passwort zurücksetzen](../people-and-groups/managing.md#resetting-the-admin-password).
 
-## No access to Metabase Cloud account
 
-The admin password for `store.metabase.com` (where you can find payment and subscription info) is not necessarily the same as the password for your Metabase instance (where you log in to look at data).
+Um das Passwort für Ihr Metabase Store-Konto zurückzusetzen, [kontaktieren Sie den Support](https://www.metabase.com/help-premium).
 
-If you've forgotten your Metabase Cloud admin password, you can [contact support](https://www.metabase.com/help-premium) to reset the password.
 
-## Related topics
+## Kein Zugang zur Metabase-Anmeldeseite
 
-- [Troubleshooting SAML](./saml.md).
-- [Troubleshooting LDAP](./ldap.md).
-- [Resetting someone's password](../people-and-groups/managing.md#resetting-someones-password).
-- [Resetting the admin password](../people-and-groups/managing.md#resetting-the-admin-password).
-- [Deleting an account that's set up incorrectly](../people-and-groups/managing.md#deleting-an-account).
 
-## Are you still stuck?
+Wenn Sie kein Metabase-Administrator sind, müssen Sie ihn hier um Hilfe bitten.
 
-If you can’t solve your problem using the troubleshooting guides:
 
-- Search or ask the [Metabase community](https://discourse.metabase.com/).
-- Search for [known bugs or limitations](./known-issues.md).
+1. Vergewissern Sie sich, dass Sie die richtige [Website-URL](../configuring-metabase/settings.md) aus **Einstellungen** > **Admin-Einstellungen** > **Allgemein** haben.
+2. Prüfen Sie, ob das [Konto deaktiviert ist](../people-and-groups/managing.md#deactivating-an-account).
+
+
+## Kein Zugriff auf das Metabase Cloud-Konto
+
+
+Das Admin-Passwort für "store.metabase.com" (wo Sie Zahlungs- und Abonnementinformationen finden) ist nicht notwendigerweise dasselbe wie das Passwort für Ihre Metabase-Instanz (wo Sie sich anmelden, um die Daten anzusehen).
+
+
+Wenn Sie Ihr Metabase Cloud-Administratorkennwort vergessen haben, können Sie [den Support kontaktieren](https://www.metabase.com/help-premium), um das Kennwort zurückzusetzen.
+
+
+## Verwandte Themen
+
+
+- [Fehlersuche bei SAML](./saml.md).
+- [Fehlerbehebung bei LDAP](./ldap.md).
+- [DasPasswort einer Person zurücksetzen](../people-and-groups/managing.md#resetting-someones-password).
+- [Zurücksetzen des Admin-Passworts](../people-and-groups/managing.md#resetting-the-admin-password).
+- [Löschen eines falsch eingerichteten Kontos](../people-and-groups/managing.md#deleting-an-account).
+
+
+## Stecken Sie immer noch fest?
+
+
+Wenn Sie Ihr Problem nicht mit Hilfe der Anleitungen zur Fehlerbehebung lösen können:
+
+
+- Suchen oder fragen Sie die [Metabase-Community](https://discourse.metabase.com/).
+- Suchen Sie nach [bekannten Fehlern oder Einschränkungen](./known-issues.md).
+
