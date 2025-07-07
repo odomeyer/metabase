@@ -1,35 +1,51 @@
 ---
-title: Databases overview
+Titel: Datenbanken im Überblick
 redirect_from:
-  - /docs/latest/databases
+- /docs/latest/databases
 ---
 
-# Databases overview
 
-## [Adding and managing databases](./connecting.md)
+# Übersicht über die Datenbanken
 
-Connect to and manage your databases.
 
-## [Database users, roles, and privileges](./users-roles-privileges.md)
+## [Hinzufügen und Verwalten von Datenbanken](./connecting.md)
 
-Bundling your privileges into roles based on use cases makes it easier to manage privileges in the future.
 
-## [Syncing and scanning databases](./sync-scan.md)
+Verbinden Sie sich mit Ihren Datenbanken und verwalten Sie diese.
 
-Metabase runs different types of queries to stay up to date with your database.
 
-## [Encrypting your database connection](./encrypting-details-at-rest.md)
+## [Datenbank-Benutzer, -Rollen und -Privilegien](./users-roles-privileges.md)
 
-Learn how to encrypt your database connection credentials at rest.
 
-## [SSH tunneling](./ssh-tunnel.md)
+Die Bündelung von Privilegien in Rollen, die auf Anwendungsfällen basieren, erleichtert die Verwaltung von Privilegien in der Zukunft.
 
-Metabase can connect to some databases by first establishing a connection to a server in between Metabase and a data warehouse, then connecting to the data warehouse using that connection as a bridge.
 
-## [SSL certificate](./ssl-certificates.md)
+## [Datenbanken synchronisieren und scannen](./sync-scan.md)
 
-You can connect your Metabase Cloud or self-hosted instance to a database using Secure Socket Layer (SSL) encryption with a certificate.
 
-## [Uploading data](./uploads.md)
+Metabase führt verschiedene Arten von Abfragen durch, um Ihre Datenbank auf dem neuesten Stand zu halten.
 
-You can set Metabase up so you can upload CSV files to a database.
+
+## [Verschlüsselung Ihrer Datenbankverbindung](./encrypting-details-at-rest.md)
+
+
+Erfahren Sie, wie Sie Ihre Datenbankverbindungsdaten im Ruhezustand verschlüsseln können.
+
+
+## [SSH-Tunneling](./ssh-tunnel.md)
+
+
+Die Metabase kann eine Verbindung zu einigen Datenbanken herstellen, indem sie zunächst eine Verbindung zu einem Server zwischen der Metabase und einem Data Warehouse herstellt und dann eine Verbindung zum Data Warehouse herstellt, indem sie diese Verbindung als Brücke verwendet.
+
+
+## [SSL-Zertifikat](./ssl-certificates.md)
+
+
+Sie können Ihre Metabase Cloud oder Ihre selbst gehostete Instanz mit einer Datenbank verbinden, die Secure Socket Layer (SSL)-Verschlüsselung mit einem Zertifikat verwendet.
+
+
+## [Daten hochladen](./uploads.md)
+
+
+Sie können Metabase so einrichten, dass Sie CSV-Dateien in eine Datenbank hochladen können.
+
