@@ -1,199 +1,138 @@
 ---
-title: Maps
+Titel: Karten
 redirect_from:
   - /docs/latest/questions/sharing/visualizations/maps
-description: "Maps in Metabase allow you to visualize geographical data either using coordinates or by region. Metabase gives you three types of maps : pin map for unaggregated data, grid map for histograms, and region map for distributions by regions like countries or states. You can also create custom maps."
+Beschreibung: "Mit den Karten in Metabase können Sie geografische Daten entweder anhand von Koordinaten oder nach Region visualisieren. Metabase bietet drei Arten von Karten: Pin-Map für unaggregierte Daten, Grid-Map für Histogramme und Region-Map für Verteilungen nach Regionen wie Ländern oder Staaten. Sie können auch benutzerdefinierte Maps erstellen."
 ---
 
-# Maps
-
-Metabase has three types of map visualization:
-
-- [**Pin map**](#pin-map) for putting individual data points on a map using longitude and latitude coordinates;
-- [**Grid map**](#grid-map) for distributing a large number of points over a specified area.
-- [**Region map**](#region-maps) for data broken out by regions, like countries or states. Metabase comes with two built-in maps, but you can upload your own custom regions.
-
-When you select the **Map** visualization setting, Metabase will automatically try and pick the best kind of map to use based on the table or result set, as long as the columns with the geographical data have the [right metadata](../../data-modeling/metadata-editing.md).
-
-![Map types](../images/map-types.png)
-
+# Karten
+Metabase bietet drei Arten der Kartenvisualisierung:
+- [**Pinmap**](#pin-map) zur Darstellung einzelner Datenpunkte auf einer Karte unter Verwendung von Längen- und Breitenkoordinaten;
+- [**Grid map**](#grid-map) für die Verteilung einer großen Anzahl von Punkten über ein bestimmtes Gebiet.
+- [**Regionskarte**](#region-maps) für Daten, die nach Regionen, wie Ländern oder Staaten, aufgeteilt sind. Metabase wird mit zwei eingebauten Karten geliefert, Sie können aber auch Ihre eigenen Regionen hochladen.
+Wenn Sie die Visualisierungseinstellung **Karte** wählen, versucht Metabase automatisch, die beste Art von Karte auf der Grundlage der Tabelle oder des Ergebnissatzes auszuwählen, sofern die Spalten mit den geografischen Daten die [richtigen Metadaten](../../data-modeling/metadata-editing.md) aufweisen.
+![Kartentypen](../images/map-types.png)
 {% include youtube.html id='EewOLxHht1s' %}
 
-## Pin map
+## Pin-Karte
+Pin-Karten zeigen Pins für einzelne Datenpunkte auf der Karte an. Sie eignen sich am besten für die Anzeige unaggregierter geografischer Daten.
 
-Pin maps display pins for individual data points on the map. They work best for displaying unaggregated geographical data.
+### Form der Landkartendaten
+Um eine Pin-Map zu erstellen, benötigen Sie eine Abfrage, die ein Ergebnis mit Breiten- und Längengradspalten liefert. Metabase setzt für jede Zeile in Ihrer Tabelle eine Stecknadel auf der Karte, basierend auf den Feldern für Breiten- und Längengrad. Andere Daten in den Zeilen werden in der QuickInfo angezeigt und haben ansonsten keinen Einfluss auf die Platzierung oder Form der Stecknadeln.
+![Form der Stecknadeldaten](../images/pin-data-shape.png)
+![Pin-Karte mit Tooltip](../images/pin-map-with-tooltip.png)
+Beachten Sie, dass die Tooltips nur angezeigt werden, wenn die Karte mit [**Draw box to filter**](#draw-box-to-filter) ausreichend vergrößert wurde.
 
-### Pin map data shape
+### Erstellen einer Pin-Karte
+So erstellen Sie eine Pin-Karte:
+1. Erstellen Sie eine Abfrage mit Breiten- und Längengradspalten für jeden Datenpunkt (entweder im Query Builder oder mit SQL);
+2. Wählen Sie **Visualisierung**, und wählen Sie **Karte**;
+3. Wenn Ihre Abfrageergebnisse Spalten enthalten, deren Feldtyp in [table metadata] (../../data-modeling/metadata-editing.md#field-type) auf Breitengrad/Längengrad eingestellt ist, sollte Metabase automatisch eine Pin Map erstellen.
+   Andernfalls klicken Sie auf das Symbol **Gear**, um zu den Visualisierungseinstellungen zu gelangen, und wählen Sie **Map type: Pin Map** und wählen Sie Spalten aus, die Breiten- und Längengradkoordinaten enthalten.
 
-To build a pin map, you need a query that returns a result that has latitude and longitude columns. Metabase will put one pin on the map for each row in your table, based on the latitude and longitude fields. Other data in the rows will be shown in the tooltip, and won't otherwise affect the placement or shape of pins.
+### Pin Maps zeigen standardmäßig 2000 Pins an
+Standardmäßig werden bei Pin Maps 2000 Pins angezeigt, auch wenn die Abfrageergebnisse mehr Zeilen enthalten (diese Grenze gilt für alle Diagramme, die unaggregierte Daten in der Metabase anzeigen). Sie können die Umgebungsvariable [`MB_UNAGGREGATED_QUERY_ROW_LIMIT`] (../../configuring-metabase/environment-variables.md#mb_unaggregated_query_row_limit) verwenden, um die Anzahl der Datenpunkte zu erhöhen, die in Diagrammen auf der Basis von nicht aggregierten Abfragen angezeigt werden. Beachten Sie jedoch, dass diese Einstellung alle Diagramme - nicht nur die Pin-Maps - beeinflusst und die Metabase und den Browser erheblich verlangsamen kann.
+Wenn Sie eine große Anzahl von geografischen Datenpunkten anzeigen müssen, sollten Sie stattdessen eine Rasterkarte zur Darstellung der Verteilung verwenden.
 
-![Pin map data shape](../images/pin-data-shape.png)
-![Pin map with a tooltip](../images/pin-map-with-tooltip.png)
-
-Note that the tooltips will only be displayed when the map is sufficiently zoomed in using [**Draw box to filter**](#draw-box-to-filter).
-
-### Create a pin map
-
-To create a pin map:
-
-1. Build a query with latitude and longitude columns for each data point (either in the query builder or using SQL);
-2. Select **Visualization**, and pick **Map**;
-3. If your query results have columns whose field type is set to latitude/longitude in [table metadata](../../data-modeling/metadata-editing.md#field-type), Metabase should build a pin map automatically.
-
-   Otherwise, click on the **Gear** icon to go to visualization settings, choose **Map type: Pin map**, and pick columns that contain latitude and longitude coordinates.
-
-### Pin maps display 2000 pins by default
-
-By default, pin maps will display 2000 pins even if there are more rows in your query results (this limit is the same for every chart displaying unaggregated data in Metabase). You can use the environment variable [`MB_UNAGGREGATED_QUERY_ROW_LIMIT`](../../configuring-metabase/environment-variables.md#mb_unaggregated_query_row_limit) to increase the number of data points rendered on charts based on unaggregated queries, but keep in mind that this setting will affect all charts—not just the pin maps—and it might significantly slow down your Metabase and your browser.
-
-If you need to display a large number of geographical data points, consider using a grid map to display the distribution instead.
-
-## Grid map
-
-Grid map is an aggregated version of the pin map — like a heatmap for the distribution of pins. Grid map breaks the the map into a grid based on latitude/longitude, and then colors each grid cell based on how many data points fall in it.
-
-![Grid map](../images/grid-map.png)
+## Rasterkarte
+Die Rasterkarte ist eine aggregierte Version der Stecknadelkarte - wie eine Heatmap für die Verteilung von Stecknadeln. Die Rasterkarte unterteilt die Karte in ein Raster, das auf Breiten- und Längengraden basiert, und färbt dann jede Rasterzelle ein, je nachdem, wie viele Datenpunkte in sie fallen.
+![Rasterkarte](../images/grid-map.png)
 
 ### Grid map data shape
+Um eine Rasterkarte zu erstellen, benötigen Sie eine Abfrage, die eine Metrik zurückgibt, die durch gebündelte Breiten-/Längenkoordinaten zusammengefasst ist.
+Beispiel für Daten für eine Rasterkarte](../images/latlong-binned-result.png)
+Wenn Sie eine Abfrage im Abfragegenerator schreiben, können Sie im Block **Gruppieren nach** auswählen, wie die Breiten-/Längengrade zusammengefasst werden sollen. Wenn Sie eine Abfrage in SQL schreiben, müssen Sie die Einteilungslogik selbst hinzufügen.
+Binned latitude and longitude in the query builder](../images/bin-by-latlong.png)
 
-To create a grid map, you need to have a query returning a metric summarized by binned latitude/longitude coordinates.
+### Erstellen einer Rasterkarte
+So erstellen Sie eine Rasterkarte:
+1. Erstellen Sie eine Abfrage mit einer Zusammenfassung nach Längen- und Breitengraden (entweder im Query Builder oder mit SQL);
+2. Wählen Sie **Visualisierung**, und wählen Sie **Karte**;
+3. Wenn Ihre Abfrageergebnisse Spalten enthalten, deren Feldtyp in [table metadata] (../../data-modeling/metadata-editing.md#field-type) auf Breitengrad/Längengrad eingestellt ist, sollte Metabase automatisch eine Gitterkarte erstellen.
+   Andernfalls klicken Sie auf das Symbol **Gear**, um zu den Visualisierungseinstellungen zu gelangen, wählen Sie **Map type: grid map** und wählen Sie Spalten aus, die Breiten- und Längengradkoordinaten enthalten.
+4. Wenn Ihre Abfrage mehrere Metriken enthält, können Sie in den Visualisierungseinstellungen diejenige auswählen, die Sie anzeigen möchten.
 
-![Example of data for grid map](../images/latlong-binned-result.png)
+## Regionale Karten
+Regionale Maps zeigen eine nach Regionen aufgeschlüsselte Verteilung der aggregierten Daten an, z. B. die Anzahl der Nutzer nach Land.
+Metabase verfügt über zwei eingebaute Regionen: [world map](#world-map) mit Ländern und die [Unites States map](#united-states-map) mit Staaten. Admins können in den Admin-Einstellungen [benutzerdefinierte Regionen](#custom-regions) hinzufügen.
+![Drei Arten von Regionskarten](../images/region-maps.png)
+Sie können die Standardregionen deaktivieren, indem Sie die Umgebungsvariable [`MB_DEFAULT_MAPS_ENABLED`] (../../configuring-metabase/environment-variables.md#mb_default_maps_enabled) setzen.
 
-If you're writing a query in the query builder, you can choose how to bin latitude/longitude in the **Group by** block. If you're writing a query in SQL, you'll need to add binning logic yourself.
+### Form der Regionenkartendaten
+Um eine Regionenkarte zu erstellen, benötigen Sie eine Abfrage (entweder eine mit dem Abfragegenerator erstellte Frage oder eine systemeigene Abfrage) mit mindestens zwei Spalten: die Spalte mit dem Namen der Region und die Spalte mit der Metrik, die Sie nach Region anzeigen möchten.
+Beispiel für eine Abfrage nach Region](../images/region-map-query.png)
+Der Regionsname in den Abfrageergebnissen muss unter Berücksichtigung der Groß- und Kleinschreibung genau mit dem Regionsnamen übereinstimmen: ein aus zwei Buchstaben bestehender Ländercode für Weltkarten, ein aus zwei Buchstaben bestehender Bundesstaatencode oder der Name des Bundesstaates für die Karte der Vereinigten Staaten oder der [region identifier](../../configuring-metabase/custom-maps.md) in der benutzerdefinierten Region.
+Um eine Regionskarte zu erstellen, müssen Sie eine Spalte mit einem Regionsnamen in Ihren Abfrageergebnissen haben, auch wenn Ihre Abfrageergebnisse auch Breiten-/Längenkoordinaten enthalten. Metabase kann keine Regionen aus Breiten-/Längenkoordinaten ableiten und prüft nicht, ob die Koordinaten eines Datenpunkts mit der Region für diesen Datenpunkt übereinstimmen.
 
-![Binned latitude and longitude in the query builder](../images/bin-by-latlong.png)
+### Erstellen Sie eine Regionenkarte
+So erstellen Sie eine Regionenkarte:
+1. Erstellen Sie eine Abfrage mit einer Zusammenfassung nach Regionsnamen (entweder im Query Builder oder mit SQL).
+2. Wählen Sie **Visualisierung**, und wählen Sie **Karte**;
+3. Wählen Sie **Kartentyp: Region**;
+4. Wählen Sie die Karte der Region: Weltkarte (integriert), Vereinigte Staaten (integriert), oder
+5. Wählen Sie die Spalte mit dem Namen der Region im Feld **Region**.
+6. Wenn Ihre Abfrage mehrere Metriken enthält, können Sie im Feld **Metrik** diejenige auswählen, die Sie anzeigen möchten.
+Sie können die für die Regionskarte verwendete Grundfarbe ändern, aber Sie können derzeit keine benutzerdefinierten Farbverläufe (z. B. von rot nach grün) verwenden oder ändern, wie Metabase die Metrik aufteilt.
 
-### Create a grid map
-
-To create a grid map:
-
-1. Build a query with summary by binned latitude and longitude columns (either in the query builder or using SQL);
-2. Select **Visualization**, and pick **Map**;
-3. If your query results have columns whose field type is set to latitude/longitude in [table metadata](../../data-modeling/metadata-editing.md#field-type), Metabase should build a grid map automatically.
-
-   Otherwise, click on the **Gear** icon to go to visualization settings, choose **Map type: grid map**, and pick columns that contain latitude and longitude coordinates.
-
-4. If your query contains several metrics, you can pick the one you want to display in visualization settings.
-
-## Region maps
-
-Region maps display a distribution of aggregated data broken out by regions, like count of users by country.
-
-Metabase comes with two built-in regions: [world map](#world-map) with countries, and the [Unites States map](#united-states-map) with states. Admins can [add custom regions](#custom-regions) in Admin setting.
-
-![Three types of region maps](../images/region-maps.png)
-
-You can disable the default regions by setting the environment variable [`MB_DEFAULT_MAPS_ENABLED`](../../configuring-metabase/environment-variables.md#mb_default_maps_enabled).
-
-### Region map data shape
-
-To build a region map, you need a query (either a question built with the query builder, or a native query) with at least two columns: the column with the region name and the column with the metric that you want to display by region.
-
-![Region map query example](../images/region-map-query.png)
-
-The region name in the query results must be an exact case-sensitive match to the region name: two-letter country code for world maps, two-letter state code or state name for the United States map, or the [region identifier](../../configuring-metabase/custom-maps.md) in the custom region.
-
-To build a region map, you must have a column with a region name in your query results, even if your query results also have latitude/longitude coordinates. Metabase can't infer regions from latitude/longitude coordinates, and doesn't check whether the coordinates of a datapoint are consistent with the region for that data point.
-
-### Create a region map
-
-To create a region map:
-
-1. Build a query with summary by region name (either in the query builder or using SQL).
-2. Select **Visualization**, and pick **Map**;
-3. Choose **Map type: region**;
-4. Pick the region map: world map (built-in), United States (built-in), or
-5. Pick the column with the region name in **Region field**
-6. If your query contains several metrics, you can pick the one you want to display in **Metric field**.
-
-You can change the base color used for the region map, but you can't currently use custom color gradients (for example, red to green), or change how Metabase bins the metric.
-
-### World Map
-
-To visualize your results in the format of a map of the world broken out by country, your result must contain a column with [two-letter ISO country codes](https://www.metabase.com/glossary/country-code), like "US" or "BR", for example:
-
-| Country code | Metric |
+### Weltkarte
+Um Ihre Ergebnisse im Format einer nach Ländern gegliederten Weltkarte darzustellen, muss Ihr Ergebnis eine Spalte mit [zweibuchstabigen ISO-Ländercodes] (https://www.metabase.com/glossary/country-code) enthalten, z. B. "US" oder "BR":
+| Ländercode | Metrisch |
 | ------------ | ------ |
-| US           | 36     |
-| BR           | 25     |
-| IN           | 62     |
-| RO           | 78     |
+| US | 36 |
+| BR | 25 |
+| IN | 62 |
+| RO | 78 |
+Die Ländercodes in den Abfrageergebnissen müssen genau mit den zweistelligen Codes übereinstimmen: Wenn die Ländercodes klein geschrieben sind oder zusätzliche Leerzeichen enthalten, werden sie von Metabase nicht erkannt.
+Wenn Ihr Abfrageergebnis Spalten mit dem [semantischen Typ](../../data-modeling/metadata-editing.md#field-type) "Land" enthält, sollte Metabase automatisch eine Weltkarte erstellen. Andernfalls können Sie in der Visualisierungseinstellung **Regionsfeld** auswählen, welche Spalten als Ländername verwendet werden sollen.
+Sie können die Länderspalte in der Weltregionskarte mit einem Dashboard-Filter vom Typ "Ort" verbinden.
 
-The country codes in the query results must match the two-letter codes exactly: if the country codes are lowercase or contain extra spaces, Metabase won't recognize them.
-
-If your query result has columns with [semantic type](../../data-modeling/metadata-editing.md#field-type) "Country", Metabase should build a world map automatically. Otherwise, you can choose which columns to use as the country name in the **Region field** visualization setting.
-
-You can connect the country column in the world region map to a "Location" type dashboard filter.
-
-### United States map
-
-Creating a map of the United States from your data requires your results to contain a column that contains names of states or two-letter state codes, for example "NM" or "New Mexico", for example:
-
-| State      | Metric |
+### Karte der Vereinigten Staaten
+Um aus Ihren Daten eine Karte der Vereinigten Staaten zu erstellen, müssen Ihre Ergebnisse eine Spalte enthalten, die Namen von Bundesstaaten oder zweistellige Bundesstaatencodes enthält, zum Beispiel "NM" oder "New Mexico":
+| State | Metric |
 | ---------- | ------ |
-| California | 45     |
-| New York   | 56     |
-| Texas      | 34     |
-| Illinois   | 67     |
+| Kalifornien | 45 |
+| New York | 56 |
+| Texas | 34 |
+| Illinois | 67 |
+Wenn Ihr Abfrageergebnis Spalten mit dem [semantischen Typ](../../data-modeling/metadata-editing.md#field-type) "State" enthält, sollte Metabase automatisch eine US-Karte erstellen. Andernfalls können Sie in den Visualisierungseinstellungen auswählen, welche Spalten als Ländernamen verwendet werden sollen.
+Sie können die State-Spalte in der US-Regionalkarte mit einem Dashboard-Filter vom Typ "Location" verbinden.
 
-If your query result has columns with [semantic type](../../data-modeling/metadata-editing.md#field-type) "State", Metabase should build a US map automatically. Otherwise, you can choose which columns to use as the country name in the visualization settings.
+### Benutzerdefinierte Regionen
+Admins können weitere Regionen - wie die brasilianischen Bundesstaaten oder die Stadtteile von New York - hinzufügen, indem sie in den **Admin-Einstellungen** benutzerdefinierte GeoJSON-Karten hinzufügen (../../configuring-metabase/custom-maps.md). Sobald Sie benutzerdefinierte Karten hinzugefügt haben, können Sie diese bei der Erstellung einer Regionskarte in den Karteneinstellungen auswählen.
+![Eine benutzerdefinierte Region auswählen](../images/select-region-map.png)
+Ihre Abfrageergebnisse müssen eine Spalte mit Werten enthalten, die mit der Eigenschaft _region identifier_ in der benutzerdefinierten Karteneinstellung übereinstimmen (nicht mit dem Anzeigenamen der Region).
+Wenn Sie die Regionenspalte in einer benutzerdefinierten Regionenkarte mit einem Dashboard-Filter verbinden möchten, müssen Sie einen Dashboard-Filtertyp "Text oder Kategorie" - nicht "Ort" - verwenden.
 
-You can connect the state column in the US region map to a "Location" type dashboard filter.
-
-### Custom regions
-
-Admins can add more regions - like Brazil states or NYC neighborhoods - by [adding custom GeoJSON maps](../../configuring-metabase/custom-maps.md) in **Admin settings**. Once custom maps have been added, you'll be able to select them when building a region map in map settings.
-
-![Select a custom region](../images/select-region-map.png)
-
-Your query results must contain a column with values that match the _region identifier_ property in the custom map setting (not the region display name).
-
-If you want to connect the region column in a custom region map to a dashboard filter, you'll need to use a "Text or Category" - not "Location" - dashboard filter type.
-
-## Working with maps
+## Arbeiten mit Karten
 
 ### Drill-through
+- **Pin-Karte**: Wenn die Stecknadel mit anderen Tabellen verknüpft ist oder zu viele Informationen enthält, die nicht in den Tooltip passen, gelangen Sie durch Klicken auf die Stecknadel zu einer Detailseite, die eine Liste der Felder sowie eine Liste der verknüpften Tabellen anzeigt.
+- **Gitterkarte**: Wenn Sie auf eine Rasterzelle klicken, erhalten Sie die Möglichkeit, weiter in die Zelle hineinzuzoomen.
+- **Weltkarte und Karten der US-Bundesstaaten**: Wenn Ihre unaggregierten Daten zusätzlich zum Regionsnamen auch die Koordinaten der Breiten- und Längengrade für jeden Datenpunkt enthalten, erhalten Sie die Möglichkeit, in eine bestimmte Region zu zoomen. Dies gilt nur für die integrierten Regionalkarten, nicht für benutzerdefinierte Regionalkarten.
 
-- **Pin map**: If the pin is linked to other tables, or there's too much information to fit in the tooltip, clicking on the pin will take you to a details page that displays a list of fields, as well as a list of connected tables.
-- **Grid map**: If you click on a grid cell, you'll get an option to zoom in further into a cell.
-- **World region map and US states region maps**: If your unaggregated data also contains latitude/longitude coordinates for each data point (in addition to the region name), then you'll get an option to zoom into a specific region, which will create a grid map of data points in that region binned by latitude/longitude. This only applies to the built-in region maps, not custom region maps.
+### Als Standardansicht festlegen
+Bei Pin- und Rasterkarten wird die Karte bei jedem Aktualisieren der Seite auf die Standardansicht zurückgesetzt. Um zu steuern, was angezeigt wird, wenn jemand eine Karte öffnet (z. B. um einen bestimmten Punkt zentriert, mit einer bestimmten Zoomstufe), passen Sie Ihre Kartenausrichtung an. Dies wird die neue Standardansicht sein, zu der die Karte nach einer Aktualisierung der Seite zurückkehrt.
 
-### Set as default view
+### Kästchen zum Filtern einzeichnen
+Auf Pin- und Rasterkarten können Sie mit Hilfe von Filterboxen die Daten vergrößern oder nach einem bestimmten Bereich filtern.
+Klicken Sie auf **Kasten zum Filtern zeichnen** und fahren Sie mit der Maus über die Karte. Um einen Kartenausschnitt zu umreißen, halten Sie die Maus gedrückt und ziehen Sie über die Karte, um einen transparenten blauen Rahmen zu erstellen. Sobald Sie Ihren Zielbereich umrissen haben, lassen Sie die Maus los, und die Karte wird aktualisiert, um nach Daten im ausgewählten Bereich zu filtern. Wenn Sie eine Standardansicht festgelegt haben, bleibt die Ansicht stationär. Wenn Sie keine Standardansicht festgelegt haben, wird die Ansicht auf den ausgewählten Bereich gezoomt.
+Wenn Sie ein Feld zeichnen, werden Ihrer Abfrage Filter hinzugefügt.
 
-On pin and grid maps, the map resets to the default view every time the page is refreshed. To control what is displayed when someone opens a map (e.g. center around a specific point, with a specific level of zoom), adjusted your map orientation. This will be the new default view that the map returns to after a page refresh.
+## Anpassen der Kartenkacheln
+Admins können die Hintergrundkacheln, die für Pin- und Rasterkarten verwendet werden, anpassen, siehe [Ändern des Kartenkachel-Servers](../../configuring-metabase/custom-maps.md#map-tile-server).
+![Standard- und Satellitenkacheln](../images/map-tiles.png)
+Derzeit verwendet Metabase einen einzigen Kachelserver pro Instanz. Es ist nicht möglich, verschiedene Kacheln für verschiedene Karten anzugeben.
 
-### Draw box to filter
-
-On pin and grid maps, filter boxes allow you to zoom in or filter data by a specific area.
-
-You can click **Draw box to filter** and mouse over the map. To outline a section of the map, hold your mouse down and drag across the map to create a transparent blue box. Once you've outlined your target area, release your mouse, and your map will update to filter for data in the selected area. If you've set a default view, the view will remain stationary. If no default view is set, the view will zoom in on the selected area.
-
-Drawing a box will add filters to your query.
-
-## Customizing map tiles
-
-Admins can customize the background tiles that are used for pin and grid maps, see [Changing the Map tile server](../../configuring-metabase/custom-maps.md#map-tile-server).
-
-![Default and satellite tiles](../images/map-tiles.png)
-
-Currently, Metabase uses a single tile server per instance. You can't specify different tiles for different maps.
-
-## Limitations
-
-- Currently, you can't customize the following visualization settings on maps:
-
-  - The color or pins on a pin map;
-  - The color of bins on the grid map;
-  - The number of size of bins for region maps.
-
-- You can't combine different types of maps. For example, you can't put pins on a region map.
-- You need to use category (not location) dashboard filter types when connecting custom region maps to dashboard filters.
-- You can't specify different background tiles for different maps.
+## Beschränkungen
+- Derzeit können Sie die folgenden Visualisierungseinstellungen auf Karten nicht anpassen:
+  - Die Farbe der Pins auf einer Pin-Karte;
+- Die Farbe der Bins auf der Rasterkarte;
+- Die Anzahl und Größe der Bins für Gebietskarten.
+- Sie können keine verschiedenen Kartentypen kombinieren. Sie können zum Beispiel keine Stecknadeln in eine Regionskarte einfügen.
+- Wenn Sie benutzerdefinierte Regionskarten mit Dashboard-Filtern verbinden, müssen Sie Dashboard-Filtertypen für Kategorien (nicht für Standorte) verwenden.
+- Sie können keine unterschiedlichen Hintergrundkacheln für verschiedene Karten festlegen.
 
 
-## When NOT to use a map to visualize geographic data
-
-If the relative locations of regions on the map aren't the main focus of your visualization, consider using a bar or row chart instead. For example, sales by state are often better represented as a row or bar chart rather than a region map.
-
-![Bar chart as alternative to map](../images/map-alternative.png)
+## Wann sollte man keine Karte zur Visualisierung von geografischen Daten verwenden?
+Wenn die relative Lage der Regionen auf der Karte nicht der Hauptschwerpunkt Ihrer Visualisierung ist, sollten Sie stattdessen ein Balken- oder Zeilendiagramm verwenden. So lassen sich beispielsweise die Umsätze nach Bundesland oft besser in einem Zeilen- oder Balkendiagramm als in einer Regionalkarte darstellen.
+![Balkendiagramm als Alternative zur Karte](../images/map-alternative.png)
