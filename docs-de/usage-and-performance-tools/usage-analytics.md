@@ -55,92 +55,118 @@ So zeigen Sie Nutzungsanalysen für eine Frage, ein Dashboard oder ein Modell an
 
 Metabase leitet Sie zum entsprechenden Nutzungs-Dashboard weiter und gibt die ID des Artikels ein.
 
-## How long Metabase keeps usage data
+## Wie lange Metabase Nutzungsdaten aufbewahrt
 
-By default, Metabase will keep the data about [activity](#activity-log-model), [views](#view-log-model), and [query execution](#query-log-model) for **720 days**. Twice a day, Metabase will delete rows older than this threshold. You can change this limit by adjusting the environment variable [`MB_AUDIT_MAX_RETENTION_DAYS`](../configuring-metabase/environment-variables.md#mb_audit_max_retention_days).
 
-Metabase Open Source edition, which is also used on the [Metabase Cloud Starter plan](https://www.metabase.com/pricing/), doesn't collect [Activity](#activity-log-model) and [View](#view-log-model) data. If you upgrade from the Open Source/Starter to a Pro or Enterprise plan, you'll only see View and Activity data in Usage Analytics _starting from the time when you upgraded_.
+Standardmäßig bewahrt die Metabase die Daten über [Aktivität](#activity-log-model), [Ansichten](#view-log-model) und [Abfrageausführung](#query-log-model) für **720 Tage** auf. Zweimal täglich löscht die Metabase Zeilen, die älter als dieser Grenzwert sind. Sie können diesen Grenzwert ändern, indem Sie die Umgebungsvariable [`MB_AUDIT_MAX_RETENTION_DAYS`] anpassen(../configuring-metabase/environment-variables.md#mb_audit_max_retention_days).
 
-## Creating custom reports
 
-You can duplicate any of the questions, dashboards and models in the Usage analytics collection and tweak them to your liking, but you'll need to save them to a different collection.
+Die Metabase Open Source Edition, die auch auf dem [Metabase Cloud Starter Plan](https://www.metabase.com/pricing/) verwendet wird, sammelt keine [Activity](#activity-log-model) und [View](#view-log-model) Daten. Wenn Sie vom Open Source/Starter-Tarif auf einen Pro- oder Enterprise-Tarif upgraden, sehen Sie in Usage Analytics nur Ansichts- und Aktivitätsdaten _ab dem Zeitpunkt des Upgrades_.
 
-### Custom reports collection
+## Erstellen von benutzerdefinierten Berichten
 
-While you _can_ save custom questions, models, and dashboards wherever you like (except for the Usage analytics collection), we recommend that you save your custom Usage analytics reports in the conveniently named "Custom reports" sub-collection. That way these items inherit the same permissions as the parent Usage analytics collection.
 
-There is one thing to know about the Custom reports collection: its metadata resets whenever Metabase restarts. While you are able to temporarily rename the Custom reports collection, or give it a description or an Official badge, Metabase will drop this collection's metadata when it restarts. But rest assured that Metabase will preserve any questions, models, events, or dashboards that you add to the Custom reports collection.
+- Meistgesehene Dashboards
+- Meistgesehene Fragen
+- Meist angesehene Tabellen
 
-## Dashboards
 
-The Usage analytics collection includes a set of read-only dashboards.
+### Personenübersicht Dashboard
 
-### Metabase metrics dashboard
 
-General information about people viewing and creating dashboards, questions, subscriptions, and alerts. Cards include:
+Sehen Sie, was jemand in Ihrer Metabase gemacht hat. Die Karten beinhalten:
 
-- Active users last week
-- Question views last week
-- Questions created last week
-- Dashboards created last week
-- Alerts and subscriptions created last week
-- Weekly active users
-- Question views per week
-- Most active users
-- Most active creators
-- Most viewed dashboards
-- Most viewed cards
 
-### Most viewed content dashboard
+- Mitglied von
+- Aktive Warnungen
+- Erstellte Fragen pro Monat
+- Frageaufrufe pro Monat
+- Meist angesehene Dashboards
+- Meist angesehene Fragen
+- Zuletzt angesehene Dashboards
+- Zuletzt angesehene Fragen
+- Zuletzt angesehene Tabellen
+- Letzte Aktivität
+- Letzte Abfragen
 
-View the most relevant content in your Metabase. Cards include:
 
-- Most viewed dashboards
-- Most viewed questions
-- Most viewed tables
+### Dashboard Übersicht Dashboard
 
-### Person overview dashboard
 
-See what someone's been up to in your Metabase. Cards include:
+Informationen über Dashboards, Fragen, Modelle und Tabellen. Die Karten enthalten:
 
-- Member of
-- Active alerts
-- Questions created per month
-- Question views per month
-- Most viewed dashboards
-- Most viewed questions
-- Last viewed dashboards
-- Last viewed questions
-- Last viewed tables
-- Recent activity
-- Last queries
 
-### Dashboard overview dashboard
+- Dashboard-Metadaten
+- Dashboard-Aufrufe pro Monat
+- Leistung der Fragen
+- Die aktivsten Personen auf diesem Dashboard
+- Fragen in diesem Dashboard
+- Die aktivsten Personen auf diesem Dashboard
+- Fragen in diesem Dashboard
+- Jüngste Aktivitäten auf dem Dashboard
+- Abonnements auf diesem Dashboard
 
-Information about dashboards, questions, models, and tables. Cards include:
 
-- Dashboard metadata
-- Dashboard views per month
-- Question performance
-- Most active people on this dashboard
-- Questions in this dashboard
-- Most active people on this dashboard
-- Questions in this dashboard
-- Recent activity on dashboard
-- Subscriptions on this dashboard
+Übersichts-Dashboard für Fragen###
 
-### Question overview dashboard
 
-Views, performance, activity, and other data for a particular question. Cards include:
+Ansichten, Leistung, Aktivität und andere Daten für eine bestimmte Frage. Die Karten enthalten:
 
-- Question metadata
-- Question views per month
-- Question performance
-- Most active people on this question
-- Dashboards with this question
-- Last activity on this question
-- Alerts on this question
 
+- Metadaten zur Frage
+- Frageaufrufe pro Monat
+- Leistung der Frage
+- Die aktivsten Personen zu dieser Frage
+- Dashboards mit dieser Frage
+- Letzte Aktivität zu dieser Frage
+- Warnungen zu dieser Frage## Erstellen von benutzerdefinierten Berichten
+
+-  Meistgesehene Dashboards
+-  Meistgesehene Fragen
+-  Meist angesehene Tabellen
+
+### Personenübersicht Dashboard
+
+Sehen Sie, was jemand in Ihrer Metabase gemacht hat. Die Karten beinhalten:
+
+-  Mitglied von
+-  Aktive Warnungen
+- Erstellte  Fragen pro Monat
+-  Frageaufrufe pro Monat
+-  Meist angesehene Dashboards
+-  Meist angesehene Fragen
+-  Zuletzt angesehene Dashboards
+-  Zuletzt angesehene Fragen
+-  Zuletzt angesehene Tabellen
+-  Letzte Aktivität
+-  Letzte Abfragen
+
+### Dashboard Übersicht Dashboard
+
+Informationen über Dashboards, Fragen, Modelle und Tabellen. Die Karten enthalten:
+
+-  Dashboard-Metadaten 
+-  Dashboard-Aufrufe pro Monat
+- Leistung der  Fragen 
+-  Die aktivsten Personen auf diesem Dashboard
+-  Fragen in diesem Dashboard
+-  Die aktivsten Personen auf diesem Dashboard
+-  Fragen in diesem Dashboard
+-  Jüngste Aktivitäten auf dem Dashboard
+-  Abonnements auf diesem Dashboard
+
+ Übersichts-Dashboard für Fragen###
+
+Ansichten, Leistung, Aktivität und andere Daten für eine bestimmte Frage. Die Karten enthalten:
+
+- Metadaten zur  Frage 
+-  Frageaufrufe pro Monat
+- Leistung der  Frage 
+-  Die aktivsten Personen zu dieser Frage
+-  Dashboards mit dieser Frage
+-  Letzte Aktivität zu dieser Frage
+-  Warnungen zu dieser Frage
+  
 ### Performance overview dashboard
 
 Question, dashboard and database performance. Cards include:
