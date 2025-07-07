@@ -1,54 +1,77 @@
 ---
-title: Content verification
+Titel: Überprüfung des Inhalts
 ---
 
-# Content verification
 
-{% include plans-blockquote.html feature="Content verification" %}
+# Überprüfung des Inhalts
 
-![Verified icon](./images/verified-icon.png)
 
-Admins can verify items to let others know that the content is accurate and up to date.
+{% include plans-blockquote.html feature="Inhaltsüberprüfung" %}
 
-## Benefits of verifying an item
 
-- Verified items get a fancy blue checkmark next to them.
-- They show up higher in search suggestions and results.
-- The models and metrics browsers allow you to filter for verified items.
+![Überprüftes Symbol](./images/verified-icon.png)
 
-![Verified models toggle](./images/verified-only.png)
 
-## Verifying items
+Admins können Artikel verifizieren, um anderen mitzuteilen, dass der Inhalt korrekt und auf dem neuesten Stand ist.
 
-To verify an item, an admin can click on the three-dot menu (**...**) in the upper right when viewing that item and select: **Verify this item**.
 
-![Verify this dashboard](./images/verify-this-dashboard.png)
+## Vorteile der Überprüfung eines Artikels
 
-## Removing verification status
 
-To remove verification from an item, admins can:
+- Verifizierte Artikel erhalten ein schickes blaues Häkchen neben sich.
+- Sie werden in den Suchvorschlägen und -ergebnissen weiter oben angezeigt.
+- In den Browsern für Modelle und Metriken können Sie nach verifizierten Artikeln filtern.
 
-1. Visit the item.
-2. Click on the three-dot menu (**...**).
-3. Select **remove verification**.
 
-## Changes to queries require re-verification
+(./images/verified-only.png)##Überprüfte Modelle umschalten
 
-If anyone makes any changes to a question, metric, or model's _query_, Metabase will remove the verification status (the check mark will disappear). The logic here is that changing the results in any way should require re-verification.
 
-Dashboards verification works a little differently (since there's no underlying query). Dashboard verification is sticky; you can modify a verified dashboard and it'll retain its verified status.
+## Verifizierung von Artikeln
 
-## Verifiable items
 
-Admins can verify the following items:
+Um einen Artikel zu überprüfen, kann ein Administrator auf das Drei-Punkte-Menü(**...**) in der oberen rechten Ecke klicken, wenn er den Artikel anschaut und wählen: **Diesen Artikel überprüfen**.
 
-- [Questions](../questions/start.md)
-- [Models](../data-modeling/models.md)
-- [Metrics](../data-modeling/metrics.md)
+
+(./images/verify-this-dashboard.png)**Dieses Dashboard überprüfen
+
+
+## Entfernen des Verifizierungsstatus
+
+
+Um die Verifizierung eines Artikels zu entfernen, können Administratoren:
+
+
+1. Besuchen Sie den Artikel.
+2. Klicken Sie auf das Drei-Punkte-Menü(**...**).
+3. Wählen Sie **Überprüfung entfernen**.
+
+
+## Änderungen an Abfragen erfordern eine erneute Verifizierung
+
+
+Wenn jemand Änderungen an einer Frage, einer Metrik oder der _Abfrage_ eines Modells vornimmt, entfernt die Metabase den Verifizierungsstatus (das Häkchen verschwindet). Die Logik dahinter ist, dass jede Änderung der Ergebnisse eine erneute Überprüfung erfordert.
+
+
+Die Überprüfung von Dashboards funktioniert ein wenig anders (da es keine zugrunde liegende Abfrage gibt). Die Dashboard-Verifizierung ist dauerhaft; Sie können ein verifiziertes Dashboard ändern und es behält seinen verifizierten Status.
+
+
+## Überprüfbare Elemente
+
+
+Admins können die folgenden Elemente überprüfen:
+
+
+- [Fragen](../questions/start.md)
+-Modelle](../Datenmodellierung/Modelle.md)
+- [Metriken](../data-modeling/metrics.md)
 - [Dashboards](../dashboards/introduction.md)
 
-Dashboard verification status has no affect on its questions. Questions must be verified independently.
 
-## Further reading
+Der Überprüfungsstatus eines Dashboards hat keinen Einfluss auf seine Fragen. Fragen müssen unabhängig verifiziert werden.
 
-- [Official collections](./collections.md#official-collections)
+
+## Weitere Lektüre
+
+
+- [Offizielle Sammlungen](./collections.md#official-collections)
+
