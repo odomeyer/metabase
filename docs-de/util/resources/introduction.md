@@ -1,12 +1,17 @@
 ---
-title: Keyboard shortcuts
-summary: A handy list of keyboard shortcuts to help you zip around Metabase.
+Titel: Tastaturkürzel
+Zusammenfassung: Eine praktische Liste von Tastenkombinationen, mit denen Sie sich in der Metabase zurechtfinden.
 ---
 
-# Keyboard shortcuts
 
-A handy list of keyboard shortcuts to help you zip around Metabase.
+# Tastaturkürzel
 
-Shortcuts change depending on which page you're viewing in your Metabase.
 
-To view the shortcut menu in Metabase, press `?`, or click on the **Gear** icon in the top right corner and select **Keyboard shortcuts**.
+Eine praktische Liste von Tastenkombinationen, mit denen Sie sich in der Metabase schnell zurechtfinden.
+
+
+Die Tastenkombinationen ändern sich je nachdem, welche Seite Sie in Ihrer Metabase anzeigen.
+
+
+Um das Menü der Tastenkombinationen in der Metabase anzuzeigen, drücken Sie die Taste `?`, oder klicken Sie auf das Symbol **Zahnrad** in der oberen rechten Ecke und wählen Sie **Tastenkombinationen**.
+
