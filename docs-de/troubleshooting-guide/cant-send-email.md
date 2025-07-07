@@ -1,48 +1,66 @@
 ---
-title: Metabase isn't sending email
+Titel: Metabase sendet keine E-Mail
 ---
 
-# Metabase isn't sending email
 
-You have told Metabase to send email notifications, but:
+# Metabase sendet keine E-Mails
 
-- the notifications aren't arriving.
 
-Before any other troubleshooting, try sending a test email to isolate the problem.
+Sie haben Metabase angewiesen, E-Mail-Benachrichtigungen zu senden, aber:
 
-## Can you successfully send a test email?
 
-**Root cause:** The host, port, email address, or password may have been set up incorrectly, or the email server's host and port have been set up incorrectly.
+- Die Benachrichtigungen kommen nicht an.
 
-**Steps to take:**
 
-1. Navigate to the **Admin Panel** and click **Email** in the left sidebar.
-2. Confirm that your host, port, email address, and password are entered correctly. If they are, click **Save changes**. If your changes have successfully saved, you'll see an option to **Send test email**.
-3. Click **Send test email**. The test email will go the address associated with your Metabase account.
-4. Verify that the email is delivered to your account.
-5. If the message is not sent or an error message is displayed in Metabase, try to use the same account credentials in another email program and see if they work. See the logs for more detailed error by navigating to **Troubleshooting** and click **Logs** in the left sidebar.
+Versuchen Sie zunächst, eine Test-E-Mail zu senden, um das Problem einzugrenzen, bevor Sie weitere Schritte zur Fehlerbehebung unternehmen.
 
-## Is the mail server actually sending the message?
 
-**Root cause:** Some email delivery services have very specific rules regarding valid "from" addresses, or have test modes that restrict delivery.
+## Können Sie erfolgreich eine Test-E-Mail senden?
 
-**Steps to take:**
 
-1. Check that your delivery service allows you to send email to the domain you're trying to get email sent to. (Exactly how to do this depends on the delivery service you're connecting to.)
-2. Make sure you've whitelisted the "from" address that you're using for Metabase.
-3. Check the mail server's logs for any error messages.
-4. If you have access to your email delivery service's outbound queue or a dashboard, check that for errors as well.
+**Ursache:** Host, Port, E-Mail-Adresse oder Kennwort wurden möglicherweise falsch eingerichtet, oder Host und Port des E-Mail-Servers wurden falsch eingerichtet.
 
-## Is the mail being sent but not arriving?
 
-**Root cause:** The message is being sent correctly, but isn't being received (at least, not where you expect it to be).
+**Zu unternehmende Schritte:**
 
-**Steps to take:**
 
-1. Check whether email sent to other accounts is arriving, e.g., are colleagues receiving their notifications?
-2. If so, check your spam folder, any forwarding rules you have set up, etc.
-3. Check whether you're using the same email provider as the people who are receiving their messages. If not, the problem might be with deliverability rules---look into signing your emails with [DomainKeys Identified Mail][dkim] (DKIM).
+1. Navigieren Sie zum **Admin Panel** und klicken Sie in der linken Seitenleiste auf **E-Mail**.
+2. Vergewissern Sie sich, dass Ihr Host, Ihr Port, Ihre E-Mail-Adresse und Ihr Passwort korrekt eingegeben wurden. Wenn ja, klicken Sie auf**Änderungen speichern**. Wenn Ihre Änderungen erfolgreich gespeichert wurden, wird die Option**Test-E-Mail senden** angezeigt.
+3. Klicken Sie auf **Test-E-Mail senden**. Die Test-E-Mail wird an die mit Ihrem Metabase-Konto verbundene Adresse gesendet.
+4. Überprüfen Sie, ob die E-Mail an Ihr Konto zugestellt wurde.
+5. Wenn die Nachricht nicht gesendet wird oder eine Fehlermeldung in der Metabase angezeigt wird, versuchen Sie, dieselben Kontoanmeldeinformationen in einem anderen E-Mail-Programm zu verwenden, und prüfen Sie, ob sie funktionieren. Sehen Sie sich die Protokolle für detailliertere Fehler an, indem Sie zu **Fehlerbehebung** navigieren und in der linken Seitenleiste auf **Protokolle** klicken.
 
-[bugs]: ./bugs.md
+
+## Sendet der Mailserver die Nachricht tatsächlich?
+
+
+**Ursache:** Einige E-Mail-Zustelldienste haben sehr spezifische Regeln für gültige "Absender"-Adressen oder verfügen über Testmodi, die die Zustellung einschränken.
+
+
+**Zu unternehmende Schritte:**
+
+
+1. Vergewissern Sie sich, dass Ihr Zustelldienst den Versand von E-Mails an die gewünschte Domäne zulässt. (Wie Sie das genau machen, hängt von dem Zustelldienst ab, mit dem Sie sich verbinden).
+2. Vergewissern Sie sich, dass Sie die "Absender"-Adresse, die Sie für die Metabase verwenden, auf die Whitelist gesetzt haben.
+3. Überprüfen Sie die Protokolle des Mailservers auf eventuelle Fehlermeldungen.
+4. Wenn Sie Zugriff auf die ausgehende Warteschlange Ihres E-Mail-Zustelldienstes oder ein Dashboard haben, überprüfen Sie auch dieses auf Fehler.
+
+
+## Wird die E-Mail gesendet, kommt aber nicht an?
+
+
+**Ursache:** Die Nachricht wird korrekt gesendet, aber nicht empfangen (zumindest nicht dort, wo Sie es erwarten).
+
+
+**Zu unternehmende Schritte:**
+
+
+1. Prüfen Sie, ob die an andere Konten gesendeten E-Mails ankommen, z. B. ob die Kollegen ihre Benachrichtigungen erhalten?
+2. Wenn ja, überprüfen Sie Ihren Spam-Ordner, alle Weiterleitungsregeln, die Sie eingerichtet haben, usw.
+3. Prüfen Sie, ob Sie denselben E-Mail-Anbieter verwenden wie die Personen, die ihre Nachrichten erhalten. Wenn nicht, könnte das Problem bei den Zustellbarkeitsregeln liegen - prüfen Sie, ob Sie Ihre E-Mails mit [DomainKeys Identified Mail][dkim] (DKIM) signieren.
+
+
+[bugs]:. /bugs.md
 [dkim]: https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail
 [office-365-bug]: https://github.com/metabase/metabase/issues/4272
+
