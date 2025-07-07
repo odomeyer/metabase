@@ -1,114 +1,93 @@
 ---
-title: Auditing tools
+Titel: Instrumente der Rechnungsprüfung
 redirect_from:
   - /docs/latest/enterprise-guide/audit
 ---
 
-# Auditing tools
+# Auditing-Tools
 
-> Auditing tools are deprecated. Instead, check out the (much better) [Usage analytics](./usage-analytics.md).
 
-{% include plans-blockquote.html feature="Audit logs" %}
+Der Abschnitt Fragen zeigt Ihnen die beliebtesten und die langsamsten Abfragen an. Wenn Abfragen, die Sie für wichtig halten, nicht in der Liste der beliebtesten Abfragen auftauchen, sollten Sie sicherstellen, dass sich Ihr Team auf die richtigen Dinge konzentriert.
 
-As an administrator of Metabase, you already know the importance of using data to understand how people interact with your products or services. With the Audit tool, you can use Metabase to understand how people in your organization use Metabase. It's, well, meta!
 
-To view the audit logs, go to the top right of the screen and click on the **gear** icon > **Admin settings** > **Audit**. There's a lot of data available, not only about your people, but also about your questions, dashboards, databases and more! We'll walk you through each of the sections below.
+Wenn wichtige Abfragen in der Liste der langsamsten Abfragen auftauchen, sollten Sie sich um deren Optimierung kümmern. Eine Möglichkeit ist die Anpassung der [Caching-Einstellungen](../configuring-metabase/caching.md), aber es gibt auch viele andere Möglichkeiten. Um festzustellen, ob Ihre Optimierungsbemühungen in die richtige Richtung gehen, können Sie die Visualisierung "Abfrageaufrufe und Geschwindigkeit pro Tag" unten auf der Seite verwenden.
 
-## People
 
-### Team members
+(./images/audit-questions.png)
 
-Use the **People** section to gain a better understanding of how people are interacting with Metabase. You'll want to pay attention to the **Overview** tab, especially when you first launch Metabase at your organization — it will give you data around how many active and newly created accounts you have each day. Further down the page, you'll see charts showing you which people are most engaged.
 
-![Team Members](./images/audit-team.png)
+Eine Liste aller Ihrer Fragen ist ebenfalls verfügbar, und Sie können verschiedene Datenpunkte zu jeder Frage auf einen Blick sehen:
 
-The **Team Members** panel has a view of other options for viewing your team's usage data. The **All Members** tab will give you a list of your team members, and stats about their activity, such as when they were last active.
 
-The **Audit Log** tab will display, in chronological order, each query, who viewed it, and when. Note that if the person didn't save their query, its name will be listed as `Ad-hoc`. Each query name can be clicked to view more details about the person's interactions with it, including a full revision history. You'll also be able to view the query in Metabase. Note that this link will always show the latest version of the query - use the revision history to see changes over time.
+- Abfrageläufe
+- Durchschnittliche Laufzeit
+- Cache-Dauer
+- Gesamtlaufzeit
+- Datenbank
+- Tabelle
+- Sammlung
+- Öffentlicher Link
 
-Throughout the People section, names can be clicked to access the profile of a specific person’s activity. This profile includes:
 
-- Dashboard views
-- Query views
-- Downloads
-- Subscriptions and Alerts
+Sie können auch auf eine beliebige Frage klicken, um eine detailliertere Profilansicht zu erhalten:
 
-![Team Members](./images/audit-teammember.png)
 
-## Data
+- Aktivität anzeigen
+- Revisionsverlauf
+- Ein vollständiges Prüfprotokoll darüber, wer die Frage wann angesehen hat
 
-The Data section focuses on your databases, schemas and tables, and is divided into corresponding sections. Look here if you're trying to uncover queries and schemas that need optimization. Each section provides visualizations around the use and speed of querying against your databases, schemas or tables. You will also be able to view lists of stats about all of your databases, schemas and tables.
-
-![Data](./images/audit-data.png)
-
-## Items
-
-The **Items** section focuses on questions, dashboards, downloads, and Subscriptions and Alerts.
-
-### Questions
-
-The Questions section will show you your most popular queries, as well as your slowest queries. If queries you think are important aren't appearing on your most popular queries list, you may want to make sure your team is focusing on the right things.
-
-If important queries are appearing on the list of slowest queries, you will want to look at optimizing them. One option is to adjust your [caching settings](../configuring-metabase/caching.md), but there are plenty of other options as well. To help you determine if your optimization efforts are heading in the right direction, use the `Query views and speed per day` visualization at the bottom of the page.
-
-![Items](./images/audit-questions.png)
-
-A list of all of your questions is available as well, and you can see various data points about each question at a glance:
-
-- Query Runs
-- Average Runtime
-- Cache Duration
-- Total Runtime
-- Database
-- Table
-- Collection
-- Public Link
-
-You can also click on any question to drill into a more detailed profile showing:
-
-- View activity
-- Revision History
-- A full audit log of who viewed the question, and when
 
 ### Dashboards
 
-The **Dashboards** section helps you understand what dashboards people are looking at, and to make sure they're having a smooth experience. If you notice that a popular dashboard has a high average question loading time, you can investigate further using the Questions section outlined above.
+
+Der Abschnitt **Dashboards** hilft Ihnen zu verstehen, welche Dashboards von den Nutzern betrachtet werden, und sicherzustellen, dass sie reibungslos funktionieren. Wenn Sie feststellen, dass ein beliebtes Dashboard eine hohe durchschnittliche Ladezeit für Fragen aufweist, können Sie dies mithilfe des oben beschriebenen Abschnitts "Fragen" näher untersuchen.
+
 
 ![Items](./images/audit-dashboards.png)
 
-A list of all of your dashboards is available as well, and you can see various data points about each dashboard at a glance, such as:
 
-- Number of views
-- Average question execution time(ms)
-- Number of cards
-- Saved by
-- Cache duration
-- Public link
-- Saved on
-- Last edited on
+Eine Liste all Ihrer Dashboards ist ebenfalls verfügbar, und Sie können verschiedene Datenpunkte zu jedem Dashboard auf einen Blick sehen, wie z. B:
+
+
+- Anzahl der Ansichten
+- Durchschnittliche Ausführungszeit der Frage (ms)
+- Anzahl der Karten
+- Gesichert von
+- Dauer des Cache
+- Öffentlicher Link
+- Gesichert am
+- Zuletzt bearbeitet am
+
 
 ### Downloads
 
-Use the **Downloads** section to understand which people are downloading (or exporting) data, and the size (number of rows) of the downloads they're performing. This section contains some visualizations, as well as a list of all downloads.
 
-### Subscriptions and Alerts
+Verwenden Sie den Abschnitt **Downloads**, um zu erfahren, welche Personen Daten herunterladen (oder exportieren) und wie groß (Anzahl der Zeilen) die Downloads sind, die sie durchführen. Dieser Bereich enthält einige Visualisierungen sowie eine Liste aller Downloads.
 
-Here admins can get an overview of all of the [dashboard subscriptions][dashboard-subscriptions] and [alerts][alerts] that are currently active for that Metabase.
 
-- Dashboard name (or Question name for Alerts)
-- Recipients
-- Type (e.g., email or Slack)
-- Collection
-- Frequency
-- Created By
-- Created At
-- Filters
+### Abonnements und Alarme
 
-Admins can add and remove people from a subscription or alert by clicking on the item's **Recipients** number. Admins can also delete the subscription or alert entirely by clicking on the **X** on the relevant line.
 
-Everyone can view all of their subscriptions and alerts by clicking on the **gear** icon in the upper right and navigating to **Account settings** > **Notifications**.
+Hier können sich Administratoren einen Überblick über alle [Dashboard-Abonnements][Dashboard-Abonnements] und [Alerts][Alerts] verschaffen, die derzeit für diese Metabase aktiv sind.
 
-For more, see [how permissions work with alerts and subscriptions](../permissions/notifications.md).
+
+- Dashboard-Name (oder Fragenname für Alerts)
+- Empfänger
+- Art (z. B. E-Mail oder Slack)
+- Sammlung
+- Frequenz
+- Erstellt von
+- Erstellt am
+- Filter
+
+
+Administratoren können Personen zu einem Abonnement oder einer Benachrichtigung hinzufügen oder daraus entfernen, indem sie auf die Nummer**Empfänger** des Elements klicken. Administratoren können das Abonnement oder die Benachrichtigung auch komplett löschen, indem sie auf das**X** in der entsprechenden Zeile klicken.
+
+
+Jeder kann alle seine Abonnements und Benachrichtigungen einsehen, indem er auf das **Zahnradsymbol** oben rechts klickt und zu **Kontoeinstellungen** > **Benachrichtigungen** navigiert.
+
+
+Weitere Informationen finden Sie unter [wie Berechtigungen mit Alarmen und Abonnements funktionieren](../permissions/notifications.md).
 
 [alerts]: ../questions/alerts.md
 [dashboard-subscriptions]: ../dashboards/subscriptions.md
