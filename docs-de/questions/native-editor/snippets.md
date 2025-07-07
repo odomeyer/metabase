@@ -1,107 +1,92 @@
 ---
-title: Snippets
+Titel: Schnipsel
 redirect_from:
-  - /docs/latest/users-guide/sql-snippets
-  - /docs/latest/questions/native-editor/sql-snippets
+- /docs/latest/user-guide/sql-snippets
+- /docs/latest/questions/native-editor/sql-snippets
 ---
 
-# Snippets
 
-![SQL snippet](../images/sql-snippets.png)
+# Schnipsel
 
-**Snippets** are reusable bits of SQL or native queries. Anyone with permissions to the [SQL editor](./writing-sql.md) can create and edit snippets, which are then available for all SQL authors.
 
-For example, if you frequently perform queries that involve multiple tables, you can save the SQL code that joins those tables as a snippet so that you (and others in your organization) can reuse that code in multiple questions.
+![SQL-Schnipsel](../images/sql-snippets.png)
 
-## How to create a snippet
 
-Here's a simple query with a join using the **Sample Database** included with Metabase.
+**Snippets** sind wiederverwendbare Teile von SQL oder nativen Abfragen. Jeder, der Zugriff auf den [SQL-Editor](./writing-sql.md) hat, kann Snippets erstellen und bearbeiten, die dann für alle SQL-Autoren verfügbar sind.
+
+
+Wenn Sie beispielsweise häufig Abfragen durchführen, die mehrere Tabellen umfassen, können Sie den SQL-Code, der diese Tabellen verbindet, als Snippet speichern, so dass Sie (und andere in Ihrem Unternehmen) diesen Code in mehreren Fragen wiederverwenden können.
+
+
+## So erstellen Sie ein Snippet
+
+
+Hier ist eine einfache Abfrage mit einer Verknüpfung unter Verwendung der **Beispieldatenbank**, die in der Metabase enthalten ist.
+
 
 ```sql
 SELECT
-  *
+*
 FROM
-  orders AS o
-  LEFT JOIN products AS p ON o.product_id = p.id
+aufträge AS o
+LEFT JOIN produkte AS p ON o.produkt_id = p.id
 ```
 
-Let's save everything after FROM as a snippet to reuse in other queries.
 
-In the **SQL editor**:
+Lassen Sie uns alles nach FROM als Schnipsel speichern, um es in anderen Abfragen wiederzuverwenden.
 
-1. **Highlight a section of SQL** that you want to save. In this case, we'll select the following SQL code:
 
-   ```sql
-   orders AS o
-   LEFT JOIN products AS p ON o.product_id = p.id
-   ```
+Im **SQL-Editor**:
 
-2. **Right-click on the highlighted section.**
-3. **Select Save as snippet** to create a snippet. A modal will pop up with the SQL statement you highlighted.
-4. **Edit, name, and describe your snippet**. Snippet names must be unique. Click the save button to create the snippet.
 
-In this case, we named the snippet "Orders and Products". The snippet will now be available for anyone to use. Here's what the snippet looks like in the SQL editor:
+1. **Markieren Sie einen SQL-Abschnitt**, den Sie speichern möchten. In diesem Fall wählen wir den folgenden SQL-Code aus:
+
+
+```sql
+aufträge AS o
+LEFT JOIN produkte AS p ON o.produkt_id = p.id
+```
+
+
+2. **Klicken Sie mit der rechten Maustaste auf den markierten Abschnitt.**
+3. **Wählen Sie Als Snippet speichern**, um ein Snippet zu erstellen. Es öffnet sich ein Modal mit der markierten SQL-Anweisung.
+4. **Bearbeiten, benennen und beschreiben Sie Ihr Snippet**. Snippet-Namen müssen eindeutig sein. Klicken Sie auf die Schaltfläche "Speichern", um das Snippet zu erstellen.
+
+
+In diesem Fall haben wir das Snippet "Bestellungen und Produkte" genannt. Das Snippet kann nun von jedem verwendet werden. So sieht das Snippet im SQL-Editor aus:
+
 
 ```sql
 {% raw %}
 SELECT
-  *
+*
 FROM
-  {{snippet: Orders and products}}
+{{snippet: Bestellungen und Produkte}}
 {% endraw %}
 ```
 
-When writing in the SQL editor, you can now start typing `{% raw %}{{snippet:}}{% endraw %}` and Metabase will present autocomplete options for available snippets.
 
-Note: if you use aliases in a snippet, you'll need to observe those aliases outside of the snippet as well. For example, if a snippet aliases `products AS p`, code outside of the snippet will need to use the alias `p` to reference columns in that table (as in `p.column_name`).
+Wenn Sie im SQL-Editor schreiben, können Sie nun `{% raw %}{{snippet:}}{% endraw %}` eingeben, und Metabase zeigt die Optionen für die automatische Vervollständigung der verfügbaren Snippets an.
 
-## Snippet menu
 
-The SQL editor **sidebar** has a **Snippets** menu to list available and archived snippets.
+Hinweis: Wenn Sie in einem Snippet Aliasnamen verwenden, müssen Sie diese Aliasnamen auch außerhalb des Snippets beachten. Wenn zum Beispiel ein Snippet den Alias "products AS p" verwendet, muss der Code außerhalb des Snippets den Alias "p" verwenden, um auf Spalten in dieser Tabelle zu verweisen (wie in "p.column_name").
 
-Click on the snippet icon on the right side of the SQL editor, below the Data Reference book icon and the Variables χ icon. Metabase will slide out a sidebar menu that lists available snippets.
 
-From the Snippets menu, you can:
+## Snippet-Menü
 
-- **Create a snippet.** Click on the `+` in the upper right of the Snippets sidebar to create a new snippet.
-- **Preview snippets.** Click on the down arrow to the right of a snippet to see its description and a preview of its SQL code. There's also an option to edit the snippet.
-- **Insert a snippet.** Click on a snippet's name to insert it into your query at the cursor's current location.
-- **Search for snippets**. If you've saved over 15 snippets, a **Search** icon (the classic magnifying glass) will appear to the left of the `+` button. Note that search results only include snippets the user has permissions for. Snippet folders do not populate the search results.
-- [**Edit a snippet.**](#editing-snippets) You can change a snippet's name, description and code.
-- [**Archive and unarchive a snippet.**](#archiving-snippets) From the Edit modal, you can archive a snippet, which removes the snippet from the snippet menu and autocomplete options in the SQL editor.
 
-## Editing snippets
+Die**Seitenleiste** des SQL-Editors verfügt über ein**Snippet-Menü**, in dem die verfügbaren und archivierten Snippets aufgelistet sind.
 
-You can **edit** a snippet at any time by selecting the snippet from the Snippets sidebar menu in the SQL editor. Click on the down arrow to the right of the snippet, then click **Edit**. You can change the SQL code, snippet name, and snippet description.
 
-Editing snippets is a great way to make changes to many questions at once. If, for example, you've saved the SQL code to pull user data from tables X, Y, and Z as the snippet `User Data`, but you need to change how that data is pulled (such as by adding data from another column or table), you can update the SQL code in the snippet, and all questions that use the snippet `User Data` will have the updated code.
+Klicken Sie auf das Snippet-Symbol auf der rechten Seite des SQL-Editors, unterhalb des Symbols für das Datenreferenzbuch und des Symbols für die Variablen χ. Metabase blendet ein Seitenleistenmenü ein, in dem die verfügbaren Snippets aufgelistet sind.
 
-**Editing a snippet's name**. Changing a snippet's name will update the snippet's name in every question that uses that snippet. It won't break any existing questions (the underlying SQL remains unchanged), but be aware that other users may be caught off guard to discover you renamed a snippet they use frequently from "Orders and Products" to "All the things", or whatever.
 
-**Editing a snippet's SQL.** Here's where we have to remind you that with great power comes great responsibility. There is one major caveat when editing snippets, worthy of a callout:
+Über das Menü "Snippets" können Sie:
 
-> **Caution: if you edit a snippet and include broken code, you will break every question that uses that snippet.** Make sure to test your code before saving it to an existing snippet.
 
-## Archiving snippets
-
-**Archiving** snippets can help keep dated or less relevant snippets out of the way. When you archive a snippet, the snippet no longer populates in the snippet autocomplete dropdown, and the snippet will no longer show up in the main list of snippets in the **SQL editor** sidebar.
-
-Archiving a snippet does not affect any existing queries that use the snippet, so you can safely archive a snippet without impacting any questions.
-
-You can access an archived snippet from the snippet sidebar menu by clicking on the archived button in the bottom left of the sidebar.
-
-Although there is no way to delete a snippet, you can archive and unarchive a snippet at any time.
-
-Note: two snippets cannot share the same name, as even if a snippet is archived, that snippet might still be active in questions.
-
-## Snippet permissions
-
-Any user who has SQL editor permissions to at least one of your connected databases will be able to view the snippets sidebar, and will be able to create, edit, and archive or unarchive any and all snippets — even snippets intended to be used with databases the user lacks SQL editing access to.
-
-Some plans contain additional functionality for organizing snippets into folders and setting permissions on those folders. See our [docs on Snippet folders and permissions](../../permissions/snippets.md).
-
-## Learn more
-
-- [Snippets](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/sql-in-metabase/sql-snippets)
-- [Snippets vs Saved Questions vs Views](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/sql-in-metabase/organizing-sql).
-- If you're having trouble with your SQL query, go to the [SQL troubleshooting guide](../../troubleshooting-guide/sql.md).
+-**Ein Snippet erstellen**Klicken Sie auf das "+" oben rechts in der Snippets-Seitenleiste, um ein neues Snippet zu erstellen.
+- Klicken Sie aufden Abwärtspfeil rechts neben einem Snippet, um seine Beschreibung und eine Vorschau des SQL-Codes anzuzeigen. Es gibt auch eine Option zum Bearbeiten des Snippets.
+-**Einfügen eines Snippets**Klicken Sie auf den Namen eines Snippets, um es an der aktuellen Position des Cursors in Ihre Abfrage einzufügen.
+- **SuchenSie nach Snippets**. Wenn Sie mehr als 15 Snippets gespeichert haben, wird ein**Suchsymbol** (die klassische Lupe) links neben der Schaltfläche "+" angezeigt. Beachten Sie, dass die Suchergebnisse nur Snippets enthalten, für die der Benutzer Berechtigungen hat. Snippet-Ordner werden in den Suchergebnissen nicht angezeigt.
+-(#editing-snippets) Sie können den Namen, die Beschreibung und den Code eines Snippets ändern.
+-(#archiving-snippets) Vom Bearbeitungsmodal aus können Sie ein Snippetarchivieren, wodurch das Snippet aus dem Snippet-Menü und den Autovervollständigungsoptionen im SQL-Editor entfernt wird.
