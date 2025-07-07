@@ -1,65 +1,84 @@
 ---
-title: Linked filters
+Titel: Verknüpfte Filter
 ---
 
-# Linked filters
 
-You can **link filters** on a dashboard so that a child filter limits its values based on the value(s) applied by a parent filter.
+# Verknüpfte Filter
 
-For example, let's say you want a filter for the state column to restrict the values available to a filter on the city column, so that if someone selects a state, they'll only be able to select cities in that state. To do this, you can link the city filter (child) to a (parent) state filter.
 
-![Linked filters](./images/field-values-linked-filters.png)
+Sie können **Filter** auf einem Dashboardverknüpfen, so dass ein untergeordneter Filter seine Werte auf der Grundlage des/der von einem übergeordneten Filter angewendeten Wertes/Werte einschränkt.
 
-## Set up tables for linked filters
 
-You can only link dashboard filters that are wired to database columns (not custom columns or summaries) on dashboard cards, because Metabase needs column metadata to create linked filters. Metabase needs to know what values are there in the columns, and how the columns in the parent and child relate to each other.
+Angenommen, Sie möchten, dass ein Filter für die Spalte "Bundesland" die für einen Filter für die Spalte "Stadt" verfügbaren Werte einschränkt, so dass jemand, der ein Bundesland auswählt, nur die Städte in diesem Bundesland auswählen kann. Zu diesem Zweck können Sie den Stadtfilter (untergeordnet) mit einem (übergeordneten) Bundeslandfilter verknüpfen.
 
-Filters can only be linked when they're connected to columns that have an explicit relationship in the table metadata. By relationship, we mean that the columns should be either:
 
-- In the same table.
-- In two different tables that have a foreign key relationship specified in the [table metadata](../data-modeling/metadata-editing.md).
-- In two different tables that have a foreign key relationships to one or more intermediate tables, as specified in the [table metadata](../data-modeling/metadata-editing.md).
+![Verknüpfte Filter](./images/field-values-linked-filters.png)
 
-![Setting up foreign key in table metadata](./images/foreign-key-linked-filters.png)
 
-If you try to set up linked filters between two columns that aren't connected, Metabase won't show an error, but you'll see that the values in the child filter aren't restricted by the parent filter. For more troubleshooting tips, see [Troubleshooting link filters](../troubleshooting-guide/linked-filters.md).
+## Tabellen für verknüpfte Filter einrichten
 
-## Set up linked filters
 
-You can link a child filter to one or more parent filters. The child filter must be either an ID, Location, or Text or Category filter. Parent filters can be any [filter type](./filters.md).
+Sie können nur Dashboard-Filter verknüpfen, die mit Datenbankspalten (nicht mit benutzerdefinierten Spalten oder Zusammenfassungen) auf Dashboard-Karten verdrahtet sind, da Metabase Spalten-Metadaten benötigt, um verknüpfte Filter zu erstellen. Metabase muss wissen, welche Werte in den Spalten vorhanden sind und wie sich die Spalten im übergeordneten und untergeordneten Element zueinander verhalten.
 
-To link a child filter on a dashboard to one or more parent filters:
 
-1. Edit the dashboard by clicking on the pencil icon in the top right of the dashboard.
-2. Edit the child filter by clicking on the gear icon in the filter.
-3. In the filter settings sidebar, switch to **Linked filters** tab.
-4. Select the parent filter(s).
+Filter können nur verknüpft werden, wenn sie mit Spalten verbunden sind, die in den Metadaten der Tabelle in einer expliziten Beziehung stehen. Unter Beziehung verstehen wir, dass die Spalten entweder:
 
-![Linked filters](./images/linked-filter.png)
 
-The filter(s) you select in the **linked filters** tab will be the parent filter(s), that is, the filter(s) that limit the values this (child) filter that you're currently editing.
+- In der gleichen Tabelle.
+- In zwei verschiedenen Tabellen, die eine Fremdschlüsselbeziehung haben, die in der Datei [table metadata](../data-modeling/metadata-editing.md) angegeben ist.
+- In zwei verschiedenen Tabellen, die eine Fremdschlüsselbeziehung zu einer oder mehreren Zwischentabellen haben, wie in den [table metadata](../data-modeling/metadata-editing.md) angegeben.
 
-## Limitations of linked filters
 
-### Linked filters ignore relationships defined by models and questions
+(/images/foreign-key-linked-filters.png)[Fremdschlüssel in Tabellenmetadaten einrichten]
 
-Linked filters are only "aware" of relationships defined in the table metadata. This constraint lets people connect filters to the same column on multiple dashboard cards (across multiple tabs), but the constraint also means that:
 
-- Linked filters can't see relationships defined by joins in models or questions.
-- Linked filters can't use any filter or join logic from any underlying card or model.
+Wenn Sie versuchen, verknüpfte Filter zwischen zwei Spalten einzurichten, die nicht miteinander verbunden sind, zeigt Metabase keinen Fehler an, aber Sie werden sehen, dass die Werte im untergeordneten Filter nicht durch den übergeordneten Filter eingeschränkt sind. Weitere Tipps zur Fehlerbehebung finden Sie unter [Troubleshooting link filters](../troubleshooting-guide/linked-filters.md).
 
-For example, say you have a table with State and City columns, and you build a model that filters out rows with `City = San Francisco`. You ask a question based on that model, and add it to a dashboard. You add State and City filters to the dashboard, and link them. If you select were to select `State = CA`, the city filter may still show `San Francisco` as option, even though there are no records with `San Francisco` in the question and the underlying model, because the filter only "knows" about the underlying table metadata (which includes sample values for the column).
 
-### Linked filters don't work with custom columns or summaries
+## Verknüpfte Filter einrichten
 
-Metabase uses database column metadata to populate values for linked filters, which means that linked filters have to be connected to database columns. In particular:
 
-- You can't create linked filters on custom columns.
+Sie können einen untergeordneten Filter mit einem oder mehreren übergeordneten Filtern verknüpfen. Der untergeordnete Filter muss entweder ein ID-, Orts- oder Text- oder Kategoriefilter sein. Übergeordnete Filter können alle [Filtertypen] sein(./filters.md).
 
-- Native/SQL questions must have a [field filter](../questions/native-editor/sql-parameters.md#the-field-filter-variable-type) variable in order to be linked. Basic SQL variables aren't connected to database columns, so they won't work for linked filters.
 
-- You can't link filters that use "Custom List" or "From another model or question" as their value's source.
+So verknüpfen Sie einen untergeordneten Filter auf einem Dashboard mit einem oder mehreren übergeordneten Filtern:
 
-## Troubleshooting linked filters
 
-If you're not seeing what you expect with linked filters, make sure that your table relationships are [set up to support linked filters](#set-up-tables-for-linked-filters) . See [Troubleshooting linked filters](../troubleshooting-guide/linked-filters.md) for more troubleshooting information.
+1. Bearbeiten Sie das Dashboard, indem Sie auf das Bleistiftsymbol oben rechts im Dashboard klicken.
+2. Bearbeiten Sie den untergeordneten Filter, indem Sie auf das Zahnradsymbol im Filter klicken.
+3. Wechseln Sie in der Seitenleiste der Filtereinstellungen zur Registerkarte **Verknüpfte Filter**.
+4. Wählen Sie den/die übergeordneten Filter.
+
+
+![Verknüpfte Filter](./images/linked-filter.png)
+
+
+Der/die Filter, den/die Sie auf der Registerkarte**verknüpfte Filter** auswählen, ist/sind der/die übergeordnete(n) Filter, d.h. der/die Filter, der/die die Werte dieses (untergeordneten) Filters, den Sie gerade bearbeiten, einschränkt/einschränken.
+
+
+## Einschränkungen von verknüpften Filtern
+
+
+### Verknüpfte Filter ignorieren die von Modellen und Fragen definierten Beziehungen.
+
+
+Verknüpfte Filter kennen nur die Beziehungen, die in den Metadaten der Tabelle definiert sind. Diese Einschränkung ermöglicht es, Filter mit derselben Spalte auf mehreren Dashboardkarten (über mehrere Registerkarten hinweg) zu verbinden, aber die Einschränkung bedeutet auch, dass:
+
+
+- Verknüpfte Filter können keine Beziehungen sehen, die durch Verknüpfungen in Modellen oder Fragen definiert sind.
+- Verknüpfte Filter können keine Filter- oder Verknüpfungslogik aus einer zugrunde liegenden Karte oder einem Modell verwenden.
+
+
+Nehmen wir an, Sie haben eine Tabelle mit den Spalten Bundesland und Stadt, und Sie erstellen ein Modell, das Zeilen mit "Stadt = San Francisco" herausfiltert. Sie stellen eine Frage, die auf diesem Modell basiert, und fügen sie zu einem Dashboard hinzu. Sie fügen dem Dashboard die Filter Bundesland und Stadt hinzu und verknüpfen sie. Wenn Sie "Staat = CA" auswählen, zeigt der Stadtfilter möglicherweise immer noch "San Francisco" als Option an, obwohl es in der Frage und im zugrunde liegenden Modell keine Datensätze mit "San Francisco" gibt, da der Filter nur die zugrunde liegenden Tabellenmetadaten "kennt" (die Beispielwerte für die Spalte enthalten).
+
+
+### Verknüpfte Filter funktionieren nicht mit benutzerdefinierten Spalten oder Zusammenfassungen
+
+
+Metabase verwendet die Metadaten der Datenbankspalten, um die Werte für verknüpfte Filter aufzufüllen, was bedeutet, dass verknüpfte Filter mit den Datenbankspalten verbunden sein müssen. Im Besonderen:
+
+
+- Sie können keine verknüpften Filter für benutzerdefinierte Spalten erstellen.
+
+
+- Native/SQL-Fragen müssen eine [Feldfilter](../questions/native-editor/sql-parameters.md#the-field-filter-variable-type) Variable haben, um verknüpft werden zu können. Basic-SQL-Variablen sind nicht mit Datenbankspalten verbunden, so dass sie nicht für verknüpfte Filter verwendet werden können.
