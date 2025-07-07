@@ -1,31 +1,43 @@
 ---
-title: Passwords
+Titel: Kennwörter
 redirect_from:
-  - /docs/latest/operations-guide/changing-password-complexity
+- /docs/latest/operations-guide/changing-password-complexity
 ---
 
-# Passwords
 
-Metabase can allow authentication via email and password.
+# Passwörter
 
-## Password complexity
 
-Metabase offers a couple controls for administrators who prefer to increase the password requirements on their user accounts.
+Metabase kann die Authentifizierung per E-Mail und Passwort erlauben.
 
-    export MB_PASSWORD_COMPLEXITY=strong
-    export MB_PASSWORD_LENGTH=10
 
-The settings above can be used independently, so it's fine to use only one or the other. By default Metabase use complexity = `normal` and a password length of 6. The following options are available for complexity choice:
+## Passwortkomplexität
 
-- `weak` = no character constraints
-- `normal` = at least 1 digit
-- `strong` = minimum 8 characters w/ 2 lowercase, 2 uppercase, 1 digit, and 1 special character
 
-By default, Metabase also prevents users from setting passwords that are in a list of common passwords (like `qwerty123` and
-`passw0rd`). Changing the complexity requirement to `weak` disables this behavior.
+Metabase bietet eine Reihe von Steuerelementen für Administratoren, die es vorziehen, die Passwortanforderungen für ihre Benutzerkonten zu erhöhen.
 
-## Disabling password logins
 
-{% include plans-blockquote.html feature="Disabling password logins" %}
+export MB_PASSWORT_COMPLEXITY=stark
+export MB_PASSWORT_LÄNGE=10
 
-On Pro and Enterprise plans, you can require people to log in with SSO by disabling password authentication from **Admin settings** > **Authentication**.
+
+Die obigen Einstellungen können unabhängig voneinander verwendet werden, es ist also kein Problem, nur die eine oder die andere zu verwenden. Standardmäßig verwendet Metabase Komplexität =`normal` und eine Passwortlänge von 6. Für die Auswahl der Komplexität stehen folgende Optionen zur Verfügung:
+
+
+-`schwach` = keine Zeichenbeschränkungen
+-normal" = mindestens 1 Ziffer
+-stark" = mindestens 8 Zeichen, davon 2 Kleinbuchstaben, 2 Großbuchstaben, 1 Ziffer und 1 Sonderzeichen
+
+
+Standardmäßig verhindert die Metabase auch, dass Benutzer Kennwörter festlegen, die in einer Liste gängiger Kennwörter enthalten sind (wie "qwerty123" und
+"passw0rd"). Das Ändern der Komplexitätsanforderung auf`schwach` schaltet dieses Verhalten aus.
+
+
+## Deaktivieren von Passwort-Logins
+
+
+{% include plans-blockquote.html feature="Deaktivieren von Kennwortanmeldungen" %}
+
+
+Bei Pro- und Enterprise-Tarifen können Sie verlangen, dass sich Personen mit SSO anmelden, indem Sie die Passwortauthentifizierung unter **Admin-Einstellungen** > **Authentifizierung** deaktivieren.
+
