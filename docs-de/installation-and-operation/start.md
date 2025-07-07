@@ -1,63 +1,94 @@
 ---
-title: "Installation and operation overview"
+Titel: "Übersicht über Installation und Betrieb"
 ---
 
-# Installation and operation overview
 
-The birth, care, and feeding of your Metabase.
+# Überblick über Installation und Betrieb
 
-## [Installing Metabase](./installing-metabase.md)
 
-Options for installing Metabase.
+Die Geburt, Pflege und Fütterung Ihrer Metabase.
 
-## [Migrating to a production database](./migrating-from-h2.md)
 
-If you started using Metabase with the default, H2 application database, here's how to migrate your data to a production-ready database.
+## [Metabase installieren](./installing-metabase.md)
 
-## [Configuring the Metabase application database](./configuring-application-database.md)
 
-Use environment variables to set up your application database.
+Optionen für die Installation von Metabase.
 
-## [Backing up Metabase application data](./backing-up-metabase-application-data.md)
 
-How to back up your Metabase data: questions, dashboards, and other application data.
+## [Migration zu einer Produktionsdatenbank](./migrating-from-h2.md)
+
+
+Wenn Sie die Metabase mit der standardmäßigen H2-Anwendungsdatenbank verwenden, können Sie Ihre Daten auf eine produktionsfähige Datenbank migrieren.
+
+
+## [Konfigurieren der Metabase-Anwendungsdatenbank](./configuring-application-database.md)
+
+
+Verwenden Sie Umgebungsvariablen, um Ihre Anwendungsdatenbank einzurichten.
+
+
+## [Sichern von Metabase-Anwendungsdaten](./backing-up-metabase-application-data.md)
+
+
+So sichern Sie Ihre Metabase-Daten: Fragen, Dashboards und andere Anwendungsdaten.
+
 
 ## [Upgrading Metabase](upgrading-metabase.md)
 
-How to safely upgrade your Metabase.
 
-## [Development instances](./development-instance.md)
+Wie Sie Ihre Metabase sicher upgraden können.
 
-Try out your changes before deploying to production.
 
-## [Serialization](./serialization.md)
+## [Entwicklungsinstanzen](./development-instance.md)
 
-Export your questions, dashboards, and more as YAML files that you can check into version control.
 
-## [Monitoring your Metabase](./monitoring-metabase.md)
+Testen Sie Ihre Änderungen, bevor Sie sie in der Produktion einsetzen.
 
-Monitor your Metabase with JMX.
 
-## [Observability with Prometheus](./observability-with-prometheus.md)
+## [Serialisierung](./serialization.md)
 
-Export Metabase metrics for viewing with Prometheus.
 
-## [Supported browsers](./supported-browsers.md)
+Exportieren Sie Ihre Fragen, Dashboards und mehr als YAML-Dateien, die Sie in die Versionskontrolle einchecken können.
 
-Rest in peace, Internet Explorer.
 
-## [About the anonymous usage data we collect](./information-collection.md).
+## [Überwachen Sie Ihre Metabase](./monitoring-metabase.md)
 
-We collect anonymous Metabase usage data to improve the product. We don't collect your data.
 
-## [Accessibility](./accessibility.md)
+Überwachen Sie Ihre Metabasis mit JMX.
 
-Notes on Metabase's accessibility.
 
-## [Command line commands](./commands.md)
+## [Beobachtbarkeit mit Prometheus](./observability-with-prometheus.md)
 
-Metabase's CLI.
+
+Exportieren Sie Metabase-Metriken zur Anzeige mit Prometheus.
+
+
+## [Unterstützte Browser](./supported-browsers.md)
+
+
+Ruhe in Frieden, Internet Explorer.
+
+
+## [Über die von uns gesammelten anonymen Nutzungsdaten](./information-collection.md).
+
+
+Wir sammeln anonyme Metabase-Nutzungsdaten, um das Produkt zu verbessern. Wir sammeln Ihre Daten nicht.
+
+
+## [Barrierefreiheit](./accessibility.md)
+
+
+Hinweise zur Barrierefreiheit der Metabase.
+
+
+## [Kommandozeilenbefehle](./commands.md)
+
+
+Die CLI der Metabase.
+
 
 ---
 
-If you’d like more technical resources to set up your data stack with Metabase, connect with a [Metabase Expert](https://www.metabase.com/partners/).
+
+Wenn Sie weitere technische Ressourcen für die Einrichtung Ihres Datenstapels mit Metabase benötigen, wenden Sie sich an einen [Metabase Expert](https://www.metabase.com/partners/).
+
