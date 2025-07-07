@@ -1,85 +1,78 @@
 ---
-title: Embedded analytics SDK - Using the SDK with Next.js
+Titel: Embedded analytics SDK - Verwendung des SDK mit Next.js
 ---
 
-# Embedded analytics SDK - Using the SDK with Next.js
+
+# Embedded analytics SDK - Verwendung des SDK mit Next.js
+
 
 {% include plans-blockquote.html feature="Embedded analytics SDK" sdk=true %}
 
+
 {% include youtube.html id='UfL8okz36d0' %}
 
-Some notes on using the Embedded analytics SDK with [Next.js](https://nextjs.org/). The SDK is tested to work with Next.js 14, although it may work with other versions.
 
-## SDK components with Server Side Rendering (SSR) or React Server Components
+Einige Hinweise zur Verwendung des Embedded analytics SDK mit [Next.js](https://nextjs.org/). Das SDK wurde für Next.js 14 getestet, obwohl es auch mit anderen Versionen funktionieren kann.
 
-For now, the SDK components are only supported for client-side rendering. To use the SDK components with server-side rendering, or with React Server components, you can either use a compatibility layer or manually wrap the components.
 
-### Compatibility layer for server-side rendering (SSR) (EXPERIMENTAL)
+## SDK-Komponenten mit Server Side Rendering (SSR) oder React Server Components
 
-To use SDK components with Next.js, the SDK provides an experimental compatibility layer that [wraps all the components with dynamic imports and disables SSR](https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading#with-no-ssr). To work with the app router, this compatibility layer uses `use client`.
 
-To use the compatibility layer, change your imports from `@metabase/embedding-sdk-react` to `@metabase/embedding-sdk-react/nextjs`.
+Zurzeit werden die SDK-Komponenten nur für das clientseitige Rendering unterstützt. Um die SDK-Komponenten mit serverseitigem Rendering oder mit React Server-Komponenten zu verwenden, können Sie entweder eine Kompatibilitätsschicht verwenden oder die Komponenten manuell umhüllen.
 
-See a [sample Next.js app that uses this compatibility layer](https://github.com/metabase/metabase-nextjs-sdk-embedding-sample).
 
-## Manual wrapping of the components
+### Kompatibilitätsschicht für Server-seitiges Rendering (SSR) (EXPERIMENTAL)
 
-If you want to customize the loading of the components, you can create your own wrapper.
 
-In your app, create a `metabase` directory, and add a `EmbeddingSdkProvider.tsx` file to that directory. This file will contain the provider with the appropriate configuration.
+Um SDK-Komponenten mit Next.js zu verwenden, bietet das SDK eine experimentelle Kompatibilitätsschicht, die [alle Komponenten mit dynamischen Importen umhüllt und SSR deaktiviert](https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading#with-no-ssr). Um mit dem App-Router zu arbeiten, verwendet diese Kompatibilitätsschicht `use client`.
+
+
+Um die Kompatibilitätsschicht zu verwenden, ändern Sie Ihre Importe von `@metabase/embedding-sdk-react` zu `@metabase/embedding-sdk-react/nextjs`.
+
+
+Siehe eine [Beispiel-Next.js-Anwendung, die diese Kompatibilitätsschicht verwendet](https://github.com/metabase/metabase-nextjs-sdk-embedding-sample).
+
+
+## Manuelles Wrapping der Komponenten
+
+
+Wenn Sie das Laden der Komponenten anpassen möchten, können Sie Ihren eigenen Wrapper erstellen.
+
+
+Erstellen Sie in Ihrer Anwendung ein "Metabase"-Verzeichnis und fügen Sie eine "EmbeddingSdkProvider.tsx" -Datei zu diesem Verzeichnis hinzu. Diese Datei wird den Provider mit der entsprechenden Konfiguration enthalten.
+
 
 ```tsx
 {% include_file "{{ dirname }}/snippets/next-js/manual-wrapping-embedded-sdk-provider.tsx" snippet="example" %}
 ```
 
-Next, add an `index.tsx` file to that `metabase` directory. This file will include the `use client` directive, and it'll export a lazy-loaded version of the `EmbeddingSdkProvider` with SSR disabled.
+
+Als Nächstes fügen Sie eine Datei "index.tsx" in das Verzeichnis "metabase" ein. Diese Datei enthält die "use client" -Direktive und exportiert eine "lazy-loaded"-Version des "EmbeddingSdkProvider" mit deaktiviertem SSR.
+
 
 ```tsx
 {% include_file "{{ dirname }}/snippets/next-js/manual-wrapping-entrypoint.tsx" snippet="example" %}
 ```
 
-You can now import components like so:
+
+Sie können nun Komponenten wie folgt importieren:
+
 
 ```tsx
 {% include_file "{{ dirname }}/snippets/next-js/manual-wrapping-usage.tsx" %}
 ```
 
-## Handling authentication
 
-App Router and Pages Router have different ways to define API routes. If you want to authenticate users from your server with JWT, you can follow the instructions below. But if you want to authenticate with API keys for local development, see [Authenticating locally with API keys](./authentication.md#authenticating-locally-with-api-keys).
+## Handhabung der Authentifizierung
 
-### Using App Router
 
-You can create a Route handler that signs people in to Metabase.
+App Router und Pages Router haben unterschiedliche Möglichkeiten, API-Routen zu definieren. Wenn Sie Benutzer von Ihrem Server mit JWT authentifizieren möchten, können Sie die unten stehenden Anweisungen befolgen. Wenn Sie jedoch mit API-Schlüsseln für die lokale Entwicklung authentifizieren möchten, lesen Sie bitte [Lokale Authentifizierung mit API-Schlüsseln](./authentication.md#authenticating-locally-with-api-keys).
 
-Create a new `route.ts` file in your `app/*` directory, for example `app/sso/metabase/route.ts` that corresponds to an endpoint at /sso/metabase. This route handler should generate a JWT for the authenticated user and return the token in a JSON object with the shape `{ jwt: string }`.
 
-```typescript
-{% include_file "{{ dirname }}/snippets/next-js/app-router-authentication-api-route.ts" snippet="imports" %}
+### App Router verwenden
 
-{% include_file "{{ dirname }}/snippets/next-js/app-router-authentication-api-route.ts" snippet="example" %}
-```
 
-Then, pass this `authConfig` to `MetabaseProvider`
+Sie können einen Route-Handler erstellen, der Personen bei der Metabase anmeldet.
 
-```typescript
-{% include_file "{{ dirname }}/snippets/next-js/authentication-auth-config.tsx" %}
-```
 
-### Using Pages Router
-
-You can create an API route that signs people in to Metabase.
-
-Create a new `metabase.ts` file in your `pages/api/*` directory, for example `pages/api/sso/metabase.ts` that corresponds to an endpoint at /api/sso/metabase. This API route should generate a JWT for the authenticated user and return the token in a JSON object with the shape `{ jwt: string }`.
-
-```typescript
-{% include_file "{{ dirname }}/snippets/next-js/pages-router-authentication-api-route.ts" snippet="imports" %}
-
-{% include_file "{{ dirname }}/snippets/next-js/pages-router-authentication-api-route.ts" snippet="example" %}
-```
-
-Then, pass this `authConfig` to `MetabaseProvider`
-
-```ts
-{% include_file "{{ dirname }}/snippets/next-js/authentication-auth-config.tsx" %}
-```
+Erstellen Sie eine neue "route.ts" -Datei in Ihrem "app/*"-Verzeichnis, zum Beispiel "app/sso/metabase/route.ts", die einem Endpunkt unter "/sso/metabase" entspricht. Dieser Routehandler sollte ein JWT für den authentifizierten Benutzer generieren und das Token in einem JSON-Objekt mit der Form `{ jwt: string }` zurückgeben.
