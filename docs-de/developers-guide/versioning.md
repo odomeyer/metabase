@@ -1,65 +1,85 @@
 ---
-title: Metabase release versioning
+Titel: Versionierung von Metabase Releases
 ---
 
-# Metabase release versioning
 
-We follow our own flavor of the [semantic versioning guidelines](https://semver.org/) in order to distinguish the [open-source version](https://www.metabase.com/product/starter) of Metabase from the paid, source-available version of Metabase (available in the [Pro](https://www.metabase.com/product/pro) and [Enterprise](https://www.metabase.com/product/enterprise) plans).
+# Versionierung der Metabase-Version
 
-Semantic versioning typically follows the format: `Major.Minor.Point.Patch`. For example, version `3.15.2` or `3.15.2.1`.
 
-With Metabase releases, we prefix the version with a `0` or `1`, depending on the license.
+Wir folgen unserer eigenen Variante der [semantischen Versionsrichtlinien](https://semver.org/), um die [Open-Source-Version](https://www.metabase.com/product/starter) von Metabase von der kostenpflichtigen, quelloffenen Version von Metabase zu unterscheiden (verfügbar in den [Pro](https://www.metabase.com/product/pro) und [Enterprise](https://www.metabase.com/product/enterprise) Plänen).
 
-## The Metabase version schema
+
+Die semantische Versionierung erfolgt in der Regel nach dem Format: Major.Minor.Point.Patch`. Zum Beispiel, Version `3.15.2` oder `3.15.2.1`.
+
+
+Bei Metabase-Releases wird der Version je nach Lizenz eine`0` oder`1` vorangestellt.
+
+
+## Das Versionsschema der Metabase
+
 
 ```
-License.Major.Point.Hotfix
+Lizenz.Major.Punkt.Hotfix
 ```
 
-E.g.,
+
+z.B.,
+
 
 ```
 v0.46.3.1
 ```
 
-`v0.46.3.1` would be for a hotfix (`1`) for the third (`3`) point release of Metabase `46`, the open-source edition (`0`).
 
-### License
+`v0.46.3.1` wäre ein Hotfix(`1`) für die dritte(`3`) Punktversion von Metabase `46`, der Open-Source-Ausgabe(`0`).
 
-- `0` for the free, open-source version (sometimes called OSS, for open-source software).
-- `1` for the paid, source-available version that has all the bells and whistles (sometimes called EE for "Enterprise Edition").
+
+### Lizenz
+
+
+-0" für die freie, quelloffene Version (manchmal OSS genannt, für Open-Source-Software).
+- 1` für die kostenpflichtige, quelloffene Version mit allem Schnickschnack (manchmal auch EE für "Enterprise Edition" genannt).
+
 
 ### Major
 
-We release major version when we introduce new features or breaking changes.
 
-### Point
+Wir veröffentlichen Major-Versionen, wenn wir neue Funktionen oder wichtige Änderungen einführen.
 
-Sometimes called a minor release, we issue point releases when we add bug fixes and refinements to existing features.
+
+### Punkt
+
+
+Manchmal auch als Minor Release bezeichnet, geben wir Point Releases heraus, wenn wir Fehlerkorrekturen und Verfeinerungen an bestehenden Funktionen vornehmen.
+
 
 ### Hotfix
 
-Sometimes called a patch release, we issue these hotfix releases to fix security issues in a timely manner, or to undo a horrific regression.
 
-## Other release terms
+Manchmal auch als Patch-Release bezeichnet, geben wir diese Hotfix-Releases heraus, um Sicherheitsprobleme zeitnah zu beheben oder um eine schreckliche Regression rückgängig zu machen.
 
-### The Gold Release
 
-The gold release is the first release of a new major version of Metabase. So for Metabase version 46, the gold releases would be:
+## Andere Release-Begriffe
 
-- `v0.46.0` (the OSS version)
-- `v1.46.0` (the EE version)
+
+### Die Gold-Version
+
+
+Das Gold-Release ist das erste Release einer neuen Hauptversion von Metabase. Für die Metabase-Version 46 wären die Gold-Releases also folgende:
+
+
+-v0.46.0" (die OSS-Version)
+-v1.46.0" (die EE-Version)
+
 
 ### Release Candidates
 
-We usually publish release candidates to kick the tires on new features before releasing a new major version (a gold release). To distinguish these release candidates, we append an `-RC#` at the end.
 
-E.g.,
+Normalerweise veröffentlichen wir Release Candidates, um neue Funktionen auszuprobieren, bevor wir eine neue Hauptversion (Gold Release) veröffentlichen. Um diese Release Candidates zu unterscheiden, fügen wir ein `-RC#` am Ende an.
 
-- `v1.46.0-RC1` (the first release candidate for the EE version)
-- `v0.46.0-RC3` (the third release candidate for the OSS version)
 
-## Further reading
+Z.B.,
 
-- [Metabase releases on Github](https://github.com/metabase/metabase/releases)
-- [Metabase release blog posts](https://www.metabase.com/releases)
+
+-v1.46.0-RC1" (der erste Veröffentlichungskandidat für die EE-Version)
+-v0.46.0-RC3" (der dritte Veröffentlichungskandidat für die OSS-Version)
