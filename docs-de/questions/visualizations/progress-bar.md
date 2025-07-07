@@ -1,59 +1,40 @@
 ---
-title: Progress bars
+Titel: Fortschrittsbalken
 redirect_from:
   - /docs/latest/questions/sharing/visualizations/progress-bar
 ---
 
-# Progress bars
+# Fortschrittsbalken
+**Fortschrittsbalken** dienen dazu, eine einzelne Zahl mit einem von Ihnen festgelegten Zielwert zu vergleichen.
+![Fortschrittsbalken](../images/progress.png)
 
-**Progress bars** are for comparing a single number to a goal value that you set.
+## Wann wird ein Fortschrittsbalken verwendet?
+Fortschrittsbalken sind nützlich, wenn Sie die Entwicklung einer Kennzahl in Richtung eines Ziels anzeigen möchten, wie z. B. die Bewertung der Leistung eines KPI oder die Verfolgung des Prozentsatzes der Fertigstellung eines Projekts.
+Fortschrittsbalken bieten Ihnen die Möglichkeit, eine Warnung einzurichten, wenn das Ergebnis einer Frage das in den Einstellungen des Fortschrittsbalkens festgelegte Ziel erreicht. Siehe [Fortschrittsbalken-Warnungen] (../alerts.md#progress-bar-alerts).
 
-![Progress bar](../images/progress.png)
+## Wie man einen Fortschrittsbalken erstellt
+Um einen Fortschrittsbalken zu erstellen, benötigen Sie:
+- Eine Abfrage, die eine einzelne Zahl zurückgibt, z. B. "Summe der Bestellmenge". Der Fortschrittsbalken funktioniert nicht mit Breakouts.
+  Sie können auch eine Abfrage verwenden, die mehrere Metriken in einer einzigen Zeile zurückgibt:
+  | Summe der Menge | Durchschnittliche Menge | Maximale Menge |
+| --------------- | ---------------- | ------------ |
+| 4910 | 17.32 | 173 |
+In diesem Fall verwendet das Fortschrittsdiagramm die Kennzahl in der ersten Spalte ("Summe der Menge"). Um die Metrik zu ändern, gehen Sie zum Editor und ziehen Sie die gewünschte Metrik an die erste Position im Block "Zusammenfassen".
+- Ein Zielwert. Der Zielwert sollte eine positive Zahl sein. Derzeit unterstützt Metabase nur das Festlegen eines statischen Ziels (Sie können kein Ziel basierend auf einer anderen Abfrage festlegen).
+  Das Ziel wird in den [Diagrammoptionen](#progress-bar-options) festgelegt.
+![Fortschrittsanzeige KPI](../images/progress-bar-elements.png)
 
-## When to use a progress bar
+## Optionen für den Fortschrittsbalken
+Um die Diagrammoptionen zu öffnen, klicken Sie auf das Zahnradsymbol unten links auf dem Bildschirm.
+Die Formatierungsoptionen gelten sowohl für das Ergebnis der Abfrage als auch für den Zielwert:
+![Fortschrittsbalken mit angewandtem Format](../images/progress-with-format.png)
+Die Auswahl von "**Style**: Prozent" in den Formatierungsoptionen ändert nur, wie das Ergebnis der Abfrage formatiert wird: zum Beispiel wird "17" als "1700%" formatiert. Wenn Sie stattdessen das Abfrageergebnis als Prozentsatz des Ziels anzeigen möchten, müssen Sie diesen Prozentsatz in Ihrer Abfrage berechnen. Um zum Beispiel die Anzahl der Bestellungen als Prozentsatz des Ziels von `20` anzuzeigen, verwenden Sie [custom expressions](../query-builder/expressions.md), um "Anzahl der Bestellungen geteilt durch 20" zurückzugeben, und formatieren Sie das Ergebnis als Prozentsatz.
 
-Progress bars are useful when you want to show the movement of a metric toward a goal, like assessing performance of a KPI, or tracking the percentage of of completion on a project.
+## Einschränkungen und Alternativen
+- Bei den Fortschrittsbalken wird davon ausgegangen, dass Ihr Ziel darin besteht, eine Kennzahl zu _erhöhen_. Wenn das Ziel darin besteht, eine Kennzahl zu verringern oder zu reduzieren, sollten Sie das [gauge chart](gauge.md) verwenden.
+- Fortschrittsbalken unterstützen keine Ausbrüche. Wenn Sie den Fortschritt einer Kennzahl in Richtung eines Ziels über einen Ausbruch anzeigen möchten, sollten Sie ein [Balken- oder Liniendiagramm mit einer Ziellinie](line-bar-and-area-charts.md#goal-lines) verwenden.
 
-Progress bars give you an option to set up an alert whenever the result of a question reaches the goal set in the progress bar settings. See [Progress bar alerts](../alerts.md#progress-bar-alerts).
-
-## How to create a progress bar
-
-To create a progress bar you'll need:
-
-- A query that returns a single number, like "Sum of order quantity". Progress bar doesn't work with breakouts.
-
-  You can also use a query that returns several metrics in a single row:
-
-  | Sum of Quantity | Average Quantity | Max Quantity |
-  | --------------- | ---------------- | ------------ |
-  | 4910            | 17.32            | 173          |
-
-In this case, the progress bar chart will use the metric in the first column ("Sum of quantity"). To change the metric, go to the editor and drag the metric you want to the first position in the Summarize block.
-
-- A goal value. The goal value should be a positive number. Currently, Metabase only supports setting a static goal (you can't set a goal based on another query).
-
-  The goal is set in the [chart options](#progress-bar-options).
-
-![Progress bar KPI](../images/progress-bar-elements.png)
-
-## Progress bar options
-
-To open the chart options, click on the gear icon at the bottom left of the screen.
-
-Format options will apply to both the result of the query and the goal value:
-
-![Progress bar with format applied](../images/progress-with-format.png)
-
-Selecting "**Style**: Percent" in format options will only change how the result of the query is formatted: for example, `17` will be formatted as `1700%`. If you instead want to display the query result as a percentage of the goal, you'll need to calculate that percentage in your query. For example, to display the count of orders as a percentage of the goal of `20`, use [custom expressions](../query-builder/expressions.md) to return "Count of orders divided by 20", and format the result as a percentage.
-
-## Limitations and alternatives
-
-- Progress bars assume that your objective is to _increase_ a metric. If the objective is to decrease or reduce a metric, consider using the [gauge chart](gauge.md).
-
-- Progress bars don't support breakouts. If you'd like to display progress of a metric towards a goal across a breakout, consider using a [bar or line chart with a goal line](line-bar-and-area-charts.md#goal-lines).
-
-## Further reading
-
-- [Gauge charts](./gauge.md)
-- [Goal lines on bar and line charts](./line-bar-and-area-charts.md#goal-lines)
-- Tutorial: [Which chart should I use?](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/visualization/chart-guide)
+## Weitere Lektüre
+- Balkendiagramme](./gauge.md)
+- [Ziellinien in Balken- und Liniendiagrammen](./line-bar-and-area-charts.md#goal-lines)
+- Tutorial: [Welches Diagramm soll ich verwenden?](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/visualization/chart-guide)
