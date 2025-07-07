@@ -127,429 +127,307 @@ Aggregation expressions take into account all values in a field. They can only b
 
 ### Average
 
-Returns the average of the values in the column.
-
-Syntax: `Average(column)`
-
-Example: `Average([Quantity])` would return the mean for the `Quantity` field.
+Gibt den Durchschnitt der Werte in der Spalte zurück.
+Syntax: `Durchschnitt(Spalte)`
+Beispiel: "Durchschnitt([Menge])" gibt den Mittelwert für das Feld "Menge" zurück.
 
 ### Count
 
-Returns the count of rows (also known as records) in the selected data.
-
-Syntax: `Count()`
-
-Example: `Count()` If a table or result returns 10 rows, `Count` will return `10`.
+Gibt die Anzahl der Zeilen (auch als Datensätze bezeichnet) in den ausgewählten Daten zurück.
+Syntax: `Zahl()`
+Beispiel: `Count()` Wenn eine Tabelle oder ein Ergebnis 10 Zeilen liefert, gibt `Count` `10` zurück.
 
 ### [CountIf](./expressions/countif.md)
 
-Only counts rows where the condition is true.
-
+Zählt nur Zeilen, bei denen die Bedingung erfüllt ist.
 Syntax: `CountIf(condition)`
-
-Example: `CountIf([Subtotal] > 100)` would return the number of rows where the subtotal were greater than 100.
+Beispiel: `CountIf([Zwischensumme] > 100)` würde die Anzahl der Zeilen zurückgeben, in denen die Zwischensumme größer als 100 ist.
 
 ### Distinct
 
-The number of distinct values in this column.
-
+Die Anzahl der eindeutigen Werte in dieser Spalte.
 Syntax: `Distinct(column)`
-
-Example: `Distinct([Last Name])`. Returns the count of unique last names in the column. Duplicates (of the last name "Smith" for example) are not counted.
+Beispiel: `Distinct([Nachname])`. Gibt die Anzahl der eindeutigen Nachnamen in der Spalte zurück. Duplikate (z. B. des Nachnamens "Smith") werden nicht gezählt.
 
 ### DistinctIf
 
-Returns the count of distinct values in a column where the condition is true.
-
-Syntax: `DistinctIf(column, condition)`
-
-Example: `DistinctIf([ID], [Category] = "Gizmo")` would return the count of unique IDs where the `Category` column is "Gizmo".
+Gibt die Anzahl der eindeutigen Werte in einer Spalte zurück, für die die Bedingung wahr ist.
+Syntax: `DistinctIf(Spalte, Bedingung)`
+Beispiel: `DistinctIf([ID], [Kategorie] = "Gizmo")` würde die Anzahl der eindeutigen IDs zurückgeben, bei denen die Spalte `Kategorie` "Gizmo" ist.
 
 ### Max
 
-Returns the largest value found in the column.
-
-Syntax: `Max(column)`
-
-Example: `Max([Age])` would return the oldest age found across all values in the `Age` column.
-
-Related: [Min](#min), [Average](#average), [Median](#median).
+Gibt den größten in der Spalte gefundenen Wert zurück.
+Syntax: `Max(Spalte)`
+Beispiel: `Max([Alter])` würde das älteste Alter aller Werte in der Spalte `Alter` zurückgeben.
+Verwandt: [Min](#min), [Average](#average), [Median](#median).
 
 ### Median
 
-Returns the median value of the specified column.
-
-Syntax: `Median(column)`
-
-Example: `Median([Age])` would find the midpoint age where half of the ages are older, and half of the ages are younger.
-
-Databases that don't support `median`: Druid, MariaDB, MongoDB, MySQL, SQLite, Vertica, and SQL Server. Presto only provides approximate results.
-
-Related: [Min](#min), [Max](#max), [Average](#average).
+Gibt den Medianwert der angegebenen Spalte zurück.
+Syntax: `Median(Spalte)`
+Beispiel: `Median([Alter])` würde den Mittelwert des Alters ermitteln, bei dem die Hälfte der Altersangaben älter und die Hälfte der Altersangaben jünger ist.
+Datenbanken, die `Median` nicht unterstützen: Druid, MariaDB, MongoDB, MySQL, SQLite, Vertica und SQL Server. Presto liefert nur ungefähre Ergebnisse.
+Verwandt: [Min](#min), [Max](#max), [Average](#average).
 
 ### Min
 
-Returns the smallest value found in the column.
-
-Syntax: `Min(column)`
-
-Example: `Min([Salary])` would find the lowest salary among all salaries in the `Salary` column.
-
-Related: [Max](#max), [Median](#median), [Average](#average).
+Gibt den kleinsten in der Spalte gefundenen Wert zurück.
+Syntax: `Min(Spalte)`
+Beispiel: `Min([Gehalt])` würde das niedrigste Gehalt unter allen Gehältern in der Spalte `Gehalt` finden.
+Verwandt: [Max](#max), [Median](#median), [Average](#average).
 
 ### Percentile
 
-Returns the value of the column at the percentile value.
-
-Syntax: `Percentile(column, percentile-value)`
-
-Example: `Percentile([Score], 0.9)` would return the value at the 90th percentile for all values in that column.
-
-Databases that don't support `percentile`: Druid, H2, MariaDB, MySQL, MongoDB, SQL Server, SQLite, Vertica. Presto only provides approximate results.
+Gibt den Wert der Spalte mit dem Perzentilwert zurück.
+Syntax: `Perzentil(Spalte, Perzentilwert)`
+Beispiel: `Perzentil([Punktzahl], 0.9)` würde den Wert am 90. Perzentil für alle Werte in dieser Spalte zurückgeben.
+Datenbanken, die `Percentile` nicht unterstützen: Druid, H2, MariaDB, MySQL, MongoDB, SQL Server, SQLite, Vertica. Presto liefert nur ungefähre Ergebnisse.
 
 ### Share
 
-Returns the percent of rows in the data that match the condition, as a decimal.
-
-Syntax: `Share(condition)`
-
-Example: `Share([Color] = "Blue")` would return the number of rows with the `Color` field set to `Blue`, divided by the total number of rows.
+Gibt den Prozentsatz der Zeilen in den Daten, die die Bedingung erfüllen, als Dezimalwert zurück.
+Syntax: `Anteil(Bedingung)`
+Beispiel: `Share([Farbe] = "Blau")` gibt die Anzahl der Zeilen zurück, in denen das Feld `Farbe` auf `Blau` gesetzt ist, geteilt durch die Gesamtzahl der Zeilen.
 
 ### StandardDeviation
 
-Calculates the standard deviation of the column, which is a measure of the variation in a set of values. Low standard deviation indicates values cluster around the mean, whereas a high standard deviation means the values are spread out over a wide range.
-
-Syntax: `StandardDeviation(column)`
-
-Example: `StandardDeviation([Population])` would return the SD for the values in the `Population` column.
-
-Databases that don't support `StandardDeviation`: Druid, SQLite.
+Berechnet die Standardabweichung der Spalte, die ein Maß für die Streuung in einer Gruppe von Werten ist. Eine geringe Standardabweichung zeigt an, dass sich die Werte um den Mittelwert gruppieren, während eine hohe Standardabweichung bedeutet, dass die Werte über einen großen Bereich verteilt sind.
+Syntax: `Standardabweichung(Spalte)`
+Beispiel: `Standardabweichung([Bevölkerung])` würde die SD für die Werte in der Spalte `Bevölkerung` zurückgeben.
+Datenbanken, die `StandardDeviation` nicht unterstützen: Druid, SQLite.
 
 ### Sum
 
-Adds up all the values of the column.
-
-Syntax: `Sum(column)`
-
-Example: `Sum([Subtotal])` would add up all the values in the `Subtotal` column.
+Addiert alle Werte der Spalte.
+Syntax: `Summe(Spalte)`
+Beispiel: `Sum([Zwischensumme])` würde alle Werte der Spalte `Zwischensumme` addieren.
 
 ### [SumIf](./expressions/sumif.md)
 
-Sums up the specified column only for rows where the condition is true.
-
-Syntax: `SumIf(column, condition)`
-
-Example:`SumIf([Subtotal], [Order Status] = "Valid")` would add up all the subtotals for orders with a status of "Valid".
+Summiert die angegebene Spalte nur für Zeilen, in denen die Bedingung wahr ist.
+Syntax: `SumIf(Spalte, Bedingung)`
+Beispiel: `SumIf([Zwischensumme], [Auftragsstatus] = "Gültig")` würde alle Zwischensummen für Aufträge mit dem Status "Gültig" addieren.
 
 ### Variance
 
-Returns the numeric variance for a given column.
-
-Syntax: `Variance(column)`
-
-Example: `Variance([Temperature])` will return a measure of the dispersion from the mean temperature for all temps in that column.
-
-Related: [StandardDeviation](#standarddeviation), [Average](#average).
-
-Databases that don't support `Variance`: Druid, SQLite.
+Gibt die numerische Varianz für eine bestimmte Spalte zurück.
+Syntax: `Varianz(Spalte)`
+Beispiel: `Varianz([Temperatur])` gibt ein Maß für die Abweichung von der mittleren Temperatur für alle Temperaturen in dieser Spalte zurück.
+Verwandt: [StandardDeviation](#standarddeviation), [Average](#average).
+Datenbanken, die `Variance` nicht unterstützen: Druid, SQLite.
 
 ## Functions
 
-Function expressions apply to each individual value. They can be used to alter or filter values in a column, or create new, custom columns.
+Funktionsausdrücke gelten für jeden einzelnen Wert. Sie können verwendet werden, um Werte in einer Spalte zu ändern oder zu filtern, oder um neue, benutzerdefinierte Spalten zu erstellen.
 
 ## Logical functions
 
-Logical functions determine if a condition is satisfied or determine what value to return based on a condition.
+Logische Funktionen bestimmen, ob eine Bedingung erfüllt ist, oder legen fest, welcher Wert auf der Grundlage einer Bedingung zurückgegeben werden soll.
 
 ### between
 
-Returns true if the value of a date or number column falls within a specified range. Otherwise returns false.
-
-Syntax: `between(column, start, end)`
-
-Example: If you filtered with the expression `between([Created At], "2019-01-01", "2020-12-31")`, Metabase would return rows that returned true for that expression, in this case where the `Created At` date fell _within_ the range of January 1, 2019 and December 31, 2020, including the start (`2019-01-01`) and end (`2020-12-31`) dates.
-
-Related: [interval](#interval).
+Gibt true zurück, wenn der Wert einer Datums- oder Zahlenspalte in einen bestimmten Bereich fällt. Andernfalls wird false zurückgegeben.
+Syntax: `between(Spalte, Anfang, Ende)`
+Beispiel: Wenn Sie mit dem Ausdruck "zwischen([Erstellt am], "2019-01-01", "2020-12-31")` gefiltert haben, gibt Metabase Zeilen zurück, die für diesen Ausdruck den Wert "wahr" ergeben, in diesem Fall, wenn das Datum "Erstellt am" innerhalb des Bereichs zwischen dem 1. Januar 2019 und dem 31. Dezember 2020 liegt, einschließlich des Start- (01.01.2019) und Enddatums (20.12.31).
+Verwandt: [interval](#interval).
 
 ### [case](./expressions/case.md)
 
-`case` (alias `if`) tests an expression against a list of cases and returns the corresponding value of the first matching case, with an optional default value if nothing else is met.
-
-Syntax: `case(condition, output, …)`
-
-Example: `case([Weight] > 200, "Large", [Weight] > 150, "Medium", "Small")` If a `Weight` is 250, the expression would return "Large". In this case, the default value is "Small", so any `Weight` 150 or less would return "Small".
+`case` (alias `if`) testet einen Ausdruck gegen eine Liste von Fällen und gibt den entsprechenden Wert des ersten übereinstimmenden Falles zurück, mit einem optionalen Standardwert, wenn nichts anderes erfüllt ist.
+Syntax: `case(Bedingung, Ausgabe, ...)`
+Beispiel: `case([Gewicht] > 200, "Groß", [Gewicht] > 150, "Mittel", "Klein")` Wenn ein `Gewicht` 250 ist, würde der Ausdruck "Groß" zurückgeben. In diesem Fall ist der Standardwert "Klein", so dass jedes "Gewicht" von 150 oder weniger "Klein" ergeben würde.
 
 ### [coalesce](./expressions/coalesce.md)
 
-Looks at the values in each argument in order and returns the first non-null value for each row.
-
-Syntax: `coalesce(value1, value2, …)`
-
-Example: `coalesce([Comments], [Notes], "No comments")`. If both the `Comments` and `Notes` columns are null for that row, the expression will return the string "No comments".
+Betrachtet die Werte in jedem Argument der Reihe nach und gibt für jede Zeile den ersten Wert zurück, der nicht null ist.
+Syntax: `Koaleszieren(Wert1, Wert2, ...)`
+Beispiel: `Koaleszieren([Kommentare], [Notizen], "Keine Kommentare")`. Wenn sowohl die Spalten "Kommentare" als auch "Notizen" für diese Zeile null sind, gibt der Ausdruck die Zeichenfolge "Keine Kommentare" zurück.
 
 ### [if](./expressions/case.md)
 
-`if` is an alias for [case](./expressions/case.md). Tests an expression against a list of conditionals and returns the corresponding value of the first matching case, with an optional default value if nothing else is met.
-
-Syntax: `if(condition, output, ...)`
-
-Example: `if([Weight] > 200, "Large", [Weight] > 150, "Medium", "Small")` If a `Weight` is 250, the expression would return "Large". In this case, the default value is "Small", so any `Weight` 150 or less would return "Small".
+if" ist ein Alias für [case](./expressions/case.md). Prüft einen Ausdruck gegen eine Liste von Bedingungen und gibt den entsprechenden Wert des ersten übereinstimmenden Falls zurück, mit einem optionalen Standardwert, wenn nichts anderes erfüllt ist.
+Syntax: `if(Bedingung, Ausgabe, ...)`
+Beispiel: `if([Gewicht] > 200, "Groß", [Gewicht] > 150, "Mittel", "Klein")` Wenn ein `Gewicht` 250 ist, würde der Ausdruck "Groß" zurückgeben. In diesem Fall ist der Standardwert "Klein", so dass jedes "Gewicht" von 150 oder weniger "Klein" ergeben würde.
 
 ### in
 
-Returns true if `value1` equals `value2` (or `value3`, etc., if specified).
-
-Syntax: `in(value1, value2, ...)`
-
-- `value1`: The column or value to check.
-- `value2, ...`: The list of columns or values to check against.
-
-You can add more values to check against.
-
-Example: `in([Category], "Widget", "Gadget")` would return true for rows where the `Category` is either "Widget" or "Gadget".
-
-Related: [notIn](#notin), [contains](#contains), [startsWith](#startswith), [endsWith](#endswith)
+Gibt true zurück, wenn `Wert1` gleich `Wert2` ist (oder `Wert3`, usw., falls angegeben).
+Syntax: `in(wert1, wert2, ...)`
+- Wert1": Die zu prüfende Spalte oder der Wert.
+- `Wert2, ...`: Die Liste der zu prüfenden Spalten oder Werte.
+Sie können weitere Werte hinzufügen, gegen die geprüft werden soll.
+Beispiel: `in([Kategorie], "Widget", "Gadget")` würde true für Zeilen zurückgeben, in denen die `Kategorie` entweder "Widget" oder "Gadget" ist.
+Verwandt: [notIn](#notin), [contains](#contains), [startsWith](#startswith), [endsWith](#endswith)
 
 ### [isNull](./expressions/isnull.md)
 
-Returns true if the column is null.
-
-Syntax: `isNull(column)`
-
-Example: `isNull([Tax])` would return true if no value were present in the column for that row.
-
-Related: [notNull](#notnull), [isEmpty](#isempty)
+Gibt true zurück, wenn die Spalte null ist.
+Syntax: `istNull(Spalte)`
+Beispiel: `istNull([Steuer])` würde true zurückgeben, wenn in der Spalte für diese Zeile kein Wert vorhanden wäre.
+Verwandt: [notNull](#notnull), [isEmpty](#isempty)
 
 ### notNull
 
-Returns true if the column contains a value.
-
-Syntax: `notNull(column)`
-
-Example: `notNull([Tax])` would return true if there is a value present in the column for that row.
-
-Related: [isNull](#isnull), [notEmpty](#notempty)
+Gibt true zurück, wenn die Spalte einen Wert enthält.
+Syntax: `notNull(Spalte)`
+Beispiel: `notNull([Steuer])` würde true zurückgeben, wenn in der Spalte für diese Zeile ein Wert vorhanden ist.
+Verwandt: [isNull](#isnull), [notEmpty](#notempty)
 
 ### notIn
 
-Returns true if `value1` doesn't equal `value2` (and `value3`, etc., if specified).
-
-Syntax: `notIn(value1, value2, ...)`
-
-- `value1`: The column or value to check.
-- `value2, ...`: The column or values to look for.
-
-You can add more values to look for.
-
-Example: `notIn([Category], "Widget", "Gadget")` would return true for rows where the `Category` is not "Widget" or "Gadget".
-
-Related: [in](#in), [case](./expressions/case.md)
+Gibt true zurück, wenn `wert1` nicht gleich `wert2` ist (und `wert3`, usw., falls angegeben).
+Syntax: `notIn(wert1, wert2, ...)`
+- Wert1": Die zu prüfende Spalte oder der zu prüfende Wert.
+- `Wert2, ...`: Die Spalte oder der Wert, nach dem gesucht werden soll.
+Sie können weitere Werte hinzufügen, nach denen gesucht werden soll.
+Beispiel: `notIn([Kategorie], "Widget", "Gadget")` würde true für Zeilen zurückgeben, in denen die `Kategorie` nicht "Widget" oder "Gadget" ist.
+Verwandt: [in](#in), [case](./ausdrücke/case.md)
 
 ## Math functions
 
-Math functions implement common mathematical operations.
+Math-Funktionen implementieren allgemeine mathematische Operationen.
 
 ### abs
 
-Returns the absolute (positive) value of the specified column.
-
-Syntax: `abs(column)`
-
-Example: `abs([Debt])`. If `Debt` were -100, `abs(-100)` would return `100`.
+Gibt den absoluten (positiven) Wert der angegebenen Spalte zurück.
+Syntax: `abs(Spalte)`
+Beispiel: `abs([Schulden])`. Wenn `Schulden` -100 wäre, würde `abs(-100)` den Wert `100` zurückgeben.
 
 ### ceil
 
-Rounds a decimal up (ceil as in ceiling).
-
-Syntax: `ceil(column)`
-
-Example: `ceil([Price])`. `ceil(2.99)` would return 3.
-
-Related: [floor](#floor), [round](#round).
+Rundet eine Dezimalzahl auf (ceil wie in ceiling).
+Syntax: `Ceil(Spalte)`
+Beispiel: `Ceil([Preis])`. Ceil(2.99)` würde 3 ergeben.
+Verwandt: [floor](#floor), [round](#round).
 
 ### exp
 
-Returns [Euler's number](<https://en.wikipedia.org/wiki/E_(mathematical_constant)>), e, raised to the power of the supplied number. (Euler sounds like "Oy-ler").
-
-Syntax: `exp(column)`
-
-Example: `exp([Interest Months])`
-
-Related: [power](#power).
+Gibt die [Eulersche Zahl](<https://en.wikipedia.org/wiki/E_(mathematische_Konstante)>), e, hochgezählt mit der angegebenen Zahl zurück. (Euler klingt wie "Oy-ler").
+Syntax: `exp(Spalte)`
+Beispiel: `exp([Zinsmonate])`
+Verwandt: [power](#power).
 
 ### floor
 
-Rounds a decimal number down.
-
-Syntax: `floor(column)`
-
-Example: `floor([Price])`. If the `Price` were 1.99, the expression would return 1.
-
-Related: [ceil](#ceil), [round](#round).
+Rundet eine Dezimalzahl ab.
+Syntax: `Boden(Spalte)`
+Beispiel: `Grundwert([Preis])`. Wenn der "Preis" 1,99 wäre, würde der Ausdruck 1 zurückgeben.
+Verwandt: [ceil](#ceil), [round](#round).
 
 ### log
 
-Returns the base 10 log of the number.
-
-Syntax: `log(column)`
-
-Example: `log([Value])`.
+Gibt den Logarithmus zur Basis 10 der Zahl zurück.
+Syntax: `log(Spalte)`
+Beispiel: `log([Wert])`.
 
 ### power
 
-Raises a number to the power of the exponent value.
-
-Syntax: `power(column, exponent)`
-
-Example: `power([Length], 2)`. If the length were `3`, the expression would return `9` (3 to the second power is 3\*3).
-
-Databases that don't support `power`: SQLite.
-
-Related: [exp](#exp).
+Erhöht eine Zahl auf die Potenz des Exponentenwertes.
+Syntax: `Potenz(Spalte, Exponent)`
+Beispiel: `Potenz([Länge], 2)`. Wäre die Länge `3`, würde der Ausdruck `9` zurückgeben (3 hoch 2 ist 3\*3).
+Datenbanken, die `power` nicht unterstützen: SQLite.
+Verwandt: [exp](#exp).
 
 ### round
 
-Rounds a decimal number either up or down to the nearest integer value.
-
-Syntax: `round(column)`
-
-Example: `round([Temperature])`. If the temp were `13.5` degrees centigrade, the expression would return `14`.
-
-Example: `round([Temperature] * 10) / 10`. If the temp were `100.75`, the expression would return `100.8`.
+Rundet eine Dezimalzahl entweder auf oder ab auf den nächsten ganzzahligen Wert.
+Syntax: `Runden(Spalte)`
+Beispiel: `Runden([Temperatur])`. Wäre die Temperatur 13,5 Grad Celsius, würde der Ausdruck 14 ergeben.
+Beispiel: `Runden([Temperatur] * 10) / 10`. Wäre die Temperatur `100,75`, würde der Ausdruck `100,8` ergeben.
 
 ### sqrt
 
-Returns the square root of a value.
-
-Syntax: `sqrt(column)`
-
-Example: `sqrt([Hypotenuse])`.
-
-Databases that don't support `sqrt`: SQLite.
-
-Related: [Power](#power).
+Gibt die Quadratwurzel eines Wertes zurück.
+Syntax: `sqrt(Spalte)`
+Beispiel: `sqrt([Hypotenuse])`.
+Datenbanken, die `sqrt` nicht unterstützen: SQLite.
+Verwandt: [Power](#power).
 
 ## String functions
 
-String functions manipulate or validate string data.
+String-Funktionen manipulieren oder validieren String-Daten.
 
 ### [concat](./expressions/concat.md)
 
-Combine two or more strings together.
-
-Syntax: `concat(value1, value2, …)`
-
-Example: `concat([Last Name], ", ", [First Name])` would produce a string of the format "Last Name, First Name", like "Palazzo, Enrico".
+Kombiniert zwei oder mehr Zeichenfolgen miteinander.
+Syntax: `concat(wert1, wert2, ...)`
+Beispiel: `concat([Nachname], ", ", [Vorname])` würde eine Zeichenkette des Formats "Nachname, Vorname" erzeugen, wie "Palazzo, Enrico".
 
 ### contains
 
-Checks to see if `string1` contains `string2` within it.
-
-Performs case-sensitive match by default.
-You can pass an optional parameter `"case-insensitive"` to perform a case-insensitive match.
-
-Syntax: `contains(string1, string2)` for case-sensitive match.
-
-`contains(string1, string2, "case-insensitive")` for case-insensitive match.
-
-Example: `contains([Status], "Class")`.
-
-If `Status` were "Classified", the expression would return `true`. If the `Status` were "**c**lassified", the expression would return `false`, because the case does not match.
-
-Related: [doesNotContain](#doesnotcontain), [regexExtract](#regexextract).
+Prüft, ob `Zeichenfolge1` in ihr `Zeichenfolge2` enthält.
+Führt standardmäßig einen Abgleich unter Berücksichtigung der Groß- und Kleinschreibung durch.
+Sie können einen optionalen Parameter "case-insensitive" übergeben, um eine Übereinstimmung ohne Berücksichtigung der Groß-/Kleinschreibung durchzuführen.
+Syntax: `beinhaltet(zeichenkette1, zeichenkette2)` für die Übereinstimmung unter Berücksichtigung der Groß- und Kleinschreibung.
+`beinhaltet(zeichenkette1, zeichenkette2, "case-insensitive")` für eine Übereinstimmung ohne Berücksichtigung der Groß-/Kleinschreibung.
+Beispiel: `beinhaltet([Status], "Klasse")`.
+Wenn `Status` "Klassifiziert" wäre, würde der Ausdruck `true` zurückgeben. Wäre der "Status" "**c**klassifiziert", würde der Ausdruck "False" zurückgeben, da die Groß- und Kleinschreibung nicht übereinstimmt.
+Verwandt:[doesNotContain](#doesnotcontain), [regexExtract](#regexextract).
 
 ### date
 
-> Not available for Oracle or the non-JDBC Apache Druid driver.
-
-- When used on a string, converts an ISO 8601 date string to a date. The string _must_ be in a valid ISO 8601 format. If the string contains time, the time part is truncated.
-- When used on a datetime value, truncates datetime to a date.
-
-Syntax: `date(value)`
-
-Example: `date("2025-03-20")` would return a date value so that you can use all the date features in the query builder: group by month, filter by previous 30 days, etc.
-
-ISO 8601 standard format:
-
-- Year (YYYY): 2025
-- Month (MM): 03
-- Day (DD): 25
-- Time separator (T)
-- Hours (HH): 14
-- Minutes (MM): 30
-- Seconds (SS): 45
-- UTC timezone indicator (Z)
-
-Valid ISO 8601 examples include:
-
-- Date only: `2025-03-25`
-- Date with time: `2025-03-25T14:30:45`
-- Date with time and timezone offset: `2025-03-25T14:30:45+01:00`
-
-Another example: `date(2025-04-19T17:42:53+01:00)` would return `2025-04-19`.
-
-Related: [datetime](#datetime)
+> Nicht verfügbar für Oracle oder den Nicht-JDBC-Apache-Druid-Treiber.
+- Bei Verwendung auf eine Zeichenkette wird eine ISO 8601-Datumszeichenkette in ein Datum umgewandelt. Die Zeichenkette _muss_ in einem gültigen ISO 8601-Format vorliegen. Wenn die Zeichenkette eine Zeitangabe enthält, wird der Zeitteil abgeschnitten.
+- Bei Verwendung für einen datetime-Wert wird datetime in ein Datum umgewandelt.
+Syntax: `Datum(Wert)`
+Beispiel: `date("2025-03-20")` würde einen Datumswert zurückgeben, so dass Sie alle Datumsfunktionen in der Abfrageerstellung verwenden können: Gruppieren nach Monat, Filtern nach den letzten 30 Tagen usw.
+ISO 8601 Standardformat:
+- Jahr (JJJJ): 2025
+- Monat (MM): 03
+- Tag (DD): 25
+- Zeittrennzeichen (T)
+- Stunden (HH): 14
+- Minuten (MM): 30
+- Sekunden (SS): 45
+- Indikator für die UTC-Zeitzone (Z)
+Gültige ISO 8601 Beispiele sind:
+- Nur Datum: `2025-03-25`
+- Datum mit Uhrzeit: `2025-03-25T14:30:45`
+- Datum mit Zeit und Zeitzonen-Offset: `2025-03-25T14:30:45+01:00`
+Ein anderes Beispiel: `date(2025-04-19T17:42:53+01:00)` würde `2025-04-19` ergeben.
+Verwandt: [datetime](#datetime)
 
 ### datetime
 
-> Available on PostgreSQL, MySQL/MariaDB, BigQuery, Redshift, ClickHouse, and Snowflake
-
-Converts a datetime string to a datetime.
-
+> Verfügbar für PostgreSQL, MySQL/MariaDB, BigQuery, Redshift, ClickHouse und Snowflake
+Konvertiert eine Datetime-Zeichenfolge in eine Datetime.
 Syntax: `datetime(column)`
-
-Example: `datetime("2025-03-20 12:45:04")`
-
-`datetime` supports the following datetime string formats:
-
-```txt
+Beispiel: `datetime("2025-03-20 12:45:04")`
+`datetime` unterstützt die folgenden Datetime-String-Formate:
+``txt
 2025-05-15T22:20:01
 2025-05-15 22:20:01
 ```
-
-But some databases may also work with other datetime formats.
-
-Related: [date](#date)
+Einige Datenbanken können aber auch mit anderen Datetime-Formaten arbeiten.
+Verwandt: [date](#date)
 
 ### doesNotContain
 
-Checks to see if `string1` contains `string2` within it.
-
-Performs case-sensitive match by default.
-You can pass an optional parameter `"case-insensitive"` to perform a case-insensitive match.
-
-Syntax: `doesNotContain(string1, string2)` for case-sensitive match.
-
-`doesNotContain(string1, string2, "case-insensitive")` for case-insensitive match.
-
-Example: `doesNotContain([Status], "Class")`. If `Status` were "Classified", the expression would return `false`.
-
-Related: [contains](#contains), [regexExtract](#regexextract).
+Prüft, ob `Zeichenfolge1` in ihr `Zeichenfolge2` enthält.
+Führt standardmäßig einen Abgleich unter Berücksichtigung der Groß- und Kleinschreibung durch.
+Sie können einen optionalen Parameter "case-insensitive" übergeben, um eine Übereinstimmung ohne Berücksichtigung der Groß-/Kleinschreibung durchzuführen.
+Syntax: `doesNotContain(string1, string2)` für eine Übereinstimmung unter Berücksichtigung der Groß- und Kleinschreibung.
+`doesNotContain(string1, string2, "case-insensitive")` für eine Übereinstimmung ohne Berücksichtigung der Groß-/Kleinschreibung.
+Beispiel: `doesNotContain([Status], "Klasse")`. Wenn `Status` "Klassifiziert" wäre, würde der Ausdruck `false` zurückgeben.
+Verwandt: [contains](#contains), [regexExtract](#regexextract).
 
 ### domain
 
-Extracts the domain name from a URL or email.
-
-Syntax: `domain(urlOrEmail)`
-
-Example: `domain([Page URL])`. If the `[Page URL]` column had a value of `https://www.metabase.com`, `domain([Page URL])` would return `metabase`. `domain([Email])` would extract `metabase` from `hello@metabase.com`.
-
-Related: [host](#host), [path](#path), [subdomain](#subdomain).
+Extrahiert den Domänennamen aus einer URL oder E-Mail.
+Syntax: `domain(urlOderEmail)`
+Beispiel: `domain([Seiten-URL])`. Wenn die Spalte `[Seiten-URL]` den Wert `https://www.metabase.com` hätte, würde `domain([Seiten-URL])` `metabase` zurückgeben. Mit `domain([Email])` würde `metabase` aus `hello@metabase.com` extrahiert.
+Verwandt: [host](#host), [path](#path), [subdomain](#subdomain).
 
 ### endsWith
 
-Returns true if the end of the text matches the comparison text.
-
-Performs case-sensitive match by default.
-You can pass an optional parameter `"case-insensitive"` to perform a case-insensitive match.
-
-Syntax: `endsWith(text, comparison)` for case-sensitive match.
-
-`endsWith(text, comparison, "case-insensitive")` for case-insensitive match.
-
-Example: `endsWith([Appetite], "hungry")`
-
-Related: [startsWith](#startswith), [contains](#contains), [doesNotContain](#doesnotcontain).
+Gibt true zurück, wenn das Ende des Textes mit dem Vergleichstext übereinstimmt.
+Führt standardmäßig einen Abgleich unter Berücksichtigung der Groß- und Kleinschreibung durch.
+Sie können einen optionalen Parameter `"case-insensitive"` übergeben, um einen Abgleich ohne Berücksichtigung der Groß-/Kleinschreibung durchzuführen.
+Syntax: `endsWith(text, comparison)` für Übereinstimmung unter Berücksichtigung der Groß- und Kleinschreibung.
+`endsWith(text, comparison, "case-insensitive")` für eine Übereinstimmung ohne Berücksichtigung der Groß-/Kleinschreibung.
+Beispiel: `EndeMit([Appetit], "hungrig")`
+Verwandt: [startsWith](#startswith), [contains](#contains), [doesNotContain](#doesnotcontain).
 
 ### float
 
