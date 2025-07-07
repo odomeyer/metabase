@@ -1,78 +1,73 @@
 ---
-title: Keyboard shortcuts
-summary: A handy list of keyboard shortcuts to help you zip around Metabase.
+Titel: Tastaturkürzel
+Zusammenfassung: Eine praktische Liste von Tastenkombinationen, mit denen Sie sich in der Metabase zurechtfinden.
 ---
 
-# Keyboard shortcuts
 
-A handy list of keyboard shortcuts to help you zip around Metabase.
+# Tastaturkürzel
 
-Shortcuts change depending on which page you're viewing in your Metabase.
 
-To view the shortcut menu in Metabase, press `?`, or click on the **Gear** icon
-in the top right corner and select **Keyboard shortcuts**.
+Eine praktische Liste von Tastenkombinationen, mit denen Sie sich in der Metabase schnell zurechtfinden.
+
+
+Die Tastenkombinationen ändern sich je nachdem, welche Seite Sie in Ihrer Metabase anzeigen.
+
+
+Um das Kontextmenü in der Metabase anzuzeigen, drücken Sie `?`, oder klicken Sie auf das**Zahnrad**-Symbol
+in der oberen rechten Ecke und wählen Sie**Tastaturkurzbefehle**.
+
 
 ## Global
 
-| Action                   | Shortcut    |
+
+| Aktion | Verknüpfung |
 | ------------------------ | ----------- |
-| Create a question        | c > q       |
-| Create a native query    | c > n       |
-| Create a dashboard       | c > d       |
-| Create a collection      | c > f       |
-| Create a model           | c > m       |
-| Create a metric          | c > k       |
-| Browse databases         | g > d       |
-| Browse models            | g > m       |
-| Browse metrics           | g > k       |
-| Report an issue          | Ctrl/Cmd+f1 |
-| View shortcuts           | ?           |
-| Open trash               | g > t       |
-| Open personal collection | g > p       |
-| Toggle sidebar           | [           |
-| Go to admin              | g > a       |
-| Go to user settings      | g > u       |
-| Go to home               | g > h       |
+| Erstellen einer Frage | c > q |
+| Erstellen einer nativen Abfrage | c > n |
+| Erstellen eines Dashboards | c > d |
+| Erstellen einer Sammlung | c > f |
+| Erstellen eines Modells | c > m |
+| Erstellen einer Metrik | c > k |
+| Datenbanken durchsuchen | g > d |
+| Modelle durchsuchen | g > m |
+| Metriken durchsuchen | g > k |
+| Ein Problem melden | Strg/Cmd+f1 |
+| Abkürzungen anzeigen |? |
+| Müll öffnen | g > t |
+| Persönliche Sammlung öffnen | g > p |
+| Seitenleiste umschalten | [ |
+| Zur Verwaltung gehen | g > a |
+| Zu den Benutzereinstellungen wechseln | g > u |
+| Zur Startseite gehen | g > h |
+
 
 ## Dashboard
 
-| Action                     | Shortcut           |
+
+| Aktion | Verknüpfung |
 | -------------------------- | ------------------ |
-| Bookmark dashboard         | o                  |
-| Add filter                 | f                  |
-| Open question sidebar      | a                  |
-| Add query builder question | q                  |
-| Add native question        | n                  |
-| Cancel edit dashboard      | e                  |
-| Send dashboard to trash    | Ctrl/Cmd+backspace |
-| Toggle dashboard info      | ]                  |
-| Edit dashboard             | e                  |
-| Save dashboard             | s                  |
-| Change dashboard tab       | 1, 2, 3, ...       |
+| Dashboard mit Lesezeichen versehen | o |
+| Filter hinzufügen | f |
+| Seitenleiste für Fragen öffnen | a |
+| Query Builder Frage hinzufügen | q |
+| Native Frage hinzufügen | n |
+| Dashboard bearbeiten abbrechen | e |
+| Dashboard in den Papierkorb schicken | Strg/Befehl+Backspace |
+| Dashboard-Info umschalten | ] |
+| Dashboard bearbeiten | e |
+| Dashboard speichern | s |
+| Registerkarte des Dashboards ändern | 1, 2, 3, ... |
 
-## Collection
 
-| Action                         | Shortcut           |
+## Sammlung
+
+
+| Aktion | Verknüpfung |
 | ------------------------------ | ------------------ |
-| Move collection items to trash | Ctrl/Cmd+backspace |
+| Sammlungselemente in den Papierkorb verschieben | Strg/Befehl+Backspace |
 
-## Question
 
-| Action                 | Shortcut           |
-| ---------------------- | ------------------ |
-| Switch to editor       | e                  |
-| Open filter dropdown   | f                  |
-| Open summarize sidebar | s                  |
-| Bookmark question      | o                  |
-| Open question info     | ]                  |
-| Refresh data           | r                  |
-| Toggle visualization   | v                  |
-| Toggle viz settings    | y                  |
-| Toggle viz types       | t                  |
-| Send question to trash | Ctrl/Cmd+backspace |
+## Frage
 
-## Admin
 
-| Action           | Shortcut     |
-| ---------------- | ------------ |
-| Change admin tab | 1, 2, 3, ... |
+| Aktion | Verknüpfung |
