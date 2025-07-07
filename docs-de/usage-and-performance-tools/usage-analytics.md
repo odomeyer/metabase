@@ -167,288 +167,238 @@ Ansichten, Leistung, Aktivität und andere Daten für eine bestimmte Frage. Die 
 -  Letzte Aktivität zu dieser Frage
 -  Warnungen zu dieser Frage
   
-### Performance overview dashboard
+### Leistungsübersicht Dashboard
 
-Question, dashboard and database performance. Cards include:
 
-- Slowest dashboards
-- Dashboards consuming most resources
-- Slowest questions
-- Questions consuming the most resources
-- Dashboards with more questions in the same tab
-- Users consuming the most resources
+Fragen, Dashboard und Datenbankleistung. Die Karten umfassen:
 
-> If you're using MySQL or MariaDB as your application database, the Performance overview dashboard won't display results for the cards displaying the 50th and 90th percentile query running times, because MySQL and MariaDB don't support the [Percentile aggregation](../questions/query-builder/expressions-list.md#percentile). We recommend using PostgreSQL as your application database.
 
-### Content with cobwebs dashboard
+- Die langsamsten Dashboards
+- Dashboards, die die meisten Ressourcen verbrauchen
+- Die langsamsten Fragen
+- Fragen, die die meisten Ressourcen verbrauchen
+- Dashboards mit mehr Fragen auf derselben Registerkarte
+- Benutzer, die die meisten Ressourcen verbrauchen
 
-Dashboards and questions that you could consider archiving. Cards include:
 
-- Dashboards without recent reviews
-- Questions without recent reviews
-- Questions that don't belong to a dashboard
+> Wenn Sie MySQL oder MariaDB als Anwendungsdatenbank verwenden, zeigt das Leistungsübersichts-Dashboard keine Ergebnisse für die Karten mit den 50- und 90-prozentigen Abfragelaufzeiten an, da MySQL und MariaDB die [Perzentil-Aggregation] nicht unterstützen(../questions/query-builder/expressions-list.md#percentile). Wir empfehlen die Verwendung von PostgreSQL als Anwendungsdatenbank.
 
-## Models
-
-The Usage analytics collection includes a bunch of useful models based on Metabase's application database.
-
-## Activity log model
-
-Each row of this model describes one event of a particular topic. Fields include:
-
-- ID
-- Topic
-- Timestamp
-- End Timestamp
-- User ID
-- Model
-- Model ID
-- Details
-
-The topics include:
-
-- alert-create
-- alert-delete
-- card-create
-- card-delete
-- card-update
-- dashboard-add-cards
-- dashboard-create
-- dashboard-delete
-- dashboard-remove-cards
-- install
-- metric-create
-- metric-delete
-- metric-update
-- segment-create
-- segment-delete
-- segment-update
-- setting-update
-- subscription-create
-- subscription-delete
-- user-joined
-
-## View log model
-
-Tracks views cards (which includes models), dashboards, and tables. Fields include:
-
-- ID
-- Timestamp
-- User ID
-- Entity Type (card, dashboard, or table)
-- Entity ID
-- Entity Qualified ID
-
-## Query log model
-
-Information about all queries Metabase ran across all dashboards. Fields include:
-
-- Entity ID
-- Started At
-- Running Time Seconds
-- Result Rows
-- Is Native
-- Query Source
-- Error
-- User ID
-- Card ID
-- Card Qualified ID
+### Inhalt mit Spinnweben Dashboard
+- Ergebnis-Zeilen
+- Ist nativ
+- Quelle abfragen
+- Fehler
+- Benutzer-ID
+- Karten-ID
+- Karte Qualifizierte ID
 - Dashboard ID
-- Dashboard Qualified ID
-- Pulse ID
-- Database ID
-- Database Qualified ID
-- Cache Hit
-- Action ID
+- Dashboard Qualifizierte ID
+- Impuls-ID
+- Datenbank-ID
+- Qualifizierte Datenbank-ID
+- Cache-Treffer
+- Aktions-ID
 
-Query sources include:
 
-- action
-- ad-hoc
-- collection
+Abfragequellen umfassen:
+
+
+- Aktion
+- Ad-hoc
+- Sammlung
 - csv-download
-- dashboard
-- embedded-dashboard
-- embedded-csv-download
-- embedded-json-download
-- embedded-question
-- embedded-xlsx-download
+- Dashboard
+- eingebettetes-dashboard
+- eingebetteter-csv-herunterladen
+- eingebetteter-json-download
+- eingebettete-frage
+- eingebettet-xlsx-herunterladen
 - json-download
-- map-tiles
-- metabot (experimental)
+- Karten-Kacheln
+- metabot (experimentell)
 - public-dashboard
 - public-question
-- pulse (which includes dashboard subscriptions and alerts)
-- question
-- xlsx-download
+- pulse (einschließlich Dashboard-Abonnements und Warnmeldungen)
+- Frage
+- xlsx-herunterladen### Inhalt mit Spinnweben Dashboard
+-  Ergebnis-Zeilen 
+-  Ist nativ
+- Quelle  abfragen 
+-  Fehler 
+-  Benutzer-ID 
+-  Karten-ID 
+-  Karte Qualifizierte ID
+-  Dashboard ID
+-  Dashboard Qualifizierte ID
+-  Impuls-ID 
+-  Datenbank-ID 
+- Qualifizierte  Datenbank-ID 
+-  Cache-Treffer 
+-  Aktions-ID 
 
-## Alerts model
+Abfragequellen umfassen:
 
-All alerts, both active and archived.
+-  Aktion 
+-  Ad-hoc 
+-  Sammlung 
+-  csv-download 
+-  Dashboard 
+-  eingebettetes-dashboard 
+-  eingebetteter-csv-herunterladen 
+-  eingebetteter-json-download 
+-  eingebettete-frage 
+-  eingebettet-xlsx-herunterladen 
+-  json-download 
+-  Karten-Kacheln 
+-  metabot (experimentell)
+-  public-dashboard 
+-  public-question 
+-  pulse (einschließlich Dashboard-Abonnements und Warnmeldungen)
+-  Frage 
+-  xlsx-herunterladen 
 
-- Entity ID
-- Entity Qualified ID
-- Created At
-- Updated At
-- Creator ID
-- Card ID
-- Card Qualified ID
-- Alert Condition
-- Schedule Type
-- Schedule Day
-- Schedule Hour
-- Archived
-- Recipient Type
-- Recipients
-- Recipient External
+## Modell für Warnungen
+Fragen, Dashboards, Modelle, Ereignisse und Sammlungen.
 
-### Content model
 
-Questions, dashboards, models, events, and collections.
-
-- Entity ID
-- Entity Qualified ID
-- Entity Type
-- Created At
-- Updated At
-- Creator ID
+- Entitäts-ID
+- Entität Qualifizierte ID
+- Entitätstyp
+- Erstellt am
+- Aktualisiert am
+- Ersteller-ID
 - Name
-- Description
-- Collection ID
-- Made Public By User
-- Is Embedding Enabled
-- Archived
-- Action Type
-- Action Model ID
-- Collection Is Official
-- Collection Is Personal
-- Question Viz Type
-- Question Database ID
-- Question Is Native
-- Event Timestamp
+- Beschreibung
+- Sammlung ID
+- Vom Benutzer öffentlich gemacht
+- Ist die Einbettung aktiviert
+- archiviert
+- Aktionstyp
+- Aktion Modell-ID
+- Sammlung ist offiziell
+- Sammlung ist persönlich
+- Frage Viz-Typ
+- Frage Datenbank-ID
+- Frage ist nativ
+- Ereignis Zeitstempel
 
-Entity types include:
 
-- action
-- collection
-- dashboard
-- event
-- model
-- question
+Entitätstypen umfassen:
 
-## People model
 
-Everyone in your Metabase, including deactivated accounts. Fields include:
+- Aktion
+- sammlung
+- Dashboard
+- Ereignis
+- Modell
+- Frage
 
-- User ID
-- Email
-- First Name
-- Last Name
-- Full Name
-- Date Joined
-- Last Login
-- Updated At
-- Is Admin
-- Is Active
-- SSO Source
-- Locale
 
-## Dashboard subscriptions model
+## Personenmodell
 
-Which subscriptions are active, who created them, who's subscribed to them, when they're sent, and more.
 
-- Entity ID
-- Entity Qualified ID
-- Created At
-- Updated At
-- Creator ID
-- Archived
-- Dashboard Qualified ID
-- Schedule Type
-- Schedule Day
-- Schedule Hour
-- Recipient Type
-- Recipients
-- Recipient External
-- Parameters
+Alle Personen in Ihrer Metabase, einschließlich deaktivierter Konten. Die Felder umfassen:
 
-## Dashboard cards model
 
-Each row is a dashboard card: either a question card or a text card. Fields include:
+- Benutzer-ID
+- E-Mail
+- Vorname
+- Nachname
+- Vollständiger Name
+- Datum des Beitritts
+- Letzte Anmeldung
+- Aktualisiert bei
+- Ist Verwaltung
+- Ist aktiv
+- SSO-Quelle
+- Schauplatz
 
-- ID
+## Dashboard-Abonnementmodell
+- KENNUNG
 - Dashboard ID
 - Dashboardtab ID
-- Question ID
-- Created At
-- Updated At
-- Size X
-- Size Y
-- Visualization Settings
-- Parameter Mappings
+- Frage-ID
+- Erstellt am
+- Aktualisiert am
+- Größe X
+- Größe Y
+- Einstellungen für die Visualisierung
+- Parameter-Zuordnungen
 
-## Databases model
 
-Information about your connected data sources. Fields include:
+## Datenbankmodell
 
-- Entity ID
-- Entity Qualified ID
-- Created At
-- Updated At
+
+Informationen über Ihre verbundenen Datenquellen. Die Felder umfassen:
+
+
+- Entitäts-ID
+- Entität Qualifizierte ID
+- Erstellt am
+- Aktualisiert am
 - Name
-- Description
-- Database Type
-- Metadata Sync Schedule
-- Cache Field Values Schedule
-- Timezone
-- Is On Demand
-- Auto Run Queries
+- Beschreibung
+- Datenbank-Typ
+- Zeitplan für Metadaten-Synchronisation
+- Zeitplan für Cache-Feldwerte
+- Zeitzone
+- Ist auf Anfrage
+- Auto Run Abfragen
 - Cache Ttl
-- Creator ID
-- Db Version
+- Ersteller-ID
+- Db-Version
 
-## Tables model
 
-List of all tables across all connected data sources. Fields include:
+## Tabellenmodell
 
-- Entity ID
-- Entity Qualified ID
-- Created At
-- Updated At
+
+Liste aller Tabellen über alle verbundenen Datenquellen. Die Felder umfassen:
+
+
+- Entitäts-ID
+- Entität Qualifizierte ID
+- Erstellt am
+- Aktualisiert am
 - Name
-- Display Name
-- Description
-- Active
-- Database ID
+- Name anzeigen
+- Beschreibung
+- Aktiv
+- Datenbank-ID
 - Schema
-- Is Upload
+- Ist Upload
 
-## Fields model
 
-All fields from all connected data sources. Fields include:
+## Felder Modell
 
-- Entity ID
-- Entity Qualified ID
-- Created At
-- Updated At
+
+Alle Felder aus allen verbundenen Datenquellen. Die Felder umfassen:
+
+
+- Entitäts-ID
+- Entität Qualifizierte ID
+- Erstellt am
+- Aktualisiert am
 - Name
-- Display Name
-- Description
-- Base Type
-- Visibility Type
-- Fk Target Field ID
-- Has Field Values
-- Active
-- Table ID
+- Name anzeigen
+- Beschreibung
+- Basis Typ
+- Sichtbarkeit Typ
+- Fk Zielfeld-ID
+- Hat Feldwerte
+- Aktiv
+- Tabelle ID
 
-## System tasks model
 
-Describes the last 14 days of Metabase internal processes tasks.
+## Systemaufgaben-Modell
 
-- ID
-- Task
-- Database Qualified ID
-- Started At
-- Ended At
-- Duration Seconds
-- Details
+
+Beschreibt die letzten 14 Tage der Metabase-internen Prozessaufgaben.
+
+
+- KENNUNG
+- Aufgabe
+- Datenbank Qualifizierte ID
+- Begonnen am
+- Beendet am
+- Dauer Sekunden
+- Einzelheiten
