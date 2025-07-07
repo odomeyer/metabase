@@ -1,98 +1,80 @@
 ---
-title: Charts with multiple series
+Titel: Diagramme mit mehreren Reihen
 redirect_from:
-  - /docs/latest/users-guide/09-multi-series-charting
+- /docs/latest/users-guide/09-multi-series-charting
 ---
 
-# Charts with multiple series
 
-One of the best ways to add context and clarity when communicating with data is to show data side-by-side with other data. For example:
+# Diagramme mit mehreren Reihen
 
-- Your company's revenue vs. its costs over time
-- Average order price this month and user signups for that month
-- Orders per day from a few different product lines
 
-## Displaying data side by side
+Eine der besten Möglichkeiten, bei der Kommunikation mit Daten Kontext und Klarheit zu schaffen, besteht darin, Daten Seite an Seite mit anderen Daten darzustellen. Zum Beispiel:
 
-There are two main ways to visualize multiple series in Metabase:
 
-- [**Ask a question that involves multiple dimensions**](#ask-a-question-that-involves-multiple-dimensions) with the query builder (or in SQL, if you're using SQL). For example, the count of users by region over time.
-- [**Combine multiple questions on one dashboard card**](#combining-multiple-questions-on-one-dashboard-card) that share a common dimension (like time) on a dashboard. For example, you could look at revenue over time and costs over time together.
+- Die Einnahmen Ihres Unternehmens im Vergleich zu den Kosten im Laufe der Zeit
+- Durchschnittlicher Bestellpreis in diesem Monat und Benutzeranmeldungen für diesen Monat
+- Bestellungen pro Tag aus einigen verschiedenen Produktlinien
 
-## Ask a question that involves multiple dimensions
 
-If you're creating a new question, you can view the results as a multi-series visualization by summarizing your data and grouping it by two or more dimensions.
+## Daten nebeneinander anzeigen
 
-For example, we might want to see sales by month and product category. In the **Sample Database** that ships with Metabase, you would count the number of rows, then group by the `Product -> Category` and `Created At`:
 
-![Orders by product category](./images/editor-orders-by-product-category.png)
+Es gibt im Wesentlichen zwei Möglichkeiten, mehrere Reihen in der Metabase zu visualisieren:
 
-Metabase will automatically display a multi-series line chart, with each series representing a different category.
 
-![Multi-series in the query builder](./images/multi-series_query_builder.png)
+- [**Stellen Sie eine Frage, die mehrere Dimensionen umfasst**](#ask-a-question-that-involves-multiple-dimensions) mit dem Query Builder (oder in SQL, wenn Sie SQL verwenden). Zum Beispiel die Anzahl der Nutzer nach Region im Laufe der Zeit.
+- [**Kombinieren Sie mehrere Fragen auf einer Dashboard-Karte**](#combining-multiple-questions-on-one-dashboard-card), die eine gemeinsame Dimension (wie Zeit) auf einem Dashboard haben. So können Sie z. B. die Einnahmen im Zeitverlauf und die Kosten im Zeitverlauf gemeinsam betrachten.
 
-Metabase can visualize up to 100 distinct values of a dimension at once, so if you're selecting a field that contains many values, you might need to filter the values.
 
-## Combining multiple questions on one dashboard card
+## Stellen Sie eine Frage, die mehrere Dimensionen umfasst.
 
-You can layer multiple questions on a single dashboard card. You can even layer questions that query different databases, as long as they share the same datetime dimension.
 
-1. **Create a dashboard and enter dashboard edit mode**. On a dashboard, click the **Pencil** icon to enter editing mode.
+Wenn Sie eine neue Frage erstellen, können Sie die Ergebnisse als Multiserien-Visualisierung anzeigen, indem Sie Ihre Daten zusammenfassen und nach zwei oder mehr Dimensionen gruppieren.
 
-2. **Add a question** with a dimension like time or category to a dashboard. In practice, questions you'll typically want to overlay will be line or bar charts.
 
-3. **Edit the card's visualization**. Still in dashboard edit mode, hover over the question's card and click the **Pencil** icon to edit the card's visualization.
+Zum Beispiel könnten wir die Verkäufe nach Monat und Produktkategorie anzeigen. In der **Beispieldatenbank**, die mit Metabase geliefert wird, würden Sie die Anzahl der Zeilen zählen und dann nach "Produkt -> Kategorie" und "Erstellt am" gruppieren:
 
-![Edit visualization](./images/edit-visualization.png)
 
-4. **Add more data**. In the Manage data sidebar on the left, click on **Add more data**. 
+![Bestellungen nach Produktkategorie](./images/editor-orders-by-product-category.png)
 
-![Manage data sidebar](./images/add-data.png)
 
-Metabase will list questions in the left sidebar. Valid questions that you can plot on the card will have a plus sign **+**. You can also swap out the card's current question for a different question, which may update the list of compatible questions.
+Die Metabase zeigt automatisch ein Liniendiagramm mit mehreren Serien an, wobei jede Serie eine andere Kategorie darstellt.
 
-If necessary, the X and Y axes will automatically update. Metabase will create a legend using the existing card titles to help you understand which question maps to which series on the chart. Repeat this process as many times as you need.
 
-You can also swap out the chart's original question entirely, for example if you want to start over, or to reset the question's visualization to its original settings.
+(/images/multi-series_query_builder.png)[Multiserien im Query Builder)
 
-5. (Optional) **Rename your chart** to reflect the combined data.
 
-6. **Save** your changes.
+Metabase kann bis zu 100 verschiedene Werte einer Dimension auf einmal visualisieren. Wenn Sie also ein Feld auswählen, das viele Werte enthält, müssen Sie die Werte möglicherweise filtern.
 
-## Combining number charts
 
-If you need to compare single numbers to get a sense of how they differ, Metabase can turn multiple number charts into a funnel or bar chart.
+## Kombinieren mehrerer Fragen auf einer Dashboardkarte
 
-1. **Add a number chart to a dashboard.**
 
-2. **Visualize as a funnel chart**. (Yes, we know you're going for a bar chart, bear with us, you're going to switch the funnel's type to a bar chart.) In dashboard edit mode, hover over the card and click on **Visualize another way**. Metabase will change the visualization to a funnel chart.
+Sie können mehrere Fragen auf einer einzigen Dashboardkarte überlagern. Sie können sogar Fragen überlagern, die verschiedene Datenbanken abfragen, solange sie dieselbe Datumsdimension haben.
 
-![Visualize another way](./images/visualize-another-way.png)
 
-3. **Add more data**. Add another question that returns a single number to the chart.
+1. **Erstellen Sie eine Instrumententafel und rufen Sie den Bearbeitungsmodus für die Instrumententafel auf**. Klicken Sie auf einer Eigenschaftenleiste auf das Symbol**Stift**, um den Bearbeitungsmodus aufzurufen.
 
-4. **Set the Funnel type to a bar chart**. Click **Settings** and change **Funnel type** to "Bar chart".
 
-![Set Funnel chart to Bar chart](./images/set-to-bar-chart.png)
+2. **Fügen Sie eine Frage** mit einer Dimension wie Zeit oder Kategorie zu einem Dashboard hinzu. In der Praxis werden Sie in der Regel Fragen in Form von Linien- oder Balkendiagrammen überlagern wollen.
 
-## Multi-series charts, values, and legibility
 
-When displaying multiple series, it's important to keep legibility in mind. Combining many series can sometimes decrease the communication value of the data.
+3. **Bearbeiten Sie die Visualisierung der Karte**. Bewegen Sie den Mauszeiger im Bearbeitungsmodus des Dashboards über die Karte der Frage und klicken Sie auf das Symbol**Bleistift**, um die Visualisierung der Karte zu bearbeiten.
 
-Metabase allows you to add values to multi-series charts, but use this feature sparingly, especially on charts with many data points. Adding values to multiple series, each with many data points, can make charts _more_ difficult to read.
 
-From the **Visualization > Display** options, you can toggle the option: **Show values on data points**. Metabase will do its best to fit as many values as can fit nicely. You can also force Metabase to show values for all data points by setting the **Values to show** to **All**.
+[Visualisierung bearbeiten](./images/edit-visualization.png)
 
-![Add values to multi-series chart](./images/add_values.png)
 
-Additionally, you can configure the formatting of the values:
+4. **Weitere Daten hinzufügen**. Klicken Sie in der Seitenleiste "Daten verwalten" auf der linken Seite auf**Weitere Daten hinzufügen**.
 
-- **Auto**: Metabase selects the appropriate style for you
-- **Compact**: Metabase abbreviates values, e.g., 1,000 becomes 1K
-- **Full**: Values are displayed in their natural form
 
-Now go forth and start letting your data get to know each other!
+[Seitenleiste Daten verwalten](./images/add-data.png)
 
-## Further reading
 
-- [Time series comparisons](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/time-series/time-series-comparisons)
+Die Metabase listet die Fragen in der linken Seitenleiste auf. Gültige Fragen, die Sie auf der Karte darstellen können, sind mit einem Pluszeichen **+** gekennzeichnet. Sie können auch die aktuelle Frage auf der Karte gegen eine andere Frage austauschen, wodurch die Liste der kompatiblen Fragen aktualisiert werden kann.
+
+
+Falls erforderlich, werden die X- und Y-Achsen automatisch aktualisiert. Metabase erstellt eine Legende, in der die vorhandenen Kartentitel verwendet werden, um zu verdeutlichen, welche Frage zu welcher Reihe im Diagramm gehört. Wiederholen Sie diesen Vorgang so oft wie nötig.
+
+
+Sie können die ursprüngliche Frage des Diagramms auch komplett austauschen, z. B. wenn Sie neu beginnen möchten oder um die Visualisierung der Frage auf die ursprünglichen Einstellungen zurückzusetzen.
