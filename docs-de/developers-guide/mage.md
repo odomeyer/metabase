@@ -1,30 +1,38 @@
-# MAGE - Development Automation
+# MAGE - Entwicklungsautomatisierung
 
-Run `./bin/mage` to list your tasks. All of them support `-h` to learn more and show examples.
 
-All tasks support a `-h` option and will print their usage info.
+Führen Sie `./bin/mage` aus, um Ihre Aufgaben aufzulisten. Alle unterstützen `-h`, um mehr zu erfahren und Beispiele zu zeigen.
 
-``` shell
+
+Alle Aufgaben unterstützen die Option `-h` und geben Informationen über ihre Verwendung aus.
+
+
+`` Shell
 $ ./bin/mage
-   ███╗   ███╗ █████╗  ██████╗ ███████╗
-   ████╗ ████║██╔══██╗██╔════╝ ██╔════╝
-   ██╔████╔██║███████║██║  ███╗█████╗
-   ██║╚██╔╝██║██╔══██║██║   ██║██╔══╝
-   ██║ ╚═╝ ██║██║  ██║╚██████╔╝███████╗
-   ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝
-    The Metabase Automation Genius Engine
+"""╗ """╗ """""╗ """"""╗ """""""╗
+""""╗ """"║""╔══""╗""╔════╝ ""╔════╝
+""╔""""╔""║"""""""║""║ """╗"""""╗
+""║╚""╔╝""║""╔══""║""║ ""║""╔══╝
+""║ ╚═╝ ""║""║ ""║╚""""""╔╝"""""""╗
+╚═╝ ╚═╝╚═╝ ╚═╝ ╚═════╝ ╚══════╝
+Die Metabase Automation Genius Engine
 
-The following tasks are available:
 
-cljfmt-staged   Runs cljfmt on staged files
-kondo           Runs Kondo against a file, directory, or everything we usually lint
+Die folgenden Aufgaben sind verfügbar:
+
+
+cljfmt-staged Führt cljfmt auf gestuften Dateien aus
+kondo Lässt Kondo gegen eine Datei, ein Verzeichnis oder alles, was wir normalerweise lint, laufen
 ...
-start-db        Start a db on a default port in docker
-jar-download    Given a version, downloads a metabase jar
+start-db Startet eine Datenbank auf einem Standard-Port in Docker
+jar-download Gibt eine Version an und lädt ein Metabasis-Jar herunter
 $ ./bin/mage kondo -h
-<prints help for easily running kondo>
+<druckt Hilfe zur einfachen Ausführung von kondo>
 ```
+
 
 ### mage Autocomplete
 
-Run `./bin/mage setup-autocomplete` and follow the instructions to setup autocomplete in your terminal.
+
+Führen Sie `./bin/mage setup-autocomplete` aus und folgen Sie den Anweisungen, um Autocomplete in Ihrem Terminal einzurichten.
+
