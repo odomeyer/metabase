@@ -1,59 +1,76 @@
 ---
-title: Permissions introduction
+Titel: Einführung in die Erlaubnis
 redirect_from:
-  - /docs/latest/administration-guide/05-setting-permissions
+- /docs/latest/administration-guide/05-setting-permissions
 ---
 
-# Permissions introduction
 
-There are always going to be sensitive bits of information in your data, and thankfully Metabase provides a rich set of tools to ensure that people on your team only see the data they're supposed to.
+# Einführung in die Rechtevergabe
 
-If instead you're wondering about what data Metabase the company can see, check out our page on [data privacy and security](https://www.metabase.com/security).
 
-## Key points regarding permissions
+Es wird immer sensible Informationen in Ihren Daten geben, und glücklicherweise bietet Metabase eine Reihe von Tools, mit denen Sie sicherstellen können, dass die Mitarbeiter Ihres Teams nur die Daten sehen, die sie sehen sollen.
 
-- Permissions are granted to [groups](../people-and-groups/managing.md#groups), not people. Though you can define user attributes to apply permissions person to person.
-- People can be in more than one group.
-- If a person is in multiple groups, they will have the _most permissive_ access granted to them across all of their groups. For example, if a person is in three groups, and any one of those groups has Curate access to a collection, then that person will have curate access to that collection.
-- By default, everyone is in the All users group, so be sure to block that group's access before granting permissions to other groups. Thankfully, Metabase will warn you if the All users group has more permissive permissions than the group you're restricting.
 
-## What you can set permissions on
+Wenn Sie sich stattdessen fragen, welche Daten Metabase im Unternehmen einsehen kann, lesen Sie unsere Seite zu [Datenschutz und Sicherheit](https://www.metabase.com/security).
 
-- [Data permissions](./data.md) - Control access to databases, schemas, and tables, including:
-  - [View data](./data.md#view-data-permissions)
-  - [Create queries](./data.md#create-queries-permissions)
-  - [Download results](./data.md#download-results-permissions)
-  - [Manage database](./data.md#manage-database-permissions)
-- [Collection permissions][collections] - Control access to questions, dashboards, models, metrics, events, and timelines
-- [Application permissions](application.md) - Control access to admin features (Pro and Enterprise plans only):
-  - [Settings tab in Admin panel](application.md#settings-access)
-  - [Monitoring tools and troubleshooting](application.md#monitoring-access)
-  - [Dashboard subscriptions and alerts](application.md#subscriptions-and-alerts)
-- [Snippet folder permissions][snippet-folders] - Control access to SQL snippet folders (available on plans with snippet folders)
 
-## Tools for managing multi-tenant setups
+## Wichtige Punkte zu den Berechtigungen
 
-At a high-level, Metabase provides several approaches to managing permissions for different multi-tenant setups, depending on how you've segregated your data.
 
-### Your customers share a single database
+- Berechtigungen werden für [Gruppen](../people-and-groups/managing.md#groups) erteilt, nicht für Personen. Sie können jedoch Benutzerattribute definieren, um Berechtigungen auf einzelne Personen anzuwenden.
+- Personen können in mehr als einer Gruppe sein.
+- Wenn eine Person mehreren Gruppen angehört, wird ihr der _freizügigste_ Zugriff für alle ihre Gruppen gewährt. Wenn eine Person zum Beispiel in drei Gruppen ist und eine dieser Gruppen den Zugriff "Kuratieren" auf eine Sammlung hat, dann hat diese Person den Zugriff "Kuratieren" auf diese Sammlung.
+- Standardmäßig sind alle Personen in der Gruppe "Alle Benutzer", daher sollten Sie den Zugriff für diese Gruppe sperren, bevor Sie anderen Gruppen Berechtigungen erteilen. Glücklicherweise warnt Sie Metabase, wenn die Gruppe "Alle Benutzer" über mehr Rechte verfügt als die Gruppe, die Sie einschränken möchten.
 
-[Data sandboxes](./data-sandboxes.md) let you apply row and column-level security, so each customer only sees their data in the tables.
 
-### Each customer has their own database
+## Für was Sie Berechtigungen festlegen können
 
-With [Database routing](./database-routing.md), you can build a question once, and have Metabase send a query to a different database depending on the customer.
 
-### You'd prefer to manage permissions via the database itself
+- [Datenberechtigungen](./data.md) - Steuerung des Zugriffs auf Datenbanken, Schemata und Tabellen, einschließlich:
+- [Daten anzeigen](./data.md#view-data-permissions)
+- [Abfragen erstellen](./data.md#abfragen-erstellen-ermächtigen)
+- [Ergebnisse herunterladen](./data.md#download-results-permissions)
+- [Datenbank verwalten](./data.md#manage-database-permissions)
+- [Sammlungsberechtigungen][Sammlungen] - Steuerung des Zugriffs auf Fragen, Dashboards, Modelle, Metriken, Ereignisse und Zeitleisten
+- [Anwendungsberechtigungen](application.md) - Steuerung des Zugriffs auf Verwaltungsfunktionen (nur Pro- und Enterprise-Tarife):
+- [Registerkarte "Einstellungen" im Verwaltungsbereich](application.md#settings-access)
+- [Überwachungswerkzeuge und Fehlerbehebung](application.md#monitoring-access)
+- [Dashboard-Abonnements und -Warnungen](application.md#subscriptions-and-alerts)
+- [Snippet-Ordner-Berechtigungen][snippet-folders] - Steuerung des Zugriffs auf SQL-Snippet-Ordner (verfügbar für Pläne mit Snippet-Ordnern)
 
-With [Connection impersonation](./impersonation.md), you can manage permissions with roles you define in your database.
 
-[collections]: ../exploration-and-organization/collections.md
-[dashboard-subscriptions]: ../dashboards/subscriptions.md
-[data-permissions]: ./data.md
-[data-sandboxing]: ./data-sandboxes.md
+## Tools für die Verwaltung von Multi-Tenant-Konfigurationen
+
+
+Auf einer hohen Ebene bietet Metabase mehrere Ansätze für die Verwaltung von Berechtigungen für verschiedene Multi-Tenant-Konfigurationen, je nachdem, wie Sie Ihre Daten aufgeteilt haben.
+
+
+### Ihre Kunden teilen sich eine einzige Datenbank
+
+
+Mit [Daten-Sandboxen](./data-sandboxes.md) können Sie Sicherheit auf Zeilen- und Spaltenebene anwenden, so dass jeder Kunde nur seine Daten in den Tabellen sieht.
+
+
+### Jeder Kunde hat seine eigene Datenbank
+
+
+Mit [Datenbank-Routing](./database-routing.md) können Sie eine Frage einmal erstellen und Metabase je nach Kunde eine Abfrage an eine andere Datenbank senden lassen.
+
+
+### Sie möchten die Berechtigungen lieber über die Datenbank selbst verwalten
+
+
+Mit [Connection impersonation](./impersonation.md) können Sie Berechtigungen mit Rollen verwalten, die Sie in Ihrer Datenbank definieren.
+
+
+[Sammlungen]:. ./exploration-und-organisation/sammlungen.md
+[Dashboard-Abonnements]:. ./Dashboards/Abonnements.md
+[daten-berechtigungen]:. /data.md
+[data-sandboxing]:. /data-sandboxes.md
 [permissions]: https://www.metabase.com/learn/metabase-basics/administration/permissions
-[sandbox-columns]: https://www.metabase.com/learn/metabase-basics/administration/permissions/data-sandboxing-column-permissions
+[Sandkasten-Spalten]: https://www.metabase.com/learn/metabase-basics/administration/permissions/data-sandboxing-column-permissions
 [sandbox-rows]: https://www.metabase.com/learn/metabase-basics/administration/permissions/data-sandboxing-row-permissions
-[slack-integration]: ../configuring-metabase/slack.md
-[snippet-folders]: ../questions/native-editor/snippets.md
-[troubleshooting-permissions]: ../troubleshooting-guide/permissions.md
+[slack-integration]:. ./configuring-metabase/slack.md
+[Snippet-Ordner]:. ./Fragen/native-editor/snippets.md
+[Fehlerbehebungs-Berechtigungen]:. ./Fehlerbehebungs-Leitfaden/Erlaubnisse.md
+
