@@ -1,36 +1,51 @@
 ---
-title: Embedded analytics SDK - collections
+Titel: Embedded analytics SDK - Sammlungen
 ---
 
-# Embedded analytics SDK - collections
+
+# Embedded analytics SDK - Sammlungen
+
 
 {% include plans-blockquote.html feature="Embedded analytics SDK" sdk=true %}
 
-## Embedding a collection browser
 
-You can embed Metabase's collection browser so that people can explore items in your Metabase from your application.
+## Einbetten eines Sammlungsbrowsers
+
+
+Sie können den Sammlungsbrowser der Metabase einbetten, so dass Benutzer von Ihrer Anwendung aus Elemente in Ihrer Metabase erkunden können.
+
 
 ### `CollectionBrowser`
 
-#### API Reference
-- [Component](./api/CollectionBrowser.html)
-- [Props](./api/CollectionBrowserProps.html)
 
-#### Example
+#### API-Referenz
+- [Komponente](./api/SammlungsBrowser.html)
+- [Requisiten](./api/SammlungsBrowserProps.html)
+
+
+#### Beispiel
+
 
 ```tsx
 {% include_file "{{ dirname }}/snippets/collections/collection-browser.tsx" %}
 ```
 
-#### Props
+
+#### Requisiten
+
 
 {% include_file "{{ dirname }}/api/snippets/CollectionBrowserProps.md" snippet="properties" %}
 
-## Hide the collection picker and hard code the collection you want people to save stuff to
 
-With static questions, you set a specific collection as the collection people can save items to, so that they don't have bother picking a collection. To hard-code a collection:
+## Verstecken Sie die Sammlungsauswahl und geben Sie die Sammlung an, in der Sie die Daten speichern möchten.
 
-1. Set `isSaveEnabled` to true.
-2. Set `targetCollection` to the collection ID you want people to save items to.
 
-For more options, see [Question props](./questions.md).
+Bei statischen Fragen legen Sie eine bestimmte Sammlung als die Sammlung fest, in der die Benutzer Elemente speichern können, so dass sie sich nicht um die Auswahl einer Sammlung kümmern müssen. Um eine Sammlung fest zu kodieren:
+
+
+1. Setze `isSaveEnabled` auf true.
+2. Legen Sie "targetCollection" auf die Sammlungs-ID fest, in der die Benutzer Elemente speichern sollen.
+
+
+Weitere Optionen finden Sie unter [Question props](./questions.md).
+
