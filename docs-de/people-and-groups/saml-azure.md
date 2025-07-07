@@ -1,73 +1,81 @@
 ---
-title: SAML with Microsoft Entra ID
+Titel: SAML mit Microsoft Entra ID
+
 
 redirect_from:
-  - /docs/latest/enterprise-guide/authenticating-with-saml-azure-ad
+- /docs/latest/enterprise-guide/authenticating-with-saml-azure-ad
 ---
 
-# SAML with Microsoft Entra ID
 
-{% include plans-blockquote.html feature="SAML authentication" %}
+# SAML mit Microsoft Entra ID
 
-## Enable SAML in Metabase
 
-First, follow our guide to [enable SAML authentication](authenticating-with-saml.md).
+{% include plans-blockquote.html feature="SAML-Authentifizierung" %}
 
-## Add an Enterprise Application in Microsoft Entra ID
 
-Go to Microsoft Entra admin center and click on **Enterprise Applications** under Applications from the side bar. Once there, click on **+ New Application** in the bar on the top of the page.
+## Aktivieren von SAML in der Metabase
+
+
+Folgen Sie zunächst unserer Anleitung zur [Aktivierung der SAML-Authentifizierung](authenticating-with-saml.md).
+
+
+## Hinzufügen einer Unternehmensanwendung in Microsoft Entra ID
+
+
+Gehen Sie zum Microsoft Entra Admin Center und klicken Sie auf**Unternehmensanwendungen** unter Anwendungen in der Seitenleiste. Klicken Sie dann auf **+ Neue Anwendung** in der Leiste oben auf der Seite.
+
 
 ![AZEnterpriseApp](images/saml-azure-ad-enterprise-app.png)
 
-In the new page click on **+ Create your own application** and a bar will open in the right side of the page. Enter "Metabase" as the name of the application, select `Integrate any other application you don't find in the gallery (Non-gallery)` as the option and click the **Create** button on the bottom of the bar.
+
+Klicken Sie auf der neuen Seite auf **+ Erstellen Sie Ihre eigene Anwendung** und eine Leiste öffnet sich im rechten Teil der Seite. Geben Sie "Metabase" als Namen der Anwendung ein, wählen Sie die Option "Integrieren Sie eine andere Anwendung, die Sie nicht in der Galerie finden (Nicht-Galerie)" und klicken Sie auf die Schaltfläche**Erstellen** unten in der Leiste.
+
 
 ![AZMetabaseApp](images/saml-azure-ad-create.png)
 
-On the application page, under **Manage**, select **Single Sign-on**, then click on the "SAML" button.
+
+Wählen Sie auf der Anwendungsseite unter **Verwalten** die Option **Single Sign-on** und klicken Sie dann auf die Schaltfläche "SAML".
+
 
 ![AZAppSAML](images/saml-azure-app-saml.png)
 
-When the "Set up Single Sign-On with SAML" page appears, you'll see an option for "Basic SAML configuration". Click on the **Edit** button to enter the required info.
+
+Wenn die Seite "Single Sign-On mit SAML einrichten" erscheint, sehen Sie eine Option für "Grundlegende SAML-Konfiguration". Klicken Sie auf die Schaltfläche **Bearbeiten**, um die erforderlichen Informationen einzugeben.
+
 
 ![AZAzureStep1](images/saml-azure-step-1.png)
 
-Fill out the following fields as follows and click "Save":
 
-- **Identifier (Entity ID)**: `Metabase`
-- **Reply URL (Assertion Consumer Service URL)**: go to your Metabase instance in Settings -> Admin-> Authentication -> SAML and insert the value that your Metabase instance reports in the "Configure your identity provider (IdP)" box.
+Füllen Sie die folgenden Felder wie folgt aus und klicken Sie auf "Speichern":
 
-Click on "Save" and then note the following 2 items on step 4:
 
-- "Login URL": this is the value you need to enter in "SAML identity provider URL" in Metabase on the next step
-- "Microsoft Entra Identifier": this is the value you need to enter in "SAML identity provider issuer" in Metabase on the next step
+- **Bezeichner (Entitäts-ID)**: `Metabase`
+-Antwort-URL (Assertion Consumer Service URL)**: Gehen Sie zu Ihrer Metabase-Instanz unter Einstellungen -> Admin-> Authentifizierung -> SAML und geben Sie den Wert ein, den Ihre Metabase-Instanz im Feld "Configure your identity provider (IdP)" meldet.
 
-Download the "Federation Metadata XML" file, which will have the certificate you'll need in the next step.
 
-To finish the Microsoft Entra side of the configuration, click on the **Users and groups** button on the Manage tab and add the users or groups that should have access to Metabase.
+Klicken Sie auf "Speichern" und beachten Sie dann die folgenden 2 Punkte in Schritt 4:
 
-## Configure the Enterprise Application with Metabase SSO information
 
-Log in to Metabase as an administrator and go to **Admin** -> **Settings** -> **Authentication** -> **SAML**.
+- " Login URL": dies ist der Wert, den Sie im nächsten Schritt in "SAML identity provider URL" in der Metabase eingeben müssen
+- Microsoft Entra Identifier": Diesen Wert müssen Sie im nächsten Schritt in "SAML identity provider issuer" in der Metabase eingeben.
 
-Under "Tell Metabase about your identity provider", enter the following:
 
-- **SAML Identity Provider URL**: the "Login URL" you got on Step 4 on the Microsoft Entra ID SAML SSO configuration
-- **SAML Identity Provider Certificate**: open the "Federation Metadata XML" with a text editor, copy and paste the super long string under the `<X509Certificate>` tag in the "App Federation Metadata Url". Make sure you copy and paste the whole string; if you miss any character, the integration won't work
-- **SAML Application Name**: "Metabase"
-- **SAML Identity Provider Issuer**: the "Microsoft Entra Identifier" URL you got from the Microsoft Entra ID SAML SSO configuration.
+Laden Sie die Datei "Federation Metadata XML" herunter, die das Zertifikat enthält, das Sie im nächsten Schritt benötigen.
 
-Click on **Save and Enable** below, and you should now be able to log in via Microsoft Entra ID.
 
-## Send group membership to Metabase for group mapping
+Um die Microsoft Entra-Seite der Konfiguration abzuschließen, klicken Sie auf der Registerkarte "Verwalten" auf die Schaltfläche**Benutzer und Gruppen** und fügen Sie die Benutzer oder Gruppen hinzu, die Zugang zur Metabase haben sollen.
 
-If you want to send the user group membership to Metabase, then you need to add a group claim on step 2, "Set up Single Sign-On with SAML" on Azure:
 
-1. To the right of "Attributes & Claims", click on "Edit."
-2. Click "Add a group claim."
-   3 On the menu that appears for "Which groups associated with the user should be returned in the claim?", select "All groups."
-3. Click on Save.
-4. Then add the group mapping on the Metabase SAML configuration.
+## Konfigurieren Sie die Unternehmensanwendung mit den SSO-Informationen der Metabase
 
-## Further reading
 
-- [User provisioning](./user-provisioning.md)
+Melden Sie sich als Administrator bei Metabase an und gehen Sie zu **Admin** -> **Einstellungen** -> **Authentifizierung** -> **SAML**.
+
+
+Geben Sie unter "Informieren Sie Metabase über Ihren Identitätsanbieter" Folgendes ein:
+
+
+- **SAML Identity Provider URL**: die "Login URL", die Sie in Schritt 4 der Microsoft Entra ID SAML SSO Konfiguration erhalten haben
+-**SAML Identity Provider Certificate**: Öffnen Sie die "Federation Metadata XML" mit einem Texteditor, kopieren Sie die sehr lange Zeichenfolge und fügen Sie sie unter dem Tag "<X509Certificate>" in die "App Federation Metadata Url" ein. Achten Sie darauf, dass Sie die gesamte Zeichenfolge kopieren und einfügen; wenn Sie ein Zeichen auslassen, wird die Integration nicht funktionieren
+- **SAML-Anwendungsname**: "Metabase"
+- **SAML Identity Provider Issuer**: die "Microsoft Entra Identifier" URL, die Sie aus der Microsoft Entra ID SAML SSO Konfiguration erhalten haben.
