@@ -1,76 +1,53 @@
 ---
-title: Tables
+Titel: Tabellen
 redirect_from:
   - /docs/latest/questions/sharing/visualizations/table
 ---
 
-# Tables
+# Tabellen
+![Eine Tabelle in der Metabase](../images/table.png)
+Tabellen sind der natürliche Lebensraum von Daten.
 
-![A table in Metabase](../images/table.png)
+## Spalten neu anordnen, hinzufügen und ausblenden
+Wenn Sie die Einstellungen für Ihre Tabellenvisualisierung öffnen, sehen Sie die Registerkarte Spalten, auf der alle Spalten angezeigt werden, die derzeit in der Tabelle zu sehen sind. Um eine Spalte auszublenden, klicken Sie auf das Augensymbol.
+Um diese Spalten zu verwalten, einschließlich Spalten aus verknüpften Tabellen, klicken Sie einfach auf **Spalten hinzufügen oder entfernen**. Markieren Sie die Kästchen neben den Spalten, die Sie im **sichtbaren Bereich** anzeigen möchten, oder deaktivieren Sie sie, um sie auszublenden.
+Wenn Sie Tabellen anzeigen, können Sie auf das Symbol **Zahnrad** unten links klicken, um die Spaltenauswahl aufzurufen. Klicken Sie auf **Spalten hinzufügen oder entfernen**, um nach Spalten zu suchen und diese auszuwählen, einschließlich Spalten aus Bezugstabellen.
+Hinzufügen oder Entfernen von Spalten](../images/column-selection.png)
+Administratoren (und Personen in Gruppen mit Zugriff auf Tabellenmetadaten) können Spalten in der gesamten Metabasis ausblenden, indem sie sie in den [Einstellungen für Tabellenmetadaten] (../../data-modeling/metadata-editing.md#column-visibility) als ausgeblendet markieren.
+> **Das Ausblenden von Spalten sollte _nicht_ dazu verwendet werden, sensible Informationen zu schützen**. Das Ausblenden von Spalten in Tabellenvisualisierungseinstellungen wirkt sich nur auf die Sichtbarkeit der Spalten _in der Visualisierung_ aus, nicht in den Abfrageergebnissen. Auch Personen mit Nur-Ansichtsrechten für die Frage können die Visualisierungseinstellungen ändern und Spalten wieder einblenden. Um eine Spalte aus den Ergebnissen einer bestimmten Abfrage auszuschließen, entfernen Sie die Markierung der Spalte im Block "Daten" des Abfragegenerators.
+Um die Reihenfolge der Spalten zu ändern, klicken Sie einfach auf eine der Spalten in der Seitenleiste und ziehen Sie sie. Sie können auch auf die Überschrift einer Spalte in der Tabelle klicken und die Spalte an eine andere Position in der Tabelle ziehen.
 
-Tables are data's natural habitat.
+## Benutzerdefinierte Spalten
+![Spalte hinzufügen](../images/add-column.png)
+Um eine Spalte hinzuzufügen, können Sie auf die Schaltfläche **+** oben rechts in der Tabelle klicken. Von hier aus können Sie:
+- einen Teil der Spalte extrahieren (z. B. einen Teil einer URL oder eines Datums)
+- Spalten kombinieren (z. B. Verkettung von Spalten für Vor- und Nachname)
+Für kompliziertere Berechnungen können Sie den Editor verwenden, um [eine benutzerdefinierte Spalte hinzuzufügen] (../query-builder/editor.md#custom-columns).
 
-## Rearranging, adding, and hiding columns
+## Zeilennummern zu einer Tabelle hinzufügen
+Um die Zeilen einer Tabelle zu nummerieren, klicken Sie auf das Symbol **Zahnrad** unten links, um die Seitenleiste für die Tabellenformatierung aufzurufen. Klicken Sie auf die Registerkarte **Spalten** und aktivieren Sie **Zeilenindex anzeigen**. Metabase fügt eine Spalte auf der linken Seite der Tabelle hinzu, in der für jede Zeile eine Nummer angezeigt wird.
+[Zeilennummern zu einer Tabelle hinzufügen](../images/show-row-index.png)
 
-Open up the settings for your table visualization and you'll see the Columns tab, which displays all the columns currently being shown in the table. To hide a column, click the eye icon.
+## Größe der Spalten ändern
+Um die Breite einer Spalte zu ändern, können Sie auf die Ränder der Spaltenüberschrift klicken und diese ziehen.
 
-To manage these columns, including columns from linked tables, just click **add or remove columns**. Check the boxes next to the columns you want to show in the **visible section**, or uncheck to hide them.
+## Spaltenüberschriften-Optionen zum Filtern und Zusammenfassen
+![Spaltenaktionen](../images/column-actions.png)
+Klicken Sie auf eine Spaltenüberschrift und Metabase zeigt Ihnen schnelle Optionen zum Filtern und Zusammenfassen der Daten an. Die Optionen für die Spalte hängen vom Datentyp der Spalte ab (ID, Text, Zahl, Datum).
 
-When viewing tables, you can click on the **gear** icon in the bottom left to bring up the columns picker. Click **Add or remove columns** to search for and pick columns, including columns from related tables.
-
-![Adding or removing columns](../images/column-selection.png)
-
-Admins (and people in groups with access to table metadata) can hide columns across your entire Metabase by marking them as hidden in the [table metadata settings](../../data-modeling/metadata-editing.md#column-visibility).
-
-> **Hiding columns should _not_ be used to secure sensitive information**. Hiding columns in table visualization settings only affects the visibility of the columns _in the visualization_, not in the query results. Even people with view-only permissions to the question will be able to change the visualization settings and unhide columns. To exclude a column from the results of a specific query, uncheck the column in the "Data" block of the query builder.
-
-To rearrange the order of the columns, simply click and drag any of the columns in the sidebar. You can also click on a column's heading in the table and drag the column to another position in the table.
-
-## Custom columns
-
-![Add column](../images/add-column.png)
-
-To add a column, you can click the **+** button in the upper right of the table. From here you can:
-
-- Extract part of column (like extracting part of a URL or date)
-- Combine columns (like concatenating columns for first name and last name)
-
-For more complicated calculations, you can use the editor to [add a custom column](../query-builder/editor.md#custom-columns).
-
-## Add row numbers to a table
-
-To number the rows of a table, click on the **gear** icon in bottom left to bring up the table formatting sidebar. In the **Columns** tab, and toggle on **Show row index**. Metabase will add a column to the left of the table displaying a number for each row.
-
-![Add row numbers to a table](../images/show-row-index.png)
-
-## Resize columns
-
-To change the width of a column, you can click and drag the edges of the column's header.
-
-## Column heading options for filtering and summarizing
-
-![Column actions](../images/column-actions.png)
-
-Click on a column heading and Metabase will present quick options for filtering and summarizing the data. The options for the column depend on the column's data type (ID, Text, Number, Date).
-
-### Filter by this column
-
-You can enter a value and filter the column value:
-
-Text filters:
-
-- Is / Is not
-- Contains / Does not contain
-- Starts with / Ends with
-- Is empty / Not empty
-
-Number filters:
-
-- Between
-- Greater than / Less than
-- Greater than or equal to / Less than or equal to
-- Equal to / Not equal to
-- Is empty / Not empty
+### Nach dieser Spalte filtern
+Sie können einen Wert eingeben und den Spaltenwert filtern:
+Textfilter:
+- Ist / Ist nicht
+- Enthält / Enthält nicht
+- Beginnt mit / Endet mit
+- Ist leer / Nicht leer
+Zahlen-Filter:
+- Zwischen
+- Größer als / Kleiner als
+- Größer als oder gleich / Kleiner als oder gleich
+- Gleich / Nicht gleich
+- Ist leer / Nicht leer
 
 ### Distribution
 
