@@ -17,80 +17,51 @@ Eine Pivot-Tabelle ist eine Tabelle, die sowohl in Zeilen als auch in Spalten Di
 Pivot-Tabellen werden deshalb so genannt, weil Sie eine Spalte um 90 Grad drehen können, so dass die Werte in dieser Spalte selbst zu Spaltenüberschriften werden. Das Pivotieren von Werten in Spaltenüberschriften ist nützlich, wenn Sie Daten über mehrere Attribute hinweg analysieren, z. B. Zeit, Ort und Kategorie. Sie können mehrere Zeilen in Spalten umwandeln und umgekehrt, oder auch gar keine Umwandlung vornehmen.
 Die Pivot-Tabelle ist der einzige Metabase-Visualisierungstyp (neben der einfachen Tabelle natürlich), der mehrere Metriken gleichzeitig entlang mehrerer Dimensionen anzeigen kann.
 
-## How to create a pivot table
+## Wie man eine Pivot-Tabelle erstellt
+Um eine Pivot-Tabelle zu erstellen, müssen Sie den Query Builder verwenden. Derzeit können Sie keine Pivot-Tabellen für Fragen erstellen, die in SQL geschrieben wurden, da Metabase Ihren SQL-Code ändern müsste, um Zwischensummen zu berechnen. Wenn Sie wirklich SQL verwenden müssen, besteht die Lösung darin, Ihre Frage in zwei Schritten zu erstellen: Führen Sie zunächst alle komplexen Aufgaben in SQL aus, speichern Sie die Ergebnisse als Frage und verwenden Sie dann diese gespeicherte SQL-Frage als Ausgangspunkt für eine neue Query Builder-Frage, die diese Daten zusammenfasst.
+1. Erstellen Sie eine Frage im Query Builder, die eine Zusammenfassung mit mindestens einer Untergliederung enthält, zum Beispiel "Anzahl der Bestellungen nach Kategorie und Monat".
+   Sie können mehrere Metriken in der Abfrage haben (z. B. "`Anzahl` _und `Durchschnitt der Summe` der Bestellungen_ nach `Kategorie` und `Monat`")
+   ![Pivot-Tabelle notebook](../images/pivot-table-notebook.png)
+2. Klicken Sie auf **Visualisieren**.
+3. Um die Visualisierung in die Pivot-Tabelle zu ändern, klicken Sie auf das Symbol **Visualisierung** unten links und wählen Sie **Pivot-Tabelle** in der Seitenleiste.
+4. Um Felder zu konfigurieren, die als Zeilen und Spalten in der Pivot-Tabelle angezeigt werden, klicken Sie auf das Symbol **Zahnrad**, und ordnen Sie Felder einem der drei "Bereiche" zu: **Zeilen**, **Spalten** oder **Maße**.
+   - **Zeilen** und **Spalten** sollten die Dimensionen oder Unterteilungen enthalten - mit anderen Worten, die Felder, nach denen Sie gruppieren, z. B. "Kategorie" oder "Erzeugt am".
+- Die **Maße** sollten Ihre Zusammenfassungen oder Metriken enthalten - Dinge wie "Anzahl" oder "Durchschnitt der Summe".
+   Optionen für die Pivot-Tabelle](../images/pivot-table-options.png)
+   Sie können mehrere Felder in die "Zeilen"- und "Spalten"-Bereiche einfügen, aber beachten Sie, dass die Reihenfolge der Felder die Anzeige der Tabelle in Metabase verändert: Jedes zusätzliche Feld wird in das vorherige Feld eingefügt.
+Derzeit müssen alle Dimensionen und Metriken in Ihrer Abfrage entweder als Zeilen, Spalten oder Kennzahlen in der Pivot-Tabelle angezeigt werden (obwohl Sie Zeilen auf ihre Summen reduzieren können) (#totals-and-grand-totals). Wenn Sie einen Breakout oder eine Metrik nicht in der Pivot-Tabelle anzeigen möchten, müssen Sie diese aus der Abfrage entfernen - Sie können sie nicht aus der Pivot-Tabelle ausblenden.
 
-To create a pivot table, you'll need to use the query builder. Currently, you can't build pivot tables for questions written in SQL, because Metabase would need to modify your SQL code in order to calculate subtotals. If you really need to use SQL, the workaround here is to create your question in two steps: first do all the complex things you need to do in SQL, save the results as a question, then use that saved SQL question as the starting point for a new query builder question which summarizes that data.
+## Summen und Gesamtsummen
+Wo es sinnvoll ist, fügt Metabase automatisch Zwischensummen für gruppierte Zeilen hinzu.
+![Pivot-Tabellen-Optionen](../images/pivot-table-options.png)
+Da wir unsere Zeilen zunächst nach "Quelle" und dann nach "Plan" gruppiert haben, listet Metabase beispielsweise, wie in der obigen Abbildung, jeden Plan für jede "Quelle" auf und aggregiert dann die Metrik(en) für diese Quelle.
+Um eine Gruppe in einer Pivot-Tabelle zu verkleinern, klicken Sie auf die Minus-Schaltfläche (-) neben der Überschrift der Gruppe (oder auf die Plus-Schaltfläche (+), um sie zu vergrößern). Wenn Sie eine Pivot-Tabelle speichern, merkt sich Metabase, welche Gruppen erweitert und welche komprimiert wurden.
+Sie können Metabase bitten, die Summen auszublenden, indem Sie in den Pivot-Tabelleneinstellungen (Symbol **Zahnrad**) die Option "Zeilen-/Spalten-Summen anzeigen" deaktivieren.
 
-1. Create a question in the query builder that has a summary with at least one breakout, for example "`Count` of orders by `Category` and `Month`".
+## Bedingte Formatierung in Pivot-Tabellen
+Sie können Pivot-Tabellen auf der Grundlage von Bedingungen oder einer Reihe von Werten Farben hinzufügen:
+![Bedingte Formatierung](../images/pivot-conditional-formatting.png)
+Metabase formatiert keine Summen oder Gesamtsummen.
+Die bedingte Formatierung von Pivot-Tabellen funktioniert genauso wie die von normalen Tabellen, siehe [Bedingte Formatierung](./table.md#conditional-table-formatting)
 
-   You can have multiple metrics in the query (for example, "`Count` _and `Average of Total` of orders_ by `Category` and `Month`")
+## Pivot-Tabellen als Heatmaps verwenden
+Sie können bedingte Formatierungen in Pivot-Tabellen verwenden, um eine "Heatmap" von Werten nach Dimensionen zu erstellen:
+1. Erstellen Sie eine Query Builder-Frage mit einem Zusammenfassungsblock, der Folgendes enthält:
+- Eine Metrik, die die Intensität der Zellen in der Heatmap definiert
+- Zwei Unterteilungen zur Definition der horizontalen und vertikalen Komponenten der Karte
+2. Visualisieren Sie die Abfrage als Pivot-Tabelle.
+3. Fügen Sie eine **"Farbbereich "** bedingte Formatierung hinzu.
+Um z. B. eine Heatmap der stündlichen Aktivität nach Wochentag zu erstellen, verwenden Sie eine Abfrage mit Untergliederungen nach Tagesstunden und Wochentagen:
+![Abfrage für die Heatmap](../images/heatmap-query.png)
+Verwenden Sie eine Pivot-Tabelle mit bedingter Formatierung:
+![Pivot-Tabelle als Heatmap](../images/pivot-table-as-heatmap.png)
 
-   ![Pivot table notebook](../images/pivot-table-notebook.png)
+## Pivot-Tabellen-Exporte
+Beim Export von Pivot-Tabellen als XLSX-Dateien gibt es einige Besonderheiten zu beachten. Siehe [Exportieren von Pivot-Tabellen] (../exporting-results.md#exporting-pivot-tables).
 
-2. Click on **Visualize**.
-3. To change the visualization to the pivot table, click on the **Visualization** icon in the bottom left and select **Pivot table** in the sidebar.
-4. To configure fields displayed as rows and columns in the pivot table, click on the **gear** icon and assign fields to one of three "buckets": **rows**, **columns** or **measures**.
-
-   - **Rows** and **Columns** should contain the dimensions, or breakouts - in other words, the fields you're grouping by, like `Category` or `Created at`.
-   - **Measures** should contain your summaries, or metrics - things like `Count` or `Average of Total`.
-
-   ![Pivot table options](../images/pivot-table-options.png)
-
-   You can put multiple fields in the "rows" and "columns" buckets, but note that the order of the fields changes how Metabase displays the table: each additional field will nest within the previous field.
-
-Currently, all the dimension and metrics in your query must appear as either rows, columns, or measures in the pivot table (although you can [collapse rows to their totals](#totals-and-grand-totals)). If you don't want to display a breakout or metric in the pivot table, you'll need to remove it from the query - you can't hide it from the pivot table.
-
-## Totals and grand totals
-
-Where it makes sense, Metabase will automatically include subtotals for grouped rows.
-
-![Pivot table options](../images/pivot-table-options.png)
-
-For example, as in the image above, because we've grouped our rows first by `Source`, then by `Plan`, Metabase will list each plan for each `Source`, and then aggregate the metric(s) for that source..
-
-To collapse a group on a pivot table, you can click on the minus (–) button next to the group's heading (or the plus (+) button to expand it). When you save a pivot table, Metabase will remember which groups were expanded and which were collapsed.
-
-You can ask Metabase to hide the totals by going to pivot table settings (**gear** icon) and toggling off "Show row/column totals".
-
-## Conditional formatting in pivot tables
-
-You can add colors to pivot tables based on conditions, or using a range of values:
-
-![Conditional formatting](../images/pivot-conditional-formatting.png)
-
-Metabase won't format totals or grand totals.
-
-Conditional formatting for pivot tables works the same way as for regular tables, so see [Conditional formatting](./table.md#conditional-table-formatting)
-
-## Using pivot tables as heatmaps
-
-You can use conditional formatting in pivot tables to mimic a "heat map" of values by dimensions:
-
-1. Create a query builder question with a summary block that has:
-
-- One metric that defines the intensity of the cells in heatmap
-- Two breakouts to define the horizontal and vertical components of the map
-
-2. Visualize the query as a pivot table.
-3. Add a **"Color range"** conditional formatting.
-
-For example, to build a heatmap of hourly activity by day of the week, use a query with breakouts by hour of day and day of the week:
-
-![Query for the heatmap](../images/heatmap-query.png)
-
-Use pivot table with conditional formatting:
-
-![Pivot table as a heatmap](../images/pivot-table-as-heatmap.png)
-
-## Pivot table exports
-
-There are special considerations when exporting pivot tables as XLSX files. See [Exporting pivot tables](../exporting-results.md#exporting-pivot-tables).
-
-## Pivot table limitations
-
-- Pivot tables are only available for SQL databases.
-- All metrics and dimensions specified in the query will be displayed in the pivot table.
-- Pivot tables are only available for questions built with the query builder.
-- The query builder question must have a summary block.
-
-If you must use SQL, and your SQL query does not have parameters, you can save that SQL query , then use its [results as the starting point](../native-editor/writing-sql.md#explore-sql-question-results-using-the-query-builder) for a query builder question in order to build a question. The trick here is to do your aggregation and grouping in the query builder. That is, use the SQL question to grab the raw data you want to work with (maybe [create a model](../../data-modeling/models.md)), then start a new question in the query builder to filter, summarize, and group that data.
+## Einschränkungen der Pivot-Tabelle
+- Pivot-Tabellen sind nur für SQL-Datenbanken verfügbar.
+- Alle Metriken und Dimensionen, die in der Abfrage angegeben sind, werden in der Pivot-Tabelle angezeigt.
+- Pivot-Tabellen sind nur für Fragen verfügbar, die mit dem Query Builder erstellt wurden.
+- Die Query Builder-Frage muss einen Zusammenfassungsblock enthalten.
+Wenn Sie SQL verwenden müssen und Ihre SQL-Abfrage keine Parameter hat, können Sie diese SQL-Abfrage speichern und dann ihre [Ergebnisse als Ausgangspunkt] (../native-editor/writing-sql.md#explore-sql-question-results-using-the-query-builder) für eine Query-Builder-Frage verwenden, um eine Frage zu erstellen. Der Trick dabei ist, dass Sie die Aggregation und Gruppierung im Query Builder vornehmen. Das heißt, verwenden Sie die SQL-Frage, um die Rohdaten zu erfassen, mit denen Sie arbeiten möchten (vielleicht [create a model](../../data-modeling/models.md)), und starten Sie dann eine neue Frage im Query Builder, um diese Daten zu filtern, zusammenzufassen und zu gruppieren.
