@@ -1,156 +1,194 @@
 ---
-title: Troubleshooting Metabase on Docker
+Titel: Fehlersuche bei Metabase auf Docker
 ---
 
-# Troubleshooting Metabase on Docker
 
-Docker simplifies many aspects of running Metabase, but there are some pitfalls to keep in mind. If you have trouble with Metabase under Docker, try going through the troubleshooting process below, then look below for details about the specific issue you've found.
+# Fehlersuche bei Metabase auf Docker
 
-1. Is the container running?
-2. Is the server running inside the container?
-3. Is Metabase using the correct application database?
-4. Can you connect to the Docker host on the Metabase port?
-5. Can you connect to the container from the Docker host?
-6. Can you connect to the server from within the container?
 
-You may find these commands useful along the way. To get to the shell in the Metabase container:
+Docker vereinfacht die Ausführung von Metabase in vielerlei Hinsicht, aber es gibt auch einige Fallstricke, die Sie beachten sollten. Wenn Sie Probleme mit der Metabase unter Docker haben, versuchen Sie, den folgenden Prozess zur Fehlerbehebung zu durchlaufen, und suchen Sie dann weiter unten nach Details zu dem spezifischen Problem, das Sie gefunden haben.
+
+
+1. Ist der Container in Betrieb?
+2. Läuft der Server innerhalb des Containers?
+3. Verwendet die Metabase die richtige Anwendungsdatenbank?
+4. Können Sie eine Verbindung mit dem Docker-Host über den Metabase-Port herstellen?
+5. Können Sie vom Docker-Host aus eine Verbindung zum Container herstellen?
+6. Können Sie vom Container aus eine Verbindung zum Server herstellen?
+
+
+Die folgenden Befehle können Ihnen dabei helfen. Um die Shell im Metabase-Container zu erreichen:
+
 
 ```
 docker exec -ti CONTAINER_NAME bash
 ```
 
-And to get the logs for the Metabase container:
+
+Und um die Protokolle für den Metabase Container zu erhalten:
+
 
 ```
 docker logs -f CONTAINER_NAME
 ```
 
-## Metabase container exits without starting the server
 
-**How to detect this:** Run `docker ps` to see if the Metabase container is currently running. If it is, move on to the next step.
+## Der Metabase-Container beendet sich, ohne den Server zu starten.
 
-If `docker ps` does not show the running container, then list the stopped containers by running:
+
+**So stellen Sie dies fest:** Führen Sie "docker ps" aus, um festzustellen, ob der Metabase-Container derzeit ausgeführt wird. Ist dies der Fall, fahren Sie mit dem nächsten Schritt fort.
+
+
+Wenn "docker ps" den laufenden Container nicht anzeigt, dann listen Sie die gestoppten Container auf, indem Sie "docker ps" ausführen:
+
 
 ```
 docker ps -a | grep metabase/metabase
 ```
 
-Look for the container that exited most recently and make a note of the container ID. Look at that container's logs with:
+
+Suchen Sie den Container, der sich zuletzt beendet hat, und notieren Sie sich die Container-ID. Sehen Sie sich die Protokolle dieses Containers mit an:
+
 
 ```
-Docker logs CONTAINER_ID
+Docker protokolliert CONTAINER_ID
 ```
 
-## Metabase container is running but the server is not
 
-**How to detect this:** Run `docker ps` to make sure the container is running. The server should be logging to the Docker container logs. Check this by running:
+## Der Metabase-Container läuft, aber der Server nicht
 
-```
-docker logs CONTAINER_NAME
-```
 
-You should see a line like this at the beginning:
+**So stellen Sie dies fest:** Führen Sie "docker ps" aus, um sicherzustellen, dass der Container ausgeführt wird. Der Server sollte in den Docker-Container-Protokollen protokolliert werden. Überprüfen Sie dies durch Ausführen:
+
 
 ```
-05-10 18:11:32 INFO metabase.util :: Loading Metabase...
+docker protokolliert CONTAINER_NAME
 ```
 
-Further down, you should eventually see a line like:
+
+Am Anfang sollten Sie eine Zeile wie diese sehen:
+
+
+```
+05-10 18:11:32 INFO metabase.util :: Metabase laden...
+```
+
+
+Weiter unten sollten Sie schließlich eine Zeile wie diese sehen:
+
 
 ```
 05-10 18:12:30 INFO metabase.core :: Metabase Initialization COMPLETE
 ```
 
-If you see the lines below:
+
+Wenn Sie die folgenden Zeilen sehen:
+
 
 ```
-05-15 19:07:11 INFO metabase.core :: Metabase Shutting Down ...
+05-15 19:07:11 INFO metabase.core :: Metabase Shutdown ...
 05-15 19:07:11 INFO metabase.core :: Metabase Shutdown COMPLETE
 ```
 
-then Metabase has shut itself down.
 
-**How to fix this:** Check the Docker container logs for errors about connecting to the application database. Watch the logs to see if Metabase is still being started; the command:
+dann hat sich die Metabase selbst abgeschaltet.
+
+
+**So beheben Sie das Problem:** Überprüfen Sie die Docker-Container-Protokolle auf Fehler bei der Verbindung mit der Anwendungsdatenbank. Überprüfen Sie die Protokolle, um zu sehen, ob Metabase noch gestartet wird; der Befehl:
+
 
 ```
 Docker logs -f CONTAINER_ID
 ```
 
-will let you see the logs as they are printed.
 
-If the container is being terminated before it finished starting, the problem could be a health check timeout in the orchestration service used to start the container, such as Docker Cloud.
+können Sie die Protokolle sehen, während sie gedruckt werden.
 
-If the container is _not_ being terminated from the outside, but is failing to start anyway, this problem is probably not specific to Docker. If you're using a Metabase-supplied image, please [open a GitHub issue](https://github.com/metabase/metabase/issues/new/choose).
 
-## Not connecting to a remote application database
+Wenn der Container beendet wird, bevor er fertig gestartet ist, könnte das Problem eine Zeitüberschreitung bei der Zustandsprüfung im Orchestrierungsdienst sein, der zum Starten des Containers verwendet wird, wie z. B. Docker Cloud.
 
-**How to detect this:** If this is a new Metabase instance, then the database you specified via the environment variables will be empty. If this is an existing Metabase instance with incorrect environment parameters, the server will create a new H2 embedded database to use for application data and you’ll see lines similar to these in the log:
 
-```
-05-10 18:11:40 INFO metabase.core :: Setting up and migrating Metabase DB. Please sit tight, this may take a minute...
-05-10 18:11:40 INFO metabase.db :: Verifying h2 Database Connection ...
+Wenn der Container _nicht_ von außen beendet wird, aber trotzdem nicht startet, ist dieses Problem wahrscheinlich nicht spezifisch für Docker. Wenn Sie ein von Metabase bereitgestelltes Image verwenden,öffnen Sie bitteein GitHub-Problem(https://github.com/metabase/metabase/issues/new/choose).---
+Titel: Fehlersuche bei Metabase auf Docker
+---
 
-05-10 18:11:40 INFO metabase.db :: Verify Database Connection ...  ✅
-```
+# Fehlersuche bei Metabase auf Docker
 
-**How to fix this:** Check that you are passing environments to Docker correctly. You can list the environment variables for a container with this command:
+Docker vereinfacht die Ausführung von Metabase in vielerlei Hinsicht, aber es gibt auch einige Fallstricke, die Sie beachten sollten. Wenn Sie Probleme mit der Metabase unter Docker haben, versuchen Sie, den folgenden Prozess zur Fehlerbehebung zu durchlaufen, und suchen Sie dann weiter unten nach Details zu dem spezifischen Problem, das Sie gefunden haben.
 
-```
-docker inspect some-postgres -f '{% raw %}{{ .Config.Env }}{% endraw %}'
-```
+1. Ist der Container in Betrieb?
+2. Läuft der Server innerhalb des Containers?
+3. Verwendet die Metabase die richtige Anwendungsdatenbank?
+4. Können Sie eine Verbindung mit dem Docker-Host über den Metabase-Port herstellen?
+5. Können Sie vom Docker-Host aus eine Verbindung zum Container herstellen?
+6. Können Sie vom Container aus eine Verbindung zum Server herstellen?
 
-## The Metabase server isn't able to connect to a MySQL or PostgreSQL database
-
-**How to detect this:** The logs for the Docker container return an error message after the "Verifying Database Connection" line.
-
-**How to fix this:** Try to connect using the `mysql` or `psql` command with the connection string parameters you are passing in [via the environment variables][configuring-application-database]. If you can't connect to the database, the problem is due to either the credentials or connectivity. To verify that the credentials are correct, log in with those credentials from another machine and then try to make the same connection from the host running the Docker container.
-
-One easy way to run this is to use Docker to start a container that has the appropriate client for your database. For Postgres this would look like:
+Die folgenden Befehle können Ihnen dabei helfen. Um die Shell im Metabase-Container zu erreichen:
 
 ```
-docker run --name postgres-client --rm -ti --entrypoint /bin/bash postgres
+docker exec -ti CONTAINER_NAME bash
 ```
 
-From within that container, try connecting to the database host using the client command in the container such as `psql`. If you are able to connect from another container on the same host, then try making that connection from within the Metabase Docker container itself:
+Und um die Protokolle für den Metabase Container zu erhalten:
 
 ```
-docker exec -ti container-name bash
+docker logs -f CONTAINER_NAME
 ```
 
-You can also try to connect to the database host using the `nc` command and check if the connection can be opened:
+## Der Metabase-Container beendet sich, ohne den Server zu starten.
+
+**So stellen Sie dies fest:** Führen Sie "docker ps" aus, um festzustellen, ob der Metabase-Container derzeit ausgeführt wird. Ist dies der Fall, fahren Sie mit dem nächsten Schritt fort.
+
+Wenn "docker ps" den laufenden Container nicht anzeigt, dann listen Sie die gestoppten Container auf, indem Sie "docker ps" ausführen:
 
 ```
-nc -v your-db-host 5432
+docker ps -a | grep metabase/metabase
 ```
 
-These steps will help you determine whether this the problem is with the network or with authentication.
-
-## The Metabase application database is not being persisted
-
-**How to detect this:** This is occurring if you are getting the Setup screen every time you start the application. The most common cause is not giving the Docker container a persistent filesystem mount to put the application database in.
-
-**How to fix this:** Make sure you are giving the container a [persistent volume][persistent-volume].
-
-## The internal port isn't being remapped correctly
-
-**How to detect this:** Run `docker ps` and look at the port mapping, then run `curl http://localhost:port-number-here/api/health`. This should return a JSON response that looks like:
+Suchen Sie den Container, der sich zuletzt beendet hat, und notieren Sie sich die Container-ID. Sehen Sie sich die Protokolle dieses Containers mit an:
 
 ```
-{"status":"ok"}
+Docker protokolliert CONTAINER_ID
 ```
 
-**How to fix this:** Make sure to include `-p 3000:3000` or similar port remapping in the `docker run` command you use to start the Metabase container image.
+## Der Metabase-Container läuft, aber der Server nicht
 
-## Metabase can't write or read to/from a file or directory
+**So stellen Sie dies fest:** Führen Sie "docker ps" aus, um sicherzustellen, dass der Container ausgeführt wird. Der Server sollte in den Docker-Container-Protokollen protokolliert werden. Überprüfen Sie dies durch Ausführen:
 
-**How to detect this:** A message in the logs will clearly indicate an IOError or "Permission denied" from Java, or errors from SQLite containing `org.sqlite.core.NativeDB._open_utf8`.
+```
+docker protokolliert CONTAINER_NAME
+```
 
-**How to fix this:** Ensure that the user who is running Metabase has permission to read and write to the file or directory:
+Am Anfang sollten Sie eine Zeile wie diese sehen:
 
-- If you are running Metabase as a JAR file in your local machine or server, check the user who is running the Java process.
-- If you're running Metabase from the Docker container, make sure you're using the `/metabase.db` directory.
+```
+05-10 18:11:32 INFO metabase.util :: Metabase laden...
+```
 
-If you're running Metabase from the JAR in any Unix-like operating system, you can see which user is running Metabase by opening a terminal and typing `ps -uA | grep metabase`.
+Weiter unten sollten Sie schließlich eine Zeile wie diese sehen:
 
-[configuring-application-database]: ../installation-and-operation/configuring-application-database.md
-[persistent-volume]: ../installation-and-operation/running-metabase-on-docker.md#mounting-a-mapped-file-storage-volume
+```
+05-10 18:12:30 INFO metabase.core :: Metabase Initialization COMPLETE
+```
+
+Wenn Sie die folgenden Zeilen sehen:
+
+```
+05-15 19:07:11 INFO metabase.core :: Metabase Shutdown ...
+05-15 19:07:11 INFO metabase.core :: Metabase Shutdown COMPLETE
+```
+
+dann hat sich die Metabase selbst abgeschaltet.
+
+**So beheben Sie das Problem:** Überprüfen Sie die Docker-Container-Protokolle auf Fehler bei der Verbindung mit der Anwendungsdatenbank. Überprüfen Sie die Protokolle, um zu sehen, ob Metabase noch gestartet wird; der Befehl:
+
+```
+Docker logs -f CONTAINER_ID
+```
+
+können Sie die Protokolle sehen, während sie gedruckt werden.
+
+Wenn der Container beendet wird, bevor er fertig gestartet ist, könnte das Problem eine Zeitüberschreitung bei der Zustandsprüfung im Orchestrierungsdienst sein, der zum Starten des Containers verwendet wird, wie z. B. Docker Cloud.
+
+Wenn der Container _nicht_ von außen beendet wird, aber trotzdem nicht startet, ist dieses Problem wahrscheinlich nicht spezifisch für Docker. Wenn Sie ein von Metabase bereitgestelltes Image verwenden,öffnen Sie bitteein GitHub-Problem(https://github.com/metabase/metabase/issues/new/choose).
+
