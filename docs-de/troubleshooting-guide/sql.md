@@ -1,37 +1,50 @@
 ---
-title: Troubleshooting SQL questions
+Titel: Fehlersuche bei SQL-Fragen
 ---
 
-# Troubleshooting SQL questions
 
-## Incorrect results
+# Fehlersuche bei SQL-Fragen
 
-- [Aggregations (counts, sums, etc.) are wrong](https://www.metabase.com/learn/sql/debugging-sql/sql-logic#aggregated-results-counts-sums-etc-are-wrong).
-- [Results have duplicated rows](https://www.metabase.com/learn/sql/debugging-sql/sql-logic-duplicated-data).
-- [Results are missing rows](https://www.metabase.com/learn/sql/debugging-sql/sql-logic-missing-data).
-- [Dates and times are wrong](./timezones.md).
-- [Data isn't up to date](./sync-fingerprint-scan.md).
 
-## SQL variables and field filters
+## Falsche Ergebnisse
 
-- [Filter widget doesn't display a dropdown menu of values](../data-modeling/metadata-editing.md#changing-a-search-box-filter-to-a-dropdown-filter).
-- [SQL query contains table aliases](../questions/native-editor/sql-parameters.md#field-filters-dont-work-with-table-aliases).
-- [SQL syntax error: missing `FROM` clause](../questions/native-editor/sql-parameters.md#field-filters-must-be-connected-to-fields-included-in-the-query).
-- [No option to display a filter widget](../questions/native-editor/sql-parameters.md#field-filter-compatible-types).
-- [I don't know the SQL variable type](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/sql-in-metabase/sql-variables)
 
-## SQL syntax errors
+- [Aggregationen (Zählungen, Summen usw.) sind falsch](https://www.metabase.com/learn/sql/debugging-sql/sql-logic#aggregated-results-counts-sums-etc-are-wrong).
+- [Ergebnisse haben doppelte Zeilen](https://www.metabase.com/learn/sql/debugging-sql/sql-logic-duplicated-data).
+- [Inden Ergebnissen fehlen Zeilen](https://www.metabase.com/learn/sql/debugging-sql/sql-logic-missing-data).
+- [Datums- und Zeitangaben sind falsch](./timezones.md).
+- [Daten sind nicht aktuell](./sync-fingerprint-scan.md).
 
-For some common error messages, see [error messages](./error-message.md).
 
-## Working with JSON in SQL
+## SQL-Variablen und Feldfilter
 
-Using the `?` operator for working with JSON in SQL may cause queries to fail. On PostgreSQL, you can use `??` instead.
 
-## Are you still stuck?
+- [Filter-Widget zeigt kein Dropdown-Menü mit Werten an](../data-modeling/metadata-editing.md#changing-a-search-box-filter-to-a-dropdown-filter).
+- [SQL-Abfrage enthält Tabellen-Aliase](../questions/native-editor/sql-parameters.md#field-filters-dont-work-with-table-aliases).
+- [SQL-Syntaxfehler: fehlende "FROM" -Klausel](../questions/native-editor/sql-parameters.md#field-filters-must-be-connected-to-fields-included-in-the-query).
+- [Keine Option zur Anzeige eines Filter-Widgets](../questions/native-editor/sql-parameters.md#field-filter-compatible-types).
+- [Ich kenne den SQL-Variablentyp nicht](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/sql-in-metabase/sql-variables)
 
-If you can’t solve your problem using the troubleshooting guides:
 
-- Search or ask the [Metabase community](https://discourse.metabase.com/).
-- Search for [known bugs or limitations](./known-issues.md).
-- Hire a [Metabase Expert](https://www.metabase.com/partners/){:target="\_blank"}.
+## SQL-Syntaxfehler
+
+
+Einige häufige Fehlermeldungen finden Sie unter [error messages](./error-message.md).
+
+
+## Arbeiten mit JSON in SQL
+
+
+Die Verwendung des Operators `?` für die Arbeit mit JSON in SQL kann zum Scheitern von Abfragen führen. Bei PostgreSQL können Sie stattdessen `??` verwenden.
+
+
+## Stecken Sie immer noch fest?
+
+
+Wenn Sie Ihr Problem nicht mit Hilfe der Anleitungen zur Fehlerbehebung lösen können:
+
+
+- Suchen oder fragen Sie die [Metabase-Community](https://discourse.metabase.com/).
+- Suchen Sie nach [bekannten Fehlern oder Einschränkungen](./known-issues.md).
+- Mieten Sie einen [Metabase Expert](https://www.metabase.com/partners/){:target="\_blank"}.
+
