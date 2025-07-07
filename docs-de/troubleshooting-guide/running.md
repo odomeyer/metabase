@@ -1,96 +1,97 @@
 ---
-title: Troubleshooting memory and JVM issues
----
 
-# Troubleshooting memory and JVM issues
 
-Metabase runs on the Java Virtual Machine (JVM), and depending on how it's configured, it may use the server's filesystem to store some information. Problems with either the JVM or the filesystem can therefore prevent Metabase from running.
+Angesichts der obigen Erklärung, wie die JVM mit Speicher umgeht, sollten Sie bei Leistungsproblemen mit der Metabase, die nicht auf Ihr Data Warehouse zurückzuführen sind, auf die folgenden Warnhinweise achten:
 
-## Java version
 
-Metabase should be run on Java version 21 (older versions are unsupported).
+## Metabase stürzt aufgrund von Java-Heap-Speicherplatz ab `OutOfMemoryError`
 
-When searching for versions of Java, always use the latest minor version of the major version you're choosing. E.g., when choosing between Java 21.0.1 and Java 21.0.4, choose the latest version (in this case, 21.0.4).
 
-We recommend running only one version of Java on a single server, because running more than one version of Java on a single server can cause application problems. If you need to run multiple applications that each require a different java version, consider using containers (as containers were meant to solve this problem). Otherwise, just make sure that you can run all your applications with a single Java version.
+Die JVM kann normalerweise herausfinden, wie viel RAM auf dem System verfügbar ist, und automatisch eine sinnvolle Obergrenze für die Heap-Speicherverwendung festlegen. In bestimmten Shared-Hosting-Umgebungen funktioniert dies jedoch nicht immer wie gewünscht. Das übliche Symptom dafür ist eine Fehlermeldung wie:
 
-## Metabase's memory usage
-
-Metabase ships as a JAR file that runs on the Java Virtual Machine (JVM).
-
-It's important to distinguish _Metabase's_ memory usage from the _JVM's_ memory usage.
-
-The JVM will consume a constant amount of memory. By default, the JVM will use about one fourth of a machine's RAM (though you can [change how much RAM you want the JVM to use](#allocating-more-memory-to-the-jvm)).
-
-JVM applications (like Metabase) will consume and release the RAM allocated to the JVM. The JVM, however, won't release unused RAM to the machine; the JVM's memory use will be constant.
-
-So on a machine with 8 GB of RAM, by default the JVM will use 2 GB of RAM. Metabase will use some or all of these 2 GBs of JVM-allocated RAM, depending on Metabase's activity. But from the machine's perspective, the JVM will always be using that allocated 2GB of RAM, even when Metabase is only using a fraction of that allocated RAM.
-
-## Diagnosing memory issues
-
-Given the above explanation of how the JVM handles memory, if you're having performance issues with Metabase that you don't think are due to your data warehouse, you'll want to check for these red flags:
-
-## Metabase crashes due to Java heap space `OutOfMemoryError`
-
-The JVM can normally figure out how much RAM is available on the system and automatically set a sensible upper bound for heap memory usage. On certain shared hosting environments, however, this doesn't always work as desired. The usual symptom of this is an error message like:
 
 ```
-java.lang.OutOfMemoryError: Java heap space
+java.lang.OutOfMemoryError: Java Heap-Speicher
 ```
 
-If you're seeing this "Out of memory" (OOM) error, you'll need to [allocate more memory to the JVM](#allocating-more-memory-to-the-jvm).
 
-### When viewing memory usage over time as a line chart, you see a sawtooth pattern
+Wenn Sie diesen "Out of memory" (OOM) Fehler sehen, müssen Sie [der JVM mehr Speicher zuweisen](#allocating-more-memory-to-the-jvm).
 
-You can use tools to view how Metabase uses the memory available to it over time. Check out:
 
-- [Observability with Prometheus](../installation-and-operation/observability-with-prometheus.md)
-- [Monitoring your Metabase](../installation-and-operation/monitoring-metabase.md)
+### Wenn Sie die Speichernutzung über die Zeit als Liniendiagramm betrachten, sehen Sie ein Sägezahnmuster.
 
-The specific Prometheus metric you need to check is jvm_memory_bytes_used{area="heap"}
 
-A red flag to look out for: the sawtooth pattern. Metabase will quickly consume a lot of memory, which will trigger garbage collection, which frees up memory, which Metabase quickly consumes again. This up-down-up-down pattern of memory usage is the signature of frequent garbage collection cycles. The garbage collection will tie up CPU cycles, which can slow down your application.
+Sie können Tools verwenden, um zu sehen, wie die Metabase den ihr zur Verfügung stehenden Speicher im Laufe der Zeit nutzt. Sehen Sie sich das an:
 
-If you're seeing this, you'll need to [increase the amount of memory allocated to the JVM](#allocating-more-memory-to-the-jvm).
 
-## Allocating more memory to the JVM
+- [Beobachtbarkeit mit Prometheus](../installation-und-betrieb/beobachtbarkeit-mit-prometheus.md)
+- [Überwachung der Metabasis](../installation-und-betrieb/monitoring-metabase.md)
 
-You can set a JVM option to allocate more memory to the JVM's heap. For example, your Java runtime might use the `-X` flag to do this:
 
-```sh
+Die spezifische Prometheus-Metrik, die Sie überprüfen müssen, ist jvm_memory_bytes_used{area="heap"}
+
+
+Eine rote Flagge, auf die Sie achten sollten: das Sägezahnmuster. Die Metabase verbraucht schnell viel Speicher, was die Garbage Collection auslöst, die wiederum Speicher freigibt, den die Metabase schnell wieder verbraucht. Dieses Auf-ab-auf-ab-Muster der Speichernutzung ist das Kennzeichen von häufigen Garbage Collection-Zyklen. Die Garbage Collection bindet CPU-Zyklen, was Ihre Anwendung verlangsamen kann.
+
+
+Wenn Sie dies feststellen, müssen Sie [die Menge des der JVM zugewiesenen Speichers erhöhen](#allocating-more-memory-to-the-jvm).
+
+
+## Mehr Speicher für die JVM zuweisen
+
+
+Sie können eine JVM-Option setzen, um der JVM mehr Speicher auf dem Heap zuzuweisen. Zum Beispiel könnte Ihre Java-Laufzeitumgebung die Option `-X` verwenden, um dies zu tun:
+
+
+``sh
 java -Xmx2g -jar metabase.jar
 ```
 
-Adjust the memory allocation upward until Metabase seems happy, but make sure to keep the number lower than the total amount of RAM available on your machine, because Metabase won't be the only process running. Leaving 1 to 2 GB of RAM for other processes on the machine is generally enough, so you might set `-Xmx` to `1g` on a machine with 2 GB of RAM, `2g` on one with 4 GB of RAM, and so on. You may need to experiment with this settings to find one that makes Metabase and everything else play nicely together (and this experimentation may require upgrading to a machine with more memory).
 
-You can also use the environment variable `JAVA_OPTS` to set JVM args instead of passing them directly to `java`. This is particularly useful when running the Docker image:
+Passen Sie die Speicherzuteilung nach oben an, bis Metabase zufrieden zu sein scheint. Achten Sie aber darauf, dass die Zahl niedriger ist als der gesamte auf Ihrem Rechner verfügbare Arbeitsspeicher, da Metabase nicht der einzige laufende Prozess sein wird. In der Regel reichen 1 bis 2 GB RAM für andere Prozesse auf dem Rechner aus, so dass Sie `-Xmx` auf einem Rechner mit 2 GB RAM auf ` 1g`, auf einem Rechner mit 4 GB RAM auf ` 2g` und so weiter einstellen können. Möglicherweise müssen Sie mit diesen Einstellungen experimentieren, um eine Einstellung zu finden, bei der Metabase und alles andere gut zusammenspielen (und dieses Experimentieren kann ein Upgrade auf einen Rechner mit mehr Arbeitsspeicher erfordern).
+
+
+Sie können auch die Umgebungsvariable `JAVA_OPTS` verwenden, um JVM-Args zu setzen, anstatt sie direkt an `java` zu übergeben. Dies ist besonders nützlich, wenn Sie das Docker-Image ausführen:
+
 
 ```sh
 docker run -d -p 3000:3000 -e "JAVA_OPTS=-Xmx2g" metabase/metabase
 ```
 
-## Diagnosing memory issues causing OutOfMemoryErrors
 
-If the Metabase instance starts and runs for a significant amount of time before running out of memory, there might be a specific event, such as a large query, triggering the `OutOfMemoryError`. One way to diagnose where the memory is being used is to enable heap dumps when an `OutOfMemoryError` is triggered. To enable this, you need to add two flags to the `java` invocation:
+## Diagnose von Speicherproblemen, die OutOfMemoryErrors verursachen
+
+
+Wenn die Metabase-Instanz gestartet wird und für eine beträchtliche Zeit läuft, bevor sie keinen Speicher mehr hat, gibt es möglicherweise ein bestimmtes Ereignis, wie z. B. eine große Abfrage, das den`OutOfMemoryError` auslöst. Eine Möglichkeit zu diagnostizieren, wo der Speicher verwendet wird, ist die Aktivierung von Heap-Dumps, wenn ein "OutOfMemoryError" ausgelöst wird. Um dies zu ermöglichen, müssen Sie zwei Flags zum`java`-Aufruf hinzufügen:
+
 
 ```
 java -Xmx2g -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/path/to/a/directory -jar metabase-jar
 ```
 
-The `-XX:HeapDumpPath` flag specifies where to put the dump---the current directory is the default. When an `OutOfMemoryError` occurs, the JVM will dump an `hprof` file to the directory specified. These `hprof` files can be large (the size of the `-Xmx` argument) so make sure your disk has enough space. These `hprof` files can be read with many different tools, such as `jhat` (which is included with the JDK) or the [Eclipse Memory Analyzer Tool][eclipse-memory-analyzer].
 
-## Metabase cannot read or write from a file or folder (IOError)
+Das `-XX:HeapDumpPath` Flag gibt an, wo der Dump abgelegt werden soll - das aktuelle Verzeichnis ist die Vorgabe. Wenn ein "OutOfMemoryError" auftritt, wird die JVM eine "hprof" -Datei in das angegebene Verzeichnis ablegen. Diese "hprof" -Dateien können groß sein (die Größe des "-Xmx"- Arguments), also stellen Sie sicher, dass Ihre Festplatte genug Platz hat. Diese "hprof" -Dateien können mit vielen verschiedenen Tools gelesen werden, z.B. mit "jhat" (das im JDK enthalten ist) oder dem [Eclipse Memory Analyzer Tool][eclipse-memory-analyzer].
 
-If you see an error regarding file permissions, like Metabase being unable to read a SQLite database or a custom GeoJSON map file, check out the section "Metabase can't read to/from a file or directory" in our [Docker troubleshooting guide](./docker.md).
 
-## WARNING: sun.reflect.Reflection.getCallerClass is not supported
+## Metabase kann nicht von einer Datei oder einem Ordner lesen oder schreiben (IOError)
 
-Don't worry about it.
+
+Wenn Sie einen Fehler in Bezug auf Dateiberechtigungen sehen, z. B. dass Metabase eine SQLite-Datenbank oder eine benutzerdefinierte GeoJSON-Kartendatei nicht lesen kann, lesen Sie den Abschnitt "Metabase can't read to/from a file or directory" in unserem [Docker troubleshooting guide](./docker.md).
+
+
+## WARNUNG: sun.reflect.Reflection.getCallerClass wird nicht unterstützt
+
+
+Machen Sie sich darüber keine Sorgen.
+
 
 ```
-WARNING: sun.reflect.Reflection.getCallerClass is not supported. This will impact performance.
+WARNUNG: sun.reflect.Reflection.getCallerClass wird nicht unterstützt. Dies wird die Leistung beeinträchtigen.
 ```
 
-If you see the above error, ignore it. Your Metabase is perfectly healthy and performing as it should.
+
+Wenn Sie den obigen Fehler sehen, ignorieren Sie ihn. Ihre Metabase ist vollkommen gesund und funktioniert wie sie sollte.
+
 
 [eclipse-memory-analyzer]: https://www.eclipse.org/mat/
+
