@@ -1,31 +1,40 @@
 ---
-title: MBQL Library changelog
+Titel: MBQL Bibliothek changelog
 ---
 
-# MBQL Library Changelog
 
-Changes made to the library API for manipulating MBQL queries, found in `metabase.lib.js`. The latest API documentation
-can be found [here](https://metabase-dev-docs.github.io/metabase/metabase.lib.js.html).
+# MBQL Bibliothek Changelog
 
-This library is mainly used by Metabase's own frontend, but it is treated as a proper API surface which is versioned
-and documented in this changelog.
+
+Änderungen an der API der Bibliothek zur Bearbeitung von MBQL-Abfragen, zu finden in `metabase.lib.js`. Die neueste API-Dokumentation
+finden Sie [hier](https://metabase-dev-docs.github.io/metabase/metabase.lib.js.html).
+
+
+Diese Bibliothek wird hauptsächlich vom Metabase-eigenen Frontend verwendet, aber sie wird als eigene API-Oberfläche behandelt, die versioniert
+und in diesem Changelog dokumentiert ist.
+
 
 ## Metabase 0.50.0
 
-- Created this file and began versioning this API.
-- New function `as-returned` has been added. It handles a tricky case when adding filters or expressions to a query
-  with aggregations.
 
-  Suppose we have a query with aggregations in its last stage. When adding a filter or expression to that stage, it's
-  applied **before** the aggregations. That may be the desired behavior, but if we want a filter or custom expression
-  based on the aggregations and breakouts in the last stage, there was no good support in this API.
+- Diese Datei wurde erstellt und die Versionierung dieser API begonnen.
+- Neue Funktion ` as-returned` wurde hinzugefügt. Sie behandelt einen kniffligen Fall beim Hinzufügen von Filtern oder Ausdrücken zu einer Abfrage
+mit Aggregationen.
 
-  `as-returned` looks at the query and stage, and shifts to a later stage if necessary. If a later stage is needed but
-  we were already on the last stage, a new empty stage is appended.
 
-- New functions `column-extractions`, `extract`, and `extraction-expression` have been added.
-  - `column-extractions` returns a list of _extractions_, which are possible custom expressions we can derive from a
-    given column. For example, getting the host or base domain name from a URL or email address, or the day of the week
-    from a date or datetime.
-  - `extract` applies an extraction to the query.
-  - `extraction-expression` returns the expression for the extraction, allowing further editing.
+Angenommen, wir haben eine Abfrage mit Aggregationen in der letzten Stufe. Wenn ein Filter oder Ausdruck zu dieser Stufe hinzugefügt wird, wird er
+**vor** den Aggregationen angewendet. Das mag das gewünschte Verhalten sein, aber wenn wir einen Filter oder benutzerdefinierten Ausdruck
+auf der Grundlage der Aggregationen und Breakouts in der letzten Stufe wünschen, bietet diese API keine gute Unterstützung.
+
+
+as-returned" prüft die Abfrage und die Stufe und wechselt bei Bedarf zu einer späteren Stufe. Wenn eine spätere Stufe erforderlich ist, aber
+wir bereits auf der letzten Stufe waren, wird eine neue leere Stufe angehängt.
+
+
+- Neue Funktionen`Spalten-Extraktionen`,`Extrakt` und`Extraktions-Ausdruck` wurden hinzugefügt.
+- DieFunktion "column-extractions" gibt eine Liste von "extractions" zurück, die mögliche benutzerdefinierte Ausdrücke sind, die wir von einer bestimmten Spalte ableiten können.
+Spalte ableiten können. Zum Beispiel kann der Host- oder Basisdomänenname aus einer URL oder E-Mail-Adresse oder der Wochentag
+aus einem Datum oder einer Zeitangabe.
+- extract` wendet eine Extraktion auf die Abfrage an.
+-extraction-expression" gibt den Ausdruck für die Extraktion zurück und ermöglicht die weitere Bearbeitung.
+
