@@ -1,106 +1,177 @@
 ---
-title: ClickHouse
-description: Learn how to connect Metabase to your ClickHouse database, including connection settings, database selection, and SSL configuration.
+Titel: ClickHouse
+Beschreibung: Erfahren Sie, wie Sie Metabase mit Ihrer ClickHouse-Datenbank verbinden, einschließlich Verbindungseinstellungen, Datenbankauswahl und SSL-Konfiguration.
 ---
+
 
 # ClickHouse
 
-To add a database connection, click on the **gear** icon in the top right, and navigate to **Admin settings** > **Databases** > **Add a database**.
 
-You can edit these settings at any time. Just remember to save your changes.
+Um eine Datenbankverbindung hinzuzufügen, klicken Sie auf das **Zahnradsymbol** oben rechts, und navigieren Sie zu **Verwaltungseinstellungen** > **Datenbanken** > **Datenbank hinzufügen**.
 
-## Connection and Sync
 
-After connecting to a database, you'll see the "Connection and sync" section that displays the current connection status and options to manage your database connection.
+Sie können diese Einstellungen jederzeit bearbeiten. Denken Sie nur daran, Ihre Änderungen zu speichern.
 
-Here you can [sync the database schema and rescan field values](../sync-scan.md), and edit connection details.
 
-## Edit connection details
+## Verbindung und Synchronisierung
 
-To access or modify your database connection settings, click the **Edit connection details** button.
 
-### Display name
+Nachdem Sie eine Verbindung zu einer Datenbank hergestellt haben, sehen Sie den Abschnitt "Verbindung und Synchronisierung", der den aktuellen Verbindungsstatus und Optionen zur Verwaltung Ihrer Datenbankverbindung anzeigt.
 
-The display name for the database in the Metabase interface.
+
+Hier können Sie [das Datenbankschema synchronisieren und Feldwerte neu scannen](../sync-scan.md) und Verbindungsdetails bearbeiten.
+
+
+## Verbindungsdetails bearbeiten
+
+
+Um auf Ihre Datenbankverbindungseinstellungen zuzugreifen oder sie zu ändern, klicken Sie auf die Schaltfläche **Verbindungsdetails bearbeiten**.
+
+
+### Anzeigename
+
+
+Der Anzeigename für die Datenbank in der Metabase-Schnittstelle.
+
 
 ### Host
 
-Your database's IP address (e.g., `98.137.149.56`) or its domain name (e.g., `name.database.com`).
 
-### Port
+Die IP-Adresse Ihrer Datenbank (z. B. `98.137.149.56`) oder ihr Domänenname (z. B. `name.datenbank.com`).
 
-The database port (e.g., `8123`).
 
-### Username
+### Anschluss
 
-The database username for the account that you want to use to connect to your database. You can set up multiple connections to the same database using different user accounts to connect to the same database, each with different sets of [privileges](../users-roles-privileges.md).
 
-### Password
+Der Datenbank-Port (z.B. `8123`).
 
-The password for the username that you use to connect to the database.
 
-### Databases
+### Benutzername
 
-Include all of the database you want to be able to query in Metabase. Separate databases with the space character, e.g., `db1 db2 db3`.
+
+Der Datenbank-Benutzername für das Konto, das Sie für die Verbindung zu Ihrer Datenbank verwenden möchten. Sie können mehrere Verbindungen zu derselben Datenbank einrichten, indem Sie verschiedene Benutzerkonten mit unterschiedlichen [Privilegien] verwenden(../users-roles-privileges.md).
+
+
+### Passwort
+
+
+Das Passwort für den Benutzernamen, den Sie für die Verbindung zur Datenbank verwenden.
+
+
+### Datenbanken
+
+
+Geben Sie alle Datenbanken an, die Sie in Metabase abfragen möchten. Trennen Sie die Datenbanken mit einem Leerzeichen, z.B. `db1 db2 db3`.
+
 
 ### Scan all databases
 
-Scan all tables from all available ClickHouse databases except the system ones.
 
-### Use a secure connection (SSL)
+Scannen Sie alle Tabellen aller verfügbaren ClickHouse-Datenbanken mit Ausnahme der Systemdatenbanken.
 
-See [SSL certificates](../ssl-certificates.md).
 
-### Use an SSH-tunnel
+### Verwenden Sie eine sichere Verbindung (SSL)
 
-If a direct connection to your database isn't possible, you may want to use an SSH tunnel. See [SSH tunneling](../ssh-tunnel.md).
 
-### Disable system wide proxy settings
+Siehe [SSL-Zertifikate](../ssl-certificates.md).
 
-System-wide proxy settings are disabled by default. You can disable them with this toggle.
 
-### ClickHouse settings (comma-separated)
+### Verwenden Sie einen SSH-Tunnel
 
-Here you can add a string to specify additional ClickHouse settings. Separate settings with a comma, like so:
+
+Wenn eine direkte Verbindung zu Ihrer Datenbank nicht möglich ist, können Sie einen SSH-Tunnel verwenden. Siehe [SSH-Tunneling](../ssh-tunnel.md).
+
+
+### Systemweite Proxy-Einstellungen deaktivieren
+
+
+Die systemweiten Proxy-Einstellungen sind standardmäßig deaktiviert. Sie können sie mit diesem Schalter deaktivieren.
+
+
+### ClickHouse-Einstellungen (Komma-getrennt)
+
+
+Hier können Sie eine Zeichenkette hinzufügen, um zusätzliche ClickHouse-Einstellungen anzugeben. Trennen Sie die Einstellungen mit einem Komma, etwa so:
+
 
 ```
 allow_experimental_analyzer=1,max_result_rows=100
 ```
 
-### Max open HTTP connections in the JDBC driver (default: 100)
 
-You can limit the number of HTTP connections in the JDBC driver used to connect Metabase to ClickHouse.
+### Maximal offene HTTP-Verbindungen im JDBC-Treiber (Standard: 100)
 
-### Additional JDBC connection string options
 
-You can append options to the JDBC connection string. Separate options with `&`, like so:
+Sie können die Anzahl der HTTP-Verbindungen im JDBC-Treiber begrenzen, der für die Verbindung zwischen Metabase und ClickHouse verwendet wird.---
+Titel: ClickHouse
+Beschreibung: Erfahren Sie, wie Sie Metabase mit Ihrer ClickHouse-Datenbank verbinden, einschließlich Verbindungseinstellungen, Datenbankauswahl und SSL-Konfiguration.
+---
+
+# ClickHouse
+
+Um eine Datenbankverbindung hinzuzufügen, klicken Sie auf das **Zahnradsymbol** oben rechts, und navigieren Sie zu **Verwaltungseinstellungen** > **Datenbanken** > **Datenbank hinzufügen**.
+
+Sie können diese Einstellungen jederzeit bearbeiten. Denken Sie nur daran, Ihre Änderungen zu speichern.
+
+## Verbindung und Synchronisierung
+
+Nachdem Sie eine Verbindung zu einer Datenbank hergestellt haben, sehen Sie den Abschnitt "Verbindung und Synchronisierung", der den aktuellen Verbindungsstatus und Optionen zur Verwaltung Ihrer Datenbankverbindung anzeigt.
+
+Hier können Sie [das Datenbankschema synchronisieren und Feldwerte neu scannen](../sync-scan.md) und Verbindungsdetails bearbeiten.
+
+## Verbindungsdetails bearbeiten
+
+Um auf Ihre Datenbankverbindungseinstellungen zuzugreifen oder sie zu ändern, klicken Sie auf die Schaltfläche **Verbindungsdetails bearbeiten**.
+
+### Anzeigename
+
+Der Anzeigename für die Datenbank in der Metabase-Schnittstelle.
+
+### Host
+
+Die IP-Adresse Ihrer Datenbank (z. B. `98.137.149.56`) oder ihr Domänenname (z. B. `name.datenbank.com`).
+
+### Anschluss
+
+Der Datenbank-Port (z.B. `8123`).
+
+### Benutzername
+
+Der Datenbank-Benutzername für das Konto, das Sie für die Verbindung zu Ihrer Datenbank verwenden möchten. Sie können mehrere Verbindungen zu derselben Datenbank einrichten, indem Sie verschiedene Benutzerkonten mit unterschiedlichen [Privilegien] verwenden(../users-roles-privileges.md).
+
+### Passwort
+
+Das Passwort für den Benutzernamen, den Sie für die Verbindung zur Datenbank verwenden.
+
+### Datenbanken
+
+Geben Sie alle Datenbanken an, die Sie in Metabase abfragen möchten. Trennen Sie die Datenbanken mit einem Leerzeichen, z.B. `db1 db2 db3`.
+
+### Scan all databases
+
+Scannen Sie alle Tabellen aller verfügbaren ClickHouse-Datenbanken mit Ausnahme der Systemdatenbanken.
+
+### Verwenden Sie eine sichere Verbindung (SSL)
+
+Siehe [SSL-Zertifikate](../ssl-certificates.md).
+
+### Verwenden Sie einen SSH-Tunnel
+
+Wenn eine direkte Verbindung zu Ihrer Datenbank nicht möglich ist, können Sie einen SSH-Tunnel verwenden. Siehe [SSH-Tunneling](../ssh-tunnel.md).
+
+### Systemweite Proxy-Einstellungen deaktivieren
+
+Die systemweiten Proxy-Einstellungen sind standardmäßig deaktiviert. Sie können sie mit diesem Schalter deaktivieren.
+
+### ClickHouse-Einstellungen (Komma-getrennt)
+
+Hier können Sie eine Zeichenkette hinzufügen, um zusätzliche ClickHouse-Einstellungen anzugeben. Trennen Sie die Einstellungen mit einem Komma, etwa so:
 
 ```
-connection_timeout=1000&socket_timeout=300000
+allow_experimental_analyzer=1,max_result_rows=100
 ```
 
-### Re-run queries for simple explorations
+### Maximal offene HTTP-Verbindungen im JDBC-Treiber (Standard: 100)
 
-Turn this option **OFF** if people want to click **Run** (the play button) before applying any [Summarize](../../questions/query-builder/summarizing-and-grouping.md) or filter selections.
+Sie können die Anzahl der HTTP-Verbindungen im JDBC-Treiber begrenzen, der für die Verbindung zwischen Metabase und ClickHouse verwendet wird.
 
-By default, Metabase will execute a query as soon as you choose an grouping option from the **Summarize** menu or a filter condition from the [drill-through menu](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/drill-through). If your database is slow, you may want to disable re-running to avoid loading data on each click.
-
-### Choose when syncs and scans happen
-
-See [syncs and scans](../sync-scan.md#choose-when-syncs-and-scans-happen).
-
-### Periodically refingerprint tables
-
-> Periodic refingerprinting will increase the load on your database.
-
-Turn this option **ON** to scan a sample of values every time Metabase runs a [sync](../sync-scan.md#how-database-syncs-work).
-
-A fingerprinting query examines the first 10,000 rows from each column and uses that data to guesstimate how many unique values each column has, what the minimum and maximum values are for numeric and timestamp columns, and so on. If you leave this option **OFF**, Metabase will only fingerprint your columns once during setup.
-
-## Model features
-
-There aren't (yet) any model features for ClickHouse.
-
-## Danger zone
-
-See [Danger zone](../danger-zone.md).
