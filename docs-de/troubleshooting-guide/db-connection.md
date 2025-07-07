@@ -1,123 +1,74 @@
 ---
-title: Troubleshooting database connections
+Titel: Fehlersuche bei Datenbankverbindungen
 redirect_from:
-  - /docs/latest/troubleshooting-guide/datawarehouse
+- /docs/latest/troubleshooting-guide/datawarehouse
 ---
 
-# Troubleshooting database connections
 
-If you can't connect to your database, you'll need to figure out if the problem is happening with Metabase or your database server.
+# Fehlersuche bei Datenbankverbindungen
 
-If your database connection is successful, but the tables aren't showing up in the [Data Browser](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/data-browser), go to [Troubleshooting missing tables](./cant-see-tables.md).
 
-## Troubleshooting connections to Metabase
+Wenn Sie keine Verbindung zu Ihrer Datenbank herstellen können, müssen Sie herausfinden, ob das Problem mit der Metabase oder Ihrem Datenbankserver zusammenhängt.
 
-1. Go to **Admin** > **Databases** and select your database to confirm that your connection hasn’t been changed or deleted.
 
-   - If Metabase hasn't started syncing with your database, click **Sync database schema**.
+Wenn Ihre Datenbankverbindung erfolgreich ist, aber die Tabellen nicht im [Data Browser](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/data-browser) angezeigt werden, gehen Sie zu [Troubleshooting missing tables](./cant-see-tables.md).
 
-   - If Metabase is taking a long time to sync, go to [Troubleshooting syncs and scans](./sync-fingerprint-scan.md).
 
-2. Go to **Admin** > **Troubleshooting** > **Logs** to check if Metabase failed to sync [due to an error](#common-database-connection-errors).
+## Fehlersuche bei Verbindungen zur Metabase
 
-   - If the logs feel overwhelming, check out [How to read the server logs](./server-logs.md).
 
-If you don't have access to the Metabase Admin panel, you'll need to ask the person who set up your Metabase.
+1. Gehen Sie zu**Admin** >**Datenbanken** und wählen Sie Ihre Datenbank aus, um sicherzustellen, dass Ihre Verbindung nicht geändert oder gelöscht wurde.
 
-## Troubleshooting connections to the database server
 
-1. [Check that the data warehouse server is running](#checking-the-server-status).
+- Wenn Metabase noch nicht mit der Synchronisierung mit Ihrer Datenbank begonnen hat, klicken Sie auf**Datenbankschema synchronisieren**.
 
-2. Check if you can connect to the data warehouse from another client using the machine that you’re running Metabase on.
 
-   - If you can access the server from a bastion host or another machine, [check if your Metabase's IP address has access to your database server](#checking-your-server-access).
+- Wenn die Metabase für die Synchronisierung viel Zeit benötigt, gehen Sie zu [Troubleshooting syncs and scans](./sync-fingerprint-scan.md).
 
-   - If you're running Metabase Cloud, check that you've [whitelisted our IP addresses](../cloud/ip-addresses-to-whitelist.md).
 
-3. Make sure that Metabase is using a role with the necessary privileges to connect to your data warehouse. See [Granting database privileges](../databases/users-roles-privileges.md).
+2. Gehen Sie zu **Admin** > **Fehlerbehebung** > **Protokolle**, um zu überprüfen, ob die Metabase nicht synchronisiert werden konnte [aufgrund eines Fehlers](#common-database-connection-errors).
 
-The steps above will help you detect whether the problem is occurring outside of Metabase. To _fix_ problems with your database server, you'll need to refer to the docs for your database or cloud service. Remember to [test your database connection](#testing-the-connection-status) after you make changes.
 
-If you don't have access to the data warehouse server, you’ll need to ask the person who manages your database or data warehouse.
+- Wenn Sie mit den Protokollen überfordert sind, lesen Sie [How to read the server logs](./server-logs.md).
 
-## Troubleshooting BigQuery and Google Drive connections
 
-See [Troubleshooting BigQuery and Google Drive connections](./bigquery-drive.md)
+Wenn Sie keinen Zugriff auf das Metabase Admin Panel haben, müssen Sie die Person fragen, die Ihre Metabase eingerichtet hat.
 
-## Common database connection errors
 
-### Your question took too long
+## Fehlersuche bei Verbindungen zum Datenbankserver
 
-If you see this error message in the Metabase interface, go to [Troubleshooting timeouts](./timeout.md).
 
-### Connections cannot be acquired from the underlying database
+1. [Prüfen Sie, ob der Data Warehouse Server läuft](#checking-the-server-status).
 
-If you see this error messages in the [logs](./server-logs.md) (**Admin** > **Troubleshooting** > **Logs**):
 
-1. Go to **Admin** > **Databases** and select your database.
-2. Go to **Advanced options** > **Additional JDBC connection string options** and add `trustServerCertificate=true`.
-3. Click **Save**.
+2. Prüfen Sie, ob Sie von einem anderen Client aus eine Verbindung zum Data Warehouse herstellen können, indem Sie den Rechner verwenden, auf dem Sie Metabase ausführen.
 
-The version of Metabase you're using to connect to your data warehouse must support your database's version. For example, Metabase versions older than 46 lack support for Microsoft SQL Server 2022.
 
-## Testing a database connection
+- Wenn Sie von einem Bastion-Host oder einem anderen Rechner aus auf den Server zugreifen können, [überprüfen Sie, ob die IP-Adresse Ihrer Metabase Zugriff auf Ihren Datenbankserver hat](#checking-your-server-access).
 
-As you work through the troubleshooting steps in this guide, you can check if each component is working as expected:
 
-- [Server status](#checking-the-server-status)
-- [Server access](#checking-your-server-access)
-- [Connection status](#testing-the-connection-status)
+- Wenn Sie Metabase Cloud verwenden, überprüfen Sie, ob Sieunsere IP-Adressen auf eine Whitelist gesetzt haben(../cloud/ip-addresses-to-whitelist.md).
 
-### Checking the server status
 
-If you’re using a hosted database service, go to the console and verify its status.
+3. Vergewissern Sie sich, dass die Metabase eine Rolle mit den erforderlichen Berechtigungen für die Verbindung zu Ihrem Data Warehouse verwendet. Siehe [Erteilen von Datenbankprivilegien](../databases/users-roles-privileges.md).
 
-If you have direct access to a command-line interface, log in and make sure that your database is running and accepting queries.
 
-### Checking your server access
+Anhand der obigen Schritte können Sie feststellen, ob das Problem außerhalb der Metabase auftritt. Um_ Probleme mit Ihrem Datenbankserverzu beheben, müssen Sie die Dokumentation Ihrer Datenbank oder Ihres Cloud-Dienstes konsultieren. Denken Sie daran,Ihre Datenbankverbindung zu [testen](#testing-the-connection-status), nachdem Sie Änderungen vorgenommen haben.
 
-To verify that your Metabase's IP address can access the database server:
 
-1. Use the [netcat](https://en.wikipedia.org/wiki/Netcat) command `nc` (or your operating system’s equivalent) to check if you can connect to the host on a given port. Note that different databases use different ports by default.
+Wenn Sie keinen Zugriff auf den Data-Warehouse-Server haben, müssen Sie die Person fragen, die Ihre Datenbank oder Ihr Data-Warehouse verwaltet.
 
-2. If you're running Metabase Cloud, check that you've [whitelisted our IP addresses](../cloud/ip-addresses-to-whitelist.md).
 
-3. Check that your database credentials are correct.
+## Fehlerbehebung bei BigQuery- und Google Drive-Verbindungen
 
-#### Example commands
 
-To verify the port used in a default PostgreSQL configuration (which listens on port 5432):
+Siehe [Fehlerbehebung bei BigQuery- und Google Drive-Verbindungen](./bigquery-drive.md)
 
-```
-nc -v your-db-host 5432
-```
 
-To verify your credentials for a PostgreSQL database (you'll see an error if the database name or the user/password are incorrect):
+## Häufige Datenbankverbindungsfehler
 
-```
-psql -h HOSTNAME -p PORT -d DATABASENAME -U DATABASEUSER
-```
 
-### Testing the connection status
+### Ihre Frage hat zu lange gedauert
 
-1. Go to the Metabase [SQL editor](../questions/native-editor/writing-sql.md).
-2. Test the connection to your database by running:
-   ```sql
-   SELECT 1
-   ```
 
-## Related problems
-
-- [My connection or query is timing out](./timeout.md).
-- [My database is slow](./db-performance.md).
-
-## Are you still stuck?
-
-If you can’t solve your problem using the troubleshooting guides:
-
-- Search or ask the [Metabase community][discourse].
-- Search for [known bugs or limitations][known-issues].
-- Hire a [Metabase Expert](https://www.metabase.com/partners/){:target="\_blank"}.
-
-[discourse]: https://discourse.metabase.com/
-[known-issues]: ./known-issues.md
+Wenn Sie diese Fehlermeldung in der Metabase-Schnittstelle sehen, gehen Sie zu [Troubleshooting timeouts](./timeout.md).
