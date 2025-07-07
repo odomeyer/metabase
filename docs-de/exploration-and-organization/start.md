@@ -1,45 +1,66 @@
 ---
-title: "Organization overview"
+Titel: "Organisationsübersicht"
 redirect_from:
-  - /docs/latest/exploration-and-organization
+- /docs/latest/exploration-und-organisation
 ---
 
-# Organization overview
 
-Tools for finding things and keeping your Metabase organized.
+# Überblick über die Organisation
 
-## [Basic exploration](./exploration.md)
 
-Find data, explore questions and dashboards, and bookmark your favorites.
+Werkzeuge zum Auffinden von Dingen und zur Organisation Ihrer Metabase.
 
-## [Collections](./collections.md)
 
-Organize questions, dashboards, and models with collections.
+## [Grundlegende Erkundung](./exploration.md)
 
-## [Keyboard shortcuts](./keyboard-shortcuts.md)
 
-A handy list of keyboard shortcuts to help you zip around Metabase.
+Finden Sie Daten, erkunden Sie Fragen und Dashboards, und setzen Sie Lesezeichen für Ihre Favoriten.
 
-## [History](./history.md)
 
-View changes to a question, dashboard or model and revert to previous versions.
+## [Sammlungen](./collections.md)
 
-## [Delete and restore items](./delete-and-restore.md)
 
-Move outdated outdated questions, models, and dashboards to trash, or delete them permanently.
+Organisieren Sie Fragen, Dashboards und Modelle mit Sammlungen.
 
-## [Data reference](./data-model-reference.md)
 
-Documentation that helps you understand your data sources: tables, columns, metrics, and more.
+## [Tastaturkürzel](./keyboard-shortcuts.md)
 
-## [Events and timelines](./events-and-timelines.md)
 
-Add events to timelines to annotate charts.
+Eine praktische Liste von Tastenkombinationen, mit denen Sie sich in der Metabase zurechtfinden.
 
-## [X-ray your data](./x-rays.md)
 
-X-rays are a fast and easy way to get automatic insights and explorations of your data.
+## [Verlauf](./history.md)
 
-## [Content verification](./content-verification.md)
 
-Admins can verify items to let people know the data is accurate and up to date.
+Änderungen an einer Frage, einem Dashboard oder einem Modell anzeigen und zu früheren Versionen zurückkehren.
+
+
+## [Elemente löschen und wiederherstellen](./delete-and-restore.md)
+
+
+Verschieben Sie veraltete Fragen, Modelle und Dashboards in den Papierkorb, oder löschen Sie sie endgültig.
+
+
+## [Datenreferenz](./data-model-reference.md)
+
+
+Dokumentation, die Ihnen hilft, Ihre Datenquellen zu verstehen: Tabellen, Spalten, Metriken und mehr.
+
+
+## [Ereignisse und Zeitleisten](./events-and-timelines.md)
+
+
+Fügen Sie Ereignisse zu Zeitleisten hinzu, um Diagramme zu kommentieren.
+
+
+## [Röntgen Sie Ihre Daten](./x-rays.md)
+
+
+X-rays sind ein schneller und einfacher Weg, um automatische Einblicke und Untersuchungen in Ihre Daten zu erhalten.
+
+
+## [Inhaltsüberprüfung](./content-verification.md)
+
+
+Admins können Artikel verifizieren, um anderen mitzuteilen, dass die Daten korrekt und auf dem neuesten Stand sind.
+
