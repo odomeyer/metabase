@@ -1,64 +1,87 @@
 ---
-title: Developing with Visual Studio Code
+Titel: Entwickeln mit Visual Studio Code
 ---
 
-# Developing with Visual Studio Code
 
-## Debugging
+# Entwickeln mit Visual Studio Code
 
-First, install the following extension:
 
-- [Debugger for Firefox](https://marketplace.visualstudio.com/items?itemName=firefox-devtools.vscode-firefox-debug)
+## Fehlersuche
 
-_Note_: Debugger for Chrome has been deprecated. You can safely delete it as Visual Studio Code now has [a bundled JavaScript Debugger](https://github.com/microsoft/vscode-js-debug) that covers the same functionality.
 
-Before starting the debugging session, make sure that Metabase is built and running. Choose menu _View_, _Command Palette_, search for and choose _Tasks: Run Build Task_. Alternatively, use the corresponding shortcut `Ctrl+Shift+B`. The built-in terminal will appear to show the progress, wait a few moment until webpack indicates a complete (100%) bundling.
+Installieren Sie zunächst die folgende Erweiterung:
 
-To begin debugging Metabase, switch to the Debug view (shortcut: `Ctrl+Shift+D`) and then select one of the two launch configurations from the drop-down at the top:
 
-- Debug with Firefox, or
-- Debug with Chrome
+- [Debugger für Firefox](https://marketplace.visualstudio.com/items?itemName=firefox-devtools.vscode-firefox-debug)
 
-After that, begin the debugging session by choosing menu _Run_, _Start Debugging_ (shortcut: `F5`).
 
-For more details, please refer to the complete VS Code documentation on [Debugging](https://code.visualstudio.com/docs/editor/debugging).
+Hinweis_: Der Debugger für Chrome ist veraltet. Sie können ihn getrost löschen, da Visual Studio Code jetzt über [einen gebündelten JavaScript-Debugger](https://github.com/microsoft/vscode-js-debug) verfügt, der die gleiche Funktionalität abdeckt.
 
-## Docker-based Workflow
 
-These instructions allow you to work on Metabase codebase on Windows, Linux, or macOS using [Visual Studio Code](https://code.visualstudio.com/), **without** manually installing the necessary dependencies. This is possible by leveraging Docker container and the Remote Containers extension from VS Code.
+Bevor Sie mit der Debugging-Sitzung beginnen, vergewissern Sie sich, dass Metabase erstellt und ausgeführt wird. Wählen Sie das Menü _Ansicht_, _Befehlspalette_, suchen Sie nach und wählen Sie _Tasks: Build Task ausführen_. Alternativ können Sie die entsprechende Tastenkombination "Strg+Umschalt+B" verwenden. Das eingebaute Terminal zeigt den Fortschritt an. Warten Sie einige Augenblicke, bis Webpack eine vollständige (100 %) Bündelung anzeigt.
 
-For more details, please follow the complete VS Code guide on [Developing inside a Container](https://code.visualstudio.com/docs/remote/containers).
 
-Requirements:
+Um mit dem Debuggen von Metabase zu beginnen, wechseln Sie in die Debug-Ansicht (Tastenkombination: `Strg+Umschalt+D`) und wählen Sie dann eine der beiden Startkonfigurationen aus dem Dropdown-Menü am oberen Rand:
 
-- [Visual Studio Code](https://code.visualstudio.com/) (obviously)
+
+- Debuggen mit Firefox, oder
+- Debuggen mit Chrome
+
+
+Starten Sie danach die Debugging-Sitzung, indem Sie Menü _Ausführen_, _Debugging starten_ (Tastaturkürzel: `F5`) wählen.
+
+
+Für weitere Details lesen Sie bitte die komplette VS Code Dokumentation auf [Debugging](https://code.visualstudio.com/docs/editor/debugging).
+
+
+## Docker-basierter Workflow
+
+
+Diese Anleitung ermöglicht es Ihnen, mit [Visual Studio Code](https://code.visualstudio.com/) an der Metabase-Codebasis unter Windows, Linux oder macOS zu arbeiten, **ohne** die notwendigen Abhängigkeiten manuell zu installieren. Dies ist möglich, indem Docker-Container und die Remote Containers-Erweiterung von VS Code genutzt werden.
+
+
+Für weitere Details folgen Sie bitte der vollständigen VS Code Anleitung zu [Developing inside a Container](https://code.visualstudio.com/docs/remote/containers).
+
+
+Voraussetzungen:
+
+
+- [Visual Studio Code](https://code.visualstudio.com/) (natürlich)
 - [Docker](https://www.docker.com/)
-- [Remote - Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for VS Code
+- [Remote - Containers Erweiterung](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) für VS Code
 
-_Important_: Ensure that Docker is running properly and it can be used to download an image and launch a container, e.g. by running:
+
+Wichtig_: Stellen Sie sicher, dass Docker ordnungsgemäß läuft und zum Herunterladen eines Images und zum Starten eines Containers verwendet werden kann, z.B. durch Ausführen:
+
 
 ```
 $ docker run hello-world
 ```
 
-If everything goes well, you should see the following message:
+
+Wenn alles gut geht, sollten Sie die folgende Meldung sehen:
+
 
 ```
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
+Hallo von Docker!
+Diese Meldung zeigt, dass Ihre Installation korrekt zu funktionieren scheint.
 ```
 
-Steps:
 
-1. Clone Metabase repository
+Die Schritte:
 
-2. Launch VS Code and open your cloned Metabase repository
 
-3. From the _View_ menu, choose _Command Palette..._ and then find _Remote-Container: Reopen in Container_. (VS Code may also prompt you to do this with an "Open in container" popup).
-   **Note**: VS Code will create the container for the first time and it may take some time. Subsequent loads should be much faster.
+1. Metabase-Repository klonen
 
-4. Use the menu _View_, _Command Palette_, search for and choose _Tasks: Run Build Task_ (alternatively, use the shortcut `Ctrl+Shift+B`).
 
-5. After a while (after all JavaScript and Clojure dependencies are completely downloaded), open localhost:3000 with your web browser.
+2. Starten Sie VS Code und öffnen Sie das geklonte Metabase-Repository.
 
-See [here](dev-branch-docker.md) for more on running development branches of Metabase using Docker.
+
+3. Wählen Sie im Menü _Ansicht_ _Befehlspalette... _ und suchen Sie dann _Remote-Container: In Container neu öffnen_. (VS Code kann Sie auch auffordern, dies mit einem "In Container öffnen" Popup zu tun).
+**Hinweis**: VS Code erstellt den Container zum ersten Mal und es kann einige Zeit dauern. Nachfolgende Ladevorgänge sollten viel schneller sein.
+
+
+4. Verwenden Sie das Menü _Ansicht_, _Befehlspalette_, suchen Sie nach und wählen Sie _Tasks: Run Build Task_ (alternativ können Sie auch die Tastenkombination "Strg+Shift+B" verwenden).
+
+
+5. Nach einer Weile (nachdem alle JavaScript- und Clojure-Abhängigkeiten vollständig heruntergeladen wurden), öffnen Sie localhost:3000 mit Ihrem Webbrowser.
