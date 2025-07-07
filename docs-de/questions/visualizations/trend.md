@@ -1,34 +1,45 @@
 ---
-title: Trend
+Titel: Trend
 redirect_from:
   - /docs/latest/questions/sharing/visualizations/trend
 ---
 
 # Trend
 
-![Trend settings](../images/trend-settings.png)
 
-The **Trend** visualization is great for displaying how a single number compares with:
+![Trend-Einstellungen](../images/trend-settings.png)
 
-- Previous time period(s).
-- Custom values, like a target or goal.
-- Values from another column.
 
-To use this visualization, you'll need to have a single number grouped by a Time field, like the Count of Orders by Created At.
+Die**Trend**-Visualisierung eignet sich hervorragend, um zu zeigen, wie eine einzelne Zahl im Vergleich zu:
 
-By default, the Trend chart will display the value of the number during the most recent period, as well as how much the number has increased or decreased compared to its value in the previous period. The period is determined by your group-by field; if you're grouping by Day, the Trend will show you the most recent day compared to the day before that.
 
-By default, Trends will display increases as green (i.e., "good") and decreases as red ("bad"). If your number is something where an increase is bad and a decrease is good (such as Bounce Rate, or Costs), you can reverse this behavior in the visualization settings.
+- Vorangegangene (r) Zeitraum(e).
+- Benutzerdefinierte Werte, wie z. B. ein Ziel oder eine Vorgabe.
+- Werte aus einer anderen Spalte.
 
-## Adding comparisons
 
-![Add comparison to a trend chart](../images/add-comparison.png)
+Um diese Visualisierung zu verwenden, müssen Sie eine einzelne Zahl haben, die nach einem Zeitfeld gruppiert ist, wie z. B. die Anzahl der Aufträge nach Erstellungsdatum.
 
-To add a comparison, click on the **gear** icon in the lower left (next to Visualization). In the **Data** tab in the left sidebar, click **Add comparison**. You can select from:
 
-- **Previous time period**
-- **Previous value**. If there is no previous value, Metabase will ignore the value so the chart doesn't show a comparison with a null value.
-- **Custom value**.
-- **Value from another column**. Metabase will only show this option if your results contain multiple columns with aggregate values in your results (e.g., if you have two Summarize columns).
+Standardmäßig zeigt das Trenddiagramm den Wert der Zahl während des letzten Zeitraums an sowie den Anstieg oder Rückgang der Zahl im Vergleich zum vorherigen Zeitraum. Der Zeitraum wird durch das Feld Gruppieren nach bestimmt; wenn Sie nach Tag gruppieren, zeigt der Trend den letzten Tag im Vergleich zum Tag davor an.
 
-You can add up to three comparisons.
+
+Standardmäßig werden in Trends Erhöhungen als grün (d. h. "gut") und Verminderungen als rot ("schlecht") angezeigt. Wenn es sich bei Ihrer Zahl um etwas handelt, bei dem ein Anstieg schlecht und ein Rückgang gut ist (z. B. Absprungrate oder Kosten), können Sie dieses Verhalten in den Visualisierungseinstellungen umkehren.
+
+
+## Hinzufügen von Vergleichen
+
+
+![Vergleich zu einem Trenddiagramm hinzufügen](../images/add-comparison.png)
+
+
+Um einen Vergleich hinzuzufügen, klicken Sie auf das**Zahnradsymbol** unten links (neben Visualisierung). Auf der Registerkarte**Daten** in der linken Seitenleiste klicken Sie auf**Vergleich hinzufügen**. Sie können wählen zwischen:
+
+
+-**Vorheriger Zeitraum**
+-**Vorheriger Wert**. Wenn es keinen vorherigen Wert gibt, ignoriert Metabase den Wert, so dass im Diagramm kein Vergleich mit einem Nullwert angezeigt wird.
+- **Benutzerdefinierter Wert**.
+- **Wert aus einer anderen Spalte**. Die Metabase zeigt diese Option nur an, wenn Ihre Ergebnisse mehrere Spalten mit Aggregatwerten enthalten (z. B. wenn Sie zwei Summenspalten haben).
+
+
+Sie können bis zu drei Vergleiche hinzufügen.
