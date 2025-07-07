@@ -1,185 +1,220 @@
 ---
-title: "Data and field types"
+Titel: "Daten und Feldtypen"
 redirect_from:
-  - /docs/latest/users-guide/field-types
-summary: "Metabase uses both data and semantic types to understand how to format and visualize your data."
+- /docs/latest/users-guide/field-types
+summary: "Metabase verwendet sowohl Daten- als auch semantische Typen, um zu verstehen, wie man seine Daten formatiert und visualisiert."
 ---
 
-# Data and field types
 
-Metabase distinguishes between two types of column metadata: data types and field types.
+# Daten- und Feldtypen
 
-- [**Data types**](#data-types) are the underlying column type as defined in your database, like `Date` or `Text`. Metabase reads the data types during the [database sync process](../databases/sync-scan.md).
-- [**Semantic types**](#semantic-types), also called **field types**, are labels that describe how the data should be interpreted. For example, if you have a column with a data type of `Text` that you use to store emails, you can add a semantic type of `Email` to let people (and Metabase) know what kind of text the column stores.
 
-Data and semantic types determine how Metabase formats the data, which charts are available, how the filters work, and other functionality.
+Die Metabase unterscheidet zwischen zwei Arten von Spaltenmetadaten: Datentypen und Feldtypen.
 
-## Data types
 
-Data types are the underlying column types as defined in your database. Metabase reads the data types during the [database sync process](../databases/sync-scan.md). Because Metabase connects to many different databases, it uses its own type hierarchy under the hood, so that it can, for example, handle date fields in databases as different as PostgreSQL and MongoDB.
+- [**Datentypen**](#data-types) sind der zugrundeliegende Spaltentyp, wie er in Ihrer Datenbank definiert ist, z.B.`Datum` oder`Text`. Metabase liest die Datentypen während des [Datenbank-Sync-Prozesses](../databases/sync-scan.md).
+- [**Semantische Typen**](#semantic-types), auch **Feldtypen** genannt, sind Bezeichnungen, die beschreiben, wie die Daten zu interpretieren sind. Wenn Sie beispielsweise eine Spalte mit dem Datentyp "Text" haben, in der Sie E-Mails speichern, können Sie einen semantischen Typ "E-Mail" hinzufügen, damit andere Personen (und Metabase) wissen, welche Art von Text in der Spalte gespeichert wird.
 
-The main data types in Metabase:
 
-| Data Type  | Example database types                      |
+Daten- und semantische Typen bestimmen, wie Metabase die Daten formatiert, welche Diagramme verfügbar sind, wie die Filter funktionieren und andere Funktionen.
+
+
+## Datentypen
+
+
+Datentypen sind die zugrunde liegenden Spaltentypen, wie sie in Ihrer Datenbank definiert sind. Metabase liest die Datentypen während des [Datenbank-Sync-Prozesses](../databases/sync-scan.md). Da Metabase eine Verbindung zu vielen verschiedenen Datenbanken herstellt, verwendet es unter der Haube eine eigene Typenhierarchie, so dass es z. B. Datumsfelder in so unterschiedlichen Datenbanken wie PostgreSQL und MongoDB verarbeiten kann.
+
+
+Die wichtigsten Datentypen in Metabase:
+
+
+| Datentyp | Beispiel-Datenbanktypen |
 | ---------- | ------------------------------------------- |
-| Numeric    | `INTEGER`, `FLOAT`                          |
-| Temporal   | `DATE`, `TIMESTAMP`                         |
-| Text       | `VARCHAR`, `TEXT`                           |
-| Text-like  | MongoDB `BSONID`, Postgres `Enum`           |
-| Boolean    | Boolean                                     |
-| Collection | `JSON`, BigQuery `RECORD`, MongoDB `Object` |
+| Numerisch | `INTEGER`, `FLOAT` |
+| Zeitlich | ` DATE`, ` TIMESTAMP` |
+| Text | ` VARCHAR`, ` TEXT` |
+| Textartig | MongoDB ` BSONID`, Postgres ` Enum` |
+| Boolean | Boolean |
+| Sammlung | `JSON`, BigQuery `RECORD`, MongoDB `Object` |
 
-Metabase currently doesn't support array types. On columns containing arrays, you'll only be able to filter by **Is empty** or **Is not empty**.
 
-For some fields, you can tell Metabase to [cast the field to a different data type](#editing-data-and-semantic-types) (for example, changing a text type to a date type).
+Metabase unterstützt derzeit keine Array-Typen. Bei Spalten, die Arrays enthalten, können Sie nur nach **Ist leer** oder **Ist nicht leer** filtern.
 
-## Semantic types
 
-You can think of semantic types as adding extra flavor to a field to communicate meaning and enable [additional functionality](#what-data-and-semantic-types-enable). Available semantic types depend on the underlying data types.
+Bei einigen Feldern können Sie Metabase anweisen, [das Feld in einen anderen Datentyp umzuwandeln](#editing-data-and-semantic-types) (z. B. einen Texttyp in einen Datumstyp ändern).
 
-### Semantic types for any field
 
-- **Entity key.** Used to indicate that the field uniquely identifies each row. Could be a Product ID, serial number, etc.
+## Semantische Typen
 
-- **Foreign key.** Used to refer to an Entity key of another table in order to connect data from different tables that are related. For example, in a Products table, you might have a Customer ID field that points to a Customers table, where Customer ID is the Entity key. If you want to use [linked filters on dashboards](../dashboards/linked-filters.md), you must set up foreign key relationships.
 
-### Semantic types for numeric fields
+Man kann sich semantische Typen so vorstellen, dass sie einem Feld eine zusätzliche Note verleihen, um die Bedeutung zu vermitteln und [zusätzliche Funktionen] zu ermöglichen(#what-data-and-semantic-types-enable). Die verfügbaren semantischen Typen hängen von den zugrunde liegenden Datentypen ab.
 
-- Quantity
-- Score
-- Percentage
-- Financial
-  - Currency
-  - Discount
-  - Income
-- Location
-  - Latitude
-  - Longitude
-- Category
 
-### Semantic types for temporal fields
+### Semantische Typen für beliebige Felder
 
-- Creation date
-- Creation time
-- Creation timestamp
-- Joined date
-- Joined time
-- Joined timestamp
-- Birthday
 
-### Semantic types for text fields
+-Entitätsschlüssel** Wird verwendet, um anzugeben, dass das Feld jede Zeile eindeutig identifiziert. Das kann eine Produkt-ID, eine Seriennummer usw. sein.
 
-- Entity name
-- Email
-  - URL
-  - Image URL
-  - Avatar URL
-- Category
-- Name
-- Title
-- Description
-- Product
-- Source
-- Location
-  - City
-  - State
-  - Country
-  - ZipCode
 
-### Semantic types for collection fields
+-Fremdschlüssel** Wird verwendet, um auf einen Entitätsschlüssel einer anderen Tabelle zu verweisen, um Daten aus verschiedenen Tabellen, die miteinander in Beziehung stehen, zu verbinden. In einer Tabelle "Produkte" könnten Sie beispielsweise ein Feld "Kunden-ID" haben, das auf eine Tabelle "Kunden" verweist, in der die Kunden-ID der Entitätsschlüssel ist. Wenn Sie [verknüpfte Filter auf Dashboards](../dashboards/linked-filters.md) verwenden möchten, müssen Sie Fremdschlüsselbeziehungen einrichten.
 
-- Field containing JSON.
 
-  See [Working with JSON](./json-unfolding.md).
+### Semantische Typen für numerische Felder
 
-## Editing data and semantic types
 
-Admins, and people with [permission to manage table metadata](../permissions/data.md#manage-table-metadata-permissions), can cast data types and edit semantic types in the Admin setting's Table Metadata tab.
+- Menge
+- Punktzahl
+- Prozentsatz
+- Finanziell
+- Währung
+- Rabatt
+- Einkommen
+- Standort
+- Breitengrad
+- Längengrad
+- Kategorie
 
-### Cast data types
 
-Data types can't be edited in Metabase directly, but you can cast certain [data types to different types](./metadata-editing.md#casting-to-a-specific-data-type) so that, for example, Metabase will interpret a text data type as a date type.
+### Semantische Typen für zeitliche Felder
 
-Changes made in Table Metadata apply across your entire Metabase. Metabase currently only supports casting to a datetime type in Metadata settings. However, if you you build a query in the query builder, in you can use type casting custom expressions like [`date()`](../questions/query-builder/expressions-list.md#date) or [`integer()`](../questions/query-builder/expressions-list.md#integer) to cast a string to a different type in your query.
 
-### Semantic types don't change the data types
+- Datum der Erstellung
+- Uhrzeit der Erstellung
+- Zeitstempel der Erstellung
+- Datum des Beitritts
+- Uhrzeit des Beitritts
+- Zeitstempel des Beitritts
+- Geburtstag
 
-You can pick a semantic type compatible with the underlying data type in [table metadata settings](./metadata-editing.md#field-type)
 
-Semantic types only add meaning; they should NOT be used for type casting. For example, if you set a text field's semantic type to "Quantity", Metabase will still treat the field as a text field. Instead, apply semantic types to tell Metabase how to format or visualize the field (like telling Metabase that a numeric values represents a percentage).
+### Semantische Typen für Textfelder
 
-## What data and semantic types enable
 
-### Display format
+- Name der Entität
+- E-Mail
+- URL
+- Bild-URL
+- Avatar-URL
+- Kategorie
+- Bezeichnung
+- Titel
+- Beschreibung
+- Produkt
+- Quelle
+- Standort
+- Stadt
+- Staat
+- Land
+- Postleitzahl
 
-Some semantic types change the way the data in the field is displayed.
 
-Formatting setting from Table Metadata settings will be applied across your Metabase, but people can change them for individual charts.
+### Semantische Typen für Sammelfelder
 
-| Semantic type          | Format                                                                                                                                                                                                                                                                   |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Percentage             | Displayed as percentage, for example 0.75 will be displayed as 75\%                                                                                                                                                                                                      |
-| Currency               | On charts and in detail view, the values are prepended by the currency symbol, e.g., `$134.65`. By default in the table view, the currency symbol is only displayed in the header, but you can change the metadata formatting settings to show the symbol for every row. |
-| Latitude/Longitude     | Displayed as coordinates, e.g., `0.00000000° N`                                                                                                                                                                                                                          |
-| Email                  | Display as a `mailto` link                                                                                                                                                                                                                                               |
-| URL                    | Can format as a clickable link                                                                                                                                                                                                                                           |
-| Image URL              | Can display as an image. See [table format settings](../questions/visualizations/table.md#display-as)                                                                                                                                                                    |
-| Avatar URL             | Can display as avatar circle image. See [table format settings](../questions/visualizations/table.md#display-as)                                                                                                                                                         |
-| Field containing JSON  | In detail view, display as prettified JSON                                                                                                                                                                                                                               |
-| Entity and Foreign key | Highlighted in table view                                                                                                                                                                                                                                                |
 
-### Visualizations
+- Feld, das JSON enthält.
 
-When you create a question in the query builder, Metabase will automatically choose the most suitable chart for you based on the data types and the semantic types of the field in the "Group by" step (you can change the chart type later).
 
-| Group by data type   | Automatic chart |
-| -------------------- | --------------- |
-| Text/Category        | Bar chart       |
-| Temporal             | Line chart      |
-| Numeric - binned     | Bar chart       |
-| Numeric - not binned | Table           |
-| Boolean              | Bar chart       |
-| No aggregation       | Table           |
+Siehe [Arbeiten mit JSON](./json-unfolding.md).
 
-Additionally, if you use location semantic types:
 
-| Group by semantic type          | Functionality            |
-| ------------------------------- | ------------------------ |
-| Latitude/Longitude - binned     | Grid map                 |
-| Latitude/longitude - not binned | Pin map                  |
-| Country                         | World region map         |
-| State                           | United States region map |
+## Bearbeiten von Daten und semantischen Typen
 
-### Extract values from columns
 
-For some fields, you can quickly extract values from columns using [shortcuts in table view](../questions/visualizations/table.md#extract-domain-subdomain-host-or-path) or in the [custom expression editor](../questions/query-builder/expressions.md) in the query builder:
+Administratoren und Personen mit der [Berechtigung zur Verwaltung von Tabellenmetadaten](../permissions/data.md#manage-table-metadata-permissions) können in der Registerkarte Tabellenmetadaten der Admin-Einstellungen Datentypen zuweisen und semantische Typen bearbeiten.---
+Titel: "Daten und Feldtypen"
+redirect_from:
+- /docs/latest/users-guide/field-types 
+summary: "Metabase verwendet sowohl Daten- als auch semantische Typen, um zu verstehen, wie man seine Daten formatiert und visualisiert."
+---
 
-| Group by data type  | Extract                                 |
-| ------------------- | --------------------------------------- |
-| URL semantic types  | Extract host, domain, subdomain, path   |
-| Email semantic type | Extract host, domain                    |
-| Temporal data types | Extract date parts like month, day, etc |
+# Daten- und Feldtypen
 
-### X-rays
+Die Metabase unterscheidet zwischen zwei Arten von Spaltenmetadaten: Datentypen und Feldtypen.
 
-When you [X-ray](../exploration-and-organization/x-rays.md) a table, model, or entity, Metabase considers both the data type and the field type to display different charts that summarize that data.
+- [**Datentypen**](#data-types) sind der zugrundeliegende Spaltentyp, wie er in Ihrer Datenbank definiert ist, z.B.`Datum` oder`Text`. Metabase liest die Datentypen während des [Datenbank-Sync-Prozesses](../databases/sync-scan.md).
+- [**Semantische Typen**](#semantic-types), auch **Feldtypen** genannt, sind Bezeichnungen, die beschreiben, wie die Daten zu interpretieren sind. Wenn Sie beispielsweise eine Spalte mit dem Datentyp "Text" haben, in der Sie E-Mails speichern, können Sie einen semantischen Typ "E-Mail" hinzufügen, damit andere Personen (und Metabase) wissen, welche Art von Text in der Spalte gespeichert wird.
 
-### Field Filters
+Daten- und semantische Typen bestimmen, wie Metabase die Daten formatiert, welche Diagramme verfügbar sind, wie die Filter funktionieren und andere Funktionen.
 
-Knowing what field types are and how they work is helpful when using [field filters](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/sql-in-metabase/field-filters), as you can only create field filters for [certain field types](../questions/native-editor/sql-parameters.md#field-filter-compatible-types).
+## Datentypen
 
-### JSON unfolding
+Datentypen sind die zugrunde liegenden Spaltentypen, wie sie in Ihrer Datenbank definiert sind. Metabase liest die Datentypen während des [Datenbank-Sync-Prozesses](../databases/sync-scan.md). Da Metabase eine Verbindung zu vielen verschiedenen Datenbanken herstellt, verwendet es unter der Haube eine eigene Typenhierarchie, so dass es z. B. Datumsfelder in so unterschiedlichen Datenbanken wie PostgreSQL und MongoDB verarbeiten kann.
 
-See [Working with JSON](./json-unfolding.md).
+Die wichtigsten Datentypen in Metabase:
 
-## Set semantic types in models to enable people to explore results with the query builder
+| Datentyp | Beispiel-Datenbanktypen |
+| ---------- | ------------------------------------------- |
+| Numerisch | `INTEGER`, `FLOAT` |
+| Zeitlich | ` DATE`, ` TIMESTAMP` |
+| Text | ` VARCHAR`, ` TEXT` |
+| Textartig | MongoDB ` BSONID`, Postgres ` Enum` |
+| Boolean | Boolean |
+| Sammlung | `JSON`, BigQuery `RECORD`, MongoDB `Object` |
 
-You can set field types for [models](./models.md), which helps Metabase understand how to work with data in models built using SQL. If you set each column type in a SQL model, people will be able to explore that model using the query builder and drill-through menus.
+Metabase unterstützt derzeit keine Array-Typen. Bei Spalten, die Arrays enthalten, können Sie nur nach **Ist leer** oder **Ist nicht leer** filtern.
 
-With records that include integer entity keys, you can also configure text fields in models to [surface individual records in search](./models.md#surface-individual-records-in-search-by-matching-against-this-column).
+Bei einigen Feldern können Sie Metabase anweisen, [das Feld in einen anderen Datentyp umzuwandeln](#editing-data-and-semantic-types) (z. B. einen Texttyp in einen Datumstyp ändern).
 
-## Further Reading
+## Semantische Typen
 
-- [Exploring data with Metabase's data browser](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/data-browser).
-- [The Table Metadata page: editing metadata](./metadata-editing.md).
-- [Field Filters: create smart filter widgets for SQL questions](https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/sql-in-metabase/field-filters).
+Man kann sich semantische Typen so vorstellen, dass sie einem Feld eine zusätzliche Note verleihen, um die Bedeutung zu vermitteln und [zusätzliche Funktionen] zu ermöglichen(#what-data-and-semantic-types-enable). Die verfügbaren semantischen Typen hängen von den zugrunde liegenden Datentypen ab.
+
+### Semantische Typen für beliebige Felder
+
+-Entitätsschlüssel** Wird verwendet, um anzugeben, dass das Feld jede Zeile eindeutig identifiziert. Das kann eine Produkt-ID, eine Seriennummer usw. sein.
+
+-Fremdschlüssel** Wird verwendet, um auf einen Entitätsschlüssel einer anderen Tabelle zu verweisen, um Daten aus verschiedenen Tabellen, die miteinander in Beziehung stehen, zu verbinden. In einer Tabelle "Produkte" könnten Sie beispielsweise ein Feld "Kunden-ID" haben, das auf eine Tabelle "Kunden" verweist, in der die Kunden-ID der Entitätsschlüssel ist. Wenn Sie [verknüpfte Filter auf Dashboards](../dashboards/linked-filters.md) verwenden möchten, müssen Sie Fremdschlüsselbeziehungen einrichten.
+
+### Semantische Typen für numerische Felder
+
+-  Menge 
+-  Punktzahl 
+-  Prozentsatz 
+-  Finanziell 
+-  Währung 
+-  Rabatt 
+-  Einkommen 
+-  Standort 
+-  Breitengrad 
+-  Längengrad 
+-  Kategorie 
+
+### Semantische Typen für zeitliche Felder
+
+- Datum der  Erstellung 
+- Uhrzeit der  Erstellung 
+- Zeitstempel der  Erstellung 
+- Datum des  Beitritts 
+- Uhrzeit des  Beitritts 
+- Zeitstempel des  Beitritts 
+-  Geburtstag 
+
+### Semantische Typen für Textfelder
+
+- Name der  Entität 
+-  E-Mail 
+-  URL 
+-  Bild-URL 
+-  Avatar-URL 
+-  Kategorie 
+-  Bezeichnung 
+-  Titel 
+-  Beschreibung 
+-  Produkt 
+-  Quelle 
+-  Standort 
+-  Stadt 
+-  Staat 
+-  Land 
+-  Postleitzahl 
+
+### Semantische Typen für Sammelfelder
+
+-  Feld, das JSON enthält.
+
+Siehe [Arbeiten mit JSON](./json-unfolding.md).
+
+## Bearbeiten von Daten und semantischen Typen
+
+Administratoren und Personen mit der [Berechtigung zur Verwaltung von Tabellenmetadaten](../permissions/data.md#manage-table-metadata-permissions) können in der Registerkarte Tabellenmetadaten der Admin-Einstellungen Datentypen zuweisen und semantische Typen bearbeiten.
+
