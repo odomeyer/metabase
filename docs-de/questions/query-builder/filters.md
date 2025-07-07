@@ -1,46 +1,32 @@
 ---
-title: Filtering
+Titel: Filtern
 ---
 
-# Filtering
+# Filtern
+Filtern bedeutet, Dinge nach bestimmten Kriterien einzugrenzen. Wahrscheinlich kennen Sie das Filtern bereits, wenn Sie online nach etwas suchen, z. B. beim Einkaufen. Vielleicht wollen Sie nur olivfarbene Hosen sehen oder Bücher, deren Autor mit Nachnamen "Borges" heißt, oder Bilder von Menschen, die olivfarbene Hosen tragen und Jorge Luis Borges lesen.
+![Filterung](../images/filter-step.png)
+Wenn Sie einen Filterschritt hinzufügen, können Sie eine oder mehrere Spalten auswählen, nach denen gefiltert werden soll. Je nach [Datentyp](https://www.metabase.com/learn/grow-your-data-skills/data-fundamentals/data-types-overview) der ausgewählten Spalte erhalten Sie verschiedene [Filtertypen](#filter-types), z. B. einen Kalender für Datumsspalten.
+Nach jedem Zusammenfassungsschritt können Sie weitere Filterschritte hinzufügen. So können Sie z. B. nach der Anzahl der Zeilen pro Monat zusammenfassen und dann einen Filter auf die Spalte "Anzahl" anwenden, um nur Zeilen einzuschließen, deren Anzahl größer als 100 ist. (Dies ist im Grunde wie eine SQL `HAVING`-Klausel.)
+Wenn Sie mit Ihrem Filter zufrieden sind, klicken Sie auf **Filter hinzufügen**, und zeigen Sie Ihre Ergebnisse an. Ihre Daten werden mit dem angewandten Filter aktualisiert.
+Wenn Sie Ihren Filter bearbeiten möchten, klicken Sie einfach auf den kleinen lila Filter am oberen Bildschirmrand. Wenn Sie auf das X klicken, wird der Filter entfernt. Sie können so viele Filter hinzufügen, wie Sie benötigen.
 
-Filtering just means narrowing things down based on certain criteria. You're probably already familiar with filtering when looking for something online, like when shopping. Maybe you only want to see olive-colored pants, or books where the author's last name is "Borges," or pictures of people wearing olive-colored pants reading Jorge Luis Borges.
+*# Filtertypen
+Je nach Datentyp der Spalte bietet die Metabase unterschiedliche Filteroptionen an.
+- Bei **Numerischen Spalten** können Sie Filter hinzufügen, um nur die Zeilen in Ihre Tabelle aufzunehmen, bei denen diese Zahl zwischen zwei bestimmten Werten liegt, größer oder kleiner als ein bestimmter Wert ist oder genau gleich einem Wert ist.
+- Mit **Text- oder Kategoriespalten** können Sie angeben, dass Sie nur Daten einbeziehen wollen, bei denen diese Spalte eine bestimmte Option ist oder nicht, ob sie eine Teilzeichenkette enthält, mit ihr beginnt oder endet oder ob die Zeile leer ist oder nicht.
+- **Datenspalten** bieten Ihnen eine Vielzahl von Optionen zum Filtern nach bestimmten Datumsbereichen, relativen Datumsbereichen und mehr.
+- **Strukturierte Datenspalten**, typischerweise JSON oder XML, können nur nach "Ist leer" oder "Nicht leer" gefiltert werden. Einige Datenbanken unterstützen jedoch die [JSON-Entfaltung] (../../data-modeling/json-unfolding.md), mit der Sie JSON-Daten in separate Spalten aufteilen können, nach denen Sie dann filtern können.
+- Die Spalten **Breitengrad und Längengrad** haben die gleichen Optionen wie numerische Spalten, aber auch einen speziellen "Inside"-Filtertyp, mit dem Sie gleichzeitig nach Breitengrad und Längengrad filtern können.
+  
+## Filtern nach Datum
+Ein wichtiger Punkt beim Filtern nach einer Datumsspalte ist der Unterschied zwischen spezifischen und relativen Daten:
+- **Spezifische Daten** sind z. B. der 1. November 2010 oder der 3. Juni bis 12. Juli 2017; sie beziehen sich immer auf dasselbe Datum bzw. dieselben Daten.
+- Relative Datumsangaben** sind Dinge wie "die letzten 30 Tage" oder "die aktuelle Woche"; im Laufe der Zeit _verändern_ sich die Daten, auf die sich diese Optionen beziehen. Relative Datumsangaben sind eine nützliche Methode, um einen Filter für eine Frage einzurichten, so dass sie aktuell bleibt, indem Sie z. B. anzeigen, wie viele Personen Ihre Website in den letzten 7 Tagen besucht haben. Sie können auch auf **...** klicken, um eine Option **Beginnend von** anzugeben, mit der Sie den relativen Datumsbereich verschieben können. Sie können zum Beispiel den Bereich "Die letzten 7 Tage, beginnend vor 2 Tagen" festlegen.
 
-![Filtering](../images/filter-step.png)
+## Filter mit benutzerdefinierten Ausdrücken
+![Filterausdruck](../images/filter-expression.png)
+Wenn Sie einen komplexeren Filter haben, den Sie ausdrücken möchten, können Sie [Benutzerdefinierter Ausdruck](./expressions.md) aus dem Menü "Filter hinzufügen" auswählen, um einen Filterausdruck zu erstellen. Sie können Vergleichsoperatoren wie "größer als", ">" oder "kleiner als", "<" sowie kalkulationsähnliche Funktionen verwenden. Zum Beispiel: `[Zwischensumme] > 100 OR Median([Alter]) < 40`.
+Erfahren Sie mehr über das Schreiben von [Ausdrücken](./expressions.md) oder springen Sie direkt zur [Liste der Ausdrücke](./expressions-list.md).
 
-When you add a filter step, you can select one or more columns to filter on. Depending on the [data type](https://www.metabase.com/learn/grow-your-data-skills/data-fundamentals/data-types-overview) of the column you pick, you'll get different [filter types](#filter-types), like a calendar for date columns.
-
-You can add subsequent filter steps after each summarize step. This lets you do things like summarize by the count of rows per month, and then add a filter on the `count` column to only include rows where the count is greater than 100. (This is basically like a SQL `HAVING` clause.)
-
-Once you're happy with your filter, click **Add filter**, and visualize your results. Your data will be updated with the filter applied.
-
-If you want to edit your filter, just click the little purple filter at the top of the screen. If you click on the X, you'll remove your filter. You can add as many filters as you need.
-
-## Filter types
-
-Depending on the data type of the column, Metabase will present different filtering options.
-
-- **Numeric columns** let you add filters to only include rows in your table where this number is between two specific values, or is greater or less than a specific value, or is exactly equal to something.
-- **Text or category columns** let you specify that you only want to include data where this column is or isn't a specific option, whether it contains, starts with, or ends with a substring, or whether the row is empty or not.
-- **Date columns** give you a lot of options to filter by specific date ranges, relative date ranges, and more.
-- **Structured data columns**, typically JSON or XML, can only be filtered by "Is empty" or "Not empty". Some databases, however, support [JSON unfolding](../../data-modeling/json-unfolding.md), which allows you to split up JSON data into separate columns, which you can then filter on.
-- **Latitude and longitude columns** will have the same options as numeric columns, but also a special "Inside" filter type that will let you filter on both latitude and longitude simultaneously.
-
-## Filtering by date
-
-One important thing to understand when filtering on a date column is the difference between specific and relative dates:
-
-- **Specific dates** are things like November 1, 2010, or June 3 – July 12, 2017; they always refer to the same date(s).
-- **Relative dates** are things like "the previous 30 days," or "the current week;" as time passes, the dates these options refer to _change_. Relative dates are a useful way to set up a filter on a question so that it stays up-to-date by showing you, for example, how many people visited your website in the last 7 days. You can also click on the **...** to specify a **Starting from** option, which lets you offset the relative date range. For example, you could set the range as the "Previous 7 days, starting from 2 days ago".
-
-## Filter with custom expressions
-
-![Filter expression](../images/filter-expression.png)
-
-If you have a more complex filter you're trying to express, you can pick [Custom Expression](./expressions.md) from the add filter menu to create a filter expression. You can use comparison operators like greater than, `>`, or less than ,`<`, as well as spreadsheet-like functions. For example, `[Subtotal] > 100 OR median([Age]) < 40`.
-
-Learn more about writing [expressions](./expressions.md) or skip right to the [list of expressions](./expressions-list.md).
-
-## Filtering by a segment
-
-If your Metabase administrators have created special named filters for the table you're viewing, they’ll appear at the top of the filter dropdown in purple text with a star next to them. These are called [**Segments**](../../data-modeling/segments.md), and they're shortcuts to a combination of filters that are commonly used in your organization. They might be called things like “Active Users,” or “Most Popular Products.”
+## Filtern nach einem Segment
+Wenn Ihre Metabase-Administratoren spezielle benannte Filter für die angezeigte Tabelle erstellt haben, werden diese oben im Filter-Dropdown in lila Text mit einem Stern daneben angezeigt. Diese heißen [**Segmente**] (../../data-modeling/segments.md) und sind Abkürzungen für eine Kombination von Filtern, die in Ihrem Unternehmen häufig verwendet werden. Sie könnten zum Beispiel "Aktive Benutzer" oder "Beliebteste Produkte" heißen.
