@@ -1,82 +1,79 @@
 ---
-title: The dates and times in my questions and charts are wrong
----
+1. Ihre Frage oder Ihr Diagramm vergleicht oder sortiert Werte mit inkonsistenten oder fehlenden Zeitzonen. Wenn beispielsweise die Abflug- und Ankunftszeiten eines Fluges in Ortszeit angegeben werden, kann es so aussehen, als ob der Flug ankommt, bevor er abgeflogen ist.
+2. In Ihrer Frage geht es um die Aggregation von Zeitstempeln mit unterschiedlichen Zeitzonen: Die "täglichen" Gesamtwerte für den Datenverkehr Ihrer Website enthalten beispielsweise mehr als 24 Stunden, weil Sie die lokalen Daten aus Ostasien, Europa und Amerika verwenden.
 
-# The dates and times in my questions and charts are wrong
 
-You are doing calculations with dates and times, or displaying them in charts, but:
+Sobald Sie glauben, ein Problem identifiziert zu haben, sollten Sie sich genau ansehen, welche Zeitzonenumstellung das Problem verursacht. Angenommen, Sie betrachten eine Zeitreihe mit täglichen Werten; wenn der Fehler bei wöchentlichen Gesamtwerten auftritt, können Sie:
 
-- the values appear to be wrong, or
-- summary values are wrong.
 
-## Is the problem due to time zones?
+1. Wählen Sie einen bestimmten Tag, von dem Sie wissen, dass die Zahl falsch ist.
+2. Klicken Sie auf den Datenpunkt in einem Diagramm oder eine Zelle in einer Ergebnistabelle und wählen Sie "Diese X sehen".
+3. Öffnen Sie diese Frage in zwei weiteren Registerkarten in Ihrem Browser. Ändern Sie die Datumsfilter so, dass eine Registerkarte die Zeilen der zugrundeliegenden Tabelle vom _vorherigen_ Tag und die andere die Zeilen der zugrundeliegenden Tabelle vom _nächsten_ Tag enthält.
+4. Überprüfen Sie, ob das Datumsfeld, das zur Gruppierung des Ergebnisses in der zugrunde liegenden Anzeige verwendet wird, korrekt ist. Wenn es sich von dem unterscheidet, was Sie in der Datenbank gespeichert haben, oder von dem, was Sie in einem anderen Tool haben, dann wird der Zeitstempel insgesamt falsch umgewandelt. Dies geschieht häufig, wenn Sie ein Datum oder eine Uhrzeit verwenden, die keine explizite Zeitzone enthalten.
+5. Wenn die zugrundeliegenden Zeitstempel korrekt sind (was sie sein sollten, wenn sie explizite Zeitzonen haben), werden die einzelnen Zeiten wahrscheinlich zu Tagen in einer anderen Zeitzone als der von Ihnen gewünschten gruppiert.
+6. Um herauszufinden, in welche Zeitzone sie umgerechnet werden, ändern Sie die Zeiten in den Datumsfiltern der jeweiligen Frage, indem Sie die Startzeit und das Startdatum um eine Stunde nach hinten verschieben, bis Sie entweder die richtige Zahl erhalten oder um 12 Stunden zurückgehen. (Wenn eine Ihrer Zeitzonen Indien, Neufundland oder ein anderes Land mit einer halbstufigen Zeitzone umfasst, müssen Sie dies möglicherweise in Halbstundenschritten tun).
+7. Wenn das nicht funktioniert, versuchen Sie, die Start- und Endzeit um eine Stunde nach vorne zu verschieben, bis Sie entweder die richtige Zahl erhalten oder um 12 Stunden nach vorne gegangen sind.
+8. Wenn Sie zu diesem Zeitpunkt den richtigen Wert haben, bedeutet dies, dass Ihre Zeitzone um die Anzahl der Stunden vorwärts oder rückwärts konvertiert wurde, die Sie den Filter manuell eingestellt haben. Ist dies der Fall, überprüfen Sie, ob der von Ihnen ermittelte Offset mit der Zeitzone des Data Warehouse oder der Zeitzone der Metabase selbst übereinstimmt.
 
-**Root cause:** Dates and times are stored using different time zones, but some or all of those time zones aren't taken into account when doing calculations (i.e., the problem is inconsistent data).
 
-**Steps to take:**
+## Ist die Zeitzone des Berichts falsch eingestellt?
 
-To fix this problem you'll need answers to these questions:
 
-1. What is the correct time zone of the data you think is being displayed improperly (i.e., what's the right answer)?
-2. Is there an explicit time zone setting on every timestamp, or are some or all timestamps being stored without a time zone? For example, `Dec 1, 2019 00:00:00Z00` includes the time zone (shown after the `Z`), but `Dec 1, 2019` doesn't.
-3. What time zone is the database server using?
-4. What time zone is Metabase using?
+**Ursache:** Falsche Zahlen in Fragen oder Diagrammen können durch eine falsche Übereinstimmung zwischen der von der Metabase verwendeten Zeitzone und der vom Data Warehouse verwendeten Zeitzone verursacht werden.
 
-Once you have these answers, look for cases like these:
 
-1. Your question or chart is comparing or sorting values with inconsistent or missing time zones. For example, if a flight's departure and arrival times are reported in local time, it can appear to arrive before it has left.
-2. Your question is aggregating timetsamps with different time zones: for example, the "daily" totals for your website's traffic include more than 24 hours worth of data because you are using the local dates from East Asia, Europe, and the Americas.
+**Zu unternehmende Schritte:**
 
-Once you think you have identified a problem, drill down to understand exactly what time zone conversion is causing the underlying problem. For example, suppose you're looking at a time series with daily values; if your error is happening with weekly totals, you can:
 
-1. Pick a specific day where you know the number is incorrect.
-2. Click on the data point in a chart, or a cell in a result table, and select "See these X."
-3. Open this question in two other tabs in your browser. Change the date filters so that one tab has the rows in the underlying table from the _previous_ day, and the other table has the rows in the underlying table from the _next_ day.
-4. Check that the date field being used to group the result in the underlying display is correct. If it is different from what you have stored in the database, or what you have in another tool, then the timestamp is being transformed incorrectly across the board. This often happens when you use a date or time lacking an explicit time zone.
-5. If the underlying timestamps are correct (which they should if they have explicit time zones), the individual times are probably being grouped into days in a different time zone than the one you want.
-6. To find out which time zone they are being transformed to, tweak the times on the date filters on the question you are looking at by moving the start time and start date backwards by an hour until you either get the correct number or you have gone back by 12 hours. (If any of your time zones include India, Newfoundland, or another jurisdiction with a half-step time zone, you may need to do this in half-hour increments.)
-7. If that doesn't work, try moving the start and end times forward by an hour until you either get the correct number of you've gone forward by 12 hours.
-8. If by this point you have the correct value, it means your time zone was converted by the number of hours forward or backwards you manually set the filter. If that's the case, check whether the offset you've come up with matches either the time zone of the data warehouse or the timezone of Metabase itself.
+1. Überprüfen Sie die [Zeitzoneneinstellung für Berichte](../configuring-metabase/localization.md#report-timezone) unter **Admin-Einstellungen** > **Einstellungen** > **Lokalisierung**.
+2. Wenn Sie eine Datenbank verwenden, die die Einstellung der Berichtszeitzone nicht unterstützt, stellen Sie sicher, dass die Zeitzone der Metabase mit der der Datenbank übereinstimmt. Die Zeitzone der Metabase ist die Zeitzone der Java Virtual Machine, die in der Regel über den Parameter "-Duser.timezone<...>" oder die Umgebungsvariable "JAVA_TIMEZONE" eingestellt wird; die genaue Einstellung hängt davon ab, wie Sie die Metabase starten. Beachten Sie, dass die Zeitzone der Metabase keine Auswirkungen auf Datenbanken hat, die eine Report Time Zone verwenden.
 
-## Is the Report Time Zone set incorrectly?
 
-**Root cause:** Wrong numbers in questions or charts can be caused by a mis-match in the time zone being used by Metabase and the time zone being used by the data warehouse.
+## Beachten SQL-Abfragen die Einstellung für die Berichtszeitzone nicht?
 
-**Steps to take:**
 
-1. Check the [report timezone setting](../configuring-metabase/localization.md#report-timezone) from **Admin settings** > **Settings** > **Localization**.
-2. If you're using a database that doesn't support the report timezone setting, ensure that Metabase's time zone matches that of the database. Metabase's time zone is the Java Virtual Machine's time zone, typically set via a `-Duser.timezone<..>` parameter or the `JAVA_TIMEZONE` environment variable; exactly how it is set will depend on how you launch Metabase. Note that Metabase's time zone doesn't impact any databases that use a Report Time Zone.
+**Ursache:** Wir wenden derzeit keine Berichtszeitzone auf die Ergebnisse von SQL-Abfragen an.
 
-## Are SQL queries not respecting the Reporting Time Zone setting?
 
-**Root cause:** We don't currently apply a reporting time zone to the results of SQL queries.
+**Zu ergreifende Schritte:**
 
-**Steps to take:**
 
-Set a reporting time zone explicitly in your SQL query.
+Legen Sie in Ihrer SQL-Abfrage explizit eine Berichtszeitzone fest.
 
-For example, you can write something like this with PostgreSQL:
+
+Mit PostgreSQL können Sie zum Beispiel etwas wie folgt schreiben:
+
 
 ```sql
-SELECT column::TIMESTAMP AT TIME ZONE 'EST' AS column_est
+SELECT spalte::TIMESTAMP AT TIME ZONE 'EST' AS spalte_est
 ```
 
-This statement casts the column to a `timestamp` data type first, then converts the `timestamp` into a `timestamptz` data type, with time zone 'EST'.
 
-## Are dates without an explicit time zone being converted to another day?
+Diese Anweisung wandelt die Spalte zunächst in einen Datentyp "timestamp" um und konvertiert dann den "timestamp" in einen Datentyp "timestamptz" mit der Zeitzone "EST".
 
-**Root cause:** You are grouping by a date (rather than by a time) that lacks a time zone.
 
-**Steps to take:**
+## Werden Daten ohne explizite Zeitzone in einen anderen Tag konvertiert?
 
-1. Look at every time field your question uses in the [Data Model Reference](../exploration-and-organization/data-model-reference.md) and see if any of them are simply a "Date" field.
-2. If so, make sure the server time zone reflects the reporting time zone, because when a query is run on Metabase, the server applies the configured time zone to that date.
 
-## Are you mixing explicit and implicit time zones?
+**Ursache:** Sie gruppieren nach einem Datum (statt nach einer Uhrzeit), dem eine Zeitzone fehlt.
 
-**Root cause:** You're comparing or doing arithmetic on two dates where one has an explicit time zone and one doesn't.
 
-**Steps to take:**
+**Zu ergreifende Schritte:**
 
-1. This typically happens with a question that uses multiple fields: for example, you're filtering on one timestamp and grouping by another. Check the time zones of each of the dates or times you are using in your question.
-2. You'll need to explicitly set the time zone for any value that lacks an explicit time zone. This will need to be done either in a SQL query or by transforming the data in your database to ensure both timestamps have time zones.
+
+1. Schauen Sie sich jedes Zeitfeld, das in Ihrer Frage verwendet wird, in der [Datenmodell-Referenz](../exploration-and-organization/data-model-reference.md) an und prüfen Sie, ob eines davon einfach ein "Datums"-Feld ist.
+2. Wenn ja, vergewissern Sie sich, dass die Zeitzone des Servers mit der Zeitzone des Berichts übereinstimmt, denn wenn eine Abfrage in der Metabase ausgeführt wird, wendet der Server die konfigurierte Zeitzone auf dieses Datum an.
+
+
+## Mischen Sie explizite und implizite Zeitzonen?
+
+
+**Ursache:** Sie vergleichen oder rechnen mit zwei Daten, von denen eines eine explizite Zeitzone hat und das andere nicht.
+
+
+**Zu unternehmende Schritte:**
+
+
+1. Dies ist typischerweise bei einer Frage der Fall, die mehrere Felder verwendet: Sie filtern zum Beispiel nach einem Zeitstempel und gruppieren nach einem anderen. Überprüfen Sie die Zeitzonen der einzelnen Daten oder Zeiten, die Sie in Ihrer Frage verwenden.
+2. Sie müssen die Zeitzone für jeden Wert, der keine explizite Zeitzone hat, explizit festlegen. Dies muss entweder in einer SQL-Abfrage geschehen oder durch Umwandlung der Daten in Ihrer Datenbank, um sicherzustellen, dass beide Zeitstempel Zeitzonen haben.
+
