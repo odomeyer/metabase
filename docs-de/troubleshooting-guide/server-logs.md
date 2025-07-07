@@ -1,31 +1,38 @@
 ---
-title: How to read the server logs
+Titel: Wie man die Serverprotokolle liest
 ---
 
-# How to read the server logs
 
-Here's an example log from running a query:
+# Wie man die Serverprotokolle liest
+
+
+Hier ist ein Beispielprotokoll einer Abfrage:
+
 
 ```
-2021-07-07 15:53:18,560 DEBUG middleware.log :: POST /api/dataset 202 [ASYNC: completed] 46.9 ms (17 DB calls) App DB connections: 1/10 Jetty threads: 3/50 (4 idle, 0 queued) (72 total active threads) Queries in flight: 0 (0 queued); h2 DB 4 connections: 0/1 (0 threads blocked)
+2021-07-07 15:53:18,560 DEBUG middleware.log :: POST /api/dataset 202 [ASYNC: abgeschlossen] 46.9 ms (17 DB-Aufrufe) App DB-Verbindungen: 1/10 Jetty-Threads: 3/50 (4 im Leerlauf, 0 in der Warteschlange) (72 aktive Threads insgesamt) Abfragen in Bearbeitung: 0 (0 in der Warteschlange); h2 DB 4-Verbindungen: 0/1 (0 Threads blockiert)
 ```
 
-Let's unpack the log:
 
-- **Time of log:** `2021-07-07 15:53:18,560`.
-- **Log level:** `DEBUG`. There are different types of log levels. To learn more, check out [Metabase logs][log-level].
-- **Namespace:**. `middleware.log`. You can tweak your logging level to get more or less information from this namespace.
-- **Method:** `POST`. The HTTP method verb, like POST, PUT, GET, DELETE.
-- **Path:** `/api/dataset`. The handling URL. Note that URL parameters aren't included, which can make debugging certain issues a little tricky.
-- **Code:** `202`. The HTTP status code.
-- **ASYNC:** `[ASYNC: completed]`. Whether Metabase could deliver the results to the browser. If Metabase couldn't deliver the results, for example if someone starts a query and closes their browser before the query finishes, the ASYNC status will say "cancelled".
-- **Response time:** `46.9 ms`. The time Metabase takes to handle the request (from when Metabase receives the request until it's returned results back to the browser).
-- **Database calls:** `(17 DB calls)`. The number of query statements used, which in addition to calls to the queried data source(s), includes calls to the Metabase application database.
-- **Application database connections:** `App DB connections: 1/10`. The number of active connections, and the available pool of connections.
-- **Jetty threads:** `Jetty threads: 3/50 (4 idle, 0 queued)`. List the number of active threads, and the total pool of threads available. The `(4 idle, 0 queued)` are the spare hot threads, and the number of threads queued. If you find you're maxing out the number threads in your pool, check out [Metabase at scale][scale].
-- **Java threads:** `(72 total active threads)`. The total number of threads Metabase is using.
-- **Queries in flight:** `Queries in flight: 0 (0 queued)`. The number of active and queued queries across all database sources connected to Metabase. We recommend checking the **Database info** below for troubleshooting issues with the database related to the request.
-- **Database info**:`h2 DB 4 connections: 0/1 (0 threads blocked)`. Shows database type, database ID, connections active/pool (and queue). This info is specific to the database related to the request (in this case a `POST` request), and not to the overall queries in flight.
+Lassen Sie uns das Protokoll entpacken:
 
-[log-level]: ../configuring-metabase/log-configuration.md
+
+- **Zeitpunkt des Logs:** `2021-07-07 15:53:18,560`.
+-**Protokollebene:** `DEBUG`. Es gibt verschiedene Arten von Log-Levels. Um mehr darüber zu erfahren, lesen Sie [Metabase logs][log-level].
+- **Namespace:**. middleware.log`. Sie können Ihre Protokollierungsebene anpassen, um mehr oder weniger Informationen aus diesem Namensraum zu erhalten.
+-Methode:** `POST`. Das Verb der HTTP-Methode, wie POST, PUT, GET, DELETE.
+- **Pfad:** `/api/dataset`. Die Behandlungs-URL. Beachten Sie, dass die URL-Parameter nicht enthalten sind, was die Fehlersuche bei bestimmten Problemen erschweren kann.
+- **Code:** `202`. Der HTTP-Statuscode.
+- **ASYNC:** `[ASYNC: abgeschlossen]`. Ob die Metabase die Ergebnisse an den Browser liefern konnte. Wenn Metabase die Ergebnisse nicht liefern konnte, z. B. wenn jemand eine Abfrage startet und seinen Browser schließt, bevor die Abfrage beendet ist, wird im ASYNC-Status "cancelled" angezeigt.
+- **Antwortzeit:** `46.9 ms`. Die Zeit, die Metabase benötigt, um die Anfrage zu bearbeiten (vom Eingang der Anfrage bis zur Rückgabe der Ergebnisse an den Browser).
+- **Datenbankaufrufe:** `(17 DB-Aufrufe)`. Die Anzahl der verwendeten Abfrageanweisungen, die neben den Aufrufen der abgefragten Datenquelle(n) auch Aufrufe der Metabase-Anwendungsdatenbank umfasst.
+- **Verbindungen zur Anwendungsdatenbank:** `App DB-Verbindungen: 1/10`. Die Anzahl der aktiven Verbindungen und der verfügbare Pool von Verbindungen.
+- **Jetty-Threads:** `Jetty-Threads: 3/50 (4 im Leerlauf, 0 in der Warteschlange)`. Auflistung der Anzahl der aktiven Threads und des gesamten Pools der verfügbaren Threads. Die `(4 idle, 0 queued)` sind die freien heißen Threads und die Anzahl der Threads in der Warteschlange. Wenn Sie feststellen, dass Sie die Anzahl der Threads in Ihrem Pool ausgeschöpft haben, sehen Sie sich [Metabase at scale][scale] an.
+-Java-Threads:** `(72 aktive Threads insgesamt)`. Die Gesamtzahl der Threads, die Metabase verwendet.
+- **Abfragen in Bearbeitung:** `Abfragen in Bearbeitung: 0 (0 in der Warteschlange)`. Die Anzahl der aktiven und in der Warteschlange befindlichen Abfragen für alle mit der Metabase verbundenen Datenbankquellen. Es wird empfohlen, die**Datenbankinfo** unten zu überprüfen, um Probleme mit der Datenbank im Zusammenhang mit der Anfrage zu beheben.
+-**Datenbankinfo**:`h2 DB 4 Verbindungen: 0/1 (0 Threads blockiert)`. Zeigt Datenbanktyp, Datenbank-ID, aktive Verbindungen/Pool (und Warteschlange). Diese Informationen sind spezifisch für die Datenbank, die mit der Anfrage verbunden ist (in diesem Fall eine POST-Anfrage ), und nicht für die gesamten Anfragen im Flug.
+
+
+[log-level]:. ./configuring-metabase/log-configuration.md
 [scale]: https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-at-scale
+
