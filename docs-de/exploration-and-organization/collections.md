@@ -1,146 +1,75 @@
 ---
-title: Collections
+Titel: Sammlungen
 redirect_from:
-  - /docs/latest/users-guide/collections
+- /docs/latest/user-guide/collections
 ---
 
-# Collections
 
-Collections are the main way to organize [questions](../questions/introduction.md), [dashboards](../dashboards/introduction.md), and [models][models]. You can think of collections like folders or directories. You can nest collections in other collections, and move collections around. One thing to note is that a single item, like a question or dashboard, can only be in one collection at a time (excluding parent collections).
+# Sammlungen
 
-## Create a collection
 
-![Our analytics](./images/create-new-collection.png)
+Sammlungen sind das wichtigste Mittel zur Organisation von [Fragen](../questions/introduction.md), [Dashboards](../dashboards/introduction.md) und [models][models]. Sie können sich die Sammlungen wie Ordner oder Verzeichnisse vorstellen. Sie können Sammlungen in anderen Sammlungen verschachteln und Sammlungen verschieben. Dabei ist zu beachten, dass ein einzelnes Element, z. B. eine Frage oder ein Dashboard, immer nur in einer Sammlung enthalten sein kann (ausgenommen übergeordnete Sammlungen).
 
-To create a collection, click on the **+** button in the left nav sidebar at the top of the **Collections** section.
 
-You can also create a new collection from any collection page by clicking on the folder icon with the plus sign in the top right of the collection page.
+## Erstellen Sie eine Sammlung
 
-## Collection types
 
-### Regular collections
+(./images/create-new-collection.png)
 
-They're like file-system folders. You can put stuff in them.
 
-### Official collections
+Um eine Sammlung zu erstellen, klicken Sie auf die Schaltfläche **+** in der linken Navigationsleiste am oberen Rand des Abschnitts **Sammlungen**.
 
-{% include plans-blockquote.html feature="Official collections" %}
 
-![Official collections](./images/official-collection.png)
+Sie können auch von jeder Sammlungsseite aus eine neue Sammlung erstellen, indem Sie auf das Ordnersymbol mit dem Pluszeichen oben rechts auf der Sammlungsseite klicken.
 
-Metabase admins can designate collections as "official" with the following effects:
 
-- These collections have a yellow badge to let people know that the items in the collection are the ones people should be looking at (or whatever "official" means to you).
-- Questions in Official collections added to Dashboards that are not in Official collections will show an Official badge next to their name on the Dashboard.
-- Questions and dashboards in Official collections are also more likely to show up at the top of search results.
+## Sammlungstypen
 
-Pairing Official badges with [verified items](./content-verification.md) can help everyone in your Metabase sort out which questions people can trust.
 
-To add an Official badge to a collection, an admin can visit the collection and click on the dot dot dot menu (**...**) and select **Make collection official**. Admins can also remove an Official badge in the same menu. Admins can also mark a collection as Official or not when they first create the collection.
+### Reguläre Sammlungen
 
-## Collection permissions
 
-[Administrators can give you different kinds of access](../permissions/collections.md) to each collection:
+Sie sind wie Dateisystem-Ordner. Man kann Dinge darin ablegen.
 
-- **View access:** you can see the collection and its contents, but you can't modify anything or put anything new into the collection.
-- **Curate access:** you can edit, move, or delete the collection and its contents. You can also move or save new things in it and create new collections inside of it, and can also pin items in the collection to the top of the screen. Only administrators can edit permissions for collections, however.
-- **No access:** you can't see the collection or its contents. If you have access to a dashboard, but it contains questions that are saved in a collection you don't have access to, those questions will show a permissions notification instead of the chart or table.
 
-## Your personal collection
+### Offizielle Sammlungen
 
- You'll find your **Your personal collection** in the left side navbar under collections. Only you (and your admins) can view and edit this collection.
 
-You can use your personal collection as a scratch space to put experiments and explorations that you don't think would be particularly interesting to the rest of your team, or as a work-in-progress space where you can work on things and then move them to a shared place once they're ready.
+{% include plans-blockquote.html feature="Amtliche Sammlungen" %}
 
-To share items in your personal collection, for example to add a question in your personal collection to a dashboard in a public collection, you'll first need to move that item to a public collection.
 
-## Pinned items
+![Offizielle Sammlungen](./images/official-collection.png)
 
-In each collection, you can pin important or useful dashboards, models, and questions to make them stick to the top of the screen. Pinned items will also be displayed as large cards to make them stand out well.
 
-![Pins](./images/pinned-items.png)
+Metabase-Administratoren können Sammlungen als "offiziell" kennzeichnen, was folgende Auswirkungen hat:
 
-To pin and un-pin things in a collection, you need to have **Curate** permissions for that collection.
 
-- To pin an item, find the item on the collection page, go into the three-dot menu (**...**), and select **Pin this**.
-- To unpin a pinned item, hover over the pinned card, go to the three-dot menu (**...**), and select **Unpin**.
+- Diese Sammlungen sind mit einem gelben Abzeichen versehen, um darauf hinzuweisen, dass es sich bei den Elementen in der Sammlung um diejenigen handelt, die man sich ansehen sollte (oder was immer "offiziell" für Sie bedeutet).
+- Fragen in offiziellen Sammlungen, die zu Dashboards hinzugefügt werden, die nicht zu offiziellen Sammlungen gehören, werden auf dem Dashboard neben ihrem Namen mit einem offiziellen Abzeichen versehen.
+- Fragen und Dashboards in offiziellen Sammlungen werden auch eher an der Spitze der Suchergebnisse angezeigt.
 
-For pinned questions, you can also choose whether to display the visualization from the three-dot menu (**...**).
 
-![Show pinned viz](./images/pinned-show-viz.png)
+Wenn Sie offizielle Abzeichen mit [verifizierten Artikeln](./content-verification.md) kombinieren, kann jeder in Ihrer Metabase herausfinden, welchen Fragen man vertrauen kann.
 
-Pinned items will appear pinned for all people looking at the collection. If you just want to organize your favorite items, you should [bookmark them](./exploration.md#bookmarks) (only you can see your bookmarks).
 
-## Moving collections
+Um einer Sammlung ein offizielles Abzeichen hinzuzufügen, kann ein Administrator die Sammlung besuchen und auf das Punkt-Punkt-Menü(**...**) klicken und **Sammlung offiziell machen** wählen. Admins können ein offizielles Abzeichen über dasselbe Menü auch wieder entfernen. Admins können auch eine Sammlung als offiziell oder nicht offiziell markieren, wenn sie die Sammlung zum ersten Mal erstellen.
 
-To move a collection:
 
-1. Visit the collection's page.
-2. Click on the three-dot menu in the page.
-3. Select **Move**.
-4. Select a new collection to move to. To make the collection a top-level collection, select the **Our Analytics** collection.
+## Sammlungsberechtigungen
 
-## Moving items from collection to collection
 
-To move items between collections:
+[Administratoren können Ihnen verschiedene Zugriffsarten](../permissions/collections.md) auf jede Sammlunggewähren:
 
-1. To move one item:
 
-   - Click and drag it onto the destination collection, or
-   - Click the three-dot menu (**...**) next to the item and select **Move**
+-**Ansichtszugriff:** Sie können die Sammlung und ihren Inhalt sehen, aber Sie können nichts ändern oder der Sammlung etwas Neues hinzufügen.
+-**Zugang kuratieren:** Sie können die Sammlung und ihren Inhalt bearbeiten, verschieben oder löschen. Sie können auch neue Dinge darin verschieben oder speichern und neue Sammlungen darin erstellen und können auch Elemente in der Sammlung an den oberen Rand des Bildschirms anheften. Allerdings können nur Administratoren die Berechtigungen für Sammlungen bearbeiten.
+-Kein Zugriff:** Sie können die Sammlung oder ihren Inhalt nicht sehen. Wenn Sie Zugriff auf ein Dashboard haben, dieses aber Fragen enthält, die in einer Sammlung gespeichert sind, auf die Sie keinen Zugriff haben, wird für diese Fragen eine Berechtigungsmeldung anstelle des Diagramms oder der Tabelle angezeigt.
 
-2. To move multiple items:
-   - Click the checkboxes next to the items you want to move
-   - Click the **Move** action that appears at the bottom of the screen
-   - Select the destination collection
 
-![Selecting questions](./images/question-checkbox.png)
+## Ihre persönliche Sammlung
 
-You must have Curate permission for the collection that you're moving a question into and the collection you're moving the question out of. Metabase admins can move items into (and out of) anyone's [personal collection](#your-personal-collection).
 
-## Moving questions into dashboards
+Sie finden Ihre **Persönliche Sammlung** in der linken Navigationsleiste unter Sammlungen. Nur Sie (und Ihre Administratoren) können diese Sammlung einsehen und bearbeiten.
 
-You can move any question from a collection to a dashboard (and vice versa). Visit a question, click on the three-dot menu (**...**) and select **Move**. Pick a destination and your question will enjoy its new home.
 
-### Bulk-moving questions into dashboards
-
-If a collection has questions that have been added to dashboards in that collection, you can move the questions into their dashboards to declutter the collection.
-
-To bulk-move questions into their dashboards:
-
-1. Visit a collection page
-2. Click on the three-dot menu (**...**)
-3. Select **Move questions into their dashboards**
-
-A modal will appear explaining what will happen:
-
-- If a question only appears in a single dashboard in this collection, it'll be moved into that dashboard to declutter the collection.
-- Permissions won't change.
-
-You can preview the changes before initiating the move. Hit the preview button to see which questions will be moved into which dashboards. No questions will be moved into dashboards they weren't already added to. All this move does is "save" the questions to the dashboard rather than the collection.
-
-In general, you want to save questions to dashboards unless you know people will want to reuse that question in multiple dashboards.
-
-## Cleaning up collections
-
-{% include plans-blockquote.html feature="Collection cleanup" %}
-
-It's possible to ask too many questions. Fortunately, you can clean up collections by [trashing items](./delete-and-restore.md) that people haven't even looked at for a period of time. Cleaning up old questions and dashboards can keep your Metabase from getting too cluttered, and you can always resurrect items from the trash if you need to.
-
-On a collection page, click on the three-dot menu (**...**) and select **Clear out unused items**. Metabase will pull up a modal where you can select unused items to move to the trash. You can set how long items need to go unnoticed before they're culled by setting **Not used in over**, which you can set to trash items from one month ago to over two years ago. There's also a toggle to include/exclude items in sub-collections.
-
-## Events and timelines
-
-You can add events to collections, and organize those events into timelines. See [Events and timelines](events-and-timelines.md).
-
-## Uploading data
-
-You can upload data to collections. See [Uploading data](./uploads.md).
-
-## Further reading
-
-- [Keeping your analytics organized](https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/same-page)
-- [Multiple environments](https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/multi-env#one-collection-per-environment)
-
-[dashboards]: ../dashboards/introduction.md
-[models]: ../data-modeling/models.md
+Sie können Ihre persönliche Sammlung als Kratzbaum für Experimente und Untersuchungen verwenden, die für den Rest Ihres Teams nicht besonders interessant sind, oder als Arbeitsbereich, in dem Sie an Dingen arbeiten und sie dann an einen gemeinsamen Ort verschieben können, sobald sie fertig sind.
