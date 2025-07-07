@@ -1,119 +1,69 @@
 ---
-title: API keys
+Titel: API-Schlüssel
 ---
 
-# API keys
 
-Metabase can create API keys to authenticate programmatic requests to the API. To set the permissions for an API key, you can assign the key to a [group](./managing.md#groups).
+# API-Schlüssel
 
-## Fair warning about Metabase's API
 
-We don't version the [Metabase API](../api.html). We rarely change API endpoints, and almost never remove them, but if you write code that relies on the API, there's a chance you might have to update your code in the future.
+Die Metabase kann API-Schlüssel erstellen, um programmatische Anfragen an die API zu authentifizieren. Um die Berechtigungen für einen API-Schlüssel festzulegen, können Sie den Schlüssel einer [Gruppe] zuordnen(./managing.md#groups).
 
-That said, there are times when it's nice to work with the API, like when managing permissions with a large number of people and groups, or bulk archiving, or content creation. So we added the ability to create API keys to authenticate your programmatic requests.
 
-## Create an API key
+## Eine Warnung zur Metabase-API
 
-To create an API key:
 
-1. Click on the **gear** icon in the upper right.
-2. Select **Admin settings**.
-3. Go to the **Settings** tab.
-4. Click on the **Authentication** tab on the left menu.
-5. Scroll to **API Keys** and click **Manage**.
-6. Click the **Create API Key** button.
-7. Enter a **Key name**. You can have multiple API keys, so give it a name that will help you remember what you're using the key for.
-8. Select a **[Group](./managing.md#groups)**. The key will have the same permissions granted to that group.
-9. Click **Create**.
-10. Copy the generated API key and save it somewhere safe. Metabase won't be able to show you the key again. If you lose the key, you'll need to regenerate a new key.
+Die [Metabase API](../api.html) wird nicht versioniert. Wir ändern selten API-Endpunkte und entfernen sie fast nie, aber wenn Sie Code schreiben, der sich auf die API stützt, besteht die Möglichkeit, dass Sie Ihren Code in Zukunft aktualisieren müssen.
 
-### Creating API keys from the config file
 
-If you're on a [Pro or Enterprise self-hosted plan](https://www.metabase.com/pricing/), you can [create API keys via the configuration file](../configuring-metabase/config-file.md#api-keys).
+Es gibt jedoch Situationen, in denen es sinnvoll ist, mit der API zu arbeiten, z. B. bei der Verwaltung von Berechtigungen für eine große Anzahl von Personen und Gruppen, der Massenarchivierung oder der Erstellung von Inhalten. Deshalb haben wir die Möglichkeit hinzugefügt, API-Schlüssel zu erstellen, um Ihre programmatischen Anfragen zu authentifizieren.
 
-## Managing API Keys
 
-To view and manage existing API keys:
+## Einen API-Schlüssel erstellen
 
-1. Click on the **gear** icon in the upper right.
-2. Select **Admin settings**.
-3. Go to the **Settings** tab.
-4. Click on the **Authentication** tab on the left menu.
-5. Scroll to **API Keys** and click **Manage**.
 
-### Editing API keys
+So erstellen Sie einen API-Schlüssel:
 
-To edit an API key, scroll to the key you want to edit and click on the **pencil** icon. Metabase will pop up an **Edit API Key** modal where you can edit:
 
-- The key's name
-- Which group the key belongs to.
-- Change (regenerate) the key. Metabase will replace the existing API key with a new key. You won't be able to recover the old key.
+1. Klicken Sie auf das Symbol **Zahnrad** in der oberen rechten Ecke.
+2. Wählen Sie **Admin-Einstellungen**.
+3. Wechseln Sie zur Registerkarte **Einstellungen**.
+4. Klicken Sie im linken Menü auf die Registerkarte**Authentifizierung**.
+5. Blättern Sie zu **API-Schlüssel** und klicken Sie auf **Verwalten**.
+6. Klicken Sie auf die Schaltfläche **API-Schlüssel erstellen**.
+7. Geben Sie einen **Schlüsselnamen** ein. Sie können mehrere API-Schlüssel haben, also geben Sie ihm einen Namen, der Ihnen hilft, sich zu merken, wofür Sie den Schlüssel verwenden.
+8. Wählen Sie eine **[Gruppe](./managing.md#groups)**. Der Schlüssel erhält die gleichen Berechtigungen wie diese Gruppe.
+9. Klicken Sie auf **Erstellen**.
+10. Kopieren Sie den generierten API-Schlüssel und speichern Sie ihn an einem sicheren Ort. Die Metabase kann Ihnen den Schlüssel nicht mehr anzeigen. Wenn Sie den Schlüssel verlieren, müssen Sie einen neuen Schlüssel generieren.
 
-### Deleting API keys
 
-You won't be able to recover a deleted API key. You'll have to create a new key.
+### API-Schlüssel über die Konfigurationsdatei erstellen
 
-To delete an API Key:
 
-1. Click on the **gear** icon in the upper right.
-2. Select **Admin settings**.
-3. Go to the **Settings** tab.
-4. Click on the **Authentication** tab on the left menu.
-5. Scroll to **API Keys** and click **Manage**.
-6. Select the key you want to delete and click the **trash** icon.
-7. Metabase will pop up a **Delete API Key** modal. Click the **Delete API Key** button.
+Wenn Sie einen [Pro oder Enterprise self-hosted Plan](https://www.metabase.com/pricing/) nutzen, können Sie [API-Schlüssel über die Konfigurationsdatei](../configuring-metabase/config-file.md#api-keys)erstellen.
 
-### Metabase will transfer API keys associated with a group that gets deleted to the All users group
 
-If you have API keys assigned to a group, but then someone deletes that group, the API keys will still work, but Metabase will reassign those keys to the All users group. If you want to change their group, you'll need to edit the keys manually.
+## Verwalten von API-Schlüsseln
 
-## Example `GET` requests
 
-Here are some example `GET` requests that return the groups in your Metabase. These examples assume you're running Metabase locally on the default port: 3000.
+So zeigen Sie vorhandene API-Schlüssel an und verwalten sie:
 
-### `curl` example
 
-Replace `YOUR_API_KEY` with the API key you generated above.
+1. Klicken Sie auf das Symbol **Zahnrad** in der oberen rechten Ecke.
+2. Wählen Sie **Admin-Einstellungen**.
+3. Wechseln Sie zur Registerkarte **Einstellungen**.
+4. Klicken Sie im linken Menü auf die Registerkarte**Authentifizierung**.
+5. Scrollen Sie zu **API-Schlüssel** und klicken Sie auf **Verwalten**.
 
-```sh
-curl \
--H 'x-api-key: YOUR_API_KEY' \
--X GET 'http://localhost:3000/api/permissions/group'
-```
 
-### JavaScript example
+### API-Schlüssel bearbeiten
 
-Assuming you've set your key as an environment variable like so:
 
-```sh
-export METABASE_API_KEY="YOUR_API_KEY"
-```
+Um einen API-Schlüssel zu bearbeiten, scrollen Sie zu dem Schlüssel, den Sie bearbeiten möchten, und klicken Sie auf das Symbol**Bleistift**. Metabase öffnet ein **Modal zumBearbeiten des API-Schlüssels**, in dem Sie den Schlüssel bearbeiten können:
 
-Here's a basic `GET` request using `fetch` to get the list of groups. You can copy the code, save it as file (e.g., as `api-test.js`), and run the code with `node api-test.js`.
 
-```js
-// Assuming you've set the key in process with
-// `export METABASE_API_KEY="YOUR_KEY_HERE"`
-const API_KEY = process.env.METABASE_API_KEY;
+- den Namen des Schlüssels
+- Zu welcher Gruppe der Schlüssel gehört.
+- Ändern (neu generieren) des Schlüssels. Metabase ersetzt den vorhandenen API-Schlüssel durch einen neuen Schlüssel. Sie können den alten Schlüssel nicht wiederherstellen.
 
-const init = {
-  headers: {
-    "Content-Type": "application/json",
-    "X-API-KEY": API_KEY,
-  },
-};
 
-const host = "http://127.0.0.1:3000";
-
-async function getGroups() {
-  const response = await fetch(`${host}/api/permissions/group`, init);
-  return response.json();
-}
-
-getGroups().then(groups => console.log("Groups in your Metabase:", groups));
-```
-
-## Further reading
-
-- [Metabase API reference](../api.html).
-- [Working with the Metabase API](https://www.metabase.com/learn/metabase-basics/administration/administration-and-operation/metabase-api).
+### Löschung von API-Schlüsseln
