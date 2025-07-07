@@ -1,15 +1,12 @@
 ---
-title: Numbers
+Titel: Zahlen
 redirect_from:
   - /docs/latest/questions/sharing/visualizations/numbers
 ---
 
-# Numbers
-
-The **Numbers** option is for displaying a single number, nice and big. The options for numbers include:
-
+#Zahlen
+Mit der Option **Zahlen** können Sie eine einzelne Zahl schön groß anzeigen lassen. Die Optionen für Zahlen umfassen:
 ![Number](../images/number.png)
-
-- **Adding character prefixes or suffixes** to it (so you can do things like put a currency symbol in front or a percent at the end),
-- **Setting the number of decimal places** you want to include, and
-- **Multiplying your result by a number** (like if you want to multiply a decimal by 100 to make it look like a percent). If you want to _divide_ by a number, then just multiply it by a decimal (e.g, if your result is `100`, but you want it to display as `1`, simply multiply it by 0.01).
+- **Hinzufügen von Zeichenpräfixen oder -suffixen** (um z. B. ein Währungssymbol voranzustellen oder ein Prozentzeichen an das Ende zu setzen),
+- **Einstellen der Anzahl der Dezimalstellen**, die einbezogen werden sollen, und
+- **Multiplizieren des Ergebnisses mit einer Zahl** (z. B. wenn Sie eine Dezimalzahl mit 100 multiplizieren möchten, damit sie wie ein Prozentwert aussieht). Wenn Sie mit einer Zahl _dividieren_ wollen, dann multiplizieren Sie sie einfach mit einer Dezimalzahl (z. B. wenn Ihr Ergebnis `100` ist, aber als `1` angezeigt werden soll, multiplizieren Sie es einfach mit 0,01).
