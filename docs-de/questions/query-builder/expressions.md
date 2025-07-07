@@ -1,117 +1,84 @@
 ---
-title: Custom expressions
+Titel: Benutzerdefinierte Ausdrücke
 redirect_from:
   - /docs/latest/users-guide/expressions
 ---
 
-# Custom expressions
+# Benutzerdefinierte Ausdrücke
+[Editor für benutzerdefinierte Ausdrücke](../images/custom-expression-editor.png)
+[Benutzerdefinierte Ausdrücke][expression-list] sind wie Formeln in Tabellenkalkulationsprogrammen wie Excel, Google Sheets und LibreOffice Calc. Sie sind die leistungsstarken Werkzeuge im Editor des Query Builders, mit denen Sie kompliziertere Fragen stellen können.
+Sie können auch zur [vollständigen Liste der Ausdrücke][expression-list] springen.
 
-![Custom expression editor](../images/custom-expression-editor.png)
+## Benutzerdefinierte Ausdrücke zum Erstellen von Filtern, Metriken und benutzerdefinierten Spalten
+Um den Editor für benutzerdefinierte Ausdrücke zu verwenden, erstellen Sie eine **Benutzerdefinierte Spalte** (wobei der benutzerdefinierte Ausdruck als Feldformel zur Berechnung von Werten für die neue Spalte verwendet wird), oder klicken Sie auf **Filter** oder **Zusammenfassen** und wählen Sie **Benutzerdefinierter Ausdruck**.
+Wenn Sie den Abfragegenerator verwenden, können Sie Ausdrücke verwenden, um neue Spalten zu erstellen:
+- **Benutzerdefinierte Spalten**. Sie können z. B. `[Zwischensumme] / [Menge]` verwenden, um eine neue Spalte zu erstellen, die Sie "Artikelpreis" nennen können.
+- **Filter**. Der Ausdruck `enthält([Kommentar], "Metabase")` würde nach Zeilen filtern, in denen das Feld `Kommentar` das Wort "Metabase" enthält.
+- **Zusammenfassungen**. Auch bekannt als Metriken oder Aggregationen. Anteil([Gesamt] > 50)` würde den Prozentsatz der Bestellungen mit einem Gesamtbetrag von mehr als 50 Dollar zurückgeben.
+Geben Sie Ihren Ausdruck ein, geben Sie ihm einen Namen, und klicken Sie auf **Fertig**. Wenn die Schaltfläche Fertig ausgegraut ist, überprüfen Sie, ob Ihr Ausdruck gültig ist und ob Sie dem Ausdruck einen Namen gegeben haben (den Sie unten im Ausdruckseditor eingeben).
+Auf dieser Seite werden die Grundlagen von Ausdrücken behandelt. Sie können sich eine [vollständige Liste der Ausdrücke][expression-list] in der Metabase ansehen oder ein Tutorial durchlaufen, das Ihnen zeigt, wie Sie [benutzerdefinierte Ausdrücke im Notizbuch-Editor][custom-expressions] verwenden können.
 
-[Custom expressions][expression-list] are like formulas in spreadsheet software like Excel, Google Sheets, and LibreOffice Calc. They are the power tools in the query builder's editor that allow you to ask more complicated questions.
+## Arten von Ausdrücken
+Es gibt zwei grundlegende Arten von Ausdrücken, **Aggregationen** und **Funktionen**. Sehen Sie sich eine [vollständige Liste der Ausdrücke][expression-list] an.
 
-You can also skip to the [complete list of expressions][expression-list].
+### Aggregationen
+[Aggregationen][Aggregationen] verwenden Werte aus mehreren Zeilen, um eine Berechnung durchzuführen, z. B. um den Durchschnittswert aller Werte in einer Spalte zu ermitteln. Aggregationsfunktionen können nur im Abschnitt **Zusammenfassen** des Notizbuch-Editors verwendet werden, da Aggregationen Werte aus allen Zeilen für diese Spalte verwenden. Während Sie also eine benutzerdefinierte Spalte mit der Formel "Zwischensumme" + "Steuer" erstellen können, können Sie nicht "Summe([Zwischensumme] + [Steuer])" schreiben, es sei denn, Sie erstellen einen benutzerdefinierten metrischen Ausdruck (der alle Zwischensummen und Steuern zusammenzählt).
 
-## Custom expressions to create filters, metrics, and custom columns
+### Funktionen
+[Funktionen][Funktionen] hingegen machen etwas mit jedem Wert in einer Spalte, wie z.B. die Suche nach einem Wort in jedem Wert (`contains`), das Aufrunden jedes Wertes auf die nächste Ganzzahl (die Funktion `ceil`), und so weiter.
 
-To use the custom expression editor, create a **Custom Column** (where the custom expression is used as a Field Formula to calculate values for the new column), or click on **Filter** or **Summarize** and select **Custom Expression**.
+## Funktionsbrowser
+![Funktionsbrowser](../images/function-browser.png)
+Der Ausdruckseditor enthält einen Funktionsbrowser, der Ihnen hilft, die gewünschte Funktion zu finden. Um den Browser anzuzeigen, klicken Sie auf das **f** auf der rechten Seite des Ausdruckseditors. Siehe auch eine [Liste der Funktionen und Aggregationen](./expressions-list.md).
 
-When using the query builder, you can use expressions to create new:
+## Auto-Format
+![Autoformat-Ausdruck](../images/auto-format.png)
+Um Ausdrücke zu formatieren, klicken Sie auf die Schaltfläche für die automatische Formatierung auf der rechten Seite des Ausdruckseditors (der Blitz in geschweiften Klammern).
 
-- **Custom columns**. You could use `[Subtotal] / [Quantity]` to create a new column, which you could name "Item price".
-- **Filters**. The expression `contains([comment], "Metabase")` would filter for rows where the `comment` field contained the word "Metabase".
-- **Summaries**. Also known as metrics or aggregations. `Share([Total] > 50)` would return the percentage of orders with totals greater than 50 dollars.
+## Grundlegende mathematische Operatoren
+Verwenden Sie `+`, `-`, `*` (Multiplizieren), `/` (Dividieren) für numerische Spalten mit numerischen Werten, wie Ganzzahlen, Gleitkommazahlen und Double. Sie können Klammern, `(` und `)`, verwenden, um Teile Ihres Ausdrucks zu gruppieren.
+Sie könnten zum Beispiel eine neue Spalte erstellen, die die Differenz zwischen der Gesamtsumme und der Zwischensumme eines Auftrags berechnet: [Gesamt] - [Zwischensumme]".
+Um mit Zeitstempelspalten zu rechnen, können Sie [Datumsfunktionen](expressions-list.md#date-functions) wie [dateDiff](./expressions/datetimediff.md) verwenden.
 
-Type in your expression, give it a name, and click **Done**. If the Done button is grayed out, check that your expression is valid, and that you've given the expression a name (which you enter at the bottom of the expression editor).
-
-This page covers the basics of expressions. You can check out a [full list of expressions][expression-list] in Metabase, or walk through a tutorial that shows you how you can use [custom expressions in the notebook editor][custom-expressions].
-
-## Types of expressions
-
-There are two basic types of expressions, **Aggregations** and **Functions**. Check out a [full list of expressions][expression-list].
-
-### Aggregations
-
-[Aggregations][aggregations] take values from multiple rows to perform a calculation, such as finding the average value from all values in a column. Aggregations functions can only be used in the **Summarize** section of the notebook editor, because aggregations use values from all rows for that column. So while you could create a custom column with the formula `[Subtotal] + [Tax]`, you could _not_ write `Sum([Subtotal] + [Tax])`, unless you were creating a custom metric expression (that would add up all the subtotals and taxes together).
-
-### Functions
-
-[Functions][functions], by contrast, do something to each value in a column, like searching for a word in each value (`contains`), rounding each value up to the nearest integer (the `ceil` function), and so on.
-
-## Function browser
-
-![Function browser](../images/function-browser.png)
-
-The expression editor includes a function browser to help you find the function you need. To view the browser, flick on the **f** on the right of the expression editor. See also a [list of functions and aggregations](./expressions-list.md).
-
-## Auto-format
-
-![Auto-format expression](../images/auto-format.png)
-
-To format expressions, click on the auto-format button on the right side of the expression editor (the lightning bolt wrapped in braces).
-
-## Basic mathematical operators
-
-Use `+`, `-`, `*` (multiply), `/` (divide) on numeric columns with numeric values, like integers, floats, and double. You can use parentheses, `(` and `)`, to group parts of your expression.
-
-For example, you could create a new column that calculates the difference between the total and subtotal of a order: `[Total] - [Subtotal]`.
-
-To do math on timestamp columns, you can use [Date functions](expressions-list.md#date-functions) like [dateDiff](./expressions/datetimediff.md).
-
-## Conditional operators
-
+## Bedingte Operatoren
 - `AND`
-- `OR`  
-- `NOT`
-- `>` 
-- `>=` (greater than or equal to)
+- `OR`
+- `NICHT`
+- `>`
+- `>=` (größer als oder gleich)
 - `<`
-- `<=` (less than or equal to) 
+- `<=` (kleiner als oder gleich)
 - `=`
-- `!=` (not equal to)
-
-For example, you could create a filter for customers from California or Vermont: `[State] = "CA" OR [State] = "VT"`.
-
-You can also use conditionals with the `case` function (alias `if`):
-
+- `!=` (nicht gleich)
+Sie könnten zum Beispiel einen Filter für Kunden aus Kalifornien oder Vermont erstellen: `[Staat] = "CA" OR [Staat] = "VT"`.
+Sie können auch Bedingungen mit der Funktion `case` (alias `if`) verwenden:
 ```
-case([Size] = "L", "LARGE", [SIZE] = "M", "MEDIUM", "SMALL")
+case([Größe] = "L", "LARGE", [SIZE] = "M", "MEDIUM", "SMALL")
 ```
+Siehe [`case`](./ausdrucke/case.md).
 
-See [`case`](./expressions/case.md).
+## Verweis auf andere Spalten
+Sie können auf Spalten in der aktuellen Tabelle oder auf Spalten verweisen, die über eine Fremdschlüsselbeziehung verbunden sind. Spaltennamen sollten in eckigen Klammern angegeben werden, etwa so: `[Name der Spalte]`. Auf Spalten in verbundenen Tabellen kann wie folgt verwiesen werden: `[VerbundeneTabelleName.Spalte]`.
 
-## Referencing other columns
+## Verweis auf Segmente und Metriken
+Sie können auf gespeicherte [metrics](../../data-modeling/metrics.md) und [segments](../../data-modeling/segments.md) verweisen, die in der aktuell ausgewählten Tabelle vorhanden sind. Sie schreiben diese genauso aus wie bei den Spalten, etwa so: `[Gültige Benutzersitzungen]`.
 
-You can refer to columns in the current table, or to columns that are linked via a foreign key relationship. Column names should be included inside of square brackets, like this: `[Name of Column]`. Columns in connected tables can be referred to like this: `[ConnectedTableName.Column]`.
+## Filterausdrücke und Konditionale
+Bei Filterausdrücken und Konditionalen sind einige Dinge zu beachten:
+- Filterausdrücke unterscheiden sich insofern, als sie einen booleschen Wert zurückgeben müssen (etwas, das entweder wahr oder falsch ist). Sie könnten zum Beispiel schreiben: `[Zwischensumme] + [Steuer] < 100`. Metabase würde sich jede Zeile ansehen, die Zwischensumme und die Steuer addieren und prüfen, ob die Summe größer als 100 ist. Ist dies der Fall, wird die Anweisung als wahr bewertet, und Metabase nimmt die Zeile in das Ergebnis auf. Wenn Sie stattdessen (fälschlicherweise) `[Zwischensumme] + [Steuer]` schreiben würden, wüsste Metabase nicht, was zu tun ist, da dieser Ausdruck nicht als wahr oder falsch ausgewertet wird.
+- Sie können Funktionen innerhalb des bedingten Teils der `CountIf`- und `SumIf`-Aggregationen verwenden, etwa so: CountIf( round([Zwischensumme]) > 100 OR floor([Steuer]) < 10 )`.
+- 
+## Arbeiten mit Daten in Filterausdrücken
+Wenn Sie mit Datumsangaben in Ihren Filterausdrücken arbeiten möchten, müssen die Datumsangaben dem Format "JJJJ-MM-TT" entsprechen, d. h. vier Zeichen für das Jahr, zwei für den Monat und zwei für den Tag, eingeschlossen in Anführungszeichen "" und getrennt durch Bindestriche "-".
 
-## Referencing Segments and Metrics
+Beispiel:
+`zwischen([Erstellt am], "2020-01-01", "2020-03-31") OR [Empfangen am] > "2019-12-25"`
+Dieser Ausdruck würde Zeilen zurückgeben, bei denen "Erstellt am" zwischen dem 1. Januar 2020 und dem 31. März 2020 liegt oder bei denen "Empfangen am" nach dem 25. Dezember 2019 liegt.
 
-You can refer to saved [metrics](../../data-modeling/metrics.md) and [segments](../../data-modeling/segments.md) that are present in the currently selected table. You write these out the same as with columns, like this: `[Valid User Sessions]`.
-
-## Filter expressions and conditionals
-
-Some things to keep in mind about filter expressions and conditionals:
-
-- Filter expressions are different in that they must return a Boolean value (something that's either true or false). For example, you could write `[Subtotal] + [Tax] < 100`. Metabase would look at each row, add its subtotal and tax, the check if that sum is greater than 100. If it is, the statement evaluates as true, and Metabase will include the row in the result. If instead you were to (incorrectly) write `[Subtotal] + [Tax]`, Metabase wouldn't know what to do, as that expression doesn't evaluate to true or false.
-- You can use functions inside of the conditional portion of the `CountIf` and `SumIf` aggregations, like so: `CountIf( round([Subtotal]) > 100 OR floor([Tax]) < 10 )`.
-
-## Working with dates in filter expressions
-
-If you want to work with dates in your filter expressions, the dates need to follow the format, `"YYYY-MM-DD"` — i.e., four characters for the year, two for the month, and two for the day, enclosed in quotes `"` and separated by dashes `-`.
-
-Example:
-
-`between([Created At], "2020-01-01", "2020-03-31") OR [Received At] > "2019-12-25"`
-
-This expression would return rows where `Created At` is between January 1, 2020 and March 31, 2020, or where `Received At` is after December 25, 2019.
-
-## List of expressions
-
-See a full list of [expressions][expression-list].
-
-For a tutorial on expressions, see [Custom expressions in the query builder][custom-expressions].
-
-[aggregations]: ./expressions-list.md#aggregations
-[custom-expressions]: https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/custom-expressions
-[expression-list]: ./expressions-list.md
-[functions]: ./expressions-list.md#functions
+## Liste der Ausdrücke
+Siehe eine vollständige Liste der [Ausdrücke][expression-list].
+Eine Anleitung zu Ausdrücken finden Sie unter [Benutzerdefinierte Ausdrücke im Query Builder][custom-expressions].
+[Aggregationen]: ./expressions-list.md#aggregations
+[Benutzerdefinierte Ausdrücke]: https://www.metabase.com/learn/metabase-basics/querying-and-dashboards/questions/custom-expressions
+[Ausdrucksliste]: ./expressions-list.md
+[Funktionen]: ./expressions-list.md#functions
