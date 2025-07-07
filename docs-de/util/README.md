@@ -7,23 +7,18 @@ Skripte für die Erstellung von Dokumenten.
 ## Dokumente für Tastaturkürzel generieren
 
 
-Führen Sie aus diesem Verzeichnis aus:
+Führen Sie von diesem Verzeichnis aus:
 
-
-````bash
-Garn installieren
+```bash
+yarn install
 ```
 
+Dann:
 
-dann:
-
-
-````bash
+```bash
 yarn generate-shortcuts
 ```
-Die Dokumente werden auf den Server geschrieben:
-
-
+Die Dokumente werden aufgeschrieben:
 ```
-docs/exploration-und-organisation/tastatur-kurzbefehle.md
+docs/exploration-and-organization/keyboard-shortcuts.md
 ```
