@@ -1,21 +1,29 @@
 ---
-title: Troubleshooting BigQuery and Google Drive connections in Metabase
+Titel: Fehlerbehebung bei BigQuery- und Google Drive-Verbindungen in Metabase
 ---
 
-# Troubleshooting BigQuery and Google Drive connections in Metabase
 
-[This page](../databases/connections/bigquery.md) explains how to connect a BigQuery data source, including one that uses a file stored in Google Drive, like a Google Sheet (GSheets).
+# Fehlerbehebung bei BigQuery- und Google Drive-Verbindungen in Metabase
+
+
+[Auf dieser Seite(../databases/connections/bigquery.md) wird erklärt, wie man eine BigQuery-Datenquelle verbindet, einschließlich einer, die eine in Google Drive gespeicherte Datei wie ein Google Sheet (GSheets) verwendet.)
+
 
 ## 403 Forbidden POST error
 
-If you encounter an error that looks like this:
+
+Wenn Sie auf eine Fehlermeldung stoßen, die wie diese aussieht:
+
 
 ```
-403 Forbidden POST https://www.googleapis.com/bigquery/v2/projects/PROJECT-NAME/queries { "code" : 403, "errors" : [ { "domain" : "global", "message" : "Access Denied: BigQuery BigQuery: Permission denied while getting Drive credentials.", "reason" : "accessDenied" } ], "message" : "Access Denied: BigQuery BigQuery: Permission denied while getting Drive credentials.", "status" : "PERMISSION_DENIED" }
+403 Forbidden POST https://www.googleapis.com/bigquery/v2/projects/PROJECT-NAME/queries { "code" : 403, "errors" : [ { "domain" : "global", "message" : "Access Denied: BigQuery BigQuery: Permission denied while getting Drive credentials.", "reason" : "accessDenied" } ], "message" : "Zugriff verweigert: BigQuery BigQuery: Permission denied while getting Drive credentials.", "status" : "PERMISSION_DENIED" }
 ```
 
-You may have forgotten to [share your Google Drive source](../databases/connections/bigquery.md#share-your-google-drive-source-with-the-service-account) with the service account email. Once that's been fixed, that error should disappear and you'll be able to view and query your data source.
 
-## Further reading
+Möglicherweise haben Sie vergessen, [Ihre Google Drive-Quelle](../databases/connections/bigquery.md#share-your-google-drive-source-with-the-service-account) mit der E-Mail des Servicekontos zuteilen. Sobald dies behoben ist, sollte der Fehler verschwinden und Sie können Ihre Datenquelle anzeigen und abfragen.
 
-- [Troubleshooting database connections](./db-connection.md)
+
+## Weitere Lektüre
+
+
+- [Fehlersuche bei Datenbankverbindungen](./db-connection.md)
