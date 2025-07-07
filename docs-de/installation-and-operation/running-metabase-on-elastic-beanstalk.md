@@ -1,81 +1,83 @@
 ---
-title: Running Metabase on AWS Elastic Beanstalk
+Titel: Ausführen von Metabase auf AWS Elastic Beanstalk
 redirect_from:
-  - /docs/latest/operations-guide/running-metabase-on-elastic-beanstalk
-  - /docs/latest/installation-and-operation/advanced-topics-for-running-Metabase-in-AWS-ElasticBeanstalk
-  - /docs/latest/operations-guide/advanced-topics-for-running-Metabase-in-AWS-ElasticBeanstalk
+- /docs/latest/operations-guide/laufende-metabasis-auf-elastic-beanstalk
+- /docs/latest/installation-und-betrieb/erweiterte-themen-fuer-die-ausfuehrung-der-metabasis-in-AWS-ElasticBeanstalk
+- /docs/latest/operations-guide/erweiterte-themen-fuer-die-ausfuehrung-der-metabasis-in-aws-lastic-beanstalk
 ---
 
-# Running Metabase on AWS Elastic Beanstalk
 
-> Due to problems with the platform, we no longer recommend using Elastic Beanstalk to run Metabase in production.
+# Ausführen von Metabase auf AWS Elastic Beanstalk
 
-If you're running Metabase on Elastic Beanstalk, we recommend you switch to a different setup.
 
-## Alternatives to Elastic Beanstalk
+> Aufgrund von Problemen mit der Plattform wird die Verwendung von Elastic Beanstalk für die Ausführung von Metabase in der Produktion nicht mehr empfohlen.
+
+
+Wenn Sie Metabase auf Elastic Beanstalk ausführen, empfehlen wir Ihnen, auf ein anderes Setup zu wechseln.
+
+
+## Alternativen zu Elastic Beanstalk
+
 
 ### Metabase Cloud
 
-We recommend [Metabase Cloud](https://www.metabase.com/pricing/) (obviously).
 
-### Self-hosted setups
+Wir empfehlen [Metabase Cloud](https://www.metabase.com/pricing/) (natürlich).
 
-You can set up Metabase with either PostgreSQL or MySQL as its application database, and run Metabase on a server you can monitor, either on your hardware or with a cloud provider.
 
-At a minimum, make sure you back up your application database regularly (and always before upgrading). Follow your organization's requirements for security, monitoring, and availability.
+### Selbst gehostete Setups
 
-### Professional services
 
-If you'd like help with setting up Metabase (or building out your data stack in general), check out the [professional services we offer](https://www.metabase.com/product/professional-services).
+Sie können Metabase entweder mit PostgreSQL oder MySQL als Anwendungsdatenbank einrichten und Metabase auf einem Server betreiben, den Sie überwachen können, entweder auf Ihrer Hardware oder bei einem Cloud-Anbieter.
 
-## Decouple your RDS database from the Elastic Beanstalk deployment
 
-If you're using AWS's Relational Database Service to store your Metabase application data, you can continue to do so (though you should still move your Metabase installation away from Elastic Beanstalk). You can use [environment variables](../configuring-metabase/environment-variables.md) to connect to your RDS host from wherever you move your Metabase installation to.
+Stellen Sie zumindest sicher, dass Sie Ihre Anwendungsdatenbank regelmäßig (und immer vor einem Upgrade) sichern. Beachten Sie die Anforderungen Ihres Unternehmens in Bezug auf Sicherheit, Überwachung und Verfügbarkeit.
 
-### Notify people that your Metabase will be down for a bit
 
-This procedure will generate downtime, so make sure to communicate to your users that Metabase will be down while you recreate the environment with the new database.
+### Professionelle Dienstleistungen
 
-### Get a snapshot of your application database
 
-> You'll need the master username and password for the database you used when you created the Elastic Beanstalk instance.
+Wenn Sie Hilfe bei der Einrichtung von Metabase (oder beim Aufbau Ihres Datenstacks im Allgemeinen) benötigen, sehen Sie sich die [professionellen Dienstleistungen an, die wir anbieten](https://www.metabase.com/product/professional-services).
 
-Identify the RDS endpoint that your Elastic Beanstalk is using by going to the configuration of the Environment and finding the endpoint value on the Database section.
+
+## Entkoppeln Sie Ihre RDS-Datenbank von der Elastic Beanstalk-Bereitstellung
+
+
+Wenn Sie den Relationalen Datenbankservice von AWS zum Speichern Ihrer Metabase-Anwendungsdaten verwenden, können Sie dies auch weiterhin tun (allerdings sollten Sie Ihre Metabase-Installation von Elastic Beanstalk abkoppeln). Sie können [Umgebungsvariablen](../configuring-metabase/environment-variables.md) verwenden, um von dem Ort, an den Sie Ihre Metabase-Installation verschieben, eine Verbindung zu Ihrem RDS-Host herzustellen.
+
+
+### Benachrichtigen Sie die Benutzer, dass Ihre Metabase eine Zeit lang nicht verfügbar sein wird.
+
+
+Diese Prozedur wird eine Ausfallzeit verursachen, daher sollten Sie Ihren Benutzern mitteilen, dass die Metabase nicht verfügbar sein wird, während Sie die Umgebung mit der neuen Datenbank wiederherstellen.
+
+
+### Erstellen Sie einen Snapshot Ihrer Anwendungsdatenbank.
+
+
+> Sie benötigen den Master-Benutzernamen und das Passwort für die Datenbank, die Sie bei der Erstellung der Elastic Beanstalk-Instanz verwendet haben.
+
+
+Identifizieren Sie den RDS-Endpunkt, den Ihr Elastic Beanstalk verwendet, indem Sie die Konfiguration der Umgebung aufrufen und den Endpunktwert im Abschnitt Database suchen.
+
 
 ![RDS endpooint](images/EBDatabaseEndpoint.png)
 
-- If Retention is "Create snapshot", you're good to go. You can delete the whole Elastic Beanstalk environment, because AWS will take a snapshot (backup) of the database before deleting the environment.
-- If Retention has a different value, visit your RDS instance and take a snapshot of the database used by the Elastic Beanstalk application.
 
-  ![RDS snapshot](images/RDSTakeSnapshot.png)
+- Wenn Retention auf "Create snapshot" steht, können Sie loslegen. Sie können die gesamte Elastic Beanstalk-Umgebung löschen, da AWS vor dem Löschen der Umgebung einen Snapshot (Sicherung) der Datenbank erstellt.
+- Wenn Retention einen anderen Wert hat, besuchen Sie Ihre RDS-Instanz und erstellen Sie einen Snapshot der von der Elastic Beanstalk-Anwendung verwendeten Datenbank.
 
-### Terminate your Elastic Beanstalk environment with snapshot
 
-Go to the Elastic Beanstalk Metabase application, select the running environment, and terminate it. Confirm that the database will be terminated **with snapshot**.
+![RDS-Snapshot](images/RDSTakeSnapshot.png)
 
-![Terminate environment](images/EBTerminateEnvironment.png)
 
-Terminating the environment can take around 20 minutes. If the deletion fails, you'll have to identify through CloudFormation which resources failed to be deleted and delete them yourself.
+### Beenden Sie Ihre Elastic Beanstalk-Umgebung mit Snapshot
 
-### Restore your snapshot
 
-Return to RDS and select the **Snapshots** option on the left of the page. You should see a Manual Snapshot listed.
+Gehen Sie zur Anwendung Elastic Beanstalk Metabase, wählen Sie die laufende Umgebung aus und beenden Sie sie. Bestätigen Sie, dass die Datenbank **mit Snapshot** beendet wird.
 
-![RDS Snapshots](images/RDSSnapshotsMenu.png)
 
-Select that snapshot and click on **Actions** > **Restore Snapshot**.
+[Umgebung beenden](images/EBTerminateEnvironment.png)
 
-From this step on, you can follow the same steps as the [Configuring RDS for Metabase](./creating-RDS-database-on-AWS.md).
 
-## Upgrade your Elastic Beanstalk deployment
-
-If you want to stay in Elastic Beanstalk, you can keep upgrading it by following these steps:
-
-1. Download the [last published Beanstalk artifact file](https://downloads.metabase.com/v0.47.2/metabase-aws-eb.zip).
-2. Unzip the file.
-3. Edit the Dockerrun.aws.json file and change the image tag to the latest available version. Always Avoid using `:latest`, instead, use the latest version number.
-4. Compress the file.
-5. Upload the file to AWS as a new Beanstalk version.
-6. Upgrade your environment.
-
-Remember that if you're using a Pro or Enterprise version of Metabase, you need to use the metabase/metabase-enterprise repository instead of the metabase/metabase one.
+Das Beenden der Umgebung kann etwa 20 Minuten dauern. Wenn die Löschung fehlschlägt, müssen Sie über CloudFormation ermitteln, welche Ressourcen nicht gelöscht werden konnten, und sie selbst löschen.
