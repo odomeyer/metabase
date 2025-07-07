@@ -1,29 +1,35 @@
 ---
-title: Accessibility in Metabase
+Titel: Barrierefreiheit in der Metabase
 redirect_from:
-  - /docs/latest/accessibility
-  - /docs/latest/people-and-groups/accessibility
+- /docs/latest/accessibility
+- /docs/latest/personen-und-gruppen/zugänglichkeit
 ---
 
-# Accessibility in Metabase
 
-While we're working to make a product that is easy to use and inclusive to all, we're not yet fully compliant with [the U.S. federal government's Section 508 standards](https://www.section508.gov/) or the [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG21/) at Level AA. We expect to build on our current state in the future, and as of today these are some general notes on our state of compliance:
+# Barrierefreiheit in Metabase
 
-- **Navigation and screen readers:** Most information is presented in a way to ensure it can be accessed by screen readers. Metabase lacks a mechanism to allow screen readers to bypass repetitive navigation elements efficiently. Many interactive elements, functionalities, tooltip content, non-modal dialogs and custom form controls are not operable for screen reader users.
-- **Non-text content:** While Metabase provides text alternatives for most non-text elements, some functional images either lack descriptions or have incomplete alt text.
-- **Keyboard navigation:** Most form elements are keyboard-accessible, but certain interactive components, such as custom controls and non-modal dialogs, may lack full keyboard operability.
-- **Focus management:** In some cases, keyboard focus does not follow a logical order, and certain interactive elements lack a visible focus indicator.
-- **Tables and data visualization:** Data tables do not consistently include programmatically defined row and column headers, impacting screen reader interpretation.
-- **Motion and animations:** Metabase includes minimal transition animations. If the [prefers-reduced-motion CSS setting](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion#user_preferences) is enabled in the OS, Metabase disables animations. However, we have not yet conducted full testing to confirm that all animations meet the recommended flicker rate threshold (between 2 Hz and 55 Hz).
-- **Language and labels:** Some form elements lack explicit labels, and primary language settings do not update programmatically when changed.
-- **Assistive technology compatibility:** Metabase is a React-based web application, which means it requires JavaScript to function and may not be fully operable with all assistive technologies.
-- **Error handling and form validation:** Some form fields do not provide clear error messages, and required fields are not always programmatically marked as mandatory. This may impact users relying on screen readers or other assistive technologies.
-- **Contrast and visual accessibility:** While most UI elements meet contrast requirements, some text and interactive elements have insufficient color contrast, making them difficult to read for users with low vision or color blindness.
-- **Resizing and responsive behavior:** Most content can be resized up to 200% without loss of information, but some elements do not reflow properly, potentially causing overlap or cutoff content when text spacing is adjusted.
-- **Hover and tooltip behavior:** Some tooltips and additional information elements appear on hover but are not easily dismissible using a keyboard, which may present challenges for keyboard-only users and screen readers.
-- **Status messages and notifications:** While some dynamically generated status messages are accessible, others are not consistently conveyed to assistive technologies like screen readers, which could make it difficult for users to receive important system feedback.
-- **Consistent page titles and headings:** Some pages lack descriptive or unique titles, which may make navigation more challenging for screen reader users who rely on clear page identification.
 
-If you're interested in helping us address these gaps, check out [our developers' guide](../developers-guide/start.md).
+Obwohl wir daran arbeiten, ein Produkt zu entwickeln, das einfach zu benutzen ist und alle Menschen einbezieht, sind wir noch nicht vollständig konform mit den [Section 508 Standards der US-Bundesregierung](https://www.section508.gov/) oder den [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG21/) auf Stufe AA. Wir gehen davon aus, dass wir unseren derzeitigen Stand in Zukunft weiter ausbauen werden:
 
-To request a copy of our VPAT, contact us at [help@metabase.com](mailto:help@metabase.com).
+
+- **Navigation und Bildschirmleser:** Die meisten Informationen werden so präsentiert, dass sie für Bildschirmleser zugänglich sind. Die Metabase verfügt nicht über einen Mechanismus, der es Screenreadern ermöglicht, sich wiederholende Navigationselemente effizient zu umgehen. Viele interaktive Elemente, Funktionalitäten, Tooltip-Inhalte, nicht-modale Dialoge und benutzerdefinierte Formularsteuerungen sind für Screenreader-Benutzer nicht bedienbar.
+- **Nicht-textliche Inhalte:** Während Metabase für die meisten nicht-textlichen Elemente Textalternativen bereitstellt, fehlen bei einigen funktionalen Bildern entweder Beschreibungen oder der Alt-Text ist unvollständig.
+-**Tastaturnavigation:** Die meisten Formularelemente sind über die Tastatur bedienbar, aber bestimmte interaktive Komponenten, wie z. B. benutzerdefinierte Steuerelemente und nichtmodale Dialoge, sind möglicherweise nicht vollständig über die Tastatur bedienbar.
+- **Fokusmanagement:** In einigen Fällen folgt der Tastaturfokus keiner logischen Reihenfolge, und bestimmten interaktiven Elementen fehlt ein sichtbarer Fokusindikator.
+-Tabellen und Datenvisualisierung:** Datentabellen enthalten nicht durchgängig programmatisch definierte Zeilen- und Spaltenüberschriften, was die Interpretation durch Screenreader beeinträchtigt.
+- **Bewegung und Animationen:** Die Metabase enthält minimale Übergangsanimationen. Wenn dieCSS-Einstellung [prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion#user_preferences) im Betriebssystem aktiviert ist, deaktiviert Metabase die Animationen. Wir haben jedoch noch keine vollständigen Tests durchgeführt, um zu bestätigen, dass alle Animationen den empfohlenen Grenzwert für die Flimmerrate (zwischen 2 Hz und 55 Hz) einhalten.
+- **Sprache und Beschriftungen:** Bei einigen Formularelementen fehlen explizite Beschriftungen, und die primären Spracheinstellungen werden bei Änderungen nicht programmatisch aktualisiert.
+-Kompatibilität mit unterstützenden Technologien:** Metabase ist eine React-basierte Webanwendung, was bedeutet, dass sie JavaScript benötigt, um zu funktionieren, und möglicherweise nicht mit allen unterstützenden Technologien voll funktionsfähig ist.
+- **Fehlerbehandlung und Formularvalidierung:** Einige Formularfelder bieten keine eindeutigen Fehlermeldungen, und erforderliche Felder werden nicht immer programmatisch als obligatorisch gekennzeichnet. Dies kann sich auf Benutzer auswirken, die auf Bildschirmlesegeräte oder andere unterstützende Technologien angewiesen sind.
+- **Kontrast und visuelle Zugänglichkeit:** Während die meisten Elemente der Benutzeroberfläche die Anforderungen an den Kontrast erfüllen, weisen einige Texte und interaktive Elemente einen unzureichenden Farbkontrast auf, so dass sie für Benutzer mit Sehschwäche oder Farbenblindheit schwer zu lesen sind.
+- **Größenanpassung und reaktionsfähiges Verhalten:** Die meisten Inhalte können ohne Informationsverlust um bis zu 200 % vergrößert werden, aber einige Elemente werden nicht richtig umbrochen, was zu Überlappungen oder abgeschnittenen Inhalten führen kann, wenn der Textabstand angepasst wird.
+- **Hover- und Tooltip-Verhalten:** Einige Tooltips und zusätzliche Informationselemente erscheinen beim Hover, lassen sich aber nicht ohne Weiteres mit der Tastatur ausblenden, was für Benutzer, die nur über eine Tastatur verfügen, und für Screenreader eine Herausforderung darstellen kann.
+- **Statusmeldungen und Benachrichtigungen:** Während einige dynamisch generierte Statusmeldungen zugänglich sind, werden andere nicht konsistent an unterstützende Technologien wie Bildschirmlesegeräte übermittelt, was es für Benutzer schwierig machen könnte, wichtiges Systemfeedback zu erhalten.
+-Einheitliche Seitentitel und Überschriften:** Einigen Seiten fehlen beschreibende oder eindeutige Titel, was die Navigation für Benutzer von Bildschirmlesegeräten, die auf eine eindeutige Seitenidentifizierung angewiesen sind, erschweren kann.
+
+
+Wenn Sie daran interessiert sind, uns bei der Beseitigung dieser Lücken zu helfen, sehen Sie sich [unseren Entwicklerleitfaden](../developers-guide/start.md) an.
+
+
+Um ein Exemplar unserer VPAT anzufordern, kontaktieren Sie uns unter [help@metabase.com](mailto:help@metabase.com).
+
