@@ -1,57 +1,81 @@
 ---
-title: How to run a development branch of Metabase using Docker
+Titel: Wie man einen Entwicklungszweig von Metabase mit Docker betreibt
 ---
 
-# How to run a development branch of Metabase using Docker
 
-If you want to run a branch of Metabase that's currently in development, the easiest way to get started is to use a pre-built Docker image. You can also [compile Metabase yourself](build.md).
+# So führen Sie einen Entwicklungszweig von Metabase mit Docker aus
 
-If you're looking to download and run the latest official open source version of Metabase, check the [operations guide](../installation-and-operation/installing-metabase.md).
 
-## Installing Docker
+Wenn Sie einen Zweig von Metabase ausführen möchten, der sich derzeit in der Entwicklung befindet, ist es am einfachsten, ein vorgefertigtes Docker-Image zu verwenden. Sie könnenMetabase auch [selbst kompilieren](build.md).
 
-The only thing you’ll need to get started is Docker itself.
 
-- [Install Docker Desktop](https://www.docker.com/products/docker-desktop)
+Wenn Sie die neueste offizielle Open-Source-Version von Metabase herunterladen und ausführen möchten, lesen Sie den [operations guide](../installation-and-operation/installing-metabase.md).
 
-OR
 
-- If you like to install things via Homebrew:
+## Installieren von Docker
 
-```bash
+
+Das Einzige, was Sie für die ersten Schritte benötigen, ist Docker selbst.
+
+
+- [Docker Desktop installieren](https://www.docker.com/products/docker-desktop)
+
+
+ODER
+
+
+- Wenn Sie Dinge über Homebrew installieren möchten:
+
+
+````bash
 brew install --cask docker
 ```
 
-Once Docker is installed, you’re ready to go.
 
-## Run a development branch to test or verify features
+Sobald Docker installiert ist, können Sie loslegen.
 
-[See here](https://hub.docker.com/r/metabase/metabase-dev/tags) for a list of development branches that you can run via Docker.
 
-1. Open your terminal app of choice.
+## Führen Sie einen Entwicklungszweig aus, um Funktionen zu testen oder zu überprüfen.
 
-2. Copy and paste this command, switching out `<branch-name>` for the name of the branch you’d like to test:
 
-```bash
+[Hier(https://hub.docker.com/r/metabase/metabase-dev/tags) finden Sie eine Liste von Entwicklungszweigen, die Sie über Docker ausführen können.
+
+
+1. Öffnen Sie die Terminal-App Ihrer Wahl.
+
+
+2. Kopieren Sie diesen Befehl und fügen Sie ihn ein, wobei Sie "<Zweigname>" durch den Namen des Zweigs ersetzen, den Sie testen möchten:
+
+
+``bash
 docker run --platform linux/amd64 -d -p 3000:3000 --name metabase-dev metabase/metabase-dev:<branch-name>
 ```
 
-3. In your browser, navigate to `http://localhost:3000`, where you should see Metabase. It may take a minute or two to start up depending on your computer.
 
-**Note**: This will always start Metabase with a fresh database.
+3. Navigieren Sie in Ihrem Browser zu `http://localhost:3000`, wo Sie Metabase sehen sollten. Je nach Ihrem Computer kann es ein oder zwei Minuten dauern, bis das Programm startet.
 
-## Pull and run the latest changes
 
-Run:
+**Hinweis**: Die Metabase wird immer mit einer neuen Datenbank gestartet.
+
+
+## Die letzten Änderungen ziehen und ausführen
+
+
+Ausführen:
+
 
 ```
 docker pull metabase/metabase-enterprise-head:latest
 ```
 
-Then:
+
+Dann:
+
 
 ```
 docker run --platform linux/amd64 -d -p 3000:3000 --name metabase metabase/metabase-enterprise-head:latest
 ```
 
-The “latest” tag is not automatically upgraded on your local machine, so the above commands ensure that you’re pulling the latest changes.
+
+Das "latest"-Tag wird nicht automatisch auf Ihrem lokalen Rechner aktualisiert, so dass die obigen Befehle sicherstellen, dass Sie die neuesten Änderungen übernehmen.
+
